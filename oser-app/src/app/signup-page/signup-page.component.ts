@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupPageComponent implements OnInit {
 
+  private _pass;
+  private _confirm;
+
   constructor() { }
 
   ngOnInit() {
