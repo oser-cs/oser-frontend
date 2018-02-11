@@ -10,9 +10,9 @@
             #name="ngModel" [(ngModel)]="_confirm"/>
     <div *ngIf="(name.dirty || name.touched)">
         <div *ngIf="!(_pass == _confirm)"
-              class="alert alert-danger">Les mots de passes doivent être identiques</div>
+              class="alert alert-danger">Les mots de passe doivent être identiques</div>
         <div *ngIf="(_pass == _confirm)"
-              class="alert alert-valid">Les mots de passes sont identiques</div>
+              class="alert alert-valid">Les mots de passe sont identiques</div>
     </div>
     <hr/>
     <label for="name">Informations Personnelles</label>
