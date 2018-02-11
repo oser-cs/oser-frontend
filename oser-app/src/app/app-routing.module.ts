@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ShowcaseComponent } from './showcase/showcase.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
+import { ShowcaseSiteComponent } from './showcase-site/showcase-site.component';
 
 const routes: Routes = [
-  { path: 'showcase', component: ShowcaseComponent },
+  { path: 'showcase', component: ShowcaseSiteComponent },
   { path: 'signup', component: SignupPageComponent },
   { path: '', redirectTo: '/signup', pathMatch: 'full'}
 ]

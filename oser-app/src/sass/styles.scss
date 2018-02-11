@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+@import './variables';
+@import './mixins';
+
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700,900');
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700,900');
+
+body {
+  margin: 0;
+  font-family: 'Nunito', Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway', Arial, sans-serif;
+}

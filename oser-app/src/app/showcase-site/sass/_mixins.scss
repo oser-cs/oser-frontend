@@ -1,0 +1,71 @@
+@mixin btn($color, $hover-color: white) {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  color: $color;
+  background: none;
+  border: 1px solid $color;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+  font-weight: bold;
+
+  &:hover {
+    background: $color;
+    color: $hover-color;
+  }
+}
+
+/* Effects */
+%shadow {
+  box-shadow: 0 3px 10px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation */
+@mixin nav-link($underline: false) {
+  a {
+    text-decoration: none;
+    color: $color-purple;
+    font-weight: bold;
+    // change color on hover
+    &:hover {
+      color: $color-dark-blue;
+    }
+  }
+  @if $underline {
+    // animated underline effect on nav links
+    a::after {
+      content: '';
+      display: block;
+      $height: 0.1em;
+      height: $height;
+      margin-top: $header-margin-bottom - $height;
+      background: transparent;
+      transition: background 0.3s;
+    }
+
+    a:hover::after {
+      background: $color-dark-blue;
+    }
+  }
+}
+
+/* Buttons */
+@mixin btn($color, $hover-color: white) {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  color: $color;
+  background: none;
+  border: 1px solid $color;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+  font-weight: bold;
+
+  &:hover {
+    background: $color;
+    color: $hover-color;
+  }
+}
+@mixin btn-link {
+  text-decoration: none;
+}

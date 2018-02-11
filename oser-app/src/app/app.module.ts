@@ -5,20 +5,20 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
-import { ShowcaseComponent } from './showcase/showcase.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ShowcaseSiteModule } from './showcase-site/showcase-site.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupPageComponent,
-    ShowcaseComponent
+    SignupPageComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ShowcaseSiteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
