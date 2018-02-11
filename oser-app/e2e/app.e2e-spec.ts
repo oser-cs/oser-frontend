@@ -1,6 +1,6 @@
 import { OserAppPage } from './app.po';
 
-describe('oser-app App', function() {
+describe('oser-app App', () => {
   let page: OserAppPage;
 
   beforeEach(() => {
