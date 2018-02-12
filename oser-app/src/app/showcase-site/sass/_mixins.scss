@@ -73,8 +73,7 @@
 @mixin page-section($index, $color: inherit) {
   @include margin-page;
   position: relative;
-  z-index: -1 - $index;
-  @extend %shadow;
+  z-index: 9 - $index;
   margin: 0;
   color: $color;
 

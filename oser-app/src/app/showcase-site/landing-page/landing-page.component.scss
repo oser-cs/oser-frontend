@@ -14,6 +14,7 @@
 
 #qui-sommes-nous {
   @include page-section(1, white);
+  @extend %shadow;
   background: $color-dark-blue;
   text-align: center;
 
@@ -27,16 +28,17 @@
 
   .next {
     margin-bottom: 2em;
+    a {
+      @include btn(white, $hover-color: $color-dark-blue);
+      @include btn-link;
+    }
   }
 
-  a {
-    @include btn(white, $hover-color: $color-dark-blue);
-    @include btn-link;
-  }
 }
 
 #actions {
   @include page-section(2);
+  @extend %shadow;
   background: $color-light-blue;
   text-align: center;
 
@@ -80,6 +82,7 @@
 
 #news {
   @include page-section(3);
+  @extend %shadow;
 
   .heading {
     text-align: center;
@@ -120,6 +123,7 @@
 #calls-to-action {
   /* TODO add responsiveness/media queries */
   @include page-section(4);
+  @extend %shadow;
   background-color: $color-dark-blue;
   color: white;
 
@@ -133,10 +137,14 @@
 
   .cta {
     display: grid;
-    grid-template-areas: "text well";
+    grid-template-areas: "text" "well";
     grid-gap: 2em;
     margin-bottom: 2em;
+    @include media-lg {
+      grid-template-areas: "text well";
+    }
   }
+
 
   .cta-text {
     grid-area: "text";
@@ -152,18 +160,23 @@
 
   .cta-well {
     grid-area: "well";
-    width: 30em;
+    width: auto;
     margin-bottom: auto;
     text-align: center;
-    box-shadow: 0 3px 10px 3px rgba(0, 0, 0, 0.2) inset;
     border-radius: 4px;
+    /* internal shadow */
+    box-shadow: 0 3px 10px 3px rgba(0, 0, 0, 0.2) inset;
+
     img {
       vertical-align: middle;
-      max-width: 49%;
+      max-width: 200px;
       height: auto;
     }
     &.white {
       background: white;
+    }
+    @include media-lg {
+      width: 30em;
     }
   }
 }

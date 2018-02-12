@@ -12,6 +12,7 @@ $col-padding: 10px;
   padding: 0 $margin-page;
   margin: 0;
   background: white;
+  z-index: 10;
   @extend %shadow;
 }
 
