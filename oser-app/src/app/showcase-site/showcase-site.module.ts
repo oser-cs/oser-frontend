@@ -5,12 +5,22 @@ import { ShowcaseSiteComponent } from './showcase-site.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NewsCardComponent } from './landing-page/news-card/news-card.component';
 import { FooterComponent } from './footer/footer.component';
+import { ShowcaseRoutingModule } from './showcase-routing.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    ShowcaseRoutingModule
   ],
-  declarations: [NavbarComponent, ShowcaseSiteComponent, LandingPageComponent, NewsCardComponent, FooterComponent],
-  exports: [ShowcaseSiteComponent]
+  declarations: [
+    NavbarComponent,
+    ShowcaseSiteComponent,
+    LandingPageComponent,
+    NewsCardComponent,
+    FooterComponent
+  ],
+  exports: [
+    ShowcaseSiteComponent
+  ]
 })
 export class ShowcaseSiteModule { }
