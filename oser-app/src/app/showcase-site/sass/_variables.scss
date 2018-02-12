@@ -1,0 +1,12 @@
+@import '~sass/variables';
+
+/* 12-column grid system */
+$col-rel: 100%/12;
+$col-padding: 10px;
+@function col-width($n) {
+  @return $n * $col-rel;
+}
+
+/* Layout spacing */
+$margin-page: 2em;
+$header-margin-bottom: 1em;

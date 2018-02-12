@@ -1,0 +1,71 @@
+@import '~app/showcase-site/sass/variables';
+@import '~app/showcase-site/sass/mixins';
+
+.news-card {
+  $padding: 1em 1.5em;
+  display: flex;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  @include media-md {
+    background-color: #f6f6f6;
+    border-radius: 0.5em;
+    overflow: hidden;
+    display: block;
+    max-width: 20em;
+  }
+
+  .image {
+    display: none;
+    margin-bottom: auto;
+    margin-right: 2em;
+    @include media-xs {
+      display: block;
+    }
+    @include media-md {
+      margin: 0;
+    }
+  }
+
+  img {
+    width: 10em;
+    height: auto;
+    border-radius: 0.5em;
+    overflow: hidden;
+    @include media-md {
+      width: 100%;
+      border-radius: 0;
+    }
+  }
+
+  .body {
+    @include media-md {
+      padding: $padding;
+    }
+
+    h3 {
+      font-weight: bold;
+      margin: 0;
+    }
+
+    h5 {
+      color: gray;
+      font-weight: normal;
+      margin-top: 0.5em;
+    }
+
+    a {
+      text-decoration: none;
+      color: $color-accent;
+      font-weight: bold;
+    }
+  }
+  /* TODO fix spacing bug */
+  & + .news-card {
+    margin-top: 2em;
+    @include media-md {
+      margin-top: 0;
+      margin-left: 2em;
+    }
+  }
+}

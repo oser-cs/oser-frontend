@@ -5,6 +5,8 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
+import { AppRoutingModule } from './app-routing.module';
+import { ShowcaseSiteModule } from './showcase-site/showcase-site.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule,
+    ShowcaseSiteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

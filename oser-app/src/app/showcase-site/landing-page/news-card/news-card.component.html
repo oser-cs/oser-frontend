@@ -1,0 +1,11 @@
+<div class="news-card">
+  <div class="image">
+    <img [src]="news.src" [alt]="news.title"/>
+  </div>
+  <div class="body">
+    <h3>{{ news.title }}</h3>
+    <h5>Publié le {{ news.date }}</h5>
+    <p>{{ news.description }}</p>
+    <a href="#">Lire la suite</a>
+  </div>
+</div>

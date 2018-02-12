@@ -1,0 +1,28 @@
+@import '~app/showcase-site/sass/variables';
+@import '~app/showcase-site/sass/mixins';
+@import '~sass/media-queries';
+
+#footer {
+  position: relative;
+  z-index: 30;
+  background: $color-darkest-blue;
+  padding: $margin-page 3*$margin-page;
+  color: $color-purple-light;
+  display: flex;
+  justify-content: space-between;
+}
+.inline-text {
+  .btn {
+    display: inline;
+    vertical-align: baseline;
+    margin-left: 1em;
+    a {
+      @include btn($color-purple-light, $hover-color: $color-darkest-blue);
+      @include btn-link;
+    }
+  }
+  .social {
+    margin: 0 0.5em;
+    color: $color-light-blue;
+  }
+}
