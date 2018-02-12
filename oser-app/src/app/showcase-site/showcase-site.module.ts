@@ -8,6 +8,10 @@ import { FooterComponent } from './footer/footer.component';
 import { ShowcaseRoutingModule } from './showcase-routing.module';
 import { DonatePageComponent } from './donate-page/donate-page.component';
 import { ContactPageComponent } from './contact-page/contact-page.component';
+import { ActionsPageComponent } from './actions-page/actions-page.component';
+import { NewsPageComponent } from './news-page/news-page.component';
+import { AboutPageComponent } from './about-page/about-page.component';
+import { NewsItemComponent } from './news-page/news-item/news-item.component';
 
 @NgModule({
   imports: [
@@ -21,7 +25,11 @@ import { ContactPageComponent } from './contact-page/contact-page.component';
     NewsCardComponent,
     FooterComponent,
     DonatePageComponent,
-    ContactPageComponent
+    ContactPageComponent,
+    ActionsPageComponent,
+    NewsPageComponent,
+    AboutPageComponent,
+    NewsItemComponent
   ],
   exports: [
     ShowcaseSiteComponent

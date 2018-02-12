@@ -3,4 +3,5 @@ export class News {
   description: string;
   date: string;
   src: string;
+  pinned: boolean;
 }

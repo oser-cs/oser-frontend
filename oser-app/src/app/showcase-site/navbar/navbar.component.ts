@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-
 class Link {
   href: string;
   text: string;
@@ -14,12 +13,11 @@ class Link {
 export class NavbarComponent implements OnInit {
 
   visible: boolean;
-  // todo add real hrefs (router links) once implemented
   links: Link[] = [
-    { href: '.', text: 'Qui sommes-nous ?' },
+    { href: 'about', text: 'Qui sommes-nous ?' },
     { href: 'donate', text: 'Soutenez-nous' },
-    { href: '.', text: 'Nos actions' },
-    { href: '.', text: 'Actualités' },
+    { href: 'actions', text: 'Nos actions' },
+    { href: 'news', text: 'Actualités' },
     { href: 'contact', text: 'Contact' }
   ];
   // TODO change to real login route once implemented

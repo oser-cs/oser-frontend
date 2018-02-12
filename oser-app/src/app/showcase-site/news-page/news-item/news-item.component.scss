@@ -1,0 +1,57 @@
+@import '~app/showcase-site/sass/variables';
+@import '~app/showcase-site/sass/mixins';
+$padding: 1em 1.5em;
+
+.news-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  @include media-md {
+    grid-template-columns: 0.4fr 1fr;
+  }
+  grid-column-gap: 0.5em;
+  // display: flex;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.image {
+  display: none;
+  margin: 0 0.5em auto 0;
+  @include media-md {
+    display: block;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+}
+
+.news-card-body {
+  h3 {
+    font-weight: bold;
+    margin: 0;
+  }
+
+  h5 {
+    color: gray;
+    font-weight: normal;
+    margin-top: 0.5em;
+  }
+  .date {
+    margin-bottom: 0;
+  }
+  p {
+    $m: .5em;
+    margin-top: $m;
+    margin-bottom: $m;
+  }
+}
+
+.pinned {
+  color: $color-dark-blue;
+  font-size: 10pt;
+}
