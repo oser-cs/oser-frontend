@@ -1,5 +1,10 @@
 import { News } from './news';
 
+/*
+This is a mock array of News objects.
+TODO Implement a NewsService to get the last 3 news from the news page and
+add them on the landing page.
+*/
 export const NEWS: News[] = [{
   title: 'Journée de Clôture 2017',
   description: "La fin de l'année scolaire sonne aussi la fin du tutorat pour les tutorés. Pour fêter cette belle année passée ensemble, les tutorés et les tuteurs se sont retrouvés ce samedi 5 juin sur le campus de CentraleSupélec […]",

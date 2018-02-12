@@ -105,6 +105,14 @@
     @include media-md() {
       flex-direction: row;
     }
+    /* Add space between cards */
+    app-news-card + app-news-card {
+      margin-top: 2em;
+      @include media-md {
+        margin-top: 0;
+        margin-left: 2em;
+      }
+    }
   }
 }
 

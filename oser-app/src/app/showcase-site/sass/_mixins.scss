@@ -58,7 +58,7 @@
 /* Landing page */
 @mixin landing-section($index, $color: black) {
   position: relative;
-  z-index: 10 - $index;
+  z-index: -1 - $index;
   @extend %shadow;
   margin: 0;
   padding: $margin-page;
