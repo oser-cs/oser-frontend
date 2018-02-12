@@ -4,12 +4,14 @@
 
 #footer {
   margin: 0;
-  z-index: 30;
+  position: relative;
+  z-index: 10;
   background: $color-darkest-blue;
   padding: $margin-page 3*$margin-page;
   color: $color-purple-light;
   display: flex;
   justify-content: space-between;
+  @extend %shadow;
 }
 .inline-text {
   .btn {
