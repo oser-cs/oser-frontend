@@ -8,7 +8,7 @@
 body {
   margin: 0;
   font-family: 'Nunito', Arial, sans-serif;
-  color: #222;
+  color: $color-text;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -26,4 +26,12 @@ a {
   text-decoration: none;
   color: $color-accent;
   font-weight: bold;
+}
+
+hr {
+  height: 1px;
+  border-width: 0;
+  $color: lighten($color-text, 40%);
+  color: $color;
+  background-color: $color;
 }

@@ -6,7 +6,7 @@
     <i (click)="toggle()" class="hamburger fa fa-bars fa-2x"></i>
     <div [hidden]="!visible" class="links">
       <li *ngFor="let link of links">
-        <a class="nav-link" [routerLink]="link.href">{{ link.text }}</a>
+        <a (click)="toggle()" class="nav-link" [routerLink]="link.href">{{ link.text }}</a>
       </li>
       <li>
         <a class="nav-link" [routerLink]="loginRoute">
