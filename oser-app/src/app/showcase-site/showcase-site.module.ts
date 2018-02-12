@@ -6,7 +6,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NewsCardComponent } from './landing-page/news-card/news-card.component';
 import { FooterComponent } from './footer/footer.component';
 import { ShowcaseRoutingModule } from './showcase-routing.module';
-import { DonateComponent } from './donate/donate.component';
+import { DonatePageComponent } from './donate-page/donate-page.component';
+import { ContactPageComponent } from './contact-page/contact-page.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { DonateComponent } from './donate/donate.component';
     LandingPageComponent,
     NewsCardComponent,
     FooterComponent,
-    DonateComponent
+    DonatePageComponent,
+    ContactPageComponent
   ],
   exports: [
     ShowcaseSiteComponent
