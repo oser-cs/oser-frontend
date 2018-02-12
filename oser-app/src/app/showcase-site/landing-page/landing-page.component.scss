@@ -1,0 +1,161 @@
+@import '~app/showcase-site/sass/mixins';
+@import '~app/showcase-site/sass/variables';
+
+#landing-photo {
+  position: relative;
+  z-index: -1;
+  /* make shadow of navbar cover the photo */
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  @extend %shadow;
+}
+
+#qui-sommes-nous {
+  @include landing-section(1, white);
+  background: $color-dark-blue;
+  text-align: center;
+
+  h2 {
+    color: $color-light-blue;
+  }
+
+  p {
+    margin-bottom: 2em;
+  }
+
+  .next {
+    margin-bottom: 2em;
+  }
+
+  a {
+    @include btn(white, $hover-color: $color-dark-blue);
+    @include btn-link;
+  }
+}
+
+#actions {
+  @include landing-section(2);
+  background: $color-light-blue;
+  text-align: center;
+
+  a {
+    @include btn($color-accent);
+    @include btn-link;
+  }
+
+  .action-bubbles {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  p {
+    margin-bottom: 2em;
+  }
+
+  .action-bubble {
+    text-align: center;
+
+    img {
+      width: 100%;
+      max-width: 200px;
+      height: auto;
+      border-radius: 50%;
+    }
+
+    p {
+      text-transform: uppercase;
+      font-weight: bold;
+      color: $color-dark-blue;
+    }
+
+    & + .action-bubble {
+      margin-left: 3em;
+    }
+  }
+}
+
+#news {
+  @include landing-section(3);
+
+  .heading {
+    text-align: center;
+  }
+
+  .link-all {
+    text-align: center;
+    margin: 0;
+
+    a {
+      @include btn($color-dark-blue);
+      @include btn-link;
+    }
+  }
+
+  .news-cards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    list-style-type: none;
+    margin: 2em 0;
+    @include media-md() {
+      flex-direction: row;
+    }
+  }
+}
+
+
+#calls-to-action {
+  /* TODO add responsiveness/media queries */
+  @include landing-section(4);
+  background-color: $color-dark-blue;
+  color: white;
+
+  .heading {
+    text-align: center;
+  }
+
+  h2 {
+    color: $color-light-blue;
+  }
+
+  .cta {
+    display: grid;
+    grid-template-areas: "text well";
+    grid-gap: 2em;
+    margin-bottom: 2em;
+  }
+
+  .cta-text {
+    grid-area: "text";
+  }
+  .cta-btn {
+    text-align: center;
+    margin-top: 2em;
+    a {
+      @include btn($color-light-blue, $hover-color: $color-dark-blue);
+      @include btn-link;
+    }
+  }
+
+  .cta-well {
+    grid-area: "well";
+    width: 30em;
+    margin-bottom: auto;
+    text-align: center;
+    box-shadow: 0 3px 10px 3px rgba(0, 0, 0, 0.2) inset;
+    border-radius: 4px;
+    img {
+      vertical-align: middle;
+      max-width: 49%;
+      height: auto;
+    }
+    &.white {
+      background: white;
+    }
+  }
+}

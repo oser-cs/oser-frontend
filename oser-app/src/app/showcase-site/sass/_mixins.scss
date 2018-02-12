@@ -1,19 +1,4 @@
-@mixin btn($color, $hover-color: white) {
-  -webkit-appearance: none;
-  -webkit-border-radius: 0;
-  color: $color;
-  background: none;
-  border: 1px solid $color;
-  padding: 8px;
-  border-radius: 4px;
-  transition: background 0.2s, color 0.2s;
-  font-weight: bold;
-
-  &:hover {
-    background: $color;
-    color: $hover-color;
-  }
-}
+@import '~sass/media-queries';
 
 /* Effects */
 %shadow {
@@ -68,4 +53,23 @@
 }
 @mixin btn-link {
   text-decoration: none;
+}
+
+/* Landing page */
+@mixin landing-section($index, $color: black) {
+  position: relative;
+  z-index: 10 - $index;
+  @extend %shadow;
+  margin: 0;
+  padding: $margin-page;
+  color: $color;
+
+  h2 {
+    font-size: 28px;
+  }
+
+  @include media-xs {
+    padding-left: 3.2 * $margin-page;
+    padding-right: 3.2 * $margin-page;
+  }
 }
