@@ -13,7 +13,7 @@
 }
 
 #qui-sommes-nous {
-  @include landing-section(1, white);
+  @include page-section(1, white);
   background: $color-dark-blue;
   text-align: center;
 
@@ -36,7 +36,7 @@
 }
 
 #actions {
-  @include landing-section(2);
+  @include page-section(2);
   background: $color-light-blue;
   text-align: center;
 
@@ -79,7 +79,7 @@
 }
 
 #news {
-  @include landing-section(3);
+  @include page-section(3);
 
   .heading {
     text-align: center;
@@ -119,7 +119,7 @@
 
 #calls-to-action {
   /* TODO add responsiveness/media queries */
-  @include landing-section(4);
+  @include page-section(4);
   background-color: $color-dark-blue;
   color: white;
 

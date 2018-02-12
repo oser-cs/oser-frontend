@@ -3,7 +3,7 @@
 @import '~sass/media-queries';
 
 #footer {
-  position: relative;
+  margin: 0;
   z-index: 30;
   background: $color-darkest-blue;
   padding: $margin-page 3*$margin-page;

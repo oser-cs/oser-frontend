@@ -1,7 +1,10 @@
+@import './variables';
 @import '~sass/media-queries';
 
 /* Effects */
 %shadow {
+  -moz-box-shadow: 0 3px 10px 3px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 3px 10px 3px rgba(0, 0, 0, 0.2);
   box-shadow: 0 3px 10px 3px rgba(0, 0, 0, 0.2);
 }
 
@@ -55,21 +58,28 @@
   text-decoration: none;
 }
 
-/* Landing page */
-@mixin landing-section($index, $color: black) {
+/* Page sections */
+
+@mixin margin-page() {
+  /* Use for consistent responsive page margins */
+  padding: $margin-page;
+  @content;
+  @include media-xs {
+    padding-left: 3.2 * $margin-page;
+    padding-right: 3.2 * $margin-page;
+  }
+}
+
+@mixin page-section($index, $color: inherit) {
+  @include margin-page;
   position: relative;
   z-index: -1 - $index;
   @extend %shadow;
   margin: 0;
-  padding: $margin-page;
   color: $color;
 
   h2 {
     font-size: 28px;
   }
 
-  @include media-xs {
-    padding-left: 3.2 * $margin-page;
-    padding-right: 3.2 * $margin-page;
-  }
 }

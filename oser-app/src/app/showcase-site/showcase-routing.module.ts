@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ShowcaseSiteComponent } from './showcase-site.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { DonateComponent } from './donate/donate.component';
 
 const showcaseSiteRoutes: Routes = [
   {
@@ -11,6 +12,10 @@ const showcaseSiteRoutes: Routes = [
       {
         path: '',
         component: LandingPageComponent
+      },
+      {
+        path: 'donate',
+        component: DonateComponent
       }
     ]
   }

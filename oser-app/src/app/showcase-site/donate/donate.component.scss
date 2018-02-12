@@ -1,0 +1,15 @@
+@import '~app/showcase-site/sass/mixins';
+
+#content {
+  #description {
+    @include page-section(1);
+  }
+
+  #haWidget {
+    box-sizing: border-box;
+    background-color: white;
+    width: 100%;
+    height: 1000px;
+    @include margin-page;
+  }
+}

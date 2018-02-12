@@ -6,6 +6,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NewsCardComponent } from './landing-page/news-card/news-card.component';
 import { FooterComponent } from './footer/footer.component';
 import { ShowcaseRoutingModule } from './showcase-routing.module';
+import { DonateComponent } from './donate/donate.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { ShowcaseRoutingModule } from './showcase-routing.module';
     ShowcaseSiteComponent,
     LandingPageComponent,
     NewsCardComponent,
-    FooterComponent
+    FooterComponent,
+    DonateComponent
   ],
   exports: [
     ShowcaseSiteComponent
