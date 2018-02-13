@@ -74,8 +74,9 @@
   padding: $margin-page;
   @content;
   @include media-xs {
-    padding-left: 3.2 * $margin-page;
-    padding-right: 3.2 * $margin-page;
+    $m: 3 * $margin-page;
+    padding-left: $m;
+    padding-right: $m;
   }
 }
 
@@ -90,4 +91,8 @@
     font-size: 28px;
   }
 
+}
+
+@function transp($color, $amount: 0.4) {
+  @return transparentize($color, $amount);
 }

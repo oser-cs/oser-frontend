@@ -29,7 +29,7 @@ export const NEWS: News[] = [{
 },
 {
   title: "OSER et Véolia signent un nouveau partenariat",
-  description: "Depuis le 11 décembre 2017, OSER peut compter sur un nouveau partenaire. Véolia est un grand groupe de la gestion énergétique et sanitaire, et s'engage à nos côtés pour favoriser le tissu social.",
+  description: "Depuis le 11 décembre 2017, OSER peut compter sur un nouveau partenaire. Véolia est un grand groupe de la gestion énergétique et sanitaire, et s'engage à nos côtés pour favoriser le tissu social.",
   date: "14/12/2017",
   src: "assets/img/logo-veolia.png",
   pinned: true

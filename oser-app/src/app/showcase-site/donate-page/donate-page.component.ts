@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import jump from 'jump.js';
 
 @Component({
   selector: 'app-donate',
@@ -10,6 +11,10 @@ export class DonatePageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  goTo() {
+    jump('#haWidget');
   }
 
 }
