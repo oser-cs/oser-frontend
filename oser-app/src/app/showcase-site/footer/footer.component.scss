@@ -3,13 +3,15 @@
 @import '~sass/media-queries';
 
 #footer {
+  margin: 0;
   position: relative;
-  z-index: 30;
+  z-index: 10;
   background: $color-darkest-blue;
   padding: $margin-page 3*$margin-page;
   color: $color-purple-light;
   display: flex;
   justify-content: space-between;
+  @extend %shadow;
 }
 .inline-text {
   .btn {

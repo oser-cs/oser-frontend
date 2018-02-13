@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { News } from './news';
-import { NEWS } from './mock-news';
+import { News } from '../news';
+import { NEWS } from '../mock-news';
 
 class Action {
   title: string;
@@ -36,7 +36,8 @@ export class LandingPageComponent implements OnInit {
   }
 
   getNews(): void {
-    this.news = NEWS;
+    // Get the last 3 news
+    this.news = NEWS.slice(0, 3);
   }
 
   ngOnInit() {

@@ -1,33 +1,32 @@
 @import '~sass/media-queries';
 @import '~app/showcase-site/sass/variables';
 @import '~app/showcase-site/sass/mixins';
-
 $margin-page: 2em;
 $col-padding: 10px;
 
 .navbar {
-    position: static;
-    top: 0;
-    display: flex;
-    flex-direction: row;
-    padding: 0 $margin-page;
-    margin: 0;
-    background: white;
-    @extend %shadow;
+  position: static;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  padding: 0 $margin-page;
+  margin: 0;
+  background: white;
+  z-index: 10;
+  @extend %shadow;
 }
 
-.logo-container {
-    padding: $col-padding;
-    margin: 0 auto;
+a.logo-container {
+  display: block;
+  padding: $col-padding;
+  margin: 0 auto;
 }
 
 img.logo {
-    width: 100%;
-    max-width: 15em;
+  width: 100%;
+  max-width: 15em;
 }
-
 /* Mobile-first narrow navbar */
-
 .nav-narrow {
   display: flex;
   padding: 0;
@@ -49,11 +48,13 @@ i.hamburger {
   max-height: 100%;
   transition: max-height 0.3s;
   overflow: hidden;
+
   li {
     /* @include nav-link */
     text-align: right;
     margin-left: auto;
     margin-right: 0;
+
     & + li {
       margin-top: 16px;
     }
@@ -69,9 +70,7 @@ a.nav-link {
     color: rgb(46, 37, 128);
   }
 }
-
 /* Desktop wide navbar */
-
 .nav-wide {
   padding: 0;
   margin: 2em 0 0;
@@ -81,9 +80,11 @@ a.nav-link {
 
   .links {
     display: flex;
+
     li {
       @include nav-link($underline: true);
       margin-top: auto;
+
       & + li {
         /* Add space between nav items */
         margin-left: 16px;
@@ -91,29 +92,26 @@ a.nav-link {
     }
   }
 }
-
 /* Underline nav links */
 .nav-wide a.nav-link:hover::after {
   background: rgb(46, 37, 128);
 }
-
 /* Login button */
 .nav-wide li.login {
-    margin: 0 0 auto auto;
+  margin: 0 0 auto auto;
 }
+
 a.login-button {
   @include btn($color-accent);
   @include btn-link;
 }
-
 /*  */
-
 @include media-md() {
   .nav-wide {
-      display: flex;
+    display: flex;
   }
 
   .nav-narrow {
-      display: none;
+    display: none;
   }
 }

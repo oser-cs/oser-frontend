@@ -7,13 +7,31 @@
 
 body {
   margin: 0;
-  font-family: 'Nunito', Arial, sans-serif;
+  font-family: $font-body;
+  color: $color-text;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Raleway', Arial, sans-serif;
+  font-family: $font-title;
+}
+h1, h2 {
+  font-weight: 900;
 }
 
 .text-center {
   text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: $color-accent;
+  font-weight: bold;
+}
+
+hr {
+  height: 1px;
+  border-width: 0;
+  $color: lighten($color-text, 40%);
+  color: $color;
+  background-color: $color;
 }

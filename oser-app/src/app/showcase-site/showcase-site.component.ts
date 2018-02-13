@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import jump from 'jump.js';
 
 @Component({
   selector: 'app-showcase-site',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowcaseSiteComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (!(event instanceof NavigationEnd)) {
+        return;
+      }
+      jump('#top', {duration: 500});
+    });
   }
 
 }
