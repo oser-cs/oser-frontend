@@ -3,7 +3,6 @@
 #content {
   #description {
     @include page-section(1);
-    background-color: $color-light-blue;
   }
 
   #haWidget {
