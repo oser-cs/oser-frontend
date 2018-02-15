@@ -19,6 +19,8 @@ import { NewsItemComponent } from './news-page/news-item/news-item.component';
 
 // Services
 import { NewsService } from './shared/news.service';
+import { FigureService } from './shared/figure.service';
+import { TestimonyService } from './shared/testimony.service';
 
 
 @NgModule({
@@ -39,7 +41,7 @@ import { NewsService } from './shared/news.service';
     AboutPageComponent,
     NewsItemComponent
   ],
-  providers: [NewsService],
+  providers: [NewsService, FigureService, TestimonyService],
   exports: [
     ShowcaseSiteComponent
   ]

@@ -1,16 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Figure } from '../shared/figure.model';
+import { FigureService } from '../shared/figure.service';
 
-class Figure {
-  value: number;
-  text: string;
-}
-
-const FIGURES: Figure[] = [
-  { value: 10, text: "ans d'engagement pour l'égalité des chances" },
-  { value: 400, text: "lycéens accompagnés depuis 2014" },
-  { value: 70, text: "étudiants tuteurs chaque année" },
-  { value: 12, text: "lycées partenaires" },
-]
 
 @Component({
   selector: 'app-about-page',
@@ -21,15 +12,17 @@ export class AboutPageComponent implements OnInit {
 
   figures: Figure[];
 
-  constructor() { }
+  constructor(private figureService: FigureService) { }
 
   ngOnInit() {
     this.getFigures();
   }
 
   getFigures(): void {
-    // TODO convert to FigureService;
-    this.figures = FIGURES;
+    this.figureService.getFigures().subscribe(
+      (figures) => this.figures = figures,
+      (e) => console.log(e)
+    );
   }
 
 }

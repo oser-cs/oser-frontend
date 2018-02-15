@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/observable';
 import { of } from 'rxjs/observable/of';
-import { NEWS } from './mock-news';
+import { NEWS } from './news.mock';
 import { News } from './news.model';
 
 

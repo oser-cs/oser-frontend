@@ -10,11 +10,11 @@
     </div>
     <h3>Filtrer</h3>
     <ul class="group-list">
-      <li *ngFor="let group of filterGroups">
-        {{ group.name }}
+      <li *ngFor="let filter of filters">
+        {{ filter.name }}
         <ul class="filter-list">
-          <li *ngFor="let filter of group.filters">
-            {{ filter.name }}
+          <li *ngFor="let child of filter.children">
+            {{ child.name }}
           </li>
         </ul>
       </li>
