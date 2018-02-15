@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { News } from '../../news';
+import { News } from '../../shared/news.model';
 
 @Component({
   selector: 'app-news-card',

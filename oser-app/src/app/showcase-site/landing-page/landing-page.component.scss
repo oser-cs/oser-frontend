@@ -1,15 +1,15 @@
 @import '~app/showcase-site/sass/mixins';
 @import '~app/showcase-site/sass/variables';
 
-#landing-photo {
+#photo {
   position: relative;
-  z-index: -1;
-  /* make shadow of navbar cover the photo */
-  display: block;
-  width: 100%;
-  height: auto;
-  margin: 0;
   @extend %shadow;
+  z-index: -1;
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
 }
 
 #qui-sommes-nous {
@@ -30,10 +30,8 @@
     margin-bottom: 2em;
     a {
       @include btn(white, $hover-color: $color-dark-blue);
-      @include btn-link;
     }
   }
-
 }
 
 #actions {
@@ -44,7 +42,6 @@
 
   a {
     @include btn($color-accent);
-    @include btn-link;
   }
 
   .action-bubbles {
@@ -94,7 +91,6 @@
 
     a {
       @include btn($color-dark-blue);
-      @include btn-link;
     }
   }
 
@@ -154,7 +150,6 @@
     margin-top: 2em;
     a {
       @include btn($color-light-blue, $hover-color: $color-dark-blue);
-      @include btn-link;
     }
   }
 

@@ -1,7 +1,7 @@
 <div class="page-content">
   <span class="page-background"></span>
   <section id="header">
-    <h1>Une action complète, épanouissante et reconnue.</h1>
+    <h1>Une action complète, épanouissante et structurante.</h1>
   </section>
 
   <ul class="actions">
@@ -43,7 +43,7 @@
     </li>
   </ul>
   <div class="slideshow">
-    <span class="nav" (click)="slide(-1)"><i class="fa fa-angle-double-left fa-2x"></i></span>
+    <span class="nav" (click)="slide(-1)"><i class="fa fa-arrow-left fa-2x"></i></span>
     <ul class="slideshow-list">
       <li *ngFor="let item of slideItems" [hidden]="!(current === item)">
         <img [src]="item.image" [alt]="item.title">
@@ -53,17 +53,18 @@
         </div>
       </li>
     </ul>
-    <span class="nav" (click)="slide(+1)"><i class="fa fa-angle-double-right fa-2x"></i></span>
+    <span class="nav" (click)="slide(+1)"><i class="fa fa-arrow-right fa-2x"></i></span>
   </div>
 
   <div class="testimonies">
-    <h2>Les lycéens témoignent</h2>
+    <h2>Ils témoignent de leur expérience</h2>
     <ul class="testimony-list">
       <li *ngFor="let t of testimonies">
         <p>{{ t.content }}</p>
         <cite>{{ t.source }}</cite>
       </li>
     </ul>
+
   </div>
 
 </div>

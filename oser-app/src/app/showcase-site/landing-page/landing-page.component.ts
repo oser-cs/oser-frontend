@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { News } from '../news';
-import { NEWS } from '../mock-news';
+import { News } from '../shared/news.model';
+import { NewsService } from '../shared/news.service';
 
 class Action {
   title: string;
@@ -31,16 +31,17 @@ export class LandingPageComponent implements OnInit {
 
   news: News[];
 
-  constructor() {
+  constructor(private newsService: NewsService) { }
+
+  ngOnInit() {
     this.getNews();
   }
 
   getNews(): void {
-    // Get the last 3 news
-    this.news = NEWS.slice(0, 3);
-  }
-
-  ngOnInit() {
+    this.newsService.getFirst(3).subscribe(
+      (news) => this.news = news,
+      (e) => console.log(e)
+    );
   }
 
 }

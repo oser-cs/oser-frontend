@@ -103,7 +103,6 @@ a.nav-link {
 
 a.login-button {
   @include btn($color-accent);
-  @include btn-link;
 }
 /*  */
 @include media-md() {

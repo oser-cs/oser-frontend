@@ -40,7 +40,7 @@
   color: $color-turquoise;
 }
 
-ul.actions {
+.actions {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -59,7 +59,6 @@ $sideline-left: 1.5 * $margin-page - $sideline-width/2;
   left: $sideline-left;
   height: 100%;
   width: $sideline-width;
-  background-color: red;
   background: linear-gradient(to bottom, $color-turquoise, $color-dark-blue, $color-accent);
   display: none;
   @include media-xs {
@@ -95,13 +94,17 @@ li.action {
   @include color-bg($color-light-blue);
 
   .nav {
+    cursor: pointer;
     margin: -2em;
     @include media-md {
       margin: 1em;
     }
     z-index: 4;
-    color: white;
-    cursor: pointer;
+    color: $color-dark-blue;
+    transition: color 0.2s;
+    &:hover {
+      color: $color-purple;
+    }
   }
 
   ul.slideshow-list {
@@ -156,7 +159,7 @@ li.action {
   }
 
   ul {
-    margin: 0;
+    margin: 2em 0;
     padding: 0;
     list-style-type: none;
     display: flex;
