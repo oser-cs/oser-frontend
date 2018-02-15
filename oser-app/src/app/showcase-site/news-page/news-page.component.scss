@@ -58,8 +58,8 @@
     display: flex;
     flex-direction: column;
   }
-  /* Add space between news items */
-  app-news-item + app-news-item {
+  /* Add space between article items */
+  app-article-item + app-article-item {
     margin-top: 2em;
   }
 }

@@ -2,7 +2,7 @@
 @import '~app/showcase-site/sass/mixins';
 $padding: 1em 1.5em;
 
-.news-card {
+.card {
   display: flex;
   min-height: 100%;
   margin: 0;
@@ -42,7 +42,7 @@ img {
   }
 }
 
-.news-card-body {
+.card-body {
   @include media-md {
     padding: $padding;
   }

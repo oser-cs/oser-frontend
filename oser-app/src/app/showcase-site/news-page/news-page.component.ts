@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Filter } from '../shared/filter.model';
 import { FILTERS } from '../shared/filter.mock';
-import { News } from '../shared/news.model';
-import { NewsService } from '../shared/news.service';
+import { Article } from '../shared/article.model';
+import { ArticleService } from '../shared/article.service';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { NewsService } from '../shared/news.service';
 })
 export class NewsPageComponent implements OnInit {
 
-  news: News[];
+  articles: Article[];
   filters: Filter[];
 
   // RxJS subject = observable + observer;
@@ -22,10 +22,10 @@ export class NewsPageComponent implements OnInit {
   // TODO implement filtering
 
   constructor(
-    private newsService: NewsService) { }
+    private articleService: ArticleService) { }
 
   ngOnInit() {
-    this.getNews();
+    this.getArticles();
     this.getFilters();
     // TODO implement real search using a SearchService
     // Use: https://alligator.io/angular/real-time-search-angular-rxjs/
@@ -35,9 +35,11 @@ export class NewsPageComponent implements OnInit {
     );
   }
 
-  getNews(): void {
-    this.newsService.getNews().subscribe(
-      (news) => this.news = news,
+  getArticles(): void {
+    this.articleService.list().subscribe(
+      (articles) => {
+        this.articles = articles;
+      },
       (e) => console.log(e)
     );
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { News } from '../shared/news.model';
-import { NewsService } from '../shared/news.service';
+import { Article } from '../shared/article.model';
+import { ArticleService } from '../shared/article.service';
 
 class Action {
   title: string;
@@ -29,17 +29,17 @@ export class LandingPageComponent implements OnInit {
     }
   ];
 
-  news: News[];
+  articles: Article[];
 
-  constructor(private newsService: NewsService) { }
+  constructor(private ArticleService: ArticleService) { }
 
   ngOnInit() {
-    this.getNews();
+    this.getArticles();
   }
 
-  getNews(): void {
-    this.newsService.getFirst(3).subscribe(
-      (news) => this.news = news,
+  getArticles(): void {
+    this.ArticleService.first(3).subscribe(
+      (articles) => this.articles = articles,
       (e) => console.log(e)
     );
   }

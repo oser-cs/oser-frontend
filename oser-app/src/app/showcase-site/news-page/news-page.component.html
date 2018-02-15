@@ -23,13 +23,13 @@
 
   <div class="main">
     <ul>
-      <app-news-item *ngFor="let newsItem of news" [news]="newsItem"></app-news-item>
+      <app-article-item *ngFor="let article of articles" [article]="article"></app-article-item>
     </ul>
   </div>
 
   <div class="feeds">
     <!-- OSER's Twitter feed -->
-    <!-- TODO Only appears when refreshing news page, coming from other pages does not work -->
+    <!-- TODO Only appears when refreshing article page, coming from other pages does not work -->
     <a class="twitter-timeline" data-lang="fr" data-link-color="#19CF86" data-height="1000" href="https://twitter.com/OSER_CS?ref_src=twsrc%5Etfw">
       Tweets de @OSER_CS</a>
   </div>

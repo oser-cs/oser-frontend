@@ -1,0 +1,5 @@
+{
+  "actions": {
+    "list": "http://localhost:8000/api/articles/"
+  }
+}

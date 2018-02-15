@@ -25,15 +25,15 @@
   <a type="button" routerLink="actions">En savoir plus</a>
 </div>
 
-<div id="news">
+<div id="articles">
   <div class="heading">
     <h2>L'actualité de l'association</h2>
     <div class="link-all">
-      <a routerLink="news" type="button">Tous les articles</a>
+      <a routerLink="article" type="button">Tous les articles</a>
     </div>
   </div>
-  <ul class="news-cards">
-    <app-news-card *ngFor="let newsItem of news" [news]="newsItem"></app-news-card>
+  <ul class="article-cards">
+    <app-article-card *ngFor="let article of articles" [article]="article"></app-article-card>
   </ul>
 </div>
 
