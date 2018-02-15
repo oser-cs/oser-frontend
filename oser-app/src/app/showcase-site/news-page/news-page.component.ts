@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Filter, FilterGroup } from './filters';
-import { News } from '../news';
-import { NEWS } from '../mock-news';
+import { News } from '../shared/news.model';
+import { NewsService } from '../shared/news.service';
+
 
 @Component({
   selector: 'app-news-page',
@@ -42,7 +43,7 @@ export class NewsPageComponent implements OnInit {
 
   news: News[];
 
-  constructor() { }
+  constructor(private newsService: NewsService) { }
 
   ngOnInit() {
     this.getNews();
@@ -55,7 +56,10 @@ export class NewsPageComponent implements OnInit {
   }
 
   getNews(): void {
-    this.news = NEWS;
+    this.newsService.getNews().subscribe(
+      (news) => this.news = news,
+      (e) => console.log(e)
+    );
   }
 
 
