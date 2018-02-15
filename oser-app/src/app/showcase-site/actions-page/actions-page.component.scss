@@ -59,7 +59,6 @@ $sideline-left: 1.5 * $margin-page - $sideline-width/2;
   left: $sideline-left;
   height: 100%;
   width: $sideline-width;
-  background-color: red;
   background: linear-gradient(to bottom, $color-turquoise, $color-dark-blue, $color-accent);
   display: none;
   @include media-xs {
@@ -191,8 +190,5 @@ li.action {
         }
       }
     }
-  }
-  a.btn {
-    @include btn($color-dark-blue);
   }
 }
