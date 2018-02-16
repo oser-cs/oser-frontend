@@ -20,8 +20,8 @@ export class NavbarComponent implements OnInit {
     { href: 'news', text: 'Actualités' },
     { href: 'contact', text: 'Contact' }
   ];
-  // TODO change to real login route once implemented
-  loginRoute = '.';
+  // Use leading slash for absolute URL
+  loginRoute = '/login';
 
   constructor() {
     this.visible = false;
