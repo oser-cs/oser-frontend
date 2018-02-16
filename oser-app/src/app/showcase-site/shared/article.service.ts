@@ -35,7 +35,13 @@ export class ArticleService {
   }
 
   first(n: number): Observable<Article[]> {
-    return this.list().pipe(take(3));
+    return this.http.get<Article>(this.config.actions.list)
+      .pipe(
+        // TODO fix, the take(n) operation has no effect
+        take(n),
+        map((article: any) => article.map(this.adapt)),
+        tap(resp => console.log('fetched article'))
+      );
   }
 
 

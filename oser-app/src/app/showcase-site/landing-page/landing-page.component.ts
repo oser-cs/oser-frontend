@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from '../shared/article.model';
 import { ArticleService } from '../shared/article.service';
+import * as config from './config.json';
+
 
 class Action {
   title: string;
@@ -14,22 +16,9 @@ class Action {
 })
 export class LandingPageComponent implements OnInit {
 
-  actions: Action[] = [
-    {
-      title: 'Apprendre, comprendre',
-      src: 'assets/img/action-apprendre.jpg'
-    },
-    {
-      title: "Découvrir, s'intéresser",
-      src: 'assets/img/action-decouvrir.jpg'
-    },
-    {
-      title: "Vivre l'extra-ordinaire",
-      src: 'assets/img/action-vivre.jpg'
-    }
-  ];
-
+  actions: Action[] = <Action[]>config['actions'];
   articles: Article[];
+  numArticles: number = <number>config['numArticles'];
 
   constructor(private ArticleService: ArticleService) { }
 

@@ -22,9 +22,12 @@
   </div>
 
   <div class="main">
-    <ul>
+    <ul *ngIf="articles; else empty">
       <app-article-item *ngFor="let article of articles" [article]="article"></app-article-item>
     </ul>
+    <ng-template #empty>
+      <p>Pas d'articles pour le moment.</p>
+    </ng-template>
   </div>
 
   <div class="feeds">
