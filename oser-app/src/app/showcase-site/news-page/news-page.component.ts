@@ -18,6 +18,7 @@ export class NewsPageComponent implements OnInit {
 
   // RxJS subject = observable + observer;
   searchTerm$ = new Subject<string>();
+  search: string;
 
   // TODO implement filtering
 
@@ -28,19 +29,15 @@ export class NewsPageComponent implements OnInit {
   ngOnInit() {
     this.getArticles();
     this.getFilters();
-    // TODO implement real search using a SearchService
-    // Use: https://alligator.io/angular/real-time-search-angular-rxjs/
     this.searchTerm$.subscribe(
-      (value) => console.log('Searching: ' + value),
+      (value) => this.search = value,
       (e) => console.log(e)
     );
   }
 
   getArticles(): void {
     this.articleService.list().subscribe(
-      (articles) => {
-        this.articles = articles;
-      },
+      (articles) => this.articles = articles,
       (e) => console.log(e)
     );
   }
