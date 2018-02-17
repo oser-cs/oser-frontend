@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ShowcaseRoutingModule } from './showcase-routing.module';
 import { MessageModule } from '../messages/message.module';
+import { Ng4TwitterTimelineModule } from 'ng4-twitter-timeline/lib/index';
 
 // Components
 import { NavbarComponent } from './navbar/navbar.component';
@@ -28,6 +29,7 @@ import { TestimonyService } from './shared/testimony.service';
     CommonModule,
     ShowcaseRoutingModule,
     MessageModule,
+    Ng4TwitterTimelineModule,
   ],
   declarations: [
     NavbarComponent,
