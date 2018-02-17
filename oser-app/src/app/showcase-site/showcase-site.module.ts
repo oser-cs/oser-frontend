@@ -23,6 +23,9 @@ import { ArticleService } from './shared/article.service';
 import { FigureService } from './shared/figure.service';
 import { TestimonyService } from './shared/testimony.service';
 
+// Pipes
+import { FilterPipe } from '../pipes/filter.pipe';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -40,7 +43,8 @@ import { TestimonyService } from './shared/testimony.service';
     ActionsPageComponent,
     NewsPageComponent,
     AboutPageComponent,
-    ArticleItemComponent
+    ArticleItemComponent,
+    FilterPipe,
   ],
   providers: [ArticleService, FigureService, TestimonyService],
   exports: [
