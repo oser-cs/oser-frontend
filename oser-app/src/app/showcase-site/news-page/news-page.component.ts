@@ -4,7 +4,7 @@ import { Filter } from '../shared/filter.model';
 import { FILTERS } from '../shared/filter.mock';
 import { Article } from '../shared/article.model';
 import { ArticleService } from '../shared/article.service';
-
+import { Ng4TwitterTimelineService } from 'ng4-twitter-timeline/lib/index';
 
 @Component({
   selector: 'app-news-page',
@@ -22,7 +22,8 @@ export class NewsPageComponent implements OnInit {
   // TODO implement filtering
 
   constructor(
-    private articleService: ArticleService) { }
+    private articleService: ArticleService,
+    private twitterService: Ng4TwitterTimelineService) { }
 
   ngOnInit() {
     this.getArticles();
