@@ -6,6 +6,7 @@ import { Article } from '../shared/article.model';
 import { ArticleService } from '../shared/article.service';
 import { Ng4TwitterTimelineService } from 'ng4-twitter-timeline/lib/index';
 
+
 @Component({
   selector: 'app-news-page',
   templateUrl: './news-page.component.html',
@@ -14,7 +15,20 @@ import { Ng4TwitterTimelineService } from 'ng4-twitter-timeline/lib/index';
 export class NewsPageComponent implements OnInit {
 
   articles: Article[];
-  filters: Filter[];
+  years = ["2018", "2017", "2016"];
+  currentYear: string;
+  categories = [
+    "Focus Europe",
+    "Stage Théâtre",
+    "(Art)cessible",
+    "Oser la Prépa",
+    "Carnets de France",
+    "Good Morning London",
+    "Tutorat",
+    "Sorties",
+    "Annonces"
+  ];
+  currentCategory: string;
 
   // RxJS subject = observable + observer;
   searchTerm$ = new Subject<string>();
@@ -28,7 +42,6 @@ export class NewsPageComponent implements OnInit {
 
   ngOnInit() {
     this.getArticles();
-    this.getFilters();
     this.searchTerm$.subscribe(
       (value) => this.search = value,
       (e) => console.log(e)
@@ -42,8 +55,18 @@ export class NewsPageComponent implements OnInit {
     );
   }
 
-  getFilters(): void {
-    this.filters = FILTERS;
+  onSelectYear(year: string) { this.currentYear = year; }
+  onSelectCategory(category: string) { this.currentCategory = category ;}
+
+  hidden(article: Article): boolean {
+    if (this.currentYear && !article.date.includes(this.currentYear)) {
+      return true;
+    }
+    if (this.currentCategory) {
+      // TODO modify once article categories are implemented
+      return true;
+    }
+    return false;
   }
 
 

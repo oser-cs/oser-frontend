@@ -2,9 +2,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 import * as Fuse from 'fuse.js';
 
 @Pipe({
-  name: 'filter'
+  name: 'fuzzy'
 })
-export class FilterPipe implements PipeTransform {
+export class FuzzyPipe implements PipeTransform {
   transform(items: any[], searchText: string, keys: any[]): any[] {
     if (!items) return [];
     if (!searchText) return items;

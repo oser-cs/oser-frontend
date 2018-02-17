@@ -1,0 +1,20 @@
+@import '~app/showcase-site/sass/mixins';
+
+
+ul.choices {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  li {
+    cursor: pointer;
+    margin-left: 1em;
+    width: fit-content;
+    &:hover {
+      color: $color-purple;
+    }
+  }
+}
+.selected {
+  color: $color-accent !important;
+}

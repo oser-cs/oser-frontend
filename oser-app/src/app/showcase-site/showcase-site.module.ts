@@ -18,6 +18,7 @@ import { ActionsPageComponent } from './actions-page/actions-page.component';
 import { AboutPageComponent } from './about-page/about-page.component';
 import { NewsPageComponent } from './news-page/news-page.component';
 import { ArticleItemComponent } from './news-page/article-item/article-item.component';
+import { FilterComponent } from './shared/filter/filter.component';
 
 // Services
 import { ArticleService } from './shared/article.service';
@@ -25,7 +26,7 @@ import { FigureService } from './shared/figure.service';
 import { TestimonyService } from './shared/testimony.service';
 
 // Pipes
-import { FilterPipe } from '../pipes/filter.pipe';
+import { FuzzyPipe } from '../pipes/fuzzy.pipe';
 
 @NgModule({
   imports: [
@@ -46,7 +47,8 @@ import { FilterPipe } from '../pipes/filter.pipe';
     NewsPageComponent,
     AboutPageComponent,
     ArticleItemComponent,
-    FilterPipe,
+    FilterComponent,
+    FuzzyPipe,
   ],
   providers: [ArticleService, FigureService, TestimonyService],
   exports: [

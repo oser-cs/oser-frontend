@@ -10,21 +10,15 @@
       <input type="text" (keyup)="searchTerm$.next($event.target.value)">
     </div>
     <h3>Filtrer</h3>
-    <ul class="group-list">
-      <li *ngFor="let filter of filters">
-        {{ filter.name }}
-        <ul class="filter-list">
-          <li *ngFor="let child of filter.children">
-            {{ child.name }}
-          </li>
-        </ul>
-      </li>
+    <ul class="filters">
+      <list-filter class="filter" title="Année" [values]="years" (onSelect)="onSelectYear($event)"></list-filter>
+      <list-filter class="filter" title="Catégories" [values]="categories" (onSelect)="onSelectCategory($event)"></list-filter>
     </ul>
   </div>
 
   <div class="main">
     <ul *ngIf="articles; else empty">
-      <app-article-item *ngFor="let article of articles | filter : search : ['title']" [article]="article"></app-article-item>
+      <app-article-item *ngFor="let article of articles | fuzzy : search : ['title']" [article]="article" [hidden]="hidden(article)"></app-article-item>
     </ul>
     <ng-template #empty>
       <p>Pas d'articles pour le moment.</p>

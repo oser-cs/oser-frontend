@@ -39,13 +39,9 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    font-weight: bold;
   }
-  ul.filter-list {
-    font-weight: normal;
-  }
-  li > ul {
-    margin-left: 1em;
+  .filter + .filter {
+    margin-top: 2em;
   }
 }
 

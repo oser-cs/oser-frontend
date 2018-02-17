@@ -51,3 +51,12 @@ input.form-control {
 button {
   cursor: pointer;
 }
+
+select {
+  font-family: inherit;
+  @include box-spacing;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-image: none;
+  -webkit-appearance: none;
+}
