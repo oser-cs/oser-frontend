@@ -32,7 +32,7 @@ import { FilterPipe } from '../pipes/filter.pipe';
     CommonModule,
     ShowcaseRoutingModule,
     MessageModule,
-    Ng4TwitterTimelineModule,
+    Ng4TwitterTimelineModule.forRoot(),
   ],
   declarations: [
     NavbarComponent,
