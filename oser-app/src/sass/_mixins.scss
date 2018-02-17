@@ -1,0 +1,99 @@
+@import './variables';
+
+/* Spacing */
+
+@mixin box-spacing {
+  padding: .3em .5em;
+  box-sizing: border-box;
+}
+
+/* Styles */
+
+@mixin style-base($color) {
+  color: $color;
+  border-color: $color;
+}
+@mixin style-danger {
+  @include style-base($color-danger);
+}
+@mixin style-success {
+  @include style-base($color-success);
+}
+@mixin style-info {
+  @include style-base($color-info);
+}
+@mixin style-warning {
+  @include style-base($color-warning);
+}
+
+/* Buttons */
+
+@mixin btn($color, $hover-color: white) {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  color: $color;
+  background: none;
+  border: 1px solid $color;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+  font-weight: bold;
+  cursor: pointer;
+
+  $disabled-color: desaturate($color, 50);
+  $disabled-hover-color: desaturate($hover-color, 50);
+  &:hover {
+    background: $color;
+    color: $hover-color;
+  }
+  &:disabled {
+    background: none;
+    border-color: $disabled-color;
+    color: $disabled-color;
+    cursor: not-allowed;
+  }
+}
+.btn-success {
+  @include btn($color-success);
+}
+.btn-danger {
+  @include btn($color-danger);
+}
+.btn-warning {
+  @include btn($color-warning);
+}
+.btn-info {
+  @include btn($color-info);
+}
+.btn-primary {
+  @include btn($color-accent);
+}
+.btn-secondary {
+  @include btn($color-dark-blue);
+}
+
+/* Alerts */
+.alert {
+  @include box-spacing;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.alert-danger {
+  @include style-danger;
+}
+.alert-success {
+  @include style-success;
+}
+
+/* Effects */
+@mixin shadow($props) {
+  -moz-box-shadow: $props;
+  -webkit-box-shadow: $props;
+  box-shadow: $props;
+}
+%shadow {
+  @include shadow(0 3px 10px 3px rgba(0, 0, 0, 0.2));
+}
+%shadow-light {
+  @include shadow(0 2px 10px 0 rgba(0, 0, 0, 0.2));
+}

@@ -21,9 +21,17 @@
       </li>
     </div>
     <li class="login">
-      <a [routerLink]="loginRoute" class="login-button" type="button">
-        <i class="fa fa-power-off"></i> Connexion
-      </a>
+      <div *ngIf="currentUser; else visitor">
+        <a [routerLink]="loginRoute" class="btn-primary" type="button">
+          <i class="fa fa-user"></i> Espace membre
+        </a>
+        <a class="btn-secondary" (click)="logout()">Déconnexion</a>
+      </div>
+      <ng-template #visitor>
+        <a [routerLink]="loginRoute" class="btn-primary" type="button">
+          <i class="fa fa-power-off"></i> Connexion
+        </a>
+      </ng-template>
     </li>
   </div>
 </div>

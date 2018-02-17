@@ -4,22 +4,23 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { ShowcaseSiteModule } from './showcase-site/showcase-site.module';
+import { AppRoutingModule } from './app-routing.module';
+import { MessageModule } from './messages/message.module';
 
 // Components
 import { AppComponent } from './app.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
-import { AppRoutingModule } from './app-routing.module';
-import { ShowcaseSiteModule } from './showcase-site/showcase-site.module';
+import { LoginComponent } from './auth/login.component';
 
 // Services
-import { AuthenticationService } from './authentication.service';
-import { LoginComponent } from './login/login.component';
+import { AuthenticationService } from './auth/authentication.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignupPageComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +28,8 @@ import { LoginComponent } from './login/login.component';
     HttpModule,
     HttpClientModule,
     AppRoutingModule,
-    ShowcaseSiteModule
+    ShowcaseSiteModule,
+    MessageModule,
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]

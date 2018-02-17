@@ -35,3 +35,19 @@ hr {
   color: $color;
   background-color: $color;
 }
+
+input, button {
+  font-size: inherit;
+  font-family: inherit;
+}
+
+input.form-control {
+  @include box-spacing;
+  margin: 0.5em 0;
+  border: 1px solid darken(lightgray, 10);
+  border-radius: 3px;
+}
+
+button {
+  cursor: pointer;
+}

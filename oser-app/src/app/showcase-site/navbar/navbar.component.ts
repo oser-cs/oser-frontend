@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthenticationService } from '../../auth/authentication.service';
 
 class Link {
   href: string;
@@ -12,6 +14,7 @@ class Link {
 })
 export class NavbarComponent implements OnInit {
 
+  currentUser: any;
   visible: boolean;
   links: Link[] = [
     { href: 'about', text: 'Qui sommes-nous ?' },
@@ -23,15 +26,25 @@ export class NavbarComponent implements OnInit {
   // Use leading slash for absolute URL
   loginRoute = '/login';
 
-  constructor() {
+  constructor(
+    private auth: AuthenticationService,
+    private router: Router,
+  ) {
     this.visible = false;
   }
 
   ngOnInit() {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   toggle(): void {
     this.visible = !this.visible;
+  }
+
+  logout(): void {
+    this.auth.logout();
+    // refresh component
+    this.ngOnInit();
   }
 
 }

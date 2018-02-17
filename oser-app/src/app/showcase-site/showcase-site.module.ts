@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 // Modules
 import { CommonModule } from '@angular/common';
 import { ShowcaseRoutingModule } from './showcase-routing.module';
+import { MessageModule } from '../messages/message.module';
 
 // Components
 import { NavbarComponent } from './navbar/navbar.component';
@@ -22,11 +23,11 @@ import { ArticleService } from './shared/article.service';
 import { FigureService } from './shared/figure.service';
 import { TestimonyService } from './shared/testimony.service';
 
-
 @NgModule({
   imports: [
     CommonModule,
-    ShowcaseRoutingModule
+    ShowcaseRoutingModule,
+    MessageModule,
   ],
   declarations: [
     NavbarComponent,

@@ -1,18 +1,6 @@
 @import './variables';
+@import '~sass/mixins';
 @import '~sass/media-queries';
-
-/* Effects */
-@mixin shadow($props) {
-  -moz-box-shadow: $props;
-  -webkit-box-shadow: $props;
-  box-shadow: $props;
-}
-%shadow {
-  @include shadow(0 3px 10px 3px rgba(0, 0, 0, 0.2));
-}
-%shadow-light {
-  @include shadow(0 2px 10px 0 rgba(0, 0, 0, 0.2));
-}
 
 @mixin link-underline($height: 0.1em, $color: $color-dark-blue) {
   // animated underline effect on nav links
@@ -43,24 +31,6 @@
     @if $underline {
       @include link-underline($height: 0.1em, $color: $color-dark-blue);
     }
-  }
-}
-
-/* Buttons */
-@mixin btn($color, $hover-color: white) {
-  -webkit-appearance: none;
-  -webkit-border-radius: 0;
-  color: $color;
-  background: none;
-  border: 1px solid $color;
-  padding: 8px;
-  border-radius: 4px;
-  transition: background 0.2s, color 0.2s;
-  font-weight: bold;
-
-  &:hover {
-    background: $color;
-    color: $hover-color;
   }
 }
 

@@ -101,9 +101,6 @@ a.nav-link {
   margin: 0 0 auto auto;
 }
 
-a.login-button {
-  @include btn($color-accent);
-}
 /*  */
 @include media-md() {
   .nav-wide {
