@@ -1,22 +1,23 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import * as Fuse from 'fuse.js';
 
 @Pipe({
   name: 'filter'
 })
 export class FilterPipe implements PipeTransform {
-  transform(items: any[], searchText: string, options: any): any[] {
+  transform(items: any[], searchText: string, keys: any[]): any[] {
     if (!items) return [];
     if (!searchText) return items;
-    searchText = searchText.toLowerCase();
-
-    const hasText = (v) => v.toLowerCase().includes(searchText);
-
-    return items.filter(it => {
-      if (options.fields) {
-        // look for any property in item that has searchText
-        return options.fields.some((field) => hasText(it[field]));
-      }
-      else return hasText(it);
-    });
+    let options = {
+      shouldSort: true,
+      threshold: 0.6,
+      location: 0,
+      distance: 100,
+      maxPatternLength: 32,
+      minMatchCharLength: 1,
+      keys: keys,
+    };
+    let fuse = new Fuse(items, options);
+    return fuse.search(searchText);
   }
 }

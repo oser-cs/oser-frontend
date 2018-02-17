@@ -24,7 +24,7 @@
 
   <div class="main">
     <ul *ngIf="articles; else empty">
-      <app-article-item *ngFor="let article of articles | filter : search : {'fields': ['title', 'preview']}" [article]="article"></app-article-item>
+      <app-article-item *ngFor="let article of articles | filter : search : ['title']" [article]="article"></app-article-item>
     </ul>
     <ng-template #empty>
       <p>Pas d'articles pour le moment.</p>
