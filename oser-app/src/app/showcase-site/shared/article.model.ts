@@ -6,13 +6,16 @@ export class Article {
   pinned: boolean;
 
   constructor(obj) {
-    for (const k of Object.keys(obj)) {
-      this[k] = obj[k];
-    }
+    for (const k of Object.keys(obj)) { this[k] = obj[k]; }
   }
 
+  previewLength: number = 220;
+
   get preview(): string {
-    // Truncate the content to only show the beginning of it.
-    return this.content.substring(0, 220) + ' […]';
+    if (this.content.length > this.previewLength) {
+      // Truncate the content to only show the beginning of it.
+      return this.content.substring(0, this.previewLength) + ' […]';
+    }
+    return this.content;
   }
 }
