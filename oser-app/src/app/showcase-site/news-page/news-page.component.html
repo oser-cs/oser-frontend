@@ -17,7 +17,7 @@
   </div>
 
   <div class="main">
-    <ul *ngIf="articles; else empty">
+    <ul *ngIf="articles && articles.length > 0; else empty">
       <app-article-item *ngFor="let article of articles | fuzzy : search : ['title']" [article]="article" [hidden]="hidden(article)"></app-article-item>
     </ul>
     <ng-template #empty>

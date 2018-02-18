@@ -32,7 +32,7 @@
       <a routerLink="news" type="button">Tous les articles</a>
     </div>
   </div>
-  <ul *ngIf="articles; else empty" class="article-cards">
+  <ul *ngIf="articles && articles.length > 0; else empty" class="article-cards">
     <app-article-card *ngFor="let article of articles" [article]="article"></app-article-card>
   </ul>
   <ng-template #empty>
