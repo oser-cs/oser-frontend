@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+@import './variables';
+@import './mixins';
+
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700,900');
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700,900');
+
+body {
+  margin: 0;
+  font-family: $font-body;
+  color: $color-text;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-title;
+}
+h1, h2 {
+  font-weight: 900;
+}
+
+.text-center {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: $color-accent;
+  font-weight: bold;
+}
+
+hr {
+  height: 1px;
+  border-width: 0;
+  $color: lighten($color-text, 40%);
+  color: $color;
+  background-color: $color;
+}

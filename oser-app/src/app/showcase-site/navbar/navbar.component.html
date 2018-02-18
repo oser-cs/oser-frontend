@@ -1,0 +1,29 @@
+<div class='navbar'>
+  <a routerLink="." class='logo-container'>
+    <img src='assets/img/oser-logo-slogan.png' alt='Logo' class='logo'>
+  </a>
+  <div class="nav-narrow">
+    <i (click)="toggle()" class="hamburger fa fa-bars fa-2x"></i>
+    <div [hidden]="!visible" class="links">
+      <li *ngFor="let link of links">
+        <a (click)="toggle()" class="nav-link" [routerLink]="link.href">{{ link.text }}</a>
+      </li>
+      <li>
+        <a class="nav-link" [routerLink]="loginRoute">
+          <i class="fa fa-power-off"></i> Connexion</a>
+      </li>
+    </div>
+  </div>
+  <div class="nav-wide">
+    <div class="links">
+      <li *ngFor="let link of links">
+        <a class="nav-link" [routerLink]="link.href">{{ link.text }}</a>
+      </li>
+    </div>
+    <li class="login">
+      <a [routerLink]="loginRoute" class="login-button" type="button">
+        <i class="fa fa-power-off"></i> Connexion
+      </a>
+    </li>
+  </div>
+</div>

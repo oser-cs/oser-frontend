@@ -1,0 +1,60 @@
+@import '~app/showcase-site/sass/variables';
+@import '~app/showcase-site/sass/mixins';
+$padding: 1em 1.5em;
+
+.news-card {
+  display: flex;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  // @extend %shadow-light;
+  @include media-md {
+    background-color: $color-light-gray;
+    border-radius: 4px;
+    overflow: hidden;
+    display: block;
+    max-width: 20em;
+    /* Because could not @extend %shadow-light */
+    @include shadow(0 2px 10px 0 rgba(0, 0, 0, 0.2));
+  }
+}
+
+.image {
+  display: none;
+  margin-bottom: auto;
+  margin-right: 2em;
+  @include media-xs {
+    display: block;
+  }
+  @include media-md {
+    margin: 0;
+  }
+}
+
+img {
+  width: 10em;
+  height: auto;
+  border-radius: 4px;
+  overflow: hidden;
+  @include media-md {
+    width: 100%;
+    border-radius: 0;
+  }
+}
+
+.news-card-body {
+  @include media-md {
+    padding: $padding;
+  }
+
+  h3 {
+    font-weight: bold;
+    margin: 0;
+  }
+
+  h5 {
+    color: gray;
+    font-weight: normal;
+    margin-top: 0.5em;
+  }
+}

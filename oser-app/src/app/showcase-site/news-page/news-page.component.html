@@ -1,0 +1,36 @@
+<div class="wrapper">
+  <div class="header">
+    <h1>L'actualité d'OSER</h1>
+  </div>
+
+  <div class="search">
+    <h3>Rechercher</h3>
+    <div class="search-bar">
+      <input type="text" (keyup)="searchTerm$.next($event.target.value)">
+    </div>
+    <h3>Filtrer</h3>
+    <ul class="group-list">
+      <li *ngFor="let filter of filters">
+        {{ filter.name }}
+        <ul class="filter-list">
+          <li *ngFor="let child of filter.children">
+            {{ child.name }}
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="main">
+    <ul>
+      <app-news-item *ngFor="let newsItem of news" [news]="newsItem"></app-news-item>
+    </ul>
+  </div>
+
+  <div class="feeds">
+    <!-- OSER's Twitter feed -->
+    <!-- TODO Only appears when refreshing news page, coming from other pages does not work -->
+    <a class="twitter-timeline" data-lang="fr" data-link-color="#19CF86" data-height="1000" href="https://twitter.com/OSER_CS?ref_src=twsrc%5Etfw">
+      Tweets de @OSER_CS</a>
+  </div>
+</div>
