@@ -109,7 +109,7 @@
 
 @mixin badge($color) {
   @include box-spacing;
-  border-radius: 50%;
+  border-radius: 2em;
   margin: .2em;
   font-size: x-small;
   color: $color;
