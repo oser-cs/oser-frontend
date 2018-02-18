@@ -24,6 +24,7 @@ import { FilterComponent } from './shared/filter/filter.component';
 import { ArticleService } from './shared/article.service';
 import { FigureService } from './shared/figure.service';
 import { TestimonyService } from './shared/testimony.service';
+import { CategoryService } from './shared/category.service';
 
 // Pipes
 import { FuzzyPipe } from '../pipes/fuzzy.pipe';
@@ -50,7 +51,7 @@ import { FuzzyPipe } from '../pipes/fuzzy.pipe';
     FilterComponent,
     FuzzyPipe,
   ],
-  providers: [ArticleService, FigureService, TestimonyService],
+  providers: [ArticleService, FigureService, TestimonyService, CategoryService],
   exports: [
     ShowcaseSiteComponent
   ]

@@ -3,18 +3,22 @@
 
 ul.choices {
   list-style-type: none;
-  margin: 0;
+  margin: .3em 0 .6em 0;
   padding: 0;
   font-weight: normal;
   li {
     cursor: pointer;
-    margin-left: 1em;
-    width: fit-content;
+    padding: .3em 1em;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 3px;
     &:hover {
-      color: $color-purple;
+      color: $color-dark-blue;
+      background-color: lighten($color-light-blue, 5%);
     }
   }
 }
 .selected {
-  color: $color-accent !important;
+  color: $color-dark-blue !important;
+  background-color: $color-light-blue !important;
 }

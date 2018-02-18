@@ -25,6 +25,15 @@
 @mixin style-warning {
   @include style-base($color-warning);
 }
+@mixin style-primary {
+  @include style-base($color-accent);
+}
+@mixin style-secondary {
+  @include style-base($color-dark-blue);
+}
+@mixin style-default {
+  @include style-base($color-muted);
+}
 
 /* Buttons */
 
@@ -96,4 +105,50 @@
 }
 %shadow-light {
   @include shadow(0 2px 10px 0 rgba(0, 0, 0, 0.2));
+}
+
+@mixin badge($color) {
+  @include box-spacing;
+  border-radius: 50%;
+  margin: .2em;
+  font-size: x-small;
+  color: $color;
+  background-color: lighten(desaturate($color, 20), 45);
+}
+
+.badge {
+  @include box-spacing;
+  border-radius: 50%;
+  margin: .2em;
+  font-size: x-small;
+  width: fit-content;
+  height: fit-content;
+}
+.badge-success {
+  @include style-success;
+  @include badge($color-success);
+}
+.badge-danger {
+  @include style-danger;
+  @include badge($color-danger);
+}
+.badge-warning {
+  @include style-warning;
+  @include badge($color-warning);
+}
+.badge-info {
+  @include style-info;
+  @include badge($color-info);
+}
+.badge-primary {
+  @include style-primary;
+  @include badge($color-accent);
+}
+.badge-secondary {
+  @include style-secondary;
+  @include badge($color-dark-blue);
+}
+.badge-default {
+  @include style-default;
+  @include badge($color-muted);
 }

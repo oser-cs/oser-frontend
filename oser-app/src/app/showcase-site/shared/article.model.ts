@@ -1,9 +1,10 @@
 export class Article {
   title: string;
   content: string;
-  date: string;
+  date: Date;
   src: string;
   pinned: boolean;
+  categories: string[];
 
   constructor(obj) {
     for (const k of Object.keys(obj)) { this[k] = obj[k]; }

@@ -11,8 +11,8 @@
     </div>
     <h3>Filtrer</h3>
     <ul class="filters">
-      <list-filter class="filter" title="Année" [values]="years" (onSelect)="onSelectYear($event)"></list-filter>
-      <list-filter class="filter" title="Catégories" [values]="categories" (onSelect)="onSelectCategory($event)"></list-filter>
+      <list-filter class="filter" title="Année" [values]="years" (onSelect)="onSelectYear($event)" [countContains]="articleYears"></list-filter>
+      <list-filter class="filter" title="Catégories" [values]="categories" (onSelect)="onSelectCategory($event)" [countContains]="articleCategories"></list-filter>
     </ul>
   </div>
 

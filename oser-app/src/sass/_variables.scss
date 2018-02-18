@@ -8,10 +8,11 @@ $color-light-blue: rgb(213, 250, 255);
 $color-accent: #F3395E;
 $color-light-gray: #f6f6f6;
 $color-text: #222;
+$color-muted: lighten($color-text, 30);
 $color-danger: #D72638;
 $color-success: #0CCE6B;
 $color-warning: #EAC435;
-$color-info: #A0F0FF;
+$color-info: darken(#A0F0FF, 40);
 
 /* Fonts */
 $font-body: 'Nunito', Arial, sans-serif;

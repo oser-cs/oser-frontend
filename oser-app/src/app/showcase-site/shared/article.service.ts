@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/observable';
 import { of } from 'rxjs/observable/of';
-import { map, tap, take } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { ARTICLES } from './article.mock';
 import { Article } from './article.model';
 import * as config from './article.config.json';
@@ -20,9 +20,10 @@ export class ArticleService {
     return new Article({
       title: item.title,
       content: item.content,
-      date: item.published,
+      date: new Date(item.published),
       src: item.image,
-      pinned: item.pinned
+      pinned: item.pinned,
+      categories: item.categories,
     });
   }
 
@@ -30,18 +31,14 @@ export class ArticleService {
     return this.http.get<Article>(this.config.actions.list)
       .pipe(
         map((article: any) => article.map(this.adapt)),
-        tap(resp => console.log('fetched article'))
+        tap(resp => console.log('fetched articles'))
       );
   }
 
   first(n: number): Observable<Article[]> {
-    return this.http.get<Article>(this.config.actions.list)
-      .pipe(
-        // TODO fix, the take(n) operation has no effect
-        take(n),
-        map((article: any) => article.map(this.adapt)),
-        tap(resp => console.log('fetched article'))
-      );
+    return this.list().pipe(
+      map((articles: any) => articles.slice(0, n))
+    );
   }
 
 
