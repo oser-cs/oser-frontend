@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { Filter } from '../shared/filter.model';
-import { FILTERS } from '../shared/filter.mock';
 import { Article } from '../shared/article.model';
 import { ArticleService } from '../shared/article.service';
 import { Ng4TwitterTimelineService } from 'ng4-twitter-timeline/lib/index';
