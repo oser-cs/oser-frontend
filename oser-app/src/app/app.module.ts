@@ -1,3 +1,5 @@
+import { LOCALE_ID } from '@angular/core';
+
 // Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -31,7 +33,10 @@ import { AuthenticationService } from './auth/authentication.service';
     ShowcaseSiteModule,
     MessageModule,
   ],
-  providers: [AuthenticationService],
+  providers: [
+    AuthenticationService,
+    { provide: LOCALE_ID, useValue: 'fr' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

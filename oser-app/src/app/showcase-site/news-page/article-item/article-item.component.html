@@ -7,7 +7,7 @@
       {{ article.title }}
       <span *ngIf="article.pinned" class="pinned">&nbsp;<i class="fa fa-map-pin"></i>&nbsp;À&nbsp;la&nbsp;une</span>
     </h3>
-    <h5 class="date">Publié le {{ article.date }}</h5>
+    <h5 class="date">Publié le {{ article.date | date:'shortDate' }}</h5>
     <p>
       {{ article.preview }}
     </p>
