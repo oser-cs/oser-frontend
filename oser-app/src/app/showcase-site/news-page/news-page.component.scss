@@ -35,6 +35,11 @@
 
 .search {
   grid-area: search;
+  height: fit-content;
+  @include media-md {
+    position: sticky;
+    top: 5em;
+  }
   ul {
     list-style-type: none;
     margin: 0;
@@ -61,4 +66,9 @@
 }
 .feeds {
   grid-area: feeds;
+  @include media-md {
+    position: sticky;
+    top: 5em;
+    height: fit-content;
+  }
 }

@@ -8,11 +8,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
 }
 
 .background {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -36,9 +35,7 @@
 
 #sheet {
   @extend %shadow;
-  @include margin-page;
-  margin-top: $margin-page;
-  margin-bottom: $margin-page;
+  // @include margin-page;
   background-color: white;
   width: auto;
   text-align: center;
