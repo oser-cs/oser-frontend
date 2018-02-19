@@ -53,7 +53,7 @@
   $disabled-hover-color: desaturate($hover-color, 50);
   &:hover {
     background: $color;
-    color: $hover-color;
+    color: $hover-color !important;
   }
   &:disabled {
     background: none;

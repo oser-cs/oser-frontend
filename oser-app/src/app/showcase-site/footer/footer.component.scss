@@ -2,28 +2,44 @@
 @import '~app/showcase-site/sass/mixins';
 @import '~sass/media-queries';
 
+$background: $color-darkest-blue;
+$text: $color-purple-light;
+
 #footer {
-  margin: 0;
+  @include margin-page;
   position: relative;
   z-index: 10;
-  background: $color-darkest-blue;
-  padding: $margin-page 3*$margin-page;
-  color: $color-purple-light;
+  background: $background;
+  color: $text;
   display: flex;
+  flex-flow: row wrap;
   justify-content: space-between;
   @extend %shadow;
+  a {
+    color: inherit;
+  }
 }
-.inline-text {
-  .btn {
-    display: inline;
-    vertical-align: baseline;
-    margin-left: 1em;
-    a {
-      @include btn($color-purple-light, $hover-color: $color-darkest-blue);
-    }
+
+ul.list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: start;
+  align-items: center;
+  list-style-type: none;
+  margin: .5em 0;
+  padding: 0;
+  li {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    margin: .5em 1em;
   }
-  .social {
-    margin: 0 0.5em;
-    color: $color-light-blue;
-  }
+}
+.newsletter-button {
+  display: inline-block;
+  @include btn($text, $background);
+}
+.social {
+  margin: 0 0.5em;
+  color: $color-light-blue;
 }
