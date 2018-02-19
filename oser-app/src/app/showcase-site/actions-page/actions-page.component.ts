@@ -48,8 +48,7 @@ export class ActionsPageComponent implements OnInit {
   }
 
   getTestimonies(): void {
-    // TODO: convert to TestimonyService
-    this.testimonyService.getAll().subscribe(
+    this.testimonyService.list().subscribe(
       (res) => this.testimonies = res,
       (e) => console.log(e)
     );

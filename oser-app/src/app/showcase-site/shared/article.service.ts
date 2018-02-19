@@ -30,8 +30,11 @@ export class ArticleService {
   list(): Observable<Article[]> {
     return this.http.get<Article>(this.config.actions.list)
       .pipe(
-        map((article: any) => article.map(this.adapt)),
-        tap(resp => console.log('fetched articles'))
+        map((articles: any) => articles.map(this.adapt)),
+        tap(resp => {
+          console.log('fetched articles');
+          console.log(resp);
+        })
       );
   }
 
