@@ -32,7 +32,7 @@
   @include style-base($color-dark-blue);
 }
 @mixin style-default {
-  @include style-base($color-muted);
+  @include style-base($color-default);
 }
 
 /* Buttons */
@@ -80,6 +80,9 @@
 .btn-secondary {
   @include btn($color-dark-blue);
 }
+.btn-default {
+  @include btn($color-default);
+}
 
 /* Alerts */
 .alert {
@@ -100,11 +103,20 @@
   -webkit-box-shadow: $props;
   box-shadow: $props;
 }
-%shadow {
-  @include shadow(0 3px 10px 3px rgba(0, 0, 0, 0.2));
+@mixin drop-shadow {
+  @include shadow(0 8px 10px 3px rgba(0, 0, 0, 0.1));
 }
-%shadow-light {
-  @include shadow(0 2px 10px 0 rgba(0, 0, 0, 0.2));
+@mixin drop-shadow-light {
+  @include shadow(0 4px 6px 1px rgba(0, 0, 0, 0.1));
+}
+@mixin drop-shadow-animate {
+  @include drop-shadow-light;
+  $t: .4s;
+  transition: transform $t, box-shadow $t;
+  &:hover {
+    @include drop-shadow;
+    transform: translateY(-.3em) scale(1.02);
+  }
 }
 
 @mixin badge($color) {
@@ -153,7 +165,7 @@
 }
 .badge-default {
   @include style-default;
-  @include badge($color-muted);
+  @include badge($color-default);
 }
 .badge-list {
   list-style-type: none;

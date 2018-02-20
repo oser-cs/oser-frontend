@@ -1,0 +1,18 @@
+<div id="page">
+  <h1 class="text-center">Sorties</h1>
+  <ul id="visits">
+    <li class="visit" *ngFor="let visit of visits">
+      <img [src]="visit.image" [alt]="visit.title">
+      <div class="body">
+        <div class="visit-content">
+          <h3>{{ visit.title }}</h3>
+          <strong>{{ visit.date | date:"EEEE d MMMM" }} – {{ visit.date | date:"shortTime"}}</strong><br />
+          {{ visit.place }}
+        </div>
+        <div class="detail-link">
+          <i class="fa fa-angle-down fa-3x"></i>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

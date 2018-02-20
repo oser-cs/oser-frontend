@@ -14,7 +14,7 @@ $text: $color-purple-light;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  @extend %shadow;
+  @include drop-shadow;
   a {
     color: inherit;
   }

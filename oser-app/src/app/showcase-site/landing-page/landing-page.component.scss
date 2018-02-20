@@ -3,7 +3,7 @@
 
 #photo {
   position: relative;
-  @extend %shadow;
+  @include drop-shadow;
   z-index: -1;
   img {
     display: block;
@@ -14,7 +14,7 @@
 
 #qui-sommes-nous {
   @include page-section(1, white);
-  @extend %shadow;
+  @include drop-shadow;
   background: $color-dark-blue;
   text-align: center;
 
@@ -36,7 +36,7 @@
 
 #actions {
   @include page-section(2);
-  @extend %shadow;
+  @include drop-shadow;
   background: $color-light-blue;
   text-align: center;
 
@@ -79,7 +79,7 @@
 
 #articles {
   @include page-section(3);
-  @extend %shadow;
+  @include drop-shadow;
 
   .heading {
     text-align: center;
@@ -119,7 +119,7 @@
 #calls-to-action {
   /* TODO add responsiveness/media queries */
   @include page-section(4);
-  @extend %shadow;
+  @include drop-shadow;
   background-color: $color-dark-blue;
   color: white;
 

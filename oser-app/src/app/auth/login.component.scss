@@ -18,7 +18,7 @@
   padding: 3em;
   margin: 3em;
   box-sizing: border-box;
-  @extend %shadow-light;
+  @include drop-shadow-light;
 }
 
 .logo {

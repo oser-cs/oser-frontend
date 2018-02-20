@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ShowcaseSiteModule } from './showcase-site/showcase-site.module';
 import { AppRoutingModule } from './app-routing.module';
 import { MessageModule } from './messages/message.module';
+import { VisitsModule } from './visits/visits.module';
 
 // Components
 import { AppComponent } from './app.component';
@@ -31,6 +32,7 @@ import { AuthenticationService } from './auth/authentication.service';
     HttpClientModule,
     AppRoutingModule,
     ShowcaseSiteModule,
+    VisitsModule,
     MessageModule,
   ],
   providers: [
