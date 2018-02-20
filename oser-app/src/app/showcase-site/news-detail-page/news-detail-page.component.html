@@ -9,7 +9,7 @@
 
   <div class="content">
     <img [src]="article.src" [alt]="article.title" class="image">
-    <p>{{ article.content }}</p>
+    <markdown [data]="article.content"></markdown>
   </div>
 
   <div id="related" *ngIf="relatedArticles && relatedArticles.length > 0">

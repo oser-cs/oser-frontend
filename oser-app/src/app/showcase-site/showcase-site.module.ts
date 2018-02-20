@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ShowcaseRoutingModule } from './showcase-routing.module';
 import { MessageModule } from '../messages/message.module';
 import { Ng4TwitterTimelineModule } from 'ng4-twitter-timeline/lib/index';
+import { MarkdownModule } from 'ngx-markdown';
 
 // Components
 import { NavbarComponent } from './navbar/navbar.component';
@@ -36,6 +37,7 @@ import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.com
     ShowcaseRoutingModule,
     MessageModule,
     Ng4TwitterTimelineModule.forRoot(),
+    MarkdownModule.forRoot(),
   ],
   declarations: [
     NavbarComponent,
