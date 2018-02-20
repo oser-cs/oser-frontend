@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/observable';
 import { of } from 'rxjs/observable/of';
 import { map, tap } from 'rxjs/operators';
-import { ARTICLES } from './article.mock';
 import { Article } from './article.model';
 import schema from './schema';
 
