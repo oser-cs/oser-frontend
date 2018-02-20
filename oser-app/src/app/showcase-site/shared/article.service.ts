@@ -18,6 +18,7 @@ export class ArticleService {
   // Adapt JSON returned by API to match the Article interface
   adapt(item: any): Article {
     return new Article({
+      id: item.id,
       title: item.title,
       content: item.content,
       date: new Date(item.published),
@@ -44,5 +45,15 @@ export class ArticleService {
     );
   }
 
-
+  retrieve(id: number | string): Observable<Article> {
+    let url = this.config.actions.retrieve.replace(':id', id);
+    return this.http.get<Article>(url)
+    .pipe(
+      map((article: any) => this.adapt(article)),
+      tap(resp => {
+        console.log('fetched article');
+        console.log(resp);
+      })
+    );
+  }
 }

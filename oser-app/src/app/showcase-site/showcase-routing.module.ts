@@ -6,6 +6,7 @@ import { AboutPageComponent } from './about-page/about-page.component';
 import { DonatePageComponent } from './donate-page/donate-page.component';
 import { ContactPageComponent } from './contact-page/contact-page.component';
 import { NewsPageComponent } from './news-page/news-page.component';
+import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.component';
 import { ActionsPageComponent } from './actions-page/actions-page.component';
 
 const showcaseSiteRoutes: Routes = [
@@ -18,7 +19,8 @@ const showcaseSiteRoutes: Routes = [
       { path: 'donate', component: DonatePageComponent },
       { path: 'contact', component: ContactPageComponent },
       { path: 'actions', component: ActionsPageComponent },
-      { path: 'news', component: NewsPageComponent }
+      { path: 'articles', component: NewsPageComponent },
+      { path: 'articles/:id', component: NewsDetailPageComponent }
     ]
   }
 ]

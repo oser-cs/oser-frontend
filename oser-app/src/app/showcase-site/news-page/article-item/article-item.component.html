@@ -7,11 +7,13 @@
       {{ article.title }}
       <span *ngIf="article.pinned" class="pinned">&nbsp;<i class="fa fa-map-pin"></i>&nbsp;À&nbsp;la&nbsp;une</span>
     </h3>
-    <h5 class="date">Publié le {{ article.date | date:'shortDate' }}</h5>
-    <span *ngFor="let category of article.categories" class="badge badge-default">{{ category }}</span>
+    <p class="date text-muted">Publié le {{ article.date | date:'shortDate' }}</p>
+    <ul class="badge-list">
+      <span *ngFor="let category of article.categories" class="badge badge-default">{{ category }}</span>
+    </ul>
     <p>
       {{ article.preview }}
     </p>
-    <a href="#">Lire la suite</a>
+    <a [routerLink]="['../articles', article.id]">Lire la suite</a>
   </div>
 </div>

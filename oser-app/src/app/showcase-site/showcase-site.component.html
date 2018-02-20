@@ -2,7 +2,7 @@
 <div id="showcase-site">
   <app-navbar></app-navbar>
   <main class="content">
-    <router-outlet></router-outlet>
+    <router-outlet (deactivate)="onDeactivate()"></router-outlet>
   </main>
   <app-footer></app-footer>
 </div>

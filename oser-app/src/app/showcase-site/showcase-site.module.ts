@@ -28,6 +28,7 @@ import { CategoryService } from './shared/category.service';
 
 // Pipes
 import { FuzzyPipe } from '../pipes/fuzzy.pipe';
+import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.component';
 
 @NgModule({
   imports: [
@@ -50,6 +51,7 @@ import { FuzzyPipe } from '../pipes/fuzzy.pipe';
     ArticleItemComponent,
     FilterComponent,
     FuzzyPipe,
+    NewsDetailPageComponent,
   ],
   providers: [ArticleService, FigureService, TestimonyService, CategoryService],
   exports: [

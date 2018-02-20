@@ -124,6 +124,9 @@
   width: fit-content;
   height: fit-content;
 }
+.badge-large {
+  font-size: medium !important;
+}
 .badge-success {
   @include style-success;
   @include badge($color-success);
@@ -151,4 +154,11 @@
 .badge-default {
   @include style-default;
   @include badge($color-muted);
+}
+.badge-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-flow: row wrap;
 }

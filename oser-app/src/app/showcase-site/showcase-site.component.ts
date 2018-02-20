@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
@@ -8,16 +8,13 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class ShowcaseSiteComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private renderer: Renderer) { }
 
-  ngOnInit() {
-    this.router.events.subscribe((event) => {
-      if (!(event instanceof NavigationEnd)) {
-        return;
-      }
-      // Scroll to top of window
-      window.scrollTo(0, 0);
-    });
+  ngOnInit() { }
+
+  onDeactivate() {
+    // on page reload, scroll to top of window
+    this.renderer.setElementProperty(document.body, "scrollTop", 0);
   }
 
 }

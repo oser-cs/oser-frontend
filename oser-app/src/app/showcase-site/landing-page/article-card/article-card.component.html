@@ -6,6 +6,6 @@
     <h3>{{ article.title }}</h3>
     <h5>Publié le {{ article.date }}</h5>
     <p>{{ article.preview }}</p>
-    <a href="#">Lire la suite</a>
+    <a [routerLink]="['articles/', article.id]">Lire la suite</a>
   </div>
 </div>

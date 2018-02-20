@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
     { href: 'about', text: 'Qui sommes-nous ?' },
     { href: 'donate', text: 'Soutenez-nous' },
     { href: 'actions', text: 'Nos actions' },
-    { href: 'news', text: 'Actualités' },
+    { href: 'articles', text: 'Actualités' },
     { href: 'contact', text: 'Contact' }
   ];
   // Use leading slash for absolute URL
