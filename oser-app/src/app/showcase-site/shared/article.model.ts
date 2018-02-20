@@ -1,3 +1,5 @@
+import * as removeMd from 'remove-markdown';
+
 export class Article {
   id: number;
   title: string;
@@ -14,10 +16,13 @@ export class Article {
   previewLength: number = 220;
 
   get preview(): string {
+    let preview: string;
     if (this.content.length > this.previewLength) {
       // Truncate the content to only show the beginning of it.
-      return this.content.substring(0, this.previewLength) + ' […]';
+      preview = this.content.substring(0, this.previewLength) + ' […]';
+    } else {
+      preview = this.content;
     }
-    return this.content;
+    return removeMd(preview);
   }
 }
