@@ -23,7 +23,7 @@ import { FilterComponent } from './shared/filter/filter.component';
 
 // Services
 import { ArticleService } from './shared/article.service';
-import { FigureService } from './shared/figure.service';
+import { KeyFigureService } from './shared/keyfigure.service';
 import { TestimonyService } from './shared/testimony.service';
 import { CategoryService } from './shared/category.service';
 
@@ -55,7 +55,7 @@ import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.com
     FuzzyPipe,
     NewsDetailPageComponent,
   ],
-  providers: [ArticleService, FigureService, TestimonyService, CategoryService],
+  providers: [ArticleService, KeyFigureService, TestimonyService, CategoryService],
   exports: [
     ShowcaseSiteComponent
   ]

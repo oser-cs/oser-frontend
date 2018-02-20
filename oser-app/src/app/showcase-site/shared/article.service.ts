@@ -5,13 +5,13 @@ import { of } from 'rxjs/observable/of';
 import { map, tap } from 'rxjs/operators';
 import { ARTICLES } from './article.mock';
 import { Article } from './article.model';
-import * as config from './article.config.json';
+import schema from './schema';
 
 
 @Injectable()
 export class ArticleService {
 
-  private config = <any>config;
+  private actions = schema.article;
 
   constructor(private http: HttpClient) { }
 
@@ -29,7 +29,7 @@ export class ArticleService {
   }
 
   list(): Observable<Article[]> {
-    return this.http.get<Article>(this.config.actions.list)
+    return this.http.get<Article>(this.actions.list)
       .pipe(
         map((articles: any) => articles.map(this.adapt)),
         tap(resp => {
@@ -46,7 +46,7 @@ export class ArticleService {
   }
 
   retrieve(id: number | string): Observable<Article> {
-    let url = this.config.actions.retrieve.replace(':id', id);
+    let url = this.actions.retrieve.replace(':id', id);
     return this.http.get<Article>(url)
     .pipe(
       map((article: any) => this.adapt(article)),

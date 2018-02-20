@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/observable';
 import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
-import * as config from './category.config.json';
+import schema from './schema';
 
 
 @Injectable()
 export class CategoryService {
 
-  private config = <any>config;
+  private actions = schema.category;
 
   constructor(private http: HttpClient) { }
 
@@ -16,7 +16,7 @@ export class CategoryService {
   adapt(item: any): any { return item.title; }
 
   list(): Observable<string[]> {
-    return this.http.get<any>(this.config.actions.list)
+    return this.http.get<any>(this.actions.list)
       .pipe(
       map((categories: any) => categories.map(this.adapt)),
       tap(resp => {

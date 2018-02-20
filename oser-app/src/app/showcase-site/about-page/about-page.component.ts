@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Figure } from '../shared/figure.model';
-import { FigureService } from '../shared/figure.service';
+import { KeyFigure } from '../shared/keyfigure.model';
+import { KeyFigureService } from '../shared/keyfigure.service';
 
 
 @Component({
@@ -10,17 +10,17 @@ import { FigureService } from '../shared/figure.service';
 })
 export class AboutPageComponent implements OnInit {
 
-  figures: Figure[];
+  keyFigures: KeyFigure[];
 
-  constructor(private figureService: FigureService) { }
+  constructor(private keyFigureService: KeyFigureService) { }
 
   ngOnInit() {
-    this.getFigures();
+    this.getKeyFigures();
   }
 
-  getFigures(): void {
-    this.figureService.getFigures().subscribe(
-      (figures) => this.figures = figures,
+  getKeyFigures(): void {
+    this.keyFigureService.list().subscribe(
+      (keyFigures) => this.keyFigures = keyFigures,
       (e) => console.log(e)
     );
   }

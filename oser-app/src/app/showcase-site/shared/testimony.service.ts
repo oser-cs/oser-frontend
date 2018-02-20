@@ -3,13 +3,13 @@ import { Observable } from 'rxjs/observable';
 import { Testimony } from './testimony.model';
 import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
-import * as config from './testimony.config.json';
+import schema from './schema';
 
 
 @Injectable()
 export class TestimonyService {
 
-  private config = <any>config;
+  private actions = schema.testimony;
 
   constructor(private http: HttpClient) { }
 
@@ -22,7 +22,7 @@ export class TestimonyService {
   }
 
   list(): Observable<Testimony[]> {
-    return this.http.get<Testimony>(this.config.actions.list)
+    return this.http.get<Testimony>(this.actions.list)
     .pipe(
       map((testimonies: any) => testimonies.map(this.adapt)),
       tap(resp => {
