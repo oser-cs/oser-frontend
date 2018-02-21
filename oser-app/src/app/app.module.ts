@@ -6,18 +6,16 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-import { ShowcaseSiteModule } from './showcase-site/showcase-site.module';
+import { CoreModule } from '@app/core';
+import { UiModule } from '@app/ui';
 import { AppRoutingModule } from './app-routing.module';
-import { MessageModule } from './messages/message.module';
+import { ShowcaseSiteModule } from './showcase-site/showcase-site.module';
 import { VisitsModule } from './visits/visits.module';
 
 // Components
 import { AppComponent } from './app.component';
+import { LoginComponent } from '@app/core';
 import { SignupPageComponent } from './signup-page/signup-page.component';
-import { LoginComponent } from './auth/login.component';
-
-// Services
-import { AuthenticationService } from './auth/authentication.service';
 
 @NgModule({
   declarations: [
@@ -26,6 +24,8 @@ import { AuthenticationService } from './auth/authentication.service';
     LoginComponent,
   ],
   imports: [
+    CoreModule,
+    UiModule,
     BrowserModule,
     FormsModule,
     HttpModule,
@@ -33,10 +33,8 @@ import { AuthenticationService } from './auth/authentication.service';
     AppRoutingModule,
     ShowcaseSiteModule,
     VisitsModule,
-    MessageModule,
   ],
   providers: [
-    AuthenticationService,
     { provide: LOCALE_ID, useValue: 'fr' }
   ],
   bootstrap: [AppComponent]

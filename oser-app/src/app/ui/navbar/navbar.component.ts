@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthenticationService } from '../../auth/authentication.service';
+import { AuthService } from '@app/core';
 
-class Link {
+export class Link {
   href: string;
   text: string;
 }
@@ -16,19 +16,13 @@ export class NavbarComponent implements OnInit {
 
   currentUser: any;
   visible: boolean;
-  links: Link[] = [
-    { href: 'about', text: 'Qui sommes-nous ?' },
-    { href: 'donate', text: 'Soutenez-nous' },
-    { href: 'actions', text: 'Nos actions' },
-    { href: 'articles', text: 'Actualités' },
-    { href: 'contact', text: 'Contact' }
-  ];
+  @Input() links: Link[] = [];
   // Use leading slash for absolute URL
   loginRoute = '/login';
 
   constructor(
-    private auth: AuthenticationService,
     private router: Router,
+    private auth: AuthService,
   ) {
     this.visible = false;
   }

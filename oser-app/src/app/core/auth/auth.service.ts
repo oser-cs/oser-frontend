@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 
 @Injectable()
-export class AuthenticationService {
+export class AuthService {
   loginUrl: string = 'http://localhost:8000/api/auth/get-token/'
   constructor(private http: HttpClient) { }
 

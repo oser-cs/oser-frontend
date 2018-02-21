@@ -1,6 +1,6 @@
 <span id="top"></span>
 <div id="showcase-site">
-  <app-navbar></app-navbar>
+  <app-navbar [links]="navLinks"></app-navbar>
   <main class="content">
     <router-outlet (deactivate)="onDeactivate()"></router-outlet>
   </main>

@@ -33,12 +33,12 @@
   display: flex;
   flex-flow: column;
 }
-#login-btn {
-  margin-top: 1em;
-}
 
 .has-error {
   input {
     @include style-danger;
   }
+}
+#login-btn {
+  margin-top: 1em;
 }
