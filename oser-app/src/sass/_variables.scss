@@ -13,6 +13,7 @@ $color-danger: #D72638;
 $color-success: #0CCE6B;
 $color-warning: #EAC435;
 $color-info: darken(#A0F0FF, 40);
+$color-default: lighten($color-text, 30);
 
 /* Fonts */
 $font-body: 'Nunito', Arial, sans-serif;

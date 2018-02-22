@@ -18,7 +18,7 @@
   padding: 3em;
   margin: 3em;
   box-sizing: border-box;
-  @extend %shadow-light;
+  @include drop-shadow-light;
 }
 
 .logo {
@@ -33,12 +33,12 @@
   display: flex;
   flex-flow: column;
 }
-#login-btn {
-  margin-top: 1em;
-}
 
 .has-error {
   input {
     @include style-danger;
   }
+}
+#login-btn {
+  margin-top: 1em;
 }

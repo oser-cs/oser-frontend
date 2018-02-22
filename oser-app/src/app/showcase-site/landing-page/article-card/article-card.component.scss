@@ -7,15 +7,16 @@ $padding: 1em 1.5em;
   min-height: 100%;
   margin: 0;
   padding: 0;
-  // @extend %shadow-light;
+  // @include drop-shadow-light;
   @include media-md {
     background-color: $color-light-gray;
     border-radius: 4px;
     overflow: hidden;
     display: block;
     max-width: 20em;
-    /* Because could not @extend %shadow-light */
-    @include shadow(0 2px 10px 0 rgba(0, 0, 0, 0.2));
+    /* Because could not @include drop-shadow-light */
+    @include drop-shadow-light;
+    // @include shadow(0 2px 10px 0 rgba(0, 0, 0, 0.2));
   }
 }
 
