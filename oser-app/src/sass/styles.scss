@@ -27,6 +27,10 @@ a {
   color: $color-accent;
   font-weight: bold;
 }
+a.no-style {
+  color: inherit;
+  font-weight: inherit;
+}
 
 hr {
   height: 1px;

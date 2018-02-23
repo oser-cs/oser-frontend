@@ -1,19 +1,21 @@
-<div class="card">
-  <div class="image">
-    <img *ngIf="article.src" [src]="article.src" [alt]="article.title"/>
+<a class="no-style" [routerLink]="['../articles', article.id]">
+  <div class="card">
+    <div class="image">
+        <img *ngIf="article.src" [src]="article.src" [alt]="article.title"/>
+    </div>
+    <div class="card-body">
+      <h3>
+        {{ article.title }}
+        <span *ngIf="article.pinned" class="pinned">&nbsp;<i class="fa fa-map-pin"></i>&nbsp;À&nbsp;la&nbsp;une</span>
+      </h3>
+      <p class="date text-muted">Publié le {{ article.date | date:'shortDate' }}</p>
+      <ul class="badge-list">
+        <span *ngFor="let category of article.categories" class="badge badge-default">{{ category }}</span>
+      </ul>
+      <p>
+        {{ article.preview }}
+      </p>
+      <a [routerLink]="['../articles', article.id]">Lire la suite</a>
+    </div>
   </div>
-  <div class="card-body">
-    <h3>
-      {{ article.title }}
-      <span *ngIf="article.pinned" class="pinned">&nbsp;<i class="fa fa-map-pin"></i>&nbsp;À&nbsp;la&nbsp;une</span>
-    </h3>
-    <p class="date text-muted">Publié le {{ article.date | date:'shortDate' }}</p>
-    <ul class="badge-list">
-      <span *ngFor="let category of article.categories" class="badge badge-default">{{ category }}</span>
-    </ul>
-    <p>
-      {{ article.preview }}
-    </p>
-    <a [routerLink]="['../articles', article.id]">Lire la suite</a>
-  </div>
-</div>
+</a>

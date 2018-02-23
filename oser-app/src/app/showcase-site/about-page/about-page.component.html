@@ -1,6 +1,6 @@
 <div class="page-content">
   <span class="page-background"></span>
-  <section id="header">
+  <section id="header" class="drop-shadow-md">
     <h1><span class="colorized">Nous sommes</span> des étudiants et étudiantes <br> <span class="colorized">engagés</span> pour l'égalité des chances<span class="colorized">.</span></h1>
 
     <p>
@@ -29,11 +29,11 @@
     </section>
     <section class="carrousel">
       <!-- TODO implement multi-image carrousel -->
-      <img src="assets/img/aboutus-img1.jpg" class="image">
+      <img src="assets/img/aboutus-img1.jpg" class="image drop-shadow-md">
     </section>
   </section>
 
-  <section id="figures">
+  <section id="figures" class="drop-shadow-md">
     <ul>
       <li *ngFor="let figure of keyFigures">
         <span class="figure">{{ figure.value }}</span>{{ figure.text }}
@@ -55,7 +55,7 @@
       </p>
     </section>
     <section class="image">
-      <img src="assets/img/soiree-lancement.jpg" alt="Soirée de lancement du 14 décembre 2017">
+      <img class="drop-shadow-md" src="assets/img/soiree-lancement.jpg" alt="Soirée de lancement du 14 décembre 2017">
       <p class="legend">Soirée de lancement du 14 décembre 2016, officialisant la création d'Ouverture Sociale pour l'égalité et la Réussite.</p>
     </section>
   </section>

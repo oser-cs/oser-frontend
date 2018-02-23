@@ -45,6 +45,7 @@ export class NewsPageComponent implements OnInit {
       (e) => console.log(e)
     );
     this.articles$.subscribe((articles) => {
+      this.pinnedFirst(articles);
       this.articles = articles;
       // Update set of years
       this.years = this.articles
@@ -54,7 +55,24 @@ export class NewsPageComponent implements OnInit {
       this.articleYears = this.articles
         .map(a => a.date.getFullYear().toString());
       // Update article categories
-      this.articleCategories = articles.map(a => a.categories);
+      this.articleCategories = this.articles.map(a => a.categories);
+    });
+  }
+
+  pinnedFirst(articles: Article[]): void {
+    // Sort articles in place to put pinned articles first.
+    articles.sort((a: Article, b: Article) => {
+      // Return 1 if b > a, -1 if b < a, 0 to keep initial ordering,
+      // where x > y means "show x before y".
+      if (a.pinned) {
+        if (b.pinned) {
+          return 0;
+        } else return -1;
+      }
+      else {
+        if (b.pinned) return 1;
+        return 0;
+      }
     });
   }
 

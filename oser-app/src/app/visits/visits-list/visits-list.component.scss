@@ -19,7 +19,6 @@ $gap: 1em;
   margin: $gap/2;
   max-width: 20em;
   cursor: pointer;
-  @include drop-shadow-animate;
   img {
     width: 100%;
     height: auto;

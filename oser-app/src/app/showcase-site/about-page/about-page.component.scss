@@ -27,7 +27,6 @@
   flex-direction: column;
   justify-content: center;
   @include margin-page;
-  @include drop-shadow;
   overflow: hidden;
   color: white;
 
@@ -79,7 +78,6 @@
       width: 100%;
       max-width: 40em;
       height: auto;
-      @include drop-shadow;
     }
   }
 }
@@ -89,7 +87,6 @@
   @include margin-page;
   z-index: 1;
   @include color-bg($color-light-blue);
-  @include drop-shadow;
 
   ul {
     list-style-type: none;
@@ -151,7 +148,6 @@
     img {
       width: 100%;
       height: auto;
-      @include drop-shadow;
     }
 
     .legend {

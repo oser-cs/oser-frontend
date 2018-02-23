@@ -19,10 +19,10 @@ $stick: 1em;
       "search main"
       "feeds main";
     grid-template-columns: 1fr 3fr;
-    grid-column-gap: 2em;
+    // grid-column-gap: 2em;
   }
 
-  @include media-md {
+  @include media-lg {
     grid-template-areas:
       ". hd ."
       "search main feeds";
@@ -36,7 +36,7 @@ $stick: 1em;
 
 .search {
   grid-area: search;
-  @include media-md {
+  @include media-lg {
     height: fit-content;
     position: sticky;
     top: $stick;
@@ -52,8 +52,11 @@ $stick: 1em;
     align-items: baseline;
     padding-right: 1em;
     box-sizing: border-box;
-    h3 {
+    h5 {
       display: inline-block;
+    }
+    &:hover {
+      color: $color-accent;
     }
   }
   ul.filters {
@@ -88,13 +91,13 @@ $stick: 1em;
   }
   /* Add space between article items */
   app-article-item + app-article-item {
-    margin-top: 2em;
+    // margin-top: 2em;
   }
 }
 .feeds {
   grid-area: feeds;
   height: fit-content;
-  @include media-md {
+  @include media-lg {
     position: sticky;
     top: $stick;
   }

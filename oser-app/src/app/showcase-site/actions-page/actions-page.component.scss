@@ -22,7 +22,6 @@
   flex-direction: column;
   justify-content: center;
   @include margin-page;
-  @include drop-shadow;
   overflow: hidden;
   color: white;
 
@@ -79,12 +78,10 @@ li.action {
     height: $size;
     border-radius: $size/2;
     background-color: white;
-    @include drop-shadow;
   }
 }
 
 .slideshow {
-  @include drop-shadow;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -102,6 +99,7 @@ li.action {
     z-index: 4;
     color: $color-dark-blue;
     transition: color 0.2s;
+
     &:hover {
       color: $color-purple;
     }
@@ -111,7 +109,6 @@ li.action {
     width: 100%;
     max-width: 35em;
     position: relative;
-    @include drop-shadow;
     margin: 0;
     padding: 0;
     list-style-type: none;

@@ -98,36 +98,66 @@
 }
 
 /* Effects */
+$shadow-sm: .05em;
+$shadow-md: .1em;
+$shadow-lg: .2em;
+$shadow-ref: .13em;
 @mixin shadow($props) {
   -moz-box-shadow: $props;
   -webkit-box-shadow: $props;
   box-shadow: $props;
 }
-@mixin shadow-inset($props) {
-  @include shado($props inset);
+@mixin drop-shadow($size: $shadow-md, $inset: false) {
+  $intensity: $size / $shadow-ref;
+  $y: 8px * $intensity;
+  $blur-radius: 3px + 7px * $intensity;
+  $spread-radius: 2px + 1px * $intensity;
+  $color: rgba(0, 0, 0, .08);
+  $props: 0 $y $blur-radius $spread-radius $color;
+  @if $inset == true {
+    @include shadow($props inset);
+  }
+  @if $inset == false {
+    @include shadow($props);
+  }
 }
-$shadow-props: 0 8px 10px 3px rgba(0, 0, 0, 0.1);
-@mixin drop-shadow {
-  @include shadow($shadow-props);
+@mixin drop-shadow-inset($size: $shadow-md) {
+  @include drop-shadow($size, true);
 }
-@mixin drop-shadow-inset {
-  @include shadow($shadow-props inset);
-}
-$shadow-light-props: 0 4px 6px 1px rgba(0, 0, 0, 0.1);
 @mixin drop-shadow-light {
-  @include shadow($shadow-light-props);
+  @include drop-shadow($shadow-sm);
 }
 @mixin drop-shadow-light-inset {
-  @include shadow($shadow-light-props inset);
+  @include drop-shadow(.5, true);
 }
-@mixin drop-shadow-animate {
-  @include drop-shadow-light;
+@mixin drop-shadow-animate($begin, $end) {
+  @include drop-shadow($begin);
+  $raise: 2 * ($end - $begin);
   $t: .4s;
+  $scale: 1 + .02 * $raise / .34em;
   transition: transform $t, box-shadow $t;
   &:hover {
-    @include drop-shadow;
-    transform: translateY(-.3em) scale(1.02);
+    @include drop-shadow($end);
+    transform: translateY(-$raise) scale($scale);
   }
+}
+.drop-shadow-sm-md {
+  @include drop-shadow-animate($shadow-sm, $shadow-md);
+}
+.drop-shadow-sm-lg {
+  @include drop-shadow-animate($shadow-sm, $shadow-lg);
+}
+.drop-shadow-md-lg {
+  @include drop-shadow-animate($shadow-md, $shadow-lg);
+}
+.drop-shadow-sm {
+  @include drop-shadow($shadow-sm);
+}
+.drop-shadow-md {
+  @include drop-shadow($shadow-md);
+}
+.drop-shadow-lg {
+  @include drop-shadow($shadow-lg);
 }
 
 @mixin badge($color) {

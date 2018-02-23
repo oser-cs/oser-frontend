@@ -34,8 +34,6 @@
 }
 
 #sheet {
-  @include drop-shadow;
-  // @include margin-page;
   background-color: white;
   width: auto;
   text-align: center;
