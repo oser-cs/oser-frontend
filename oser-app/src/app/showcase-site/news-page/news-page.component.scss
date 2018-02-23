@@ -1,5 +1,7 @@
 @import '~app/showcase-site/sass/mixins';
 
+$stick: 1em;
+
 .wrapper {
   @include margin-page;
   display: grid;
@@ -13,12 +15,11 @@
 
   @include media-sm {
     grid-template-areas:
-      "hd hd"
-      "main search"
-      "main feeds";
-    grid-template-columns: 3fr 1fr;
+      ". hd"
+      "search main"
+      "feeds main";
+    grid-template-columns: 1fr 3fr;
     grid-column-gap: 2em;
-    grid-row-gap: 1em;
   }
 
   @include media-md {
@@ -35,18 +36,44 @@
 
 .search {
   grid-area: search;
-  height: fit-content;
   @include media-md {
+    height: fit-content;
     position: sticky;
-    top: 5em;
+    top: $stick;
   }
-  ul {
+  background: white;
+  padding: 0.5em 1em;
+  box-sizing: border-box;
+  #filters-title {
+    cursor: pointer;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-right: 1em;
+    box-sizing: border-box;
+    h3 {
+      display: inline-block;
+    }
+  }
+  ul.filters {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    display: block;
+    background: white;
+  }
+  ul.filters.hidden {
+    display: none;
   }
   .filter + .filter {
     margin-top: 2em;
+  }
+}
+#search-hr {
+  display: block;
+  @include media-sm {
+    display: none;
   }
 }
 
@@ -66,9 +93,9 @@
 }
 .feeds {
   grid-area: feeds;
+  height: fit-content;
   @include media-md {
     position: sticky;
-    top: 5em;
-    height: fit-content;
+    top: $stick;
   }
 }

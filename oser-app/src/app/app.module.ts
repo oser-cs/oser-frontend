@@ -14,14 +14,12 @@ import { VisitsModule } from './visits/visits.module';
 
 // Components
 import { AppComponent } from './app.component';
-import { LoginComponent } from '@app/core';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignupPageComponent,
-    LoginComponent,
   ],
   imports: [
     CoreModule,

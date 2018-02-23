@@ -1,0 +1,6 @@
+{
+  "visit": {
+    "list": "http://localhost:8000/api/visits/",
+    "retrieve": "http://localhost:8000/api/visits/:id/"
+  }
+}

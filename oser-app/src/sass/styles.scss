@@ -41,11 +41,14 @@ input, button {
   font-family: inherit;
 }
 
-input.form-control {
+input {
   @include box-spacing;
-  margin: 0.5em 0;
   border: 1px solid darken(lightgray, 10);
   border-radius: 3px;
+}
+
+input.form-control {
+  margin: 0.5em 0;
 }
 
 button {

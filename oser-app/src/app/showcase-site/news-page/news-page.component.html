@@ -9,11 +9,15 @@
       <!-- Enter search term here -->
       <input type="text" (keyup)="searchTerm$.next($event.target.value)">
     </div>
-    <h3>Filtrer</h3>
-    <ul class="filters">
+    <div id="filters-title" (click)="toggleFilters()">
+      <h3>Filtrer</h3>
+      <span class="dropdown"><i class="fa fa-angle-down"></i></span>
+    </div>
+    <ul class="filters" [ngClass]="{'hidden': !filtersVisible}">
       <list-filter class="filter" title="Année" [values]="years" (onSelect)="onSelectYear($event)" [countContains]="articleYears"></list-filter>
       <list-filter class="filter" title="Catégories" [values]="categories" (onSelect)="onSelectCategory($event)" [countContains]="articleCategories"></list-filter>
     </ul>
+    <hr id="search-hr">
   </div>
 
   <div class="main">

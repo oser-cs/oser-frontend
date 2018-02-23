@@ -4,6 +4,7 @@ import { Article } from '../shared/article.model';
 import { ArticleService } from '../shared/article.service';
 import { CategoryService } from '../shared/category.service';
 import { Ng4TwitterTimelineService } from 'ng4-twitter-timeline/lib/index';
+import { FuzzyPipe } from '@app/core';
 
 
 @Component({
@@ -28,6 +29,8 @@ export class NewsPageComponent implements OnInit {
   // RxJS subject = observable + observer
   searchTerm$ = new Subject<string>();
   search: string;
+
+  filtersVisible: boolean = false;
 
   constructor(
     private articleService: ArticleService,
@@ -70,8 +73,12 @@ export class NewsPageComponent implements OnInit {
   }
 
   // Respond to filter selection events
-  onSelectYear(year: number) { this.currentYear = year; }
-  onSelectCategory(category: string) { this.currentCategory = category ;}
+  onSelectYear(year: number) {
+    this.currentYear = year;
+  }
+  onSelectCategory(category: string) {
+    this.currentCategory = category;
+  }
 
   // Define visible or hidden state of articles in list
   hidden(article: Article): boolean {
@@ -84,6 +91,15 @@ export class NewsPageComponent implements OnInit {
       }
     }
     return false;
+  }
+
+  toggleFilters(): void {
+    this.filtersVisible = !this.filtersVisible;
+  }
+
+  get allHidden(): boolean {
+    if (!this.articles) return true;
+    return this.articles.every(this.hidden);
   }
 
 

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/observable';
-import { of } from 'rxjs/observable/of';
 import { map, tap } from 'rxjs/operators';
 import { Article } from './article.model';
 import schema from './schema';

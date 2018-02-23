@@ -103,11 +103,22 @@
   -webkit-box-shadow: $props;
   box-shadow: $props;
 }
-@mixin drop-shadow {
-  @include shadow(0 8px 10px 3px rgba(0, 0, 0, 0.1));
+@mixin shadow-inset($props) {
+  @include shado($props inset);
 }
+$shadow-props: 0 8px 10px 3px rgba(0, 0, 0, 0.1);
+@mixin drop-shadow {
+  @include shadow($shadow-props);
+}
+@mixin drop-shadow-inset {
+  @include shadow($shadow-props inset);
+}
+$shadow-light-props: 0 4px 6px 1px rgba(0, 0, 0, 0.1);
 @mixin drop-shadow-light {
-  @include shadow(0 4px 6px 1px rgba(0, 0, 0, 0.1));
+  @include shadow($shadow-light-props);
+}
+@mixin drop-shadow-light-inset {
+  @include shadow($shadow-light-props inset);
 }
 @mixin drop-shadow-animate {
   @include drop-shadow-light;
