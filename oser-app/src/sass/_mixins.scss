@@ -1,10 +1,28 @@
 @import './variables';
+@import './media-queries';
+
+@function lightened($color) {
+  @return lighten(desaturate($color, 20), 45);
+}
 
 /* Spacing */
 
-@mixin box-spacing {
-  padding: .3em .5em;
+@mixin box-spacing($x: 1) {
+  padding: $x * .3em $x * .5em;
   box-sizing: border-box;
+}
+@mixin margin-page() {
+  /* Use for consistent responsive page margins */
+  padding: $margin-page;
+  @content;
+  @include media-xs {
+    $m: 3 * $margin-page;
+    padding-left: $m;
+    padding-right: $m;
+  }
+}
+.page {
+  @include margin-page;
 }
 
 /* Styles */
@@ -26,10 +44,10 @@
   @include style-base($color-warning);
 }
 @mixin style-primary {
-  @include style-base($color-accent);
+  @include style-base($color-primary);
 }
 @mixin style-secondary {
-  @include style-base($color-dark-blue);
+  @include style-base($color-secondary);
 }
 @mixin style-default {
   @include style-base($color-default);
@@ -75,26 +93,48 @@
   @include btn($color-info);
 }
 .btn-primary {
-  @include btn($color-accent);
+  @include btn($color-primary);
 }
 .btn-secondary {
-  @include btn($color-dark-blue);
+  @include btn($color-secondary);
 }
 .btn-default {
   @include btn($color-default);
 }
 
 /* Alerts */
+@mixin alert($color) {
+  @include style-base($color);
+  background: lightened($color);
+}
 .alert {
   @include box-spacing;
-  margin-top: 0;
-  margin-bottom: 0;
+  width: 100%;
+  $m: 1em;
+  margin-top: $m;
+  margin-bottom: $m;
+  border-radius: 4px;
 }
 .alert-danger {
-  @include style-danger;
+  @include alert($color-danger);
 }
 .alert-success {
-  @include style-success;
+  @include alert($color-success);
+}
+.alert-warning {
+  @include alert($color-warning);
+}
+.alert-info {
+  @include alert($color-info);
+}
+.alert-primary {
+  @include alert($color-primary);
+}
+.alert-secondary {
+  @include alert($color-secondary);
+}
+.alert-default {
+  @include alert($color-default);
 }
 
 /* Effects */
@@ -161,24 +201,23 @@ $shadow-ref: .13em;
 }
 
 @mixin badge($color) {
-  @include box-spacing;
-  border-radius: 2em;
-  margin: .2em;
-  font-size: x-small;
   color: $color;
-  background-color: lighten(desaturate($color, 20), 45);
+  background-color: lightened($color);
 }
 
 .badge {
   @include box-spacing;
-  border-radius: 50%;
+  border-radius: 2em;
   margin: .2em;
-  font-size: x-small;
+  font-size: small;
   width: fit-content;
   height: fit-content;
 }
-.badge-large {
+.badge-lg {
   font-size: medium !important;
+}
+.badge-sm {
+  font-size: x-small !important;
 }
 .badge-success {
   @include style-success;
@@ -198,11 +237,11 @@ $shadow-ref: .13em;
 }
 .badge-primary {
   @include style-primary;
-  @include badge($color-accent);
+  @include badge($color-primary);
 }
 .badge-secondary {
   @include style-secondary;
-  @include badge($color-dark-blue);
+  @include badge($color-secondary);
 }
 .badge-default {
   @include style-default;
@@ -213,5 +252,6 @@ $shadow-ref: .13em;
   margin: 0;
   padding: 0;
   display: flex;
-  flex-flow: row wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
 }

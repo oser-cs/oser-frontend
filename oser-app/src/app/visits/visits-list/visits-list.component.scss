@@ -4,45 +4,21 @@
   @include margin-page;
 }
 
-$gap: 1em;
+$grid-gap: 1em;
 #visits {
   list-style-type: none;
   margin: 0 auto;
+  width: fit-content;
   padding: 0;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  grid-column-gap: $gap;
-  grid-row-gap: $gap;
-}
-.visit {
-  margin: $gap/2;
-  max-width: 20em;
-  cursor: pointer;
-  img {
-    width: 100%;
-    height: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  @include media-xs {
+    grid-template-columns: repeat(2, 1fr);
   }
-  &:hover {
-    .detail-link {
-      color: $color-accent;
-    }
+  @include media-md {
+    grid-template-columns: repeat(3, 1fr);
   }
-}
-.body {
-  padding: 1em 2em;
-  box-sizing: border-box;
-  // display: flex;
-  // flex-flow: column nowrap;
-  // justify-content: flex-end;
-  h3 {
-    margin-top: 0;
-  }
-}
-.visit-content {
-  height: 100%;
-}
-.detail-link {
-  color: transparentize($color-text, .7);
-  text-align: center;
+  grid-auto-flow: dense;
+  grid-column-gap: $grid-gap;
+  grid-row-gap: $grid-gap;
 }

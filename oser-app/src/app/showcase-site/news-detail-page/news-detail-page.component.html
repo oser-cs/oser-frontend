@@ -2,7 +2,7 @@
   <h1>{{ article.title }}</h1>
 
   <ul class="badge-list">
-    <span *ngFor="let category of article.categories" class="badge badge-default badge-large">{{ category }}</span>
+    <span *ngFor="let category of article.categories" class="badge badge-default badge-lg">{{ category }}</span>
   </ul>
 
   <p class="text-muted">Publié le {{ article.date | date:'shortDate' }} à {{ article.date | date:'shortTime' }}</p>

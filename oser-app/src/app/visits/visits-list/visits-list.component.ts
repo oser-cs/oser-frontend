@@ -10,7 +10,6 @@ import { Visit } from '../shared/visit.model';
 export class VisitsListComponent implements OnInit {
 
   visits: Visit[];
-  registrations = new Map<number, boolean>();
 
   constructor(private visitService: VisitService) { }
 
@@ -20,14 +19,12 @@ export class VisitsListComponent implements OnInit {
 
   getVisits(): void {
     this.visitService.list().subscribe(
-      (visits) => {
-        this.visits = visits;
-        this.visits.map(v => { this.registrations[v.id] = false;})
-      }
+      (visits) => this.visits = visits,
+      (e) => console.log(e)
     );
   }
 
-  toggleRegister(visit: Visit, state: boolean): void {
-    this.registrations[visit.id] = state;
+  get nextVisits(): Visit[] {
+    return this.visits.filter(visit => !visit.passed);
   }
 }

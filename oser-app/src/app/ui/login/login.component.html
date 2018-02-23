@@ -2,6 +2,7 @@
   <div class="login-form drop-shadow-md">
     <img class="logo" src="assets/img/oser-logo.png" alt="">
     <h1>Connexion</h1>
+    <p *ngIf="fromOtherPage" class="alert alert-danger">Vous devez vous connecter pour accéder à cette page.</p>
     <messages></messages>
     <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
       <!-- Username field -->

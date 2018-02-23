@@ -12,8 +12,7 @@ export class LoginComponent implements OnInit {
 
   model: any = {};
   loading: boolean = false;
-  returnUrl: string;
-  defaultReturnUrl: string = '/';
+  defaultRedirectUrl: string = '/';
   loginSuccessful: 'Connexion réussie';
 
   constructor(
@@ -24,16 +23,23 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || this.defaultReturnUrl;
+  }
+
+  get fromOtherPage(): boolean {
+    return this.auth.fromGuard;
   }
 
   login() {
     this.loading = true;
     this.auth.login(this.model.username, this.model.password).subscribe(
-      data => {
-        this.messageService.success(this.loginSuccessful, true);
-        this.router.navigate([this.returnUrl]);
+      () => {
+        this.loading = false;
+        if (this.auth.isLoggedIn) {
+          this.messageService.success(this.loginSuccessful, true);
+          // Get redirect URL from the auth service, provided by the auth guard.
+          let redirect = this.auth.redirectUrl ? this.auth.redirectUrl : this.defaultRedirectUrl;
+          this.router.navigate([redirect]);
+        }
       },
       error => {
         this.loading = false;

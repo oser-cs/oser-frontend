@@ -1,0 +1,20 @@
+<div id="visit" class="drop-shadow-sm-md">
+  <img [src]="visit.image" [alt]="visit.title">
+  <div class="body">
+    <div class="visit-content">
+      <h3>{{ visit.title }}</h3>
+      <strong>{{ visit.date | date:"EEEE d MMMM" }} – {{ visit.date | date:"shortTime"}}</strong><br />
+      {{ visit.place }}
+      <div class="badge-list">
+        <span *ngIf="visit.registrationsOpen" class="badge badge-warning "><i class="fa fa-clock-o"></i> Inscriptions avant le {{ visit.deadline | date:"dd/MM à HH:mm" }}</span>
+        <span *ngIf="!visit.registrationsOpen" class="badge badge-danger "><i class="fa fa-times"></i> Inscriptions fermées</span>
+        <span *ngIf="visit.participants && visit.participants.length > 0" class="badge badge-default">
+          {{ visit.participants.length }} inscrits
+        </span>
+      </div>
+    </div>
+    <div class="detail-link">
+      <i class="fa fa-angle-down fa-3x"></i>
+    </div>
+  </div>
+</div>

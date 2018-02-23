@@ -3,14 +3,22 @@ import { RouterModule, Routes } from '@angular/router';
 import { VisitsComponent } from './visits.component';
 import { VisitsListComponent } from './visits-list/visits-list.component';
 import { LoginComponent } from '@app/ui';
+import { AuthGuard } from '@app/core';
 
 const visitsRoutes: Routes = [
   {
     path: 'visits',
     component: VisitsComponent,
     children: [
-      { path: '', component: VisitsListComponent },
-    ]
+      {
+        path: '',
+        // require login to access visits
+        canActivate: [AuthGuard],
+        children: [
+          { path: '', component: VisitsListComponent },
+        ],
+      },
+    ],
   }
 ]
 

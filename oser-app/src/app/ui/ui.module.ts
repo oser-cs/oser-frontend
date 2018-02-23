@@ -6,6 +6,7 @@ import { CoreModule } from '@app/core';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
+import { UiGalleryComponent } from './ui-gallery/ui-gallery.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { LoginComponent } from './login/login.component';
     NavbarComponent,
     FooterComponent,
     LoginComponent,
+    UiGalleryComponent,
   ],
   exports: [
     NavbarComponent,

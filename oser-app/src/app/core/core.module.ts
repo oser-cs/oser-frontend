@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './auth/auth.service';
+import { AuthGuard } from './auth/auth-guard.service';
 import { MessageModule } from './messages';
 
 @NgModule({
@@ -10,6 +11,7 @@ import { MessageModule } from './messages';
   declarations: [],
   providers: [
     AuthService,
+    AuthGuard,
   ],
   exports: [
     MessageModule,

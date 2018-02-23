@@ -1,19 +1,18 @@
 <div id="page">
   <a href="/login">Se connecter</a>
+  <div class="badge-list">
+    <span class="badge badge-info">Info</span>
+    <span class="badge badge-success">Success</span>
+    <span class="badge badge-danger">Danger</span>
+    <span class="badge badge-warning">Warning</span>
+    <span class="badge badge-primary">Primary</span>
+    <span class="badge badge-secondary">Secondary</span>
+    <span class="badge badge-default">Default</span>
+  </div>
   <h1 class="text-center">Sorties</h1>
   <ul id="visits">
-    <li class="visit drop-shadow-sm-md" *ngFor="let visit of visits">
-      <img [src]="visit.image" [alt]="visit.title">
-      <div class="body">
-        <div class="visit-content">
-          <h3>{{ visit.title }}</h3>
-          <strong>{{ visit.date | date:"EEEE d MMMM" }} – {{ visit.date | date:"shortTime"}}</strong><br />
-          {{ visit.place }}
-        </div>
-        <div class="detail-link">
-          <i class="fa fa-angle-down fa-3x"></i>
-        </div>
-      </div>
+    <li *ngFor="let visit of nextVisits">
+      <visit-card [visit]="visit"></visit-card>
     </li>
   </ul>
 </div>

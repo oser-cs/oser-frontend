@@ -1,0 +1,32 @@
+@import '~app/showcase-site/sass/mixins';
+
+#visit {
+  border-radius: 3px;
+  margin-bottom: auto;
+  overflow: hidden;
+  max-width: 20em;
+  cursor: pointer;
+  &:hover {
+    .detail-link {
+      color: $color-text;
+    }
+  }
+  img {
+    width: 100%;
+    height: auto;
+  }
+  .body {
+    padding: 1em 2em;
+    box-sizing: border-box;
+    h3 {
+      margin-top: 0;
+    }
+  }
+  .visit-content {
+    height: 100%;
+  }
+  .detail-link {
+    color: transparentize($color-text, .7);
+    text-align: center;
+  }
+}
