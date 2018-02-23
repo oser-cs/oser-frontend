@@ -14,6 +14,7 @@ export class NewsDetailPageComponent implements OnInit {
   article: Article;
   article$ = new Subject<Article>();
   relatedArticles: Article[];
+  numRelatedArticles: number = 4;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,7 +36,7 @@ export class NewsDetailPageComponent implements OnInit {
             let intersection = new Set(
               this.article.categories.filter(x => a.categories.includes(x)));;
             return intersection.size > 0;
-          }),
+          }).slice(0, this.numRelatedArticles),
           (e) => console.log(e)
         );
       }

@@ -30,7 +30,7 @@ export class NewsPageComponent implements OnInit {
   searchTerm$ = new Subject<string>();
   search: string;
 
-  filtersVisible: boolean = false;
+  filtersVisible: boolean = true;
 
   constructor(
     private articleService: ArticleService,
