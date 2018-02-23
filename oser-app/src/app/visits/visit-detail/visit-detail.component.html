@@ -1,0 +1,20 @@
+<div class="page">
+  <div class="header">
+    <h1>{{ visit.title }}</h1>
+    <strong>{{ visit.date | date:"EEEE d MMMM" }} – {{ visit.date | date:"shortTime"}}</strong><br />
+    <span [innerHTML]="visit.place | linebreaks"></span>
+    <div class="badge-list">
+      <span *ngIf="visit.registrationsOpen" class="badge badge-warning "><i class="fa fa-clock-o"></i> Inscriptions avant le {{ visit.deadline | date:"dd/MM à HH:mm" }}</span>
+      <span *ngIf="!visit.registrationsOpen" class="badge badge-danger "><i class="fa fa-times"></i> Inscriptions fermées</span>
+      <span *ngIf="visit.participants && visit.participants.length > 0" class="badge badge-default">
+        {{ visit.participants.length }} inscrits
+      </span>
+    </div>
+  </div>
+
+  <p [innerHTML]="visit.summary | linebreaks"></p>
+
+  <img [src]="visit.image" [alt]="visit.title" class="drop-shadow-sm">
+
+  <p [innerHTML]="visit.description | linebreaks"></p>
+</div>

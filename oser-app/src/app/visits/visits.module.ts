@@ -14,6 +14,7 @@ import { ToggleButtonComponent } from './toggle-button/toggle-button.component';
 // Services
 import { VisitService } from './shared/visit.service';
 import { VisitCardComponent } from './visit-card/visit-card.component';
+import { VisitDetailComponent } from './visit-detail/visit-detail.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { VisitCardComponent } from './visit-card/visit-card.component';
     VisitsListComponent,
     ToggleButtonComponent,
     VisitCardComponent,
+    VisitDetailComponent,
   ],
   providers: [
     VisitService,

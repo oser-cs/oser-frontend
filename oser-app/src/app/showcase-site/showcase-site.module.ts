@@ -27,7 +27,6 @@ import { TestimonyService } from './shared/testimony.service';
 import { CategoryService } from './shared/category.service';
 
 // Pipes
-import { FuzzyPipe } from '@app/core';
 import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.component';
 
 @NgModule({
@@ -50,7 +49,6 @@ import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.com
     AboutPageComponent,
     ArticleItemComponent,
     FilterComponent,
-    FuzzyPipe,
     NewsDetailPageComponent,
   ],
   providers: [ArticleService, KeyFigureService, TestimonyService, CategoryService],

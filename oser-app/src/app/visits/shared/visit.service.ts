@@ -24,7 +24,8 @@ export class VisitService {
     return new Visit({
       id: item.id,
       title: item.title,
-      description: item.summary,
+      summary: item.summary,
+      description: item.description,
       place: item.place,
       date: new Date(item.date),
       passed: item.passed,
@@ -45,6 +46,18 @@ export class VisitService {
         console.log(resp);
       })
       );
+  }
+
+  retrieve(id: number | string): Observable<Visit> {
+    let url = this.actions.retrieve.replace(':id', id);
+    let headers = this.auth.getHeaders();
+    return this.http.get<Visit>(url, { headers: headers }).pipe(
+      map((visit: any) => this.adapt(visit)),
+      tap(resp => {
+        console.log('fetched visit');
+        console.log(resp);
+      })
+    );
   }
 
 }

@@ -9,7 +9,7 @@ import { Visit } from '../shared/visit.model';
 })
 export class VisitsListComponent implements OnInit {
 
-  visits: Visit[];
+  visits: Visit[] = [];
 
   constructor(private visitService: VisitService) { }
 

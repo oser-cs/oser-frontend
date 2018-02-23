@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { VisitsComponent } from './visits.component';
 import { VisitsListComponent } from './visits-list/visits-list.component';
-import { LoginComponent } from '@app/ui';
+import { VisitDetailComponent } from './visit-detail/visit-detail.component';
 import { AuthGuard } from '@app/core';
 
 const visitsRoutes: Routes = [
@@ -16,6 +16,7 @@ const visitsRoutes: Routes = [
         canActivate: [AuthGuard],
         children: [
           { path: '', component: VisitsListComponent },
+          { path: ':id', component: VisitDetailComponent },
         ],
       },
     ],

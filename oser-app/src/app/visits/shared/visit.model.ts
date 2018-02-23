@@ -1,6 +1,7 @@
 export class Visit {
   id: number;
   title: string;
+  summary: string;
   description: string;
   place: string;
   date: Date;
