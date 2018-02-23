@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { VisitsRoutingModule } from './visits-routing.module';
 import { CoreModule } from '@app/core';
 import { UiModule } from '@app/ui';
+import { AgmCoreModule } from '@agm/core';
+
 
 // Components
 import { VisitsComponent } from './visits.component';
@@ -22,6 +24,9 @@ import { VisitDetailComponent } from './visit-detail/visit-detail.component';
     CoreModule,
     UiModule,
     VisitsRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDXPxwZpx9EiwarLAZ3yzUANK9D4q0X9cI',
+    }),
   ],
   declarations: [
     VisitsComponent,

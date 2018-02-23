@@ -6,6 +6,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+
+// App modules
 import { CoreModule } from '@app/core';
 import { UiModule } from '@app/ui';
 import { AppRoutingModule } from './app-routing.module';

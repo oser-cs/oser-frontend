@@ -1,8 +1,7 @@
-<div class="page">
-  <div class="header">
+<div class="page" *ngIf="visit">
+  <div id="header">
     <h1>{{ visit.title }}</h1>
     <strong>{{ visit.date | date:"EEEE d MMMM" }} – {{ visit.date | date:"shortTime"}}</strong><br />
-    <span [innerHTML]="visit.place | linebreaks"></span>
     <div class="badge-list">
       <span *ngIf="visit.registrationsOpen" class="badge badge-warning "><i class="fa fa-clock-o"></i> Inscriptions avant le {{ visit.deadline | date:"dd/MM à HH:mm" }}</span>
       <span *ngIf="!visit.registrationsOpen" class="badge badge-danger "><i class="fa fa-times"></i> Inscriptions fermées</span>
@@ -12,9 +11,19 @@
     </div>
   </div>
 
-  <p [innerHTML]="visit.summary | linebreaks"></p>
-
-  <img [src]="visit.image" [alt]="visit.title" class="drop-shadow-sm">
-
-  <p [innerHTML]="visit.description | linebreaks"></p>
+  <div id="content">
+    <div id="info">
+      <p [innerHTML]="visit.summary | linebreaks"></p>
+      <img [src]="visit.image" [alt]="visit.title" class="drop-shadow-sm">
+      <p [innerHTML]="visit.description | linebreaks"></p>
+    </div>
+    <div id="maps">
+      <h3>Lieu de la sortie</h3>
+      <span [innerHTML]="visit.place | linebreaks"></span>
+      <br>
+      <agm-map [latitude]="lat" [longitude]="lng">
+        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+      </agm-map>
+    </div>
+  </div>
 </div>

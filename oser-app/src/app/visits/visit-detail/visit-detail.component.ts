@@ -11,6 +11,8 @@ import { Visit } from '@app/visits/shared';
 export class VisitDetailComponent implements OnInit {
 
   visit: Visit;
+  lat = 50.350;
+  lng = 3.520;
 
   constructor(
     private route: ActivatedRoute,

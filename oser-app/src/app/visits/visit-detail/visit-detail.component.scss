@@ -1,0 +1,14 @@
+
+agm-map {
+  height: 400px;
+}
+#content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+#info {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
