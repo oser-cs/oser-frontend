@@ -31,8 +31,10 @@ a.no-style {
   color: inherit;
   font-weight: inherit;
 }
-a.link-muted {
+.link-muted {
   color: inherit;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 hr {

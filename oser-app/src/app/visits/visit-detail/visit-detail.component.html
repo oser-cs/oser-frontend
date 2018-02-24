@@ -1,9 +1,13 @@
-<div class="page" *ngIf="visit">
-  <div id="header">
-    <h1>{{ visit.title }}</h1>
+<div id="visit" *ngIf="visit">
+  <h1>{{ visit.title }}</h1>
+  <p>
     <strong>{{ visit.date | date:"EEEE d MMMM" }} – {{ visit.date | date:"shortTime"}}</strong><br />
     <!-- TODO replace with place's name -->
-    <span [innerHTML]="visit.place | linebreaks"></span>
+    <span [innerHTML]="visit.place | linebreaks:', '"></span>
+  </p>
+
+  <div>
+    <img [src]="visit.image" [alt]="visit.title" class="drop-shadow-sm">
   </div>
 
   <h2>Résumé</h2>
@@ -11,45 +15,47 @@
 
   <span *ngIf="visit.registrationsOpen" class="badge badge-warning badge-lg"><i class="fa fa-clock-o"></i> Inscriptions avant le {{ visit.deadline | date:"dd/MM à HH:mm" }}</span>
   <span *ngIf="!visit.registrationsOpen" class="badge badge-danger badge-lg"><i class="fa fa-times"></i> Inscriptions fermées</span>
-  <span *ngIf="visit.participants && visit.participants.length > 0" class="badge badge-info badge-lg"><i class="fa fa-user"></i> Déjà {{ visit.participants.length }} participants</span>
+  <span *ngIf="numParticipants > 0" class="badge badge-info badge-lg"><i class="fa fa-user"></i> {{ numParticipants }} participants</span>
 
-
+  <div *ngIf="visit.registrationsOpen && !userParticipates">
+    <button id="participate-btn" type="button" name="button" class="btn-success" (click)="participate()">Je m'inscris</button>
+  </div>
   <div *ngIf="userParticipates">
     <p class="alert alert-success"><i class="fa fa-ticket"></i> Bravo, tu participes à cette sortie !</p>
-    <p class="text-muted">Tu as un empêchement et souhaites <a class="link-muted" href="#">te désinscrire ?</a></p>
+    <p class="text-muted">Tu as un empêchement et souhaites <span class="link-muted" (click)="leave()">te désinscrire ?</span></p>
   </div>
-  <button *ngIf="visit.registrationsOpen && !userParticipates" type="button" name="button" class="btn-primary">Je m'inscris</button>
 
   <h2>Détail des activités</h2>
-
   <p [innerHTML]="visit.description | linebreaks"></p>
 
   <h2>Informations pratiques</h2>
-
   <p class="alert alert-info" *ngIf="userParticipates">
     <i class="fa fa-file-text"></i> Les organisateurs ont rédigé une <a href="#">fiche sortie</a>. Consulte-la avant de te rendre à la sortie !
   </p>
 
-  <ul>
+  <ul class="tips">
     <!-- TODO replace with place's address -->
-    <li>Lieu : <span [innerHTML]="visit.place | linebreaks"></span></li>
-    <li>Date : {{ visit.date | date:"fullDate" }}</li>
-    <li>Heure de rendez-vous : {{ visit.date | date:"shortTime"}}</li>
+    <li>
+      <strong>Adresse</strong> : <span [innerHTML]="visit.place | linebreaks:', '"></span>
+    </li>
+    <li>
+      <strong>Date</strong> : {{ visit.date | date:"fullDate" }}
+    </li>
+    <li>
+      <strong>Heure de rendez-vous</strong> : {{ visit.date | date:"shortTime"}}
+    </li>
   </ul>
 
-
-  <div *ngIf="userParticipates">
-    <h3>Contacts utiles</h3>
-
-    <ul>
-      <li>Emilie Bouc : organisatrice, +33 6 12 23 34 45</li>
-      <li>Bernard Pivot : organisateur, +33 6 56 67 78 89</li>
-      <li>Alphonse Daudet : responsable des sorties à OSER, +33 6 90 01 02 03</li>
-    </ul>
-  </div>
+  <h3>Contacts utiles</h3>
+  <ul>
+    <li>Emilie Martin : organisatrice (+33 6 12 23 34 45)</li>
+    <li>Bernard Pivot : organisateur (+33 6 56 67 78 89)</li>
+    <li>Alphonse Daudet : responsable sorties à OSER (+33 6 90 01 02 03)</li>
+  </ul>
+  <h3>À propos de <span [innerHTML]="visit.place | linebreaks:', '"></span></h3>
+  <p>{{ visit.summary }}</p>
 
   <h3>Se rendre à cette sortie</h3>
-
   <agm-map [latitude]="lat" [longitude]="lng">
     <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
   </agm-map>

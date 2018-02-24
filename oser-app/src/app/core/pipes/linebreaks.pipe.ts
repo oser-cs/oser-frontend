@@ -5,8 +5,8 @@ import * as Fuse from 'fuse.js';
   name: 'linebreaks'
 })
 export class LineBreaksPipe implements PipeTransform {
-  transform(text: string): string {
+  transform(text: string, repl: string='<br />'): string {
     if (!text) return '';
-    return text.replace(/\n/g, '<br />');
+    return text.replace(/\n/g, repl);
   }
 }
