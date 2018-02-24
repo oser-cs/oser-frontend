@@ -2,7 +2,7 @@
   <h1 class="text-center">Sorties</h1>
   <ul id="visits" *ngIf="nextVisits && nextVisits.length > 0; else empty">
     <li *ngFor="let visit of nextVisits">
-      <visit-card [visit]="visit"></visit-card>
+      <visit-card [visit]="visit" [userParticipates$]="userParticipates(visit)"></visit-card>
     </li>
   </ul>
   <ng-template #empty>

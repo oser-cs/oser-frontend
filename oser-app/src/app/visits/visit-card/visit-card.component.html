@@ -11,6 +11,7 @@
         <span *ngIf="visit.participants && visit.participants.length > 0" class="badge badge-default">
           {{ visit.participants.length }} inscrits
         </span>
+        <span *ngIf="userParticipates" class="badge badge-success">Inscrit</span>
       </div>
     </div>
     <div class="detail-link">

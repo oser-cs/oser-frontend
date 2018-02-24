@@ -28,6 +28,10 @@ export class VisitDetailComponent implements OnInit {
   ngOnInit() {
     this.userId = this.auth.getUser().user.id;
     let visitId = this.route.snapshot.paramMap.get('id');
+    this.getVisit(visitId);
+  }
+
+  getVisit(visitId: string | number): void {
     this.visitService.retrieve(visitId).subscribe(
       (visit) => {
         this.visit = visit;
@@ -38,20 +42,26 @@ export class VisitDetailComponent implements OnInit {
             if (ids.filter(id => id == this.userId).length > 0) {
               this.userParticipates = true;
             } else { this.userParticipates = false; }
-          }
+          }, (e) => console.log(e)
         );
-      }
+      }, (e) => console.log(e)
     );
   }
 
   participate(): void {
     this.visitService.addParticipant(this.visit.id, this.userId).subscribe(
-      (resp) => {this.userParticipates = true;}
+      (resp) => {
+        this.userParticipates = true;
+        this.numParticipants += 1;
+      }, (e) => console.log(e)
     );
   }
   leave(): void {
     this.visitService.removeParticipant(this.visit.id, this.userId).subscribe(
-      resp => { this.userParticipates = false},
+      resp => {
+        this.userParticipates = false;
+        this.numParticipants -= 1;
+      },
       (e) => console.log(e)
     );
   }

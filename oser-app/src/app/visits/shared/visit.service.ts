@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
 import schema from './schema';
 import { Visit } from './visit.model';
@@ -11,8 +11,7 @@ import { AuthService } from '@app/core';
 @Injectable()
 export class VisitService {
 
-  visitActions: any = schema.visit;
-  participantsActions: any = schema.participants;
+  schema: any = schema;
 
   constructor(
     private auth: AuthService,
@@ -39,18 +38,17 @@ export class VisitService {
 
   list(): Observable<Visit[]> {
     let headers = this.auth.getHeaders();
-    return this.http.get<Visit>(this.visitActions.list, { headers: headers })
+    return this.http.get<Visit>(this.schema.visit.list, { headers: headers })
       .pipe(
       map((visits: any) => visits.map(this.adapt)),
       tap(resp => {
         console.log('fetched visits');
-        console.log(resp);
       })
       );
   }
 
   retrieve(id: number | string): Observable<Visit> {
-    let url = this.visitActions.retrieve.replace(':id', id);
+    let url = this.schema.visit.retrieve.replace(':id', id);
     let headers = this.auth.getHeaders();
     return this.http.get<Visit>(url, { headers: headers }).pipe(
       map((visit: any) => this.adapt(visit)),
@@ -63,7 +61,7 @@ export class VisitService {
   addParticipant(visitId: number | string, studentId: number | string): Observable<any> {
     let headers = this.auth.getHeaders();
     let data = { student_id: studentId, visit_id: visitId };
-    return this.http.post(this.participantsActions.create, data, { headers: headers}).pipe(
+    return this.http.post(this.schema.participants.create, data, { headers: headers}).pipe(
       tap(resp => {
         console.log(`added participant ${studentId} to visit ${visitId}`);
       })
@@ -72,17 +70,24 @@ export class VisitService {
 
   getParticipants(visitId: number | string, studentId: number | string): Observable<any[]> {
     let headers = this.auth.getHeaders();
-    return this.http.get<any>(this.participantsActions.list, { headers: headers});
+    return this.http.get<any>(this.schema.participants.list, { headers: headers});
   }
 
   removeParticipant(visitId: number | string, studentId: number | string): Observable<any> {
     let headers = this.auth.getHeaders();
-    // get the participant ID corresponding to this (visit, student) pair
+    // get the participant ID corresponding to this (visit, student) pair.
+    // flatMap allows to return the result of the inner Observable.
     return this.getParticipants(visitId, studentId).flatMap(
       (participants) => {
         let participant = participants.filter(p => p.student.includes(studentId) && p.visit.includes(visitId))[0];
+        if (!participant) {
+          return new Observable(obs => {
+            obs.error(`Error: no participant matching studentId=${studentId} and visitId=${visitId}`);
+          });
+        }
         let id = participant.id;
-        let url = this.participantsActions.destroy.replace(':id', id);
+        // Now destroy the found participant.
+        let url = this.schema.participants.destroy.replace(':id', id);
         return this.http.delete(url, { headers: headers}).pipe(
           tap(resp => console.log(`removed participant ${studentId} from visit ${visitId}`))
         );
@@ -91,7 +96,7 @@ export class VisitService {
   }
 
   listParticipantsIDs(id: number | string): Observable<any[]> {
-    let url = this.visitActions.participants.replace(':id', id);
+    let url = this.schema.visit.participants.replace(':id', id);
     let headers = this.auth.getHeaders();
     return this.http.get<any>(url, { headers: headers }).pipe(
       map((participants: any[]) => participants.map(p => p.student_id)),
@@ -99,6 +104,17 @@ export class VisitService {
         console.log('fetched visit participants IDs');
       })
     );
+  }
+
+  visitsOf(id: number | string): Observable<Visit[]> {
+    let url = this.schema.student.visits.replace(':id', id);
+    let headers = this.auth.getHeaders();
+    return this.http.get<Visit>(url, { headers: headers }).pipe(
+      map((visits: any) => visits.map(this.adapt)),
+      tap(resp => {
+        console.log(`fetched visits of user ${id}`);
+      })
+    )
   }
 
 }

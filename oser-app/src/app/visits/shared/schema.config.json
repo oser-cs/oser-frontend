@@ -8,5 +8,8 @@
     "list": "http://localhost:8000/api/visit-participants/",
     "create": "http://localhost:8000/api/visit-participants/",
     "destroy": "http://localhost:8000/api/visit-participants/:id/"
+  },
+  "student": {
+    "visits": "http://localhost:8000/api/students/:id/visits/"
   }
 }
