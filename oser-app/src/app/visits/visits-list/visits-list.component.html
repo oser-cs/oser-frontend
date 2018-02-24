@@ -1,8 +1,11 @@
 <div id="page">
   <h1 class="text-center">Sorties</h1>
-  <ul id="visits">
+  <ul id="visits" *ngIf="nextVisits && nextVisits.length > 0; else empty">
     <li *ngFor="let visit of nextVisits">
       <visit-card [visit]="visit"></visit-card>
     </li>
   </ul>
+  <ng-template #empty>
+    <p class="text-center">Pas de sorties en ce moment.</p>
+  </ng-template>
 </div>

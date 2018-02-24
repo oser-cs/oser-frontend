@@ -207,6 +207,7 @@ $shadow-ref: .13em;
 
 .badge {
   @include box-spacing;
+  display: inline-block;
   border-radius: 2em;
   margin: .2em;
   font-size: small;

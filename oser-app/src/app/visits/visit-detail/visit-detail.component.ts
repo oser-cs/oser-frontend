@@ -13,6 +13,7 @@ export class VisitDetailComponent implements OnInit {
   visit: Visit;
   lat = 50.350;
   lng = 3.520;
+  userParticipates: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
