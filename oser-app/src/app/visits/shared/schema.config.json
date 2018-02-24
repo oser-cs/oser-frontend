@@ -1,6 +1,12 @@
 {
   "visit": {
     "list": "http://localhost:8000/api/visits/",
-    "retrieve": "http://localhost:8000/api/visits/:id/"
+    "retrieve": "http://localhost:8000/api/visits/:id/",
+    "participants": "http://localhost:8000/api/visits/:id/participants/"
+  },
+  "participants": {
+    "list": "http://localhost:8000/api/visit-participants/",
+    "create": "http://localhost:8000/api/visit-participants/",
+    "destroy": "http://localhost:8000/api/visit-participants/:id/"
   }
 }

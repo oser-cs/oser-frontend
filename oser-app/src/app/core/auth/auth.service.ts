@@ -19,8 +19,8 @@ export class AuthService {
   login(username: string, password: string) {
     return this.http.post<any>(this.loginUrl, { username: username, password: password })
       .map(user => {
-        // login successful if there's a token in the response
-        if (user && user.token) {
+        // login successful if there's a token and a user in the response
+        if (user && user.token && user.user) {
           this.user = user;
           return true;
         }
@@ -28,14 +28,17 @@ export class AuthService {
       });
   }
 
-  set user(user: any) {
+  private set user(user: any) {
     // store user details and token in local storage to keep user logged in between page refreshes
-    // NOTE: user only contains the token property for now.
     localStorage.setItem(this.storageKey, JSON.stringify(user));
   }
 
-  get user(): any {
+  private get user(): any {
     return JSON.parse(localStorage.getItem(this.storageKey));
+  }
+
+  getUser(): any {
+    return this.user;
   }
 
   getToken(): string {
