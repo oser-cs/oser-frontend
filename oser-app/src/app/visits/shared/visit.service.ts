@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { map, tap } from 'rxjs/operators';
 import schema from './schema';
 import { Visit } from './visit.model';
+import { Place } from './place.model';
 import { AuthService } from '@app/core';
 
 
@@ -26,7 +27,7 @@ export class VisitService {
       title: item.title,
       summary: item.summary,
       description: item.description,
-      place: item.place,
+      place: new Place(item.place),
       date: new Date(item.date),
       passed: item.passed,
       deadline: new Date(item.deadline),

@@ -4,7 +4,7 @@
     <div class="visit-content">
       <h3>{{ visit.title }}</h3>
       <strong>{{ visit.date | date:"EEEE d MMMM" }} – {{ visit.date | date:"shortTime"}}</strong><br />
-      {{ visit.place }}
+      {{ visit.place.name }}
       <div class="badge-list">
         <span *ngIf="visit.registrationsOpen" class="badge badge-warning "><i class="fa fa-clock-o"></i> Inscriptions avant le {{ visit.deadline | date:"dd/MM à HH:mm" }}</span>
         <span *ngIf="!visit.registrationsOpen" class="badge badge-danger "><i class="fa fa-times"></i> Inscriptions fermées</span>

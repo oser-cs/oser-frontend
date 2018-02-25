@@ -1,9 +1,11 @@
+import { Place } from './place.model';
+
 export class Visit {
   id: number;
   title: string;
   summary: string;
   description: string;
-  place: string;
+  place: Place;
   date: Date;
   passed: boolean;
   deadline: Date;
