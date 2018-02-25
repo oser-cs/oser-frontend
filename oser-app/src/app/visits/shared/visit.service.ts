@@ -68,16 +68,15 @@ export class VisitService {
     );
   }
 
-  getParticipants(visitId: number | string, studentId: number | string): Observable<any[]> {
+  getParticipants(): Observable<any[]> {
     let headers = this.auth.getHeaders();
     return this.http.get<any>(this.schema.participants.list, { headers: headers});
   }
 
   removeParticipant(visitId: number | string, studentId: number | string): Observable<any> {
-    let headers = this.auth.getHeaders();
     // get the participant ID corresponding to this (visit, student) pair.
     // flatMap allows to return the result of the inner Observable.
-    return this.getParticipants(visitId, studentId).flatMap(
+    return this.getParticipants().flatMap(
       (participants) => {
         let participant = participants.filter(p => p.student.includes(studentId) && p.visit.includes(visitId))[0];
         if (!participant) {
@@ -87,6 +86,7 @@ export class VisitService {
         }
         let id = participant.id;
         // Now destroy the found participant.
+        let headers = this.auth.getHeaders();
         let url = this.schema.participants.destroy.replace(':id', id);
         return this.http.delete(url, { headers: headers}).pipe(
           tap(resp => console.log(`removed participant ${studentId} from visit ${visitId}`))
@@ -95,9 +95,10 @@ export class VisitService {
     );
   }
 
-  listParticipantsIDs(id: number | string): Observable<any[]> {
-    let url = this.schema.visit.participants.replace(':id', id);
+  listParticipantsIDs(visitId: number | string): Observable<any[]> {
+    let url = this.schema.participants.retrieve.replace(':id', visitId);
     let headers = this.auth.getHeaders();
+    console.log(headers);
     return this.http.get<any>(url, { headers: headers }).pipe(
       map((participants: any[]) => participants.map(p => p.student_id)),
       tap(resp => {
