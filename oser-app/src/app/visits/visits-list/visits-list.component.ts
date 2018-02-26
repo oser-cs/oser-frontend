@@ -12,9 +12,9 @@ import { AuthService } from '@app/core';
 })
 export class VisitsListComponent implements OnInit {
 
-  visits: Visit[] = [];
-  nextVisits: Visit[] = [];
-  userVisits: Visit[] = [];
+  visits: Visit[];
+  nextVisits: Visit[];
+  userVisits: Visit[];
   userVisits$ = new Subject<Visit[]>();
 
   constructor(

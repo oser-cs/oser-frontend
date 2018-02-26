@@ -44,7 +44,6 @@ export class ActionsPageComponent implements OnInit {
   ngOnInit() {
     this.getTestimonies();
     this.getSlideItems();
-    this.current = this.slideItems[0];
   }
 
   getTestimonies(): void {
@@ -57,6 +56,7 @@ export class ActionsPageComponent implements OnInit {
   getSlideItems(): void {
     // TODO: convert to SlideItemService
     this.slideItems = SLIDEITEMS;
+    this.current = this.slideItems[0];
   }
 
   slide(amount: number) {
