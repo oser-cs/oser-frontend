@@ -20,6 +20,9 @@
   </div>
   <div *ngIf="userParticipates">
     <p class="alert alert-success"><i class="fa fa-ticket"></i> Bravo, tu participes à cette sortie !</p>
+    <p class="alert alert-default">
+      <i class="fa fa-file-text"></i> Les organisateurs ont rédigé une <a href="#">fiche sortie</a>. Consulte-la avant de te rendre à la sortie !
+    </p>
     <p class="text-muted">Tu as un empêchement et souhaites <span class="link-muted" (click)="leave()">te désinscrire ?</span></p>
   </div>
 
@@ -27,9 +30,6 @@
   <p [innerHTML]="visit.description | linebreaks"></p>
 
   <h2>Informations pratiques</h2>
-  <p class="alert alert-info" *ngIf="userParticipates">
-    <i class="fa fa-file-text"></i> Les organisateurs ont rédigé une <a href="#">fiche sortie</a>. Consulte-la avant de te rendre à la sortie !
-  </p>
 
   <ul class="tips">
     <li>
