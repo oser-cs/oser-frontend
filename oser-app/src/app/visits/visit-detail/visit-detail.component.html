@@ -1,8 +1,7 @@
 <div id="visit" *ngIf="visit">
   <h1>{{ visit.title }}</h1>
   <p>
-    <strong>{{ visit.date | date:"EEEE d MMMM" }} – {{ visit.date | date:"shortTime"}}</strong><br />
-    {{ visit.place.name }}
+    <strong>{{ visit.date | date:"EEEE d MMMM" }} – {{ visit.date | date:"shortTime"}}</strong> – {{ visit.place.name }}
   </p>
 
   <div>
@@ -50,8 +49,10 @@
     <li>Bernard Pivot : organisateur (+33 6 56 67 78 89)</li>
     <li>Alphonse Daudet : responsable sorties à OSER (+33 6 90 01 02 03)</li>
   </ul>
-  <h3>À propos de {{ visit.place.name }}</h3>
-  <p>{{ visit.summary }}</p>
+  <div *ngIf="visit.place.description">
+    <h3>À propos de {{ visit.place.name }}</h3>
+    <markdown [data]="visit.place.description"></markdown>
+  </div>
 
   <h3>Se rendre à cette sortie</h3>
   <agm-map [latitude]="lat" [longitude]="lng">

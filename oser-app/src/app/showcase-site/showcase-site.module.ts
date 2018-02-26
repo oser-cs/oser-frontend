@@ -6,7 +6,6 @@ import { CoreModule } from '@app/core';
 import { UiModule } from '@app/ui';
 import { ShowcaseRoutingModule } from './showcase-routing.module';
 import { Ng4TwitterTimelineModule } from 'ng4-twitter-timeline/lib/index';
-import { MarkdownModule } from 'ngx-markdown';
 
 // Components
 import { ShowcaseSiteComponent } from './showcase-site.component';
@@ -36,7 +35,6 @@ import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.com
     CoreModule,
     UiModule,
     Ng4TwitterTimelineModule.forRoot(),
-    MarkdownModule.forRoot(),
   ],
   declarations: [
     ShowcaseSiteComponent,
