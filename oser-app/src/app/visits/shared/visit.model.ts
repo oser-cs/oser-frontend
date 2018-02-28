@@ -11,6 +11,7 @@ export class Visit {
   deadline: Date;
   registrationsOpen: boolean;
   image: string;
+  factSheet: string;
   participants: string[] = [];
   organizers: any[] = [];
 

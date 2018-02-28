@@ -33,6 +33,7 @@ export class VisitService {
       deadline: new Date(item.deadline),
       registrationsOpen: item.registrations_open,
       image: item.image,
+      factSheet: item.fact_sheet,
       participants: item.participants,
       organizers: item.organizers,
     });
