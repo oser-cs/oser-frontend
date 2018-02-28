@@ -59,12 +59,12 @@ export class VisitService {
     );
   }
 
-  addParticipant(visitId: number | string, studentId: number | string): Observable<any> {
+  addParticipant(visitId: number | string, userId: number | string): Observable<any> {
     let headers = this.auth.getHeaders();
-    let data = { student_id: studentId, visit_id: visitId };
+    let data = { user_id: userId, visit_id: visitId };
     return this.http.post(this.schema.participants.create, data, { headers: headers}).pipe(
       tap(resp => {
-        console.log(`added participant ${studentId} to visit ${visitId}`);
+        console.log(`added participant ${userId} to visit ${visitId}`);
       })
     );
   }
@@ -74,15 +74,15 @@ export class VisitService {
     return this.http.get<any>(this.schema.participants.list, { headers: headers});
   }
 
-  removeParticipant(visitId: number | string, studentId: number | string): Observable<any> {
-    // get the participant ID corresponding to this (visit, student) pair.
+  removeParticipant(visitId: number | string, userId: number | string): Observable<any> {
+    // get the participant ID corresponding to this (visit, user) pair.
     // flatMap allows to return the result of the inner Observable.
     return this.getParticipants().flatMap(
       (participants) => {
-        let participant = participants.filter(p => p.student.includes(studentId) && p.visit.includes(visitId))[0];
+        let participant = participants.filter(p => p.user.includes(userId) && p.visit.includes(visitId))[0];
         if (!participant) {
           return new Observable(obs => {
-            obs.error(`Error: no participant matching studentId=${studentId} and visitId=${visitId}`);
+            obs.error(`Error: no participant matching userId=${userId} and visitId=${visitId}`);
           });
         }
         let id = participant.id;
@@ -90,7 +90,7 @@ export class VisitService {
         let headers = this.auth.getHeaders();
         let url = this.schema.participants.destroy.replace(':id', id);
         return this.http.delete(url, { headers: headers}).pipe(
-          tap(resp => console.log(`removed participant ${studentId} from visit ${visitId}`))
+          tap(resp => console.log(`removed participant ${userId} from visit ${visitId}`))
         );
       }
     );
@@ -101,20 +101,20 @@ export class VisitService {
     let headers = this.auth.getHeaders();
     console.log(headers);
     return this.http.get<any>(url, { headers: headers }).pipe(
-      map((participants: any[]) => participants.map(p => p.student_id)),
+      map((participants: any[]) => participants.map(p => p.user_id)),
       tap(resp => {
         console.log('fetched visit participants IDs');
       })
     );
   }
 
-  visitsOf(id: number | string): Observable<Visit[]> {
-    let url = this.schema.student.visits.replace(':id', id);
+  visitsOf(userId: number | string): Observable<Visit[]> {
+    let url = this.schema.student.visits.replace(':id', userId);
     let headers = this.auth.getHeaders();
     return this.http.get<Visit>(url, { headers: headers }).pipe(
       map((visits: any) => visits.map(this.adapt)),
       tap(resp => {
-        console.log(`fetched visits of user ${id}`);
+        console.log(`fetched visits of user ${userId}`);
       })
     )
   }
