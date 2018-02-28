@@ -45,9 +45,9 @@
 
   <h3>Contacts utiles</h3>
   <ul>
-    <li>Emilie Martin : organisatrice (+33 6 12 23 34 45)</li>
-    <li>Bernard Pivot : organisateur (+33 6 56 67 78 89)</li>
-    <li>Alphonse Daudet : responsable sorties à OSER (+33 6 90 01 02 03)</li>
+    <li *ngFor="let organizer of visit.organizers">
+      {{ organizer.first_name + ' ' + organizer.last_name }} : {{ organizer.gender === 'F' ? 'organisatrice' : 'organisateur'}} ({{ organizer.phone_number }})
+    </li>
   </ul>
   <div *ngIf="visit.place.description">
     <h3>À propos de {{ visit.place.name }}</h3>

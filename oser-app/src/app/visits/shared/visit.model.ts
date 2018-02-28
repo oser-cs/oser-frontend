@@ -12,6 +12,7 @@ export class Visit {
   registrationsOpen: boolean;
   image: string;
   participants: string[] = [];
+  organizers: any[] = [];
 
   constructor(obj) {
     for (const k of Object.keys(obj)) { this[k] = obj[k]; }

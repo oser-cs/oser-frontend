@@ -34,6 +34,7 @@ export class VisitService {
       registrationsOpen: item.registrations_open,
       image: item.image,
       participants: item.participants,
+      organizers: item.organizers,
     });
   }
 
