@@ -4,33 +4,37 @@
   </div>
 
   <div class="search">
-    <h3>Rechercher</h3>
     <div class="search-bar">
-      <input type="text" (keyup)="searchTerm$.next($event.target.value)">
+      <!-- Enter search term here -->
+      <input type="text" (keyup)="searchTerm$.next($event.target.value)" placeholder="Rechercher un article…">
     </div>
-    <h3>Filtrer</h3>
-    <ul class="group-list">
-      <li *ngFor="let filter of filters">
-        {{ filter.name }}
-        <ul class="filter-list">
-          <li *ngFor="let child of filter.children">
-            {{ child.name }}
-          </li>
-        </ul>
-      </li>
+    <div id="filters-title" (click)="toggleFilters()">
+      <h4>Filtrer par…</h4>
+      <span class="dropdown"><i class="fa fa-angle-down"></i></span>
+    </div>
+    <ul class="filters" [ngClass]="{'hidden': !filtersVisible}">
+      <list-filter class="filter" title="Année" [values]="years" (onSelect)="onSelectYear($event)" [countContains]="articleYears"></list-filter>
+      <list-filter class="filter" title="Catégorie" [values]="categories" (onSelect)="onSelectCategory($event)" [countContains]="articleCategories"></list-filter>
     </ul>
+    <hr id="search-hr">
   </div>
 
   <div class="main">
-    <ul>
-      <app-news-item *ngFor="let newsItem of news" [news]="newsItem"></app-news-item>
-    </ul>
+    <div *ngIf="articles; else loading">
+      <ul *ngIf="articles.length > 0; else empty">
+        <app-article-item *ngFor="let article of articles | fuzzy : search : ['title']" [article]="article" [hidden]="hidden(article)"></app-article-item>
+      </ul>
+      <ng-template #empty>
+        <p>Pas d'articles pour le moment</p>
+      </ng-template>
+    </div>
+    <ng-template #loading>
+      <load-spinner></load-spinner>
+    </ng-template>
   </div>
 
   <div class="feeds">
     <!-- OSER's Twitter feed -->
-    <!-- TODO Only appears when refreshing news page, coming from other pages does not work -->
-    <a class="twitter-timeline" data-lang="fr" data-link-color="#19CF86" data-height="1000" href="https://twitter.com/OSER_CS?ref_src=twsrc%5Etfw">
-      Tweets de @OSER_CS</a>
+    <ng4-twitter-timeline [dataSrc]="{sourceType: 'profile',screenName: 'OSER_CS'}" [opts]="{height: 500, lang: 'fr'}"></ng4-twitter-timeline>
   </div>
 </div>

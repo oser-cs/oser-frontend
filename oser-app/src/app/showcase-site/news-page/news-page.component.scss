@@ -1,5 +1,7 @@
 @import '~app/showcase-site/sass/mixins';
 
+$stick: 1em;
+
 .wrapper {
   @include margin-page;
   display: grid;
@@ -13,19 +15,18 @@
 
   @include media-sm {
     grid-template-areas:
-      "hd hd"
-      "main search"
-      "main feeds";
-    grid-template-columns: auto 1fr;
-    grid-column-gap: 2em;
-    grid-row-gap: 1em;
+      ". hd"
+      "search main"
+      "feeds main";
+    grid-template-columns: 1fr 3fr;
+    // grid-column-gap: 2em;
   }
 
-  @include media-md {
+  @include media-lg {
     grid-template-areas:
       ". hd ."
       "search main feeds";
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: 1fr 3fr 1fr;
   }
 }
 
@@ -35,17 +36,47 @@
 
 .search {
   grid-area: search;
-  ul {
+  @include media-lg {
+    height: fit-content;
+    position: sticky;
+    top: $stick;
+  }
+  background: white;
+  padding: 0.5em 1em;
+  box-sizing: border-box;
+  #filters-title {
+    cursor: pointer;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-right: 1em;
+    box-sizing: border-box;
+    h5 {
+      display: inline-block;
+    }
+    &:hover {
+      color: $color-accent;
+    }
+  }
+  ul.filters {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    font-weight: bold;
+    display: block;
+    background: white;
   }
-  ul.filter-list {
-    font-weight: normal;
+  ul.filters.hidden {
+    display: none;
   }
-  li > ul {
-    margin-left: 1em;
+  .filter + .filter {
+    margin-top: 2em;
+  }
+}
+#search-hr {
+  display: block;
+  @include media-sm {
+    display: none;
   }
 }
 
@@ -58,11 +89,16 @@
     display: flex;
     flex-direction: column;
   }
-  /* Add space between news items */
-  app-news-item + app-news-item {
-    margin-top: 2em;
+  /* Add space between article items */
+  app-article-item + app-article-item {
+    // margin-top: 2em;
   }
 }
 .feeds {
   grid-area: feeds;
+  height: fit-content;
+  @include media-lg {
+    position: sticky;
+    top: $stick;
+  }
 }

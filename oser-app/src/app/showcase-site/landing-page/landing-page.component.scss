@@ -3,7 +3,6 @@
 
 #photo {
   position: relative;
-  @extend %shadow;
   z-index: -1;
   img {
     display: block;
@@ -14,7 +13,6 @@
 
 #qui-sommes-nous {
   @include page-section(1, white);
-  @extend %shadow;
   background: $color-dark-blue;
   text-align: center;
 
@@ -36,7 +34,6 @@
 
 #actions {
   @include page-section(2);
-  @extend %shadow;
   background: $color-light-blue;
   text-align: center;
 
@@ -77,9 +74,8 @@
   }
 }
 
-#news {
+#articles {
   @include page-section(3);
-  @extend %shadow;
 
   .heading {
     text-align: center;
@@ -94,7 +90,7 @@
     }
   }
 
-  .news-cards {
+  .article-cards {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -105,7 +101,7 @@
       flex-direction: row;
     }
     /* Add space between cards */
-    app-news-card + app-news-card {
+    app-article-card + app-article-card {
       margin-top: 2em;
       @include media-md {
         margin-top: 0;
@@ -117,9 +113,7 @@
 
 
 #calls-to-action {
-  /* TODO add responsiveness/media queries */
   @include page-section(4);
-  @extend %shadow;
   background-color: $color-dark-blue;
   color: white;
 
@@ -159,8 +153,7 @@
     margin-bottom: auto;
     text-align: center;
     border-radius: 4px;
-    /* internal shadow */
-    box-shadow: 0 3px 10px 3px rgba(0, 0, 0, 0.2) inset;
+    @include drop-shadow($shadow-sm, $inset: true);
 
     img {
       vertical-align: middle;

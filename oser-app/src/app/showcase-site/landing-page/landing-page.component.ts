@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { News } from '../shared/news.model';
-import { NewsService } from '../shared/news.service';
+import { Article } from '../shared/article.model';
+import { ArticleService } from '../shared/article.service';
+import * as config from './config.json';
+
 
 class Action {
   title: string;
@@ -14,32 +16,19 @@ class Action {
 })
 export class LandingPageComponent implements OnInit {
 
-  actions: Action[] = [
-    {
-      title: 'Apprendre, comprendre',
-      src: 'assets/img/action-apprendre.jpg'
-    },
-    {
-      title: "Découvrir, s'intéresser",
-      src: 'assets/img/action-decouvrir.jpg'
-    },
-    {
-      title: "Vivre l'extra-ordinaire",
-      src: 'assets/img/action-vivre.jpg'
-    }
-  ];
+  actions: Action[] = <Action[]>config['actions'];
+  articles: Article[];
+  numArticles: number = <number>config['numArticles'];
 
-  news: News[];
-
-  constructor(private newsService: NewsService) { }
+  constructor(private ArticleService: ArticleService) { }
 
   ngOnInit() {
-    this.getNews();
+    this.getArticles();
   }
 
-  getNews(): void {
-    this.newsService.getFirst(3).subscribe(
-      (news) => this.news = news,
+  getArticles(): void {
+    this.ArticleService.first(3).subscribe(
+      (articles) => this.articles = articles,
       (e) => console.log(e)
     );
   }

@@ -44,12 +44,10 @@ export class ActionsPageComponent implements OnInit {
   ngOnInit() {
     this.getTestimonies();
     this.getSlideItems();
-    this.current = this.slideItems[0];
   }
 
   getTestimonies(): void {
-    // TODO: convert to TestimonyService
-    this.testimonyService.getAll().subscribe(
+    this.testimonyService.list().subscribe(
       (res) => this.testimonies = res,
       (e) => console.log(e)
     );
@@ -58,6 +56,7 @@ export class ActionsPageComponent implements OnInit {
   getSlideItems(): void {
     // TODO: convert to SlideItemService
     this.slideItems = SLIDEITEMS;
+    this.current = this.slideItems[0];
   }
 
   slide(amount: number) {

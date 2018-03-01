@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { Link } from '@app/ui';
 
 @Component({
   selector: 'app-showcase-site',
@@ -8,16 +9,21 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class ShowcaseSiteComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private renderer: Renderer) { }
 
-  ngOnInit() {
-    this.router.events.subscribe((event) => {
-      if (!(event instanceof NavigationEnd)) {
-        return;
-      }
-      // Scroll to top of window
-      window.scrollTo(0, 0);
-    });
+  navLinks: Link[] = [
+    { href: 'about', text: 'Qui sommes-nous ?' },
+    { href: 'donate', text: 'Soutenez-nous' },
+    { href: 'actions', text: 'Nos actions' },
+    { href: 'articles', text: 'Actualités' },
+    { href: 'contact', text: 'Contact' }
+  ];
+
+  ngOnInit() { }
+
+  onDeactivate() {
+    // on page reload, scroll to top of window
+    this.renderer.setElementProperty(document.body, "scrollTop", 0);
   }
 
 }

@@ -1,0 +1,43 @@
+@import '~sass/mixins';
+
+#visit {
+  @include margin-page;
+  margin: 0 auto;
+  max-width: 40em;
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -10;
+    @include drop-shadow($shadow-sm);
+  }
+}
+
+agm-map {
+  height: 400px;
+}
+#participate-btn {
+  margin-top: 1em;
+}
+#header {
+  margin-bottom: $margin-page;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: $margin-page;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.tips {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}

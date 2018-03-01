@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import jump from 'jump.js';
+import * as config from './config.json';
 
 @Component({
   selector: 'app-donate',
@@ -8,13 +10,19 @@ import jump from 'jump.js';
 })
 export class DonatePageComponent implements OnInit {
 
-  constructor() { }
+  config = <any>config;
+
+  constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
   }
 
   goTo() {
     jump('#haWidget');
+  }
+
+  get haWidgetUrl(): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.config.helloAsso);
   }
 
 }

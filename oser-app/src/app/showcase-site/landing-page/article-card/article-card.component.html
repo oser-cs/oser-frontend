@@ -1,0 +1,13 @@
+<a class="no-style" [routerLink]="['articles/', article.id]">
+  <div class="card drop-shadow-sm-md">
+    <div class="image">
+      <img *ngIf="article.src" [src]="article.src" [alt]="article.title"/>
+    </div>
+    <div class="card-body">
+      <h3>{{ article.title }}</h3>
+      <h5>Publié le {{ article.date | date:"shortDate" }}</h5>
+      <p>{{ article.preview }}</p>
+      <a>Lire la suite</a>
+    </div>
+  </div>
+</a>

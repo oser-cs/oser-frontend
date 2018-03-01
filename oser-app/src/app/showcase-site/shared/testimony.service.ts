@@ -1,21 +1,35 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/observable';
-import { of } from 'rxjs/observable/of';
 import { Testimony } from './testimony.model';
-import { TESTIMONIES } from './testimony.mock';
+import { HttpClient } from '@angular/common/http';
+import { map, tap } from 'rxjs/operators';
+import schema from './schema';
 
 
 @Injectable()
 export class TestimonyService {
 
-  constructor() { }
+  private actions = schema.testimony;
 
-  getFirst(n: number): Observable<Testimony[]> {
-    return of(TESTIMONIES.slice(0, n));
+  constructor(private http: HttpClient) { }
+
+  // Adapt JSON returned by API to return testimonies
+  adapt(item: any): Testimony {
+    return new Testimony({
+      content: item.content,
+      source: item.author,
+    });
   }
 
-  getAll(): Observable<Testimony[]> {
-    return of(TESTIMONIES);
+  list(): Observable<Testimony[]> {
+    return this.http.get<Testimony>(this.actions.list)
+    .pipe(
+      map((testimonies: any) => testimonies.map(this.adapt)),
+      tap(resp => {
+        console.log('fetched testimonies');
+        console.log(resp);
+      })
+    );
   }
 
 }

@@ -27,6 +27,15 @@ a {
   color: $color-accent;
   font-weight: bold;
 }
+a.no-style {
+  color: inherit;
+  font-weight: inherit;
+}
+.link-muted {
+  color: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
 
 hr {
   height: 1px;
@@ -34,4 +43,47 @@ hr {
   $color: lighten($color-text, 40%);
   color: $color;
   background-color: $color;
+}
+
+input, button {
+  font-size: inherit;
+  font-family: inherit;
+}
+
+input {
+  @include box-spacing;
+  border: 1px solid darken(lightgray, 10);
+  border-radius: 3px;
+}
+
+input.form-control {
+  margin: 0.5em 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+select {
+  font-family: inherit;
+  cursor: pointer;
+  font-size: inherit;
+  @include box-spacing;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-image: none;
+  -webkit-appearance: none;
+}
+
+.text-muted {
+  font-size: smaller;
+  color: gray;
+}
+
+#index-loading {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
