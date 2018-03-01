@@ -1,0 +1,44 @@
+@import '~app/showcase-site/sass/variables';
+@import '~app/showcase-site/sass/mixins';
+@import '~sass/media-queries';
+
+$background: $color-darkest-blue;
+$text: $color-purple-light;
+
+#footer {
+  @include margin-page;
+  position: relative;
+  z-index: 10;
+  background: $background;
+  color: $text;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  a {
+    color: inherit;
+  }
+}
+
+ul.list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: start;
+  align-items: center;
+  list-style-type: none;
+  margin: .5em 0;
+  padding: 0;
+  li {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    margin: .5em 1em;
+  }
+}
+.newsletter-button {
+  display: inline-block;
+  @include btn($text, $background);
+}
+.social {
+  margin: 0 0.5em;
+  color: $color-light-blue;
+}

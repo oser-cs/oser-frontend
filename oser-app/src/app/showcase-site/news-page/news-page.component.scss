@@ -1,0 +1,104 @@
+@import '~app/showcase-site/sass/mixins';
+
+$stick: 1em;
+
+.wrapper {
+  @include margin-page;
+  display: grid;
+
+  grid-template-areas:
+    "hd"
+    "search"
+    "main"
+    "feeds";
+  grid-row-gap: 1em;
+
+  @include media-sm {
+    grid-template-areas:
+      ". hd"
+      "search main"
+      "feeds main";
+    grid-template-columns: 1fr 3fr;
+    // grid-column-gap: 2em;
+  }
+
+  @include media-lg {
+    grid-template-areas:
+      ". hd ."
+      "search main feeds";
+    grid-template-columns: 1fr 3fr 1fr;
+  }
+}
+
+.header {
+  grid-area: hd;
+}
+
+.search {
+  grid-area: search;
+  @include media-lg {
+    height: fit-content;
+    position: sticky;
+    top: $stick;
+  }
+  background: white;
+  padding: 0.5em 1em;
+  box-sizing: border-box;
+  #filters-title {
+    cursor: pointer;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-right: 1em;
+    box-sizing: border-box;
+    h5 {
+      display: inline-block;
+    }
+    &:hover {
+      color: $color-accent;
+    }
+  }
+  ul.filters {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    background: white;
+  }
+  ul.filters.hidden {
+    display: none;
+  }
+  .filter + .filter {
+    margin-top: 2em;
+  }
+}
+#search-hr {
+  display: block;
+  @include media-sm {
+    display: none;
+  }
+}
+
+.main {
+  grid-area: main;
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  /* Add space between article items */
+  app-article-item + app-article-item {
+    // margin-top: 2em;
+  }
+}
+.feeds {
+  grid-area: feeds;
+  height: fit-content;
+  @include media-lg {
+    position: sticky;
+    top: $stick;
+  }
+}

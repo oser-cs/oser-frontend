@@ -1,0 +1,61 @@
+@import '~app/showcase-site/sass/variables';
+@import '~app/showcase-site/sass/mixins';
+
+.container {
+  @include margin-page;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: url('~assets/img/groupe-bw.jpg');
+  filter: blur(5px);
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* Scale to remove white edges because of blur */
+  transform: scale(1.1);
+}
+.background::after {
+  /* Colorize the background with a color overlay */
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: transp($color-dark-blue);
+}
+
+#sheet {
+  background-color: white;
+  width: auto;
+  text-align: center;
+  padding: 5em 2em;
+  box-sizing: border-box;
+
+  #content {
+    margin: auto;
+    max-width: 30em;
+
+    hr {
+      margin: 2em auto;
+      width: 8em;
+    }
+  }
+
+  img.logo {
+    max-width: 14em;
+    height: auto;
+  }
+
+  h1 {
+    color: $color-dark-blue;
+  }
+}

@@ -1,0 +1,77 @@
+<div class="page-content">
+  <span class="page-background"></span>
+  <section id="header" class="drop-shadow-md">
+    <h1>Une action complète, épanouissante et structurante.</h1>
+  </section>
+
+  <ul class="actions">
+    <span class="sideline"></span>
+    <li class="action">
+      <span class="dot drop-shadow-sm"></span>
+      <h2>Apprendre, comprendre</h2>
+      <p>
+        <strong>Le tutorat</strong> constitue notre cœur de métier. Le principe ? Toutes les unes à deux semaines et de la Seconde à la Terminale, lycéens et tuteurs se retrouvent en petits groupes pour des activités suscitant <strong>l'ouverture d'esprit et la curiosité intellectuelle</strong>. Ces rencontres périodiques établissent <strong>une relation privilégiée</strong> entre les étudiants-tuteurs et les lycéens qu'ils accompagnent.
+      </p>
+      <p class="fact">
+        En 2017, près de 5600 heures de tutorat ont été dispensées.
+      </p>
+    </li>
+
+    <li class="action">
+      <span class="dot drop-shadow-sm"></span>
+      <h2>Découvrir, s'émerveiller</h2>
+      <p>
+        Pour sensibiliser les lycéens à la culture, aux sciences ou encore au monde de l'entreprise, nous organisons régulièrement des <strong>sorties pédagogiques</strong> en région parisienne. Au programme : visites de hauts lieux de la culture et des sciences, d'écoles ou d'universités, et bien plus encore !
+      </p>
+      <p class="fact">
+        En 2017, 18 sorties ont été organisées dans des lieux tels que : le Palais de la Découverte, la Comédie Française, le Musée des Arts Ludiques, le Musée du Louvre, les studios de Radio France, …
+      </p>
+    </li>
+
+    <li class="action">
+      <span class="dot drop-shadow-sm"></span>
+      <h2>Vivre l'extraordinaire</h2>
+      <p>
+        La spécificité de notre action tient à la place toute particulière que nous accordons aux <strong>stages et séjours</strong>.
+      </p>
+      <p>
+        Ceux-ci sont l'occasion unique pour nos lycéens de <strong>sortir du quotidien</strong>. Au-delà des apports pédagogiques, il s'agit de vivre, pendant quelques jours à quelques semaines, <strong>une expérience unique</strong> qui favorise aussi le respect d'autrui, la vie en groupe et l'ouverture sur le monde.
+      </p>
+      <p class="fact">
+        En 2017, les lycéens ont pu participer à 4 stages et 2 séjours. Un total de 110 places était disponible pour l'ensemble de ces projets.
+      </p>
+    </li>
+  </ul>
+  <div class="slideshow drop-shadow-sm">
+    <span class="nav" (click)="slide(-1)"><i class="fa fa-arrow-left fa-2x"></i></span>
+    <ul class="slideshow-list drop-shadow-md">
+      <li *ngFor="let item of slideItems" [hidden]="!(current === item)">
+        <img [src]="item.image" [alt]="item.title">
+        <div class="legend">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.shortDescription }}</p>
+        </div>
+      </li>
+    </ul>
+    <span class="nav" (click)="slide(+1)"><i class="fa fa-arrow-right fa-2x"></i></span>
+  </div>
+
+  <div class="testimonies">
+    <h2>Ils témoignent de leur expérience</h2>
+    <div *ngIf="testimonies; else loading">
+      <ul class="testimony-list" *ngIf="testimonies.length > 0; else empty">
+        <li *ngFor="let t of testimonies">
+          <p>{{ t.content }}</p>
+          <cite>{{ t.source }}</cite>
+        </li>
+      </ul>
+      <ng-template #empty>
+        <p>Pas de témoignages pour le moment.</p>
+      </ng-template>
+    </div>
+    <ng-template #loading>
+      <load-spinner></load-spinner>
+    </ng-template>
+  </div>
+
+</div>

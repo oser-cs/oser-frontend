@@ -1,0 +1,25 @@
+/* Colors */
+$color-darkest-blue: rgb(32, 26, 78);
+$color-dark-blue: rgb(46, 37, 128);
+$color-purple: rgb(99, 92, 161);
+$color-purple-light: rgb(151, 146, 192);
+$color-turquoise: rgb(43, 181, 186);
+$color-light-blue: rgb(213, 250, 255);
+$color-accent: #F3395E;
+$color-light-gray: #f6f6f6;
+$color-text: #222;
+$color-muted: lighten($color-text, 30);
+$color-danger: darken(#D72638, 5);
+$color-success: darken(#0CCE6B, 2);
+$color-warning: darken(#F2CD35, 20);
+$color-info: darken(#A0F0FF, 40);
+$color-default: lighten($color-text, 30);
+$color-primary: darken($color-accent, 8);
+$color-secondary: lighten($color-dark-blue, 10);
+
+/* Fonts */
+$font-body: 'Nunito', Arial, sans-serif;
+$font-title: 'Raleway', Arial, sans-serif;
+
+/* Spacing */
+$margin-page: 2em;

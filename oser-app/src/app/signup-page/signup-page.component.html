@@ -1,0 +1,28 @@
+<div class="wrapper">
+  <form ngNoForm class="form-signin" method="post" action="/api/signup">
+    <h2 class="form-signin-heading">Inscription</h2>
+
+    <label for="email">Identifiants de connexion</label>
+    <input type="text" class="form-control" name="email" placeholder="Adresse e-mail" required="" autofocus="" />
+    <input type="password" class="form-control" name="password" placeholder="Mot de Passe" required=""
+            [(ngModel)]="_pass"/>
+    <input type="password" class="form-control" name="confirm" placeholder="Confirmer le mot de passe" required=""
+            #name="ngModel" [(ngModel)]="_confirm"/>
+    <div *ngIf="(name.dirty || name.touched)">
+        <div *ngIf="!(_pass == _confirm)"
+              class="alert alert-danger">Les mots de passe doivent être identiques</div>
+        <div *ngIf="(_pass == _confirm)"
+              class="alert alert-valid">Les mots de passe sont identiques</div>
+    </div>
+    <hr/>
+    <label for="name">Informations Personnelles</label>
+    <input type="text" class="form-control" name="name" placeholder="Prénom" required=""/>
+    <input type="text" class="form-control" name="surname" placeholder="Nom" required=""/>
+    <input type="text" class="form-control" name="telephone" placeholder="Telephone" required=""/>
+    <input type="text" class="form-control" name="lycée" placeholder="Lycée" required=""/>
+    <input type="text" class="form-control" name="groupe_tutorat" placeholder="Groupe de tutorat" required=""/>
+  <br/>
+  <br/>
+    <input class="btn btn-lg btn-primary btn-block" type="submit" value="S'inscrire"/>
+  </form>
+</div>

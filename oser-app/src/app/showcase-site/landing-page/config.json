@@ -1,0 +1,17 @@
+{
+  "actions": [
+    {
+      "title": "Apprendre, comprendre",
+      "src": "assets/img/action-apprendre.jpg"
+    },
+    {
+      "title": "Découvrir, s'intéresser",
+      "src": "assets/img/action-decouvrir.jpg"
+    },
+    {
+      "title": "Vivre l'extra-ordinaire",
+      "src": "assets/img/action-vivre.jpg"
+    }
+  ],
+  "numArticles": 3
+}

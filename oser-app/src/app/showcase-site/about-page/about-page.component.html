@@ -1,0 +1,62 @@
+<div class="page-content">
+  <span class="page-background"></span>
+  <section id="header" class="drop-shadow-md">
+    <h1><span class="colorized">Nous sommes</span> des étudiants et étudiantes <br> <span class="colorized">engagés</span> pour l'égalité des chances<span class="colorized">.</span></h1>
+
+    <p>
+      Ouverture Sociale pour l'Égalité et la Réussite porte l'action d'ouverture sociale de CentraleSupélec, Grande école d'ingénieurs dont les étudiants s'engagent pour favoriser le lien social et la réussite de chacun. <br />
+      Notre association loi 1901 est reconnue d'intérêt général et labellisée Cordées de la Réussite.
+    </p>
+  </section>
+
+  <section id="split">
+    <section class="content">
+      <h2>Notre mission</h2>
+      <p class="claim">
+        Que chacun, quelles que soient ses origines sociales, économiques ou culturelles, ait les moyens de forger son avenir et de réaliser ses ambitions.
+      </p>
+      <p>
+        De la Seconde à la Terminale, nous accompagnons plus de 150 lycéens issus de tous milieux socioculturels. Nous leur donnons les clés nécessaires pour écrire leur avenir et luttons contre l'autocensure afin qu'ils aient confiance en leur potentiel.
+      </p>
+
+      <h2>Notre philosophie</h2>
+      <p class="claim">
+        Des lycéens qui osent être acteurs de leur parcours.
+      </p>
+      <p>
+        Les lycéens que nous accompagnons sont acteurs de leur orientation et de leurs ambitions. Nous travaillons avec eux pour leur donner l'ouverture d'esprit, la curiosité et l'esprit critique nécessaires pour comprendre le monde qui les entoure et les changements qui s'y opèrent.
+      </p>
+    </section>
+    <section class="carrousel">
+      <!-- TODO implement multi-image carrousel -->
+      <img src="assets/img/aboutus-img1.jpg" class="image drop-shadow-md">
+    </section>
+  </section>
+
+  <section id="figures" class="drop-shadow-md">
+    <ul>
+      <li *ngFor="let figure of keyFigures">
+        <span class="figure">{{ figure.value }}</span>{{ figure.text }}
+      </li>
+    </ul>
+  </section>
+
+  <section id="history">
+    <section>
+      <h2>Un engagement de longue date</h2>
+      <p>
+        L'histoire d'OSER s'inscrit dans le cadre de la fusion de Supélec et de l'école Centrale Paris, processus qui donna lieu à la création de CentraleSupélec en 2015.
+      </p>
+      <p>
+        Côté Supélec, un programme d'ouverture sociale de type "PQPM" est créé en 2010 et accompagne chaque année une trentaine de lycéens. Côté Centrale, l'association Centrale égalité des Chances est créée en 2010 suite au regroupement de trois Cordées de la Réussite qui s'étaient développées de manière indépendante depuis 2007.
+      </p>
+      <p>
+        Se retrouvant dans les mêmes valeurs de partage, de justice et d'égalité, les deux programmes se rapprochent naturellement. C'est ainsi que s'officialise la fusion entre Centrale égalité des Chances et le programme PQPM Supélec : <strong>le 14 décembre 2016, Ouverture Sociale pour l'égalité et la Réussite et née.</strong>
+      </p>
+    </section>
+    <section class="image">
+      <img class="drop-shadow-md" src="assets/img/soiree-lancement.jpg" alt="Soirée de lancement du 14 décembre 2017">
+      <p class="legend">Soirée de lancement du 14 décembre 2016, officialisant la création d'Ouverture Sociale pour l'égalité et la Réussite.</p>
+    </section>
+  </section>
+</div>
