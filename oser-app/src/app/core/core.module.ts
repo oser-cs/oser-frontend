@@ -5,6 +5,7 @@ import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth-guard.service';
 import { MessageModule } from './messages';
 import { FuzzyPipe, LineBreaksPipe } from './pipes';
+import { Config } from '@app/config';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { FuzzyPipe, LineBreaksPipe } from './pipes';
   providers: [
     AuthService,
     AuthGuard,
+    Config,
   ],
   exports: [
     MessageModule,

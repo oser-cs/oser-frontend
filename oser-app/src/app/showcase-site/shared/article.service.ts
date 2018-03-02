@@ -3,15 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/observable';
 import { map, tap } from 'rxjs/operators';
 import { Article } from './article.model';
-import schema from './schema';
+import { Config } from '@app/config';
 
 
 @Injectable()
 export class ArticleService {
 
-  private actions = schema.article;
+  private baseUrl: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private _config: Config, private http: HttpClient) {
+    this.baseUrl = _config.get('apiUrl') + 'articles/';
+  }
 
   // Adapt JSON returned by API to match the Article interface
   adapt(item: any): Article {
@@ -27,7 +29,7 @@ export class ArticleService {
   }
 
   list(): Observable<Article[]> {
-    return this.http.get<Article>(this.actions.list)
+    return this.http.get<Article>(this.baseUrl)
       .pipe(
         map((articles: any) => articles.map(this.adapt)),
         tap(resp => {
@@ -44,7 +46,7 @@ export class ArticleService {
   }
 
   retrieve(id: number | string): Observable<Article> {
-    let url = this.actions.retrieve.replace(':id', id);
+    let url = this.baseUrl + `${id}/`;
     return this.http.get<Article>(url)
     .pipe(
       map((article: any) => this.adapt(article)),

@@ -3,15 +3,17 @@ import { Observable } from 'rxjs/observable';
 import { KeyFigure } from './keyfigure.model';
 import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
-import schema from './schema';
+import { Config } from '@app/config';
 
 
 @Injectable()
 export class KeyFigureService {
 
-  private actions = schema.keyfigure;
+  private baseUrl: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private _config: Config, private http: HttpClient) {
+    this.baseUrl = _config.get('apiUrl') + 'keyfigures/';
+  }
 
   // Adapt JSON returned by API to match the KeyFigure interface
   adapt(item: any): KeyFigure {
@@ -22,7 +24,7 @@ export class KeyFigureService {
   }
 
   list(): Observable<KeyFigure[]> {
-    return this.http.get<KeyFigure>(this.actions.list)
+    return this.http.get<KeyFigure>(this.baseUrl)
       .pipe(
       map((figures: any) => figures.map(this.adapt)),
       tap(resp => {

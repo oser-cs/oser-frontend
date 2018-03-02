@@ -3,22 +3,28 @@ import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
-import schema from './schema';
 import { Visit } from './visit.model';
 import { Place } from './place.model';
 import { AuthService } from '@app/core';
-
+import { Config } from '@app/config';
 
 @Injectable()
 export class VisitService {
 
-  schema: any = schema;
+  apiUrl: string;
+  baseUrl: string;
+  participantBaseUrl: string;
 
   constructor(
+    private _config: Config,
     private auth: AuthService,
     private http: HttpClient,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute) {
+      this.apiUrl = this._config.get('apiUrl');
+      this.baseUrl = this._config.get('apiUrl') + 'visits/';
+      this.participantBaseUrl = this._config.get('apiUrl') + 'visit-participants/';
+    }
 
   // Adapt JSON returned by API to match the Visit interface
   adapt(item: any): Visit {
@@ -41,7 +47,7 @@ export class VisitService {
 
   list(): Observable<Visit[]> {
     let headers = this.auth.getHeaders();
-    return this.http.get<Visit>(this.schema.visit.list, { headers: headers })
+    return this.http.get<Visit>(this.baseUrl, { headers: headers })
       .pipe(
       map((visits: any) => visits.map(this.adapt)),
       tap(resp => {
@@ -51,7 +57,7 @@ export class VisitService {
   }
 
   retrieve(id: number | string): Observable<Visit> {
-    let url = this.schema.visit.retrieve.replace(':id', id);
+    let url = this.baseUrl + `${id}/`;
     let headers = this.auth.getHeaders();
     return this.http.get<Visit>(url, { headers: headers }).pipe(
       map((visit: any) => this.adapt(visit)),
@@ -64,7 +70,7 @@ export class VisitService {
   addParticipant(visitId: number | string, userId: number | string): Observable<any> {
     let headers = this.auth.getHeaders();
     let data = { user_id: userId, visit_id: visitId };
-    return this.http.post(this.schema.participants.create, data, { headers: headers}).pipe(
+    return this.http.post(this.participantBaseUrl, data, { headers: headers}).pipe(
       tap(resp => {
         console.log(`added participant ${userId} to visit ${visitId}`);
       })
@@ -73,7 +79,7 @@ export class VisitService {
 
   getParticipants(): Observable<any[]> {
     let headers = this.auth.getHeaders();
-    return this.http.get<any>(this.schema.participants.list, { headers: headers});
+    return this.http.get<any>(this.participantBaseUrl, { headers: headers});
   }
 
   removeParticipant(visitId: number | string, userId: number | string): Observable<any> {
@@ -90,7 +96,7 @@ export class VisitService {
         let id = participant.id;
         // Now destroy the found participant.
         let headers = this.auth.getHeaders();
-        let url = this.schema.participants.destroy.replace(':id', id);
+        let url = this.participantBaseUrl + `${id}/`;
         return this.http.delete(url, { headers: headers}).pipe(
           tap(resp => console.log(`removed participant ${userId} from visit ${visitId}`))
         );
@@ -99,7 +105,7 @@ export class VisitService {
   }
 
   listParticipantsIDs(visitId: number | string): Observable<any[]> {
-    let url = this.schema.participants.retrieve.replace(':id', visitId);
+    let url = this.participantBaseUrl + `${visitId}/`;
     let headers = this.auth.getHeaders();
     console.log(headers);
     return this.http.get<any>(url, { headers: headers }).pipe(
@@ -111,7 +117,7 @@ export class VisitService {
   }
 
   visitsOf(userId: number | string): Observable<Visit[]> {
-    let url = this.schema.student.visits.replace(':id', userId);
+    let url = this.apiUrl + `students/${userId}/visits/`;
     let headers = this.auth.getHeaders();
     return this.http.get<Visit>(url, { headers: headers }).pipe(
       map((visits: any) => visits.map(this.adapt)),
