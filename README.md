@@ -6,30 +6,36 @@ Frontend du site d'Ouverture Sociale pour l'Egalité et la Réussite.
 Après avoir cloné le repo :
 
 ```
-$ cd oser-frontend
+$ cd oser-frontend/
 ```
 
-1. Installez `@angular/cli` si ce n'est pas encore fait
+1. Installez `@angular/cli` globalement (`-g`) si ce n'est pas encore fait
 
 ```
-$ npm install -g @angular/cli
+oser-frontend $ npm install -g @angular/cli
 ```
 
-2. Installez les dépendances
+2. Rendez-vous dans le dossier du projet et installez les dépendances
 
 ```
-$ npm install
+oser-frontend $ cd oser-app/
+oser-app $ npm install
 ```
 
 3. Lancez le serveur de dev
 
 ```
-$ ng serve -o
+oser-app $ ng serve -o
 ```
 
-## FAQ
+## En cas d'erreur…
 
-> J'obtiens l'erreur ci-dessous à l'étape 3. Que faire ?
+```
+$ npm install
+npm WARN: No repository field...
+```
+
+Si vous obtenez ce message après l'étape 2, il est probable que vous ne soyez pas dans le bon dossier. Assurez-vous d'être dans le dossier du projet (`oser-app`), là où se situe un fichier `package.json` (que npm utilise pour lire et installer les dépendances).
 
 ```
 ERROR in Error encountered resolving symbol values statically. Calling function 'Ng4TwitterTimelineModule', function calls are not supported.
