@@ -32,5 +32,4 @@ export class LandingPageComponent implements OnInit {
       (e) => console.log(e)
     );
   }
-
 }
