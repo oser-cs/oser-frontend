@@ -50,7 +50,7 @@ input, button {
   font-family: inherit;
 }
 
-input {
+input[type="text"] {
   @include box-spacing;
   border: 1px solid darken(lightgray, 10);
   border-radius: 3px;

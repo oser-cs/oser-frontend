@@ -12,6 +12,7 @@ export class Visit {
   registrationsOpen: boolean;
   image: string;
   factSheet: string;
+  attachedFiles: any[] = [];
   participants: string[] = [];
   organizers: any[] = [];
 

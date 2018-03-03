@@ -52,6 +52,27 @@
 @mixin style-default {
   @include style-base($color-default);
 }
+.style-danger {
+  @include style-danger;
+}
+.style-success {
+  @include style-success;
+}
+.style-info {
+  @include style-info;
+}
+.style-warning {
+  @include style-warning;
+}
+.style-primary {
+  @include style-primary;
+}
+.style-secondary {
+  @include style-secondary;
+}
+.style-default {
+  @include style-default;
+}
 
 /* Buttons */
 
@@ -76,7 +97,7 @@
   &:disabled {
     background: none;
     border-color: $disabled-color;
-    color: $disabled-color;
+    color: $disabled-color !important;
     cursor: not-allowed;
   }
 }

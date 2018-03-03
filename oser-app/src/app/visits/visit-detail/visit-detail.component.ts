@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '@app/core';
 import { VisitService } from '@app/visits/shared';
 import { Visit } from '@app/visits/shared';
+import { AttachmentBase } from '@app/visits/participation-form/attachment/attachment-base';
 
 @Component({
   selector: 'app-visit-detail',
@@ -18,6 +19,7 @@ export class VisitDetailComponent implements OnInit {
   userId: number;
   userParticipates: boolean = false;
   numParticipants: number = 0;
+  attachments: AttachmentBase[];
 
   constructor(
     private route: ActivatedRoute,
@@ -35,6 +37,13 @@ export class VisitDetailComponent implements OnInit {
     this.visitService.retrieve(visitId).subscribe(
       (visit) => {
         this.visit = visit;
+        this.attachments = this.visit.attachedFiles.map((file) => {
+          return new AttachmentBase({
+            key: file.id,
+            label: file.name,
+            required: file.required,
+          });
+        });
         this.numParticipants = this.visit.participants ? this.visit.participants.length : 0;
         // check if user participates in visit
         this.visitService.listParticipantsIDs(this.visit.id).subscribe(
