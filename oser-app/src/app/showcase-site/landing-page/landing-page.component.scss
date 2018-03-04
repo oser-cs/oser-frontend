@@ -149,17 +149,19 @@
 
   .cta-well {
     grid-area: "well";
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
     width: auto;
     margin-bottom: auto;
-    text-align: center;
     border-radius: 4px;
     @include drop-shadow($shadow-sm, $inset: true);
 
-    img {
-      vertical-align: middle;
-      max-width: 200px;
-      height: auto;
+    app-partner {
+      margin: .5em;
     }
+
     &.white {
       background: white;
     }

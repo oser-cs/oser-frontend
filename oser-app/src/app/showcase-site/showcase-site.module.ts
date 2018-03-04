@@ -18,12 +18,14 @@ import { AboutPageComponent } from './about-page/about-page.component';
 import { NewsPageComponent } from './news-page/news-page.component';
 import { ArticleItemComponent } from './news-page/article-item/article-item.component';
 import { FilterComponent } from './shared/filter/filter.component';
+import { PartnerComponent } from './shared/partners';
 
 // Services
 import { ArticleService } from './shared/article.service';
 import { KeyFigureService } from './shared/keyfigure.service';
 import { TestimonyService } from './shared/testimony.service';
 import { CategoryService } from './shared/category.service';
+import { PartnerService } from './shared/partners';
 
 // Pipes
 import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.component';
@@ -48,8 +50,15 @@ import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.com
     ArticleItemComponent,
     FilterComponent,
     NewsDetailPageComponent,
+    PartnerComponent,
   ],
-  providers: [ArticleService, KeyFigureService, TestimonyService, CategoryService],
+  providers: [
+    ArticleService,
+    KeyFigureService,
+    TestimonyService,
+    CategoryService,
+    PartnerService,
+  ],
   exports: [
     ShowcaseSiteComponent
   ]

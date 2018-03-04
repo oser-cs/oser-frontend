@@ -57,12 +57,9 @@
       </div>
     </div>
     <div class="cta-well white">
-      <a target="_blank" href="http://www.akoyaconsulting.com">
-        <img src="assets/img/partenaires-akoya.png" alt="Akoya Consulting">
-      </a>
-      <a target="_blank" href="https://www.safran-group.com/fr">
-        <img src="assets/img/partenaires-safran.png" alt="Safran">
-      </a>
+      <div *ngFor="let partner of partners">
+        <app-partner *ngIf="partner.premium" [partner]="partner"></app-partner>
+      </div>
     </div>
   </div>
   <div class="cta">
@@ -78,18 +75,9 @@
       </div>
     </div>
     <div class="cta-well">
-      <a target="_blank" href="http://www.cget.gouv.fr">
-        <img src="assets/img/partenaires-cget.png" alt="CGET">
-      </a>
-      <a target="_blank" href="http://www.ac-versailles.fr">
-        <img src="assets/img/partenaires-rectorat.png" alt="Rectorat">
-      </a>
-      <a target="_blank" href="https://www.iledefrance.fr">
-        <img src="assets/img/partenaires-ridf.png" alt="RIDF">
-      </a>
-      <a target="_blank" href="https://www.universite-paris-saclay.fr/fr">
-        <img src="assets/img/partenaires-upsaclay.png" alt="UPSaclay">
-      </a>
+      <div *ngFor="let partner of partners">
+        <app-partner *ngIf="!partner.premium" [partner]="partner"></app-partner>
+      </div>
     </div>
   </div>
 </div>
