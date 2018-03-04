@@ -18,6 +18,7 @@ export class LandingPageComponent implements OnInit {
 
   actions: Action[] = <Action[]>config['actions'];
   articles: Article[];
+  // Max number of articles to show in the "Actualités" section
   numArticles: number = <number>config['numArticles'];
 
   constructor(private ArticleService: ArticleService) { }
@@ -27,7 +28,7 @@ export class LandingPageComponent implements OnInit {
   }
 
   getArticles(): void {
-    this.ArticleService.first(3).subscribe(
+    this.ArticleService.first(this.numArticles).subscribe(
       (articles) => this.articles = articles,
       (e) => console.log(e)
     );
