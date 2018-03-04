@@ -3,11 +3,52 @@
 
 #photo {
   position: relative;
-  z-index: -1;
-  img {
-    display: block;
-    width: 100%;
+  height: 81vh;
+  &::before {
+    content: '';
+    position: absolute;
+    min-width: 100%;
+    height: inherit;
+    z-index: -1;
+    background-image: url("~assets/img/groupe.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+#discover {
+  @include margin-page-horizontal;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .content {
+    padding: $margin-page;
+    max-width: 30em;
+    border-radius: 4px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    background: transparentize(white, .4);
+  }
+
+  .logo {
+    max-width: 20em;
     height: auto;
+  }
+
+  .slogan {
+    margin: 0;
+  }
+
+  .btn-discover {
+    @include btn(
+      $color: $color-secondary,
+      $bg: white,
+      $hover-color: $color-secondary,
+      $hover-bg: $color-light-blue,
+      $color-border: none);
   }
 }
 
@@ -26,6 +67,7 @@
 
   .next {
     margin-bottom: 2em;
+
     a {
       @include btn(white, $hover-color: $color-dark-blue);
     }
@@ -111,7 +153,6 @@
   }
 }
 
-
 #calls-to-action {
   @include page-section(4);
   background-color: $color-dark-blue;
@@ -135,13 +176,14 @@
     }
   }
 
-
   .cta-text {
     grid-area: "text";
   }
+
   .cta-btn {
     text-align: center;
     margin-top: 2em;
+
     a {
       @include btn($color-light-blue, $hover-color: $color-dark-blue);
     }
@@ -159,7 +201,7 @@
     @include drop-shadow($shadow-sm, $inset: true);
 
     app-partner {
-      margin: .5em;
+      margin: 0.5em;
     }
 
     &.white {

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Article } from '../shared/article.model';
 import { ArticleService } from '../shared/article.service';
 import { Partner, PartnerService } from '@app/showcase-site/shared/partners';
+import jump from 'jump.js';
 import * as config from './config.json';
-
 
 class Action {
   title: string;
@@ -45,5 +45,9 @@ export class LandingPageComponent implements OnInit {
       (partners) => this.partners = partners,
       (e) => console.log(e)
     );
+  }
+
+  jumpToContent(): void {
+    jump('#qui-sommes-nous');
   }
 }

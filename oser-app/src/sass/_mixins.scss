@@ -11,15 +11,23 @@
   padding: $x * .4em $x * .7em;
   box-sizing: border-box;
 }
-@mixin margin-page() {
-  /* Use for consistent responsive page margins */
-  padding: $margin-page;
-  @content;
+/* Use margin-page-X mixins for consistent responsive page margins */
+@mixin margin-page-horizontal() {
+  padding-left: $margin-page;
+  padding-right: $margin-page;
   @include media-xs {
     $m: 3 * $margin-page;
     padding-left: $m;
     padding-right: $m;
   }
+}
+@mixin margin-page-vertical() {
+  padding-top: $margin-page;
+  padding-bottom: $margin-page;
+}
+@mixin margin-page() {
+  @include margin-page-horizontal;
+  @include margin-page-vertical;
 }
 .page {
   @include margin-page;
@@ -76,12 +84,21 @@
 
 /* Buttons */
 
-@mixin btn($color, $hover-color: white) {
+@mixin btn($color, $hover-color: white, $hover-bg: none, $bg: none, $color-border: 0) {
+  @if ($hover-bg == none) {
+    $hover-bg: $color;
+  }
+  @if ($color-border == 0) {
+    $color-border: $hover-bg;
+  }
   -webkit-appearance: none;
   -webkit-border-radius: 0;
+  border: none;
+  @if ($color-border) {
+    border: 1px solid $color-border;
+  }
   color: $color;
-  background: none;
-  border: 1px solid $color;
+  background: $bg;
   padding: 8px;
   border-radius: 4px;
   transition: background 0.2s, color 0.2s;
@@ -91,11 +108,11 @@
   $disabled-color: desaturate($color, 50);
   $disabled-hover-color: desaturate($hover-color, 50);
   &:hover {
-    background: $color;
+    background: $hover-bg;
     color: $hover-color !important;
   }
   &:disabled {
-    background: none;
+    background: $bg;
     border-color: $disabled-color;
     color: $disabled-color !important;
     cursor: not-allowed;
@@ -121,6 +138,12 @@
 }
 .btn-default {
   @include btn($color-default);
+}
+.btn-white {
+  @include btn(white, $hover-color: $color-text);
+}
+.btn-light {
+  @include btn($color-light-blue);
 }
 
 /* Alerts */
@@ -173,7 +196,7 @@ $shadow-ref: .13em;
   $y: 8px * $intensity;
   $blur-radius: 3px + 7px * $intensity;
   $spread-radius: 2px + 1px * $intensity;
-  $color: rgba(0, 0, 0, .08);
+  $color: rgba(0, 0, 0, .1);
   $props: 0 $y $blur-radius $spread-radius $color;
   @if $inset == true {
     @include shadow($props inset);
