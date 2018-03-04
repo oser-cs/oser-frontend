@@ -13,8 +13,8 @@ export class ShowcaseSiteComponent implements OnInit {
 
   navLinks: Link[] = [
     { href: 'about', text: 'Qui sommes-nous ?' },
-    { href: 'donate', text: 'Soutenez-nous' },
     { href: 'actions', text: 'Nos actions' },
+    { href: 'donate', text: 'Soutenez-nous' },
     { href: 'articles', text: 'Actualités' },
     { href: 'contact', text: 'Contact' }
   ];

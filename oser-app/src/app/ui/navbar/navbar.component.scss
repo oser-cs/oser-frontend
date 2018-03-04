@@ -7,12 +7,18 @@ $col-padding: 10px;
 .navbar {
   position: static;
   top: 0;
-  display: flex;
-  flex-direction: row;
   padding: 0 $margin-page;
   margin: 0;
   background: white;
   z-index: 10;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.top {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 
 a.logo-container {
@@ -24,15 +30,28 @@ a.logo-container {
 img.logo {
   width: 100%;
   max-width: 15em;
+  padding-top: .3em;
+  padding-bottom: .2em;
 }
 /* Mobile-first narrow navbar */
 .nav-narrow {
   display: flex;
-  padding: 0;
-  margin: $margin-page 0;
+  flex-direction: column;
+  flex: 1;  // pushes logo to left
+  margin-top: $margin-page;
+}
+.nav-narrow-links {
+  display: flex;
   list-style-type: none;
+  padding: 0;
   flex-direction: column;
   flex: 1;
+
+  .links {
+    li:last-child {
+      margin-bottom: $margin-page;
+    }
+  }
 }
 
 i.hamburger {
@@ -43,14 +62,13 @@ i.hamburger {
 }
 
 .links {
-  padding-top: 20px;
+  padding-top: 0em;
   max-height: 100%;
   transition: max-height 0.3s;
   overflow: hidden;
 
   li {
-    /* @include nav-link */
-    text-align: right;
+    text-align: center;
     margin-left: auto;
     margin-right: 0;
 
@@ -107,6 +125,9 @@ a.nav-link {
   }
 
   .nav-narrow {
+    display: none;
+  }
+  .nav-narrow-links {
     display: none;
   }
 }
