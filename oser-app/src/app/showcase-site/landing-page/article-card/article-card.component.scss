@@ -14,6 +14,9 @@ $padding: 1em 1.5em;
     display: block;
     max-width: 20em;
   }
+  @include media-md {
+    @include drop-shadow-animate($shadow-sm, $shadow-md);
+  }
 }
 
 .image {

@@ -4,6 +4,7 @@
 #photo {
   position: relative;
   height: 85vh;
+
   &::before {
     content: '';
     position: absolute;
@@ -43,12 +44,7 @@
   }
 
   .btn-discover {
-    @include btn(
-      $color: $color-secondary,
-      $bg: white,
-      $hover-color: $color-secondary,
-      $hover-bg: $color-light-blue,
-      $color-border: none);
+    @include btn($color: $color-secondary, $bg: white, $hover-color: $color-secondary, $hover-bg: $color-light-blue, $color-border: none);
   }
 }
 
@@ -85,9 +81,14 @@
 
   .action-bubbles {
     display: flex;
-    justify-content: center;
+    flex-flow: column wrap;
+    align-items: center;
     padding: 0;
     list-style-type: none;
+    @include media-md {
+      flex-flow: row wrap;
+      justify-content: center;
+    }
   }
 
   p {
@@ -95,23 +96,37 @@
   }
 
   .action-bubble {
-    text-align: center;
+    text-align: left;
+    display: grid;
+    grid-template-areas: "image label";
+    grid-gap: 1em;
+    align-items: center;
+    justify-items: center;
+    @include media-md {
+      grid-template-areas: "image" "label";
+    }
 
     img {
-      width: 100%;
-      max-width: 200px;
+      display: block;
+      grid-area: "image";
+      max-width: 7em;
       height: auto;
       border-radius: 50%;
     }
 
-    p {
+    .label {
+      grid-area: "label";
       text-transform: uppercase;
       font-weight: bold;
       color: $color-dark-blue;
     }
 
     & + .action-bubble {
-      margin-left: 3em;
+      margin-top: 1em;
+      @include media-md {
+        margin-left: 1em;
+        margin-top: 0;
+      }
     }
   }
 }
