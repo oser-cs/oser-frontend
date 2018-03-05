@@ -11,18 +11,20 @@ import * as config from './config.json';
 export class DonatePageComponent implements OnInit {
 
   config = <any>config;
+  currentCampaignUrl: SafeUrl;
+  donateUrl: SafeUrl;
 
   constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
+    this.donateUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.config.donateUrl);
+    if (this.config.currentCampaignUrl) {
+      this.currentCampaignUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.config.currentCampaignUrl);
+    }
   }
 
   goTo() {
-    jump('#haWidget');
-  }
-
-  get haWidgetUrl(): SafeUrl {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(this.config.helloAsso);
+    jump('#donate-ha-widget');
   }
 
 }
