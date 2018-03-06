@@ -18,6 +18,8 @@ export class VisitDetailComponent implements OnInit {
   userId: number;
   userParticipates: boolean = false;
   numParticipants: number = 0;
+  formActive: boolean = false;
+  formLoading: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -48,9 +50,18 @@ export class VisitDetailComponent implements OnInit {
     );
   }
 
+  clickModal(e): void {
+    if (e.target === document.getElementById('register-form')) {
+      this.formActive = false;
+    }
+  }
+
   participate(): void {
+    this.formLoading = true;
     this.visitService.addParticipant(this.visit.id, this.userId).subscribe(
       (resp) => {
+        this.formLoading = false;
+        this.formActive = false;
         this.userParticipates = true;
         this.numParticipants += 1;
       }, (e) => console.log(e)

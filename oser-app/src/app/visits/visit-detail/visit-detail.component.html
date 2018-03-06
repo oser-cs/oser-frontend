@@ -15,15 +15,42 @@
   <span *ngIf="!visit.registrationsOpen" class="badge badge-danger badge-lg"><i class="fa fa-times"></i> Inscriptions fermées</span>
   <span *ngIf="numParticipants > 0" class="badge badge-info badge-lg"><i class="fa fa-user"></i> {{ numParticipants }} participants</span>
 
+  <!-- Show register button if user does not participate -->
   <div *ngIf="visit.registrationsOpen && !userParticipates">
-    <button id="participate-btn" type="button" name="button" class="btn-success" (click)="participate()">Je m'inscris</button>
+    <button id="participate-btn" type="button" name="button" class="btn-success" (click)="formActive = true">Je m'inscris</button>
   </div>
+
+  <!-- If user participates, show them relevant info -->
   <div *ngIf="userParticipates">
-    <p class="alert alert-success"><i class="fa fa-ticket"></i> Bravo, tu participes à cette sortie !</p>
+    <p class="alert alert-success"><i class="fa fa-ticket"></i> Tu participes à cette sortie.</p>
     <p class="alert alert-default">
       <i class="fa fa-file-text"></i> Les organisateurs ont rédigé une <a [href]="visit.factSheet">fiche sortie</a>. Consulte-la avant de te rendre à la sortie !
     </p>
+    <!-- And a shy-ish unregister link -->
     <p class="text-muted">Tu as un empêchement et souhaites <span class="link-muted" (click)="leave()">te désinscrire ?</span></p>
+  </div>
+
+  <!-- Modal register form -->
+  <div id="register-form" class="modal" [hidden]="!formActive" (click)="clickModal($event)">
+    <form name="form" class="modal-content" (ngSubmit)="participate()" novalidate>
+      <h2>S'inscrire à {{ visit.title }}</h2>
+      <div *ngIf="visit.attachedFiles  && visit.attachedFiles.length > 0; else noattachments">
+        <p>Pour t'inscrire à cette sortie, nous avons besoin des documents suivants.</p>
+        <ul>
+          <li *ngFor="let item of visit.attachedFiles">
+            {{ item.name }} <br />
+            <input type="file" [name]="item.id">
+          </li>
+        </ul>
+      </div>
+      <ng-template #noattachments>
+        <p>Aucune étape supplémentaire n'est requise pour t'inscrire à cette sortie.</p>
+      </ng-template>
+      <div class="text-center">
+        <button class="btn-success">Confirmer mon inscription</button>
+        <load-spinner *ngIf="formLoading"></load-spinner>
+      </div>
+    </form>
   </div>
 
   <h2>Détail des activités</h2>

@@ -108,7 +108,6 @@ export class VisitService {
   listParticipantsIDs(visitId: number | string): Observable<any[]> {
     let url = this.participantBaseUrl + `${visitId}/`;
     let headers = this.auth.getHeaders();
-    console.log(headers);
     return this.http.get<any>(url, { headers: headers }).pipe(
       map((participants: any[]) => participants.map(p => p.user_id)),
       tap(resp => {

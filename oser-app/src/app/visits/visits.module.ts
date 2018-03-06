@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 // Modules
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { VisitsRoutingModule } from './visits-routing.module';
 import { CoreModule } from '@app/core';
 import { UiModule } from '@app/ui';
@@ -20,6 +21,7 @@ import { VisitService } from './shared/visit.service';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     CoreModule,
     UiModule,
     VisitsRoutingModule,
