@@ -1,6 +1,6 @@
 <div class="navbar drop-shadow-md">
   <div class="top">
-    <a routerLink="." class='logo-container'>
+    <a routerLink="/" class='logo-container'>
       <img src='assets/img/oser-logo.png' alt='Logo' class='logo'>
     </a>
     <div class="nav-wide">
@@ -9,7 +9,7 @@
           <a class="nav-link" [routerLink]="link.href">{{ link.text }}</a>
         </li>
       </div>
-      <li class="login">
+      <!--<li class="login">
         <div *ngIf="currentUser; else visitor">
           <a [routerLink]="loginRoute" class="btn-primary" type="button">
             <i class="fa fa-user"></i> Espace membre
@@ -21,7 +21,7 @@
             <i class="fa fa-power-off"></i> Connexion
           </a>
         </ng-template>
-      </li>
+      </li>-->
     </div>
     <div class="nav-narrow">
       <i (click)="toggle()" class="hamburger fa fa-bars fa-2x"></i>

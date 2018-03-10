@@ -9,24 +9,22 @@ $stick: 1em;
   grid-template-areas:
     "hd"
     "search"
-    "main"
-    "feeds";
+    "main";
   grid-row-gap: 1em;
 
   @include media-sm {
     grid-template-areas:
       ". hd"
       "search main"
-      "feeds main";
+      "search main";
     grid-template-columns: 1fr 3fr;
-    // grid-column-gap: 2em;
   }
 
   @include media-lg {
     grid-template-areas:
       ". hd ."
-      "search main feeds";
-    grid-template-columns: 1fr 3fr 1fr;
+      "search main";
+    grid-template-columns: 1fr 3fr;
   }
 }
 
@@ -36,13 +34,13 @@ $stick: 1em;
 
 .search {
   grid-area: search;
-  @include media-lg {
+  @include media-sm {
     height: fit-content;
     position: sticky;
     top: $stick;
   }
   background: white;
-  padding: 0.5em 1em;
+  padding: 0.5em 0em;
   box-sizing: border-box;
   #filters-title {
     cursor: pointer;

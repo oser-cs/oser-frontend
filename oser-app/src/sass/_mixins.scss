@@ -143,7 +143,7 @@
   @include btn(white, $hover-color: $color-text);
 }
 .btn-light {
-  @include btn($color-light-blue);
+  @include btn($color-light-blue, $hover-color: $color-text);
 }
 
 /* Alerts */

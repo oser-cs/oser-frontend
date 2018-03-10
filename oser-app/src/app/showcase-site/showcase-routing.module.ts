@@ -11,16 +11,16 @@ import { ActionsPageComponent } from './actions-page/actions-page.component';
 
 const showcaseSiteRoutes: Routes = [
   {
-    path: 'showcase',
+    path: '',
     component: ShowcaseSiteComponent,
     children: [
       { path: '', component: LandingPageComponent },
-      { path: 'about', component: AboutPageComponent },
-      { path: 'donate', component: DonatePageComponent },
-      { path: 'contact', component: ContactPageComponent },
+      { path: 'qui-sommes-nous', component: AboutPageComponent },
       { path: 'actions', component: ActionsPageComponent },
-      { path: 'articles', component: NewsPageComponent },
-      { path: 'articles/:id', component: NewsDetailPageComponent }
+      { path: 'nous-soutenir', component: DonatePageComponent },
+      { path: 'actualites', component: NewsPageComponent },
+      { path: 'actualites/:id', component: NewsDetailPageComponent },
+      { path: 'contact', component: ContactPageComponent },
     ]
   }
 ]

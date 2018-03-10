@@ -3,7 +3,6 @@ import { Subject } from 'rxjs/Subject';
 import { Article } from '../shared/article.model';
 import { ArticleService } from '../shared/article.service';
 import { CategoryService } from '../shared/category.service';
-import { Ng4TwitterTimelineService } from 'ng4-twitter-timeline/lib/index';
 import { FuzzyPipe } from '@app/core';
 
 
@@ -34,8 +33,7 @@ export class NewsPageComponent implements OnInit {
 
   constructor(
     private articleService: ArticleService,
-    private categoryService: CategoryService,
-    private twitterService: Ng4TwitterTimelineService) { }
+    private categoryService: CategoryService) { }
 
   ngOnInit() {
     this.getArticles();

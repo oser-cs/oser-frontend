@@ -1,5 +1,4 @@
 import { Component, OnInit, Renderer } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
 import { Link } from '@app/ui';
 
 @Component({
@@ -12,11 +11,11 @@ export class ShowcaseSiteComponent implements OnInit {
   constructor(private renderer: Renderer) { }
 
   navLinks: Link[] = [
-    { href: 'about', text: 'Qui sommes-nous ?' },
-    { href: 'actions', text: 'Nos actions' },
-    { href: 'donate', text: 'Soutenez-nous' },
-    { href: 'articles', text: 'Actualités' },
-    { href: 'contact', text: 'Contact' }
+    { href: '/qui-sommes-nous', text: 'Qui sommes-nous ?' },
+    { href: '/actions', text: 'Nos actions' },
+    { href: '/nous-soutenir', text: 'Soutenez-nous' },
+    { href: '/actualites', text: 'Actualités' },
+    { href: '/contact', text: 'Contact' }
   ];
 
   ngOnInit() { }

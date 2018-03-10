@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { CoreModule } from '@app/core';
 import { UiModule } from '@app/ui';
 import { ShowcaseRoutingModule } from './showcase-routing.module';
-import { Ng4TwitterTimelineModule } from 'ng4-twitter-timeline/lib/index';
+// import { Ng4TwitterTimelineModule } from 'ng4-twitter-timeline/lib/index';
 
 // Components
 import { ShowcaseSiteComponent } from './showcase-site.component';
@@ -36,7 +36,7 @@ import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.com
     ShowcaseRoutingModule,
     CoreModule,
     UiModule,
-    Ng4TwitterTimelineModule.forRoot(),
+    // Ng4TwitterTimelineModule.forRoot(),
   ],
   declarations: [
     ShowcaseSiteComponent,

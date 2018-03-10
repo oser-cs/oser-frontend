@@ -11,6 +11,7 @@ ul.choices {
     padding: .3em 1em;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-radius: 3px;
     &:hover {
       color: $color-dark-blue;
