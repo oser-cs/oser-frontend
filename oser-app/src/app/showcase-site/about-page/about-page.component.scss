@@ -86,6 +86,8 @@
   position: relative;
   @include margin-page;
   z-index: 4;
+  text-align: center;
+  color: white;
   @include color-bg($color-light-blue);
 
   ul {

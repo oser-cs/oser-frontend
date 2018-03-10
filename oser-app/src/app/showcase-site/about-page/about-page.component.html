@@ -36,11 +36,19 @@
   </section>
 
   <section id="figures" class="drop-shadow-md">
-    <ul>
-      <li *ngFor="let figure of keyFigures">
-        <span class="figure">{{ figure.value }}</span>{{ figure.text }}
-      </li>
-    </ul>
+    <div *ngIf="keyFigures; else loading">
+      <ul *ngIf="keyFigures.length > 0; else empty">
+        <li *ngFor="let figure of keyFigures">
+          <span class="figure">{{ figure.value }}</span>{{ figure.text }}
+        </li>
+      </ul>
+      <ng-template #empty>
+        Les chiffres clés de l'association seront bientôt disponibles.
+      </ng-template>
+    </div>
+    <ng-template #loading>
+      <load-spinner></load-spinner>
+    </ng-template>
   </section>
 
   <section id="history" class="drop-shadow-md">
