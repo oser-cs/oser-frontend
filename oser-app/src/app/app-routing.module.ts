@@ -8,7 +8,7 @@ import { NotFoundComponent } from '@app/core';
 
 const routes: Routes = [
   { path: '', component: ShowcaseSiteComponent },
-  { path: '**', component: NotFoundComponent },
+  { path: '**', component: NotFoundComponent, data: {title: 'Page introuvable'} },
   // { path: 'login', component: LoginComponent},
   // { path: 'signup', component: SignupPageComponent },
   // { path: '', redirectTo: '/signup', pathMatch: 'full'},

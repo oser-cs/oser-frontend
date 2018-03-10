@@ -14,13 +14,45 @@ const showcaseSiteRoutes: Routes = [
     path: '',
     component: ShowcaseSiteComponent,
     children: [
-      { path: '', component: LandingPageComponent },
-      { path: 'qui-sommes-nous', component: AboutPageComponent },
-      { path: 'actions', component: ActionsPageComponent },
-      { path: 'nous-soutenir', component: DonatePageComponent },
-      { path: 'actualites', component: NewsPageComponent },
-      { path: 'actualites/:id', component: NewsDetailPageComponent },
-      { path: 'contact', component: ContactPageComponent },
+      {
+        path: '',
+        component: LandingPageComponent,
+        data: { title: 'Accueil' },
+      },
+      {
+        path: 'qui-sommes-nous',
+        component: AboutPageComponent,
+        data: { title: 'Qui sommes-nous ?' },
+      },
+      {
+        path: 'actions',
+        component: ActionsPageComponent,
+        data: { title: 'Nos actions' },
+      },
+      {
+        path: 'nous-soutenir',
+        component: DonatePageComponent,
+        data: { title: 'Nous soutenir' },
+      },
+      {
+        path: 'actualites',
+        data: { title: 'Actualités' },
+        children: [
+          {
+            path: '',
+            component: NewsPageComponent,
+          },
+          {
+            path: ':id',
+            component: NewsDetailPageComponent,
+          },
+        ]
+      },
+      {
+        path: 'contact',
+        component: ContactPageComponent,
+        data: { title: 'Contact' },
+      },
     ]
   }
 ]

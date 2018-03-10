@@ -20,7 +20,7 @@
         TODO FIX: no error but update not triggered
         See: https://github.com/angular/angular/issues/10207
         -->
-        <a [routerLink]="['../', related.id]">{{ related.title }}</a>
+        <a class="related-link" (click)="navigate(related)">{{ related.title }}</a>
       </li>
     </ul>
   </div>
