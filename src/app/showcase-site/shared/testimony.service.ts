@@ -27,10 +27,7 @@ export class TestimonyService {
     return this.http.get<Testimony>(this.baseUrl)
     .pipe(
       map((testimonies: any) => testimonies.map(this.adapt)),
-      tap(resp => {
-        console.log('fetched testimonies');
-        console.log(resp);
-      })
+      tap(resp => console.log('fetched testimonies'))
     );
   }
 

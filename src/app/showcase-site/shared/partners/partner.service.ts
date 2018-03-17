@@ -26,9 +26,7 @@ export class PartnerService {
   list(): Observable<Partner[]> {
     return this.http.get(this.baseUrl).pipe(
       map((partners: any) => partners.map(this.adapt)),
-      tap(resp => {
-        console.log('fetched partners');
-      }),
+      tap(resp => console.log('fetched partners')),
     );
   }
 

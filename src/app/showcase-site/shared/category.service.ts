@@ -21,10 +21,7 @@ export class CategoryService {
     return this.http.get<any>(this.baseUrl)
       .pipe(
       map((categories: any) => categories.map(this.adapt)),
-      tap(resp => {
-        console.log('fetched categories');
-        console.log(resp);
-      })
+      tap(resp => console.log('fetched categories'))
       );
   }
 }

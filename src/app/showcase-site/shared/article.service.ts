@@ -32,10 +32,7 @@ export class ArticleService {
     return this.http.get<Article>(this.baseUrl)
       .pipe(
         map((articles: any) => articles.map(this.adapt)),
-        tap(resp => {
-          console.log('fetched articles');
-          console.log(resp);
-        })
+        tap(resp => console.log('fetched articles'))
       );
   }
 
@@ -50,10 +47,7 @@ export class ArticleService {
     return this.http.get<Article>(url)
     .pipe(
       map((article: any) => this.adapt(article)),
-      tap(resp => {
-        console.log('fetched article');
-        console.log(resp);
-      })
+      tap(resp => console.log('fetched article'))
     );
   }
 }
