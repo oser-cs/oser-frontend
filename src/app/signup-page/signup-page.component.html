@@ -5,13 +5,13 @@
     <label for="email">Identifiants de connexion</label>
     <input type="text" class="form-control" name="email" placeholder="Adresse e-mail" required="" autofocus="" />
     <input type="password" class="form-control" name="password" placeholder="Mot de Passe" required=""
-            [(ngModel)]="_pass"/>
+            [(ngModel)]="pass"/>
     <input type="password" class="form-control" name="confirm" placeholder="Confirmer le mot de passe" required=""
-            #name="ngModel" [(ngModel)]="_confirm"/>
+            #name="ngModel" [(ngModel)]="confirm"/>
     <div *ngIf="(name.dirty || name.touched)">
-        <div *ngIf="!(_pass == _confirm)"
+        <div *ngIf="!(pass == confirm)"
               class="alert alert-danger">Les mots de passe doivent être identiques</div>
-        <div *ngIf="(_pass == _confirm)"
+        <div *ngIf="(pass == confirm)"
               class="alert alert-valid">Les mots de passe sont identiques</div>
     </div>
     <hr/>
