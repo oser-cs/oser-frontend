@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs/Observable';
 import { KeyFigure } from './keyfigure.model';
 import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';

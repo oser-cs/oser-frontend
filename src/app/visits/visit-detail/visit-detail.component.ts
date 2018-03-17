@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '@app/core';
 import { VisitService } from '@app/visits/shared';
