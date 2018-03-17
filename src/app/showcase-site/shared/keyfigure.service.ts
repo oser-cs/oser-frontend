@@ -27,10 +27,7 @@ export class KeyFigureService {
     return this.http.get<KeyFigure>(this.baseUrl)
       .pipe(
       map((figures: any) => figures.map(this.adapt)),
-      tap(resp => {
-        console.log('fetched key figures');
-        console.log(resp);
-      })
+      tap(resp => console.log('fetched key figures'))
       );
   }
 
