@@ -1,0 +1,38 @@
+<div class="wrapper">
+  <div class="header">
+    <h1>L'actualité d'OSER</h1>
+  </div>
+
+  <div class="search">
+    <div class="search-bar">
+      <!-- Enter search term here -->
+      <input type="text" (keyup)="searchTerm$.next($event.target.value)" placeholder="Rechercher un article…">
+    </div>
+    <div id="filters-title" (click)="toggleFilters()">
+      <h4>Filtrer par…</h4>
+      <span class="dropdown"><i class="fa fa-angle-down"></i></span>
+    </div>
+    <ul class="filters" [ngClass]="{'hidden': !filtersVisible}">
+      <list-filter class="filter" title="Année" [values]="years" (onSelect)="onSelectYear($event)" [countContains]="articleYears"></list-filter>
+      <list-filter class="filter" title="Catégorie" [values]="categories" (onSelect)="onSelectCategory($event)" [countContains]="articleCategories"></list-filter>
+    </ul>
+    <hr id="search-hr">
+  </div>
+
+  <div class="main">
+    <div *ngIf="articles; else loading">
+      <ul *ngIf="articles.length > 0; else empty">
+        <app-article-item *ngFor="let article of articles | fuzzy : search : ['title']" [article]="article" [hidden]="hidden(article)"></app-article-item>
+      </ul>
+      <ng-template #empty>
+        <p>Pas d'articles pour le moment</p>
+      </ng-template>
+    </div>
+    <ng-template #loading>
+      <load-spinner></load-spinner>
+    </ng-template>
+  </div>
+
+  <div class="feeds">
+  </div>
+</div>

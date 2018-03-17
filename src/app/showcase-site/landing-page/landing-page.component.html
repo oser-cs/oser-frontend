@@ -1,0 +1,98 @@
+<div id="photo" class="drop-shadow-md">
+  <div id="discover">
+    <div class="content drop-shadow-md">
+      <h2 class="slogan">
+        Ils ont l'envie,<br />
+        nous sommes le coup de pouce.
+      </h2>
+      <p>
+        Depuis plus de dix ans, nous œuvrons en faveur de l'égalité des chances dans les lycées d'Ile-de-France.
+      </p>
+      <div class="text-center">
+        <button class="btn-discover" (click)="jumpToContent()">
+          Découvrez notre association
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="qui-sommes-nous" class="drop-shadow-md">
+  <h2>Qui sommes-nous ?</h2>
+  <p>
+    <strong>Ouverture Sociale pour l'Égalité et la Réussite</strong> est une association loi 1901 composée d'étudiants et d'étudiantes de CentraleSupélec engagés pour plus d'égalité des chances face aux études supérieures.
+    <br><br> Nous souhaitons que <strong>chacun, quelles que soient ses origines sociales, économiques ou culturelles, puisse forger son avenir et se munir des clés pour réaliser ses ambitions</strong>.
+  </p>
+  <div class="next">
+    <a type="button" routerLink="qui-sommes-nous">Lire la suite</a>
+  </div>
+</div>
+
+<div id="actions" class="drop-shadow-md">
+  <h2>Nous agissons pour plus d'égalité des chances</h2>
+  <ul class="action-bubbles">
+    <div class="action-bubble" *ngFor="let action of actions">
+      <img [src]="action.src" [alt]="action.title">
+      <div class="label">{{ action.title }}</div>
+    </div>
+  </ul>
+  <p>De la seconde à la Terminale, nous sommes présents sur tous les fronts pour accompagner le développement de nos lycéens.</p>
+  <a type="button" routerLink="actions">En savoir plus</a>
+</div>
+
+<div id="articles" class="drop-shadow-md">
+  <div class="heading">
+    <h2>L'actualité de l'association</h2>
+    <div class="link-all">
+      <a routerLink="actualites" type="button">Tous les articles</a>
+    </div>
+  </div>
+  <ul *ngIf="articles && articles.length > 0; else empty" class="article-cards">
+    <app-article-card *ngFor="let article of articles" [article]="article"></app-article-card>
+  </ul>
+  <ng-template #empty>
+    <p class="text-center">Pas d'articles pour le moment.</p>
+  </ng-template>
+</div>
+
+<div id="calls-to-action" class="drop-shadow-md">
+  <div class="heading">
+    <h2>Ils ont l'envie, nous sommes le coup de pouce.</h2>
+  </div>
+  <div class="cta">
+    <div class="cta-text">
+      <p>
+        Ils nous soutiennent cette année encore : <strong>merci à nos partenaires pour leur engagement !</strong>
+      </p>
+      <p>
+        Vous aussi, engagez-vous à nos côtés en devenant <strong>partenaire d'Ouverture Sociale pour l'Égalité et la Réussite</strong>.
+      </p>
+      <div class="cta-btn">
+        <a routerLink="contact">Devenir partenaire</a>
+      </div>
+    </div>
+    <div class="cta-well white">
+      <div *ngFor="let partner of partners">
+        <app-partner *ngIf="partner.premium" [partner]="partner"></app-partner>
+      </div>
+    </div>
+  </div>
+  <div class="cta">
+    <div class="cta-text">
+      <p>
+        OSER fait partie de la Cordée Mutualisée de l'Université Paris Saclay, projet visant à favoriser l'accès à l'enseignement supérieur, dont les  filières d'excellence, de jeunes quel que soit leur milieu socioculturel. Notre action est ainsi en partie financée par des organismes régionaux et départementaux.
+      </p>
+      <p>
+        Vous aussi, <strong>soutenez notre action auprès des jeunes de la région parisienne</strong>.
+      </p>
+      <div class="cta-btn">
+        <a routerLink="nous-soutenir">Faire un don</a>
+      </div>
+    </div>
+    <div class="cta-well">
+      <div *ngFor="let partner of partners">
+        <app-partner *ngIf="!partner.premium" [partner]="partner"></app-partner>
+      </div>
+    </div>
+  </div>
+</div>

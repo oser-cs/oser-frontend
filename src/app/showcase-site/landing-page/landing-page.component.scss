@@ -1,0 +1,229 @@
+@import '~app/showcase-site/sass/mixins';
+@import '~app/showcase-site/sass/variables';
+
+#photo {
+  position: relative;
+  height: 85vh;
+
+  &::before {
+    content: '';
+    position: absolute;
+    min-width: 100%;
+    height: inherit;
+    z-index: -1;
+    background-image: url("~assets/img/groupe.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+#discover {
+  @include margin-page-horizontal;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .content {
+    padding: $margin-page;
+    max-width: 30em;
+    border-radius: 4px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    background: transparentize(white, .4);
+  }
+
+  .logo {
+    max-width: 20em;
+    height: auto;
+  }
+
+  .slogan {
+    margin: 0;
+  }
+
+  .btn-discover {
+    @include btn($color: $color-secondary, $bg: white, $hover-color: $color-secondary, $hover-bg: $color-light-blue, $color-border: none);
+  }
+}
+
+#qui-sommes-nous {
+  @include page-section(1, white);
+  background: $color-dark-blue;
+  text-align: center;
+
+  h2 {
+    color: $color-light-blue;
+  }
+
+  p {
+    margin-bottom: 2em;
+  }
+
+  .next {
+    margin-bottom: 2em;
+
+    a {
+      @include btn(white, $hover-color: $color-dark-blue);
+    }
+  }
+}
+
+#actions {
+  @include page-section(2);
+  background: $color-light-blue;
+  text-align: center;
+
+  a {
+    @include btn($color-accent);
+  }
+
+  .action-bubbles {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    padding: 0;
+    list-style-type: none;
+    @include media-md {
+      flex-flow: row wrap;
+      justify-content: center;
+    }
+  }
+
+  p {
+    margin-bottom: 2em;
+  }
+
+  .action-bubble {
+    text-align: left;
+    display: grid;
+    grid-template-areas: "image label";
+    grid-gap: 1em;
+    align-items: center;
+    justify-items: center;
+    @include media-md {
+      grid-template-areas: "image" "label";
+    }
+
+    img {
+      display: block;
+      grid-area: "image";
+      max-width: 7em;
+      height: auto;
+      border-radius: 50%;
+    }
+
+    .label {
+      grid-area: "label";
+      text-transform: uppercase;
+      font-weight: bold;
+      color: $color-dark-blue;
+    }
+
+    & + .action-bubble {
+      margin-top: 1em;
+      @include media-md {
+        margin-left: 1em;
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+#articles {
+  @include page-section(3);
+
+  .heading {
+    text-align: center;
+  }
+
+  .link-all {
+    text-align: center;
+    margin: 0;
+
+    a {
+      @include btn($color-dark-blue);
+    }
+  }
+
+  .article-cards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    list-style-type: none;
+    margin: 2em 0;
+    @include media-md() {
+      flex-direction: row;
+    }
+    /* Add space between cards */
+    app-article-card + app-article-card {
+      margin-top: 2em;
+      @include media-md {
+        margin-top: 0;
+        margin-left: 2em;
+      }
+    }
+  }
+}
+
+#calls-to-action {
+  @include page-section(4);
+  background-color: $color-dark-blue;
+  color: white;
+
+  .heading {
+    text-align: center;
+  }
+
+  h2 {
+    color: $color-light-blue;
+  }
+
+  .cta {
+    display: grid;
+    grid-template-areas: "text" "well";
+    grid-gap: 2em;
+    margin-bottom: 2em;
+    @include media-lg {
+      grid-template-areas: "text well";
+    }
+  }
+
+  .cta-text {
+    grid-area: "text";
+  }
+
+  .cta-btn {
+    text-align: center;
+    margin-top: 2em;
+
+    a {
+      @include btn($color-light-blue, $hover-color: $color-dark-blue);
+    }
+  }
+
+  .cta-well {
+    grid-area: "well";
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    margin-bottom: auto;
+    border-radius: 4px;
+    @include drop-shadow($shadow-sm, $inset: true);
+
+    app-partner {
+      margin: 0.5em;
+    }
+
+    &.white {
+      background: white;
+    }
+    @include media-lg {
+      width: 30em;
+    }
+  }
+}

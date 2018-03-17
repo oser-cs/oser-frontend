@@ -1,0 +1,304 @@
+@import './variables';
+@import './media-queries';
+
+@function lightened($color) {
+  @return lighten(desaturate($color, 20), 45);
+}
+
+/* Spacing */
+
+@mixin box-spacing($x: 1) {
+  padding: $x * .4em $x * .7em;
+  box-sizing: border-box;
+}
+/* Use margin-page-X mixins for consistent responsive page margins */
+@mixin margin-page-horizontal() {
+  padding-left: $margin-page;
+  padding-right: $margin-page;
+  @include media-xs {
+    $m: 3 * $margin-page;
+    padding-left: $m;
+    padding-right: $m;
+  }
+}
+@mixin margin-page-vertical() {
+  padding-top: $margin-page;
+  padding-bottom: $margin-page;
+}
+@mixin margin-page() {
+  @include margin-page-horizontal;
+  @include margin-page-vertical;
+}
+.page {
+  @include margin-page;
+}
+
+/* Styles */
+
+@mixin style-base($color) {
+  color: $color;
+  border-color: $color;
+}
+@mixin style-danger {
+  @include style-base($color-danger);
+}
+@mixin style-success {
+  @include style-base($color-success);
+}
+@mixin style-info {
+  @include style-base($color-info);
+}
+@mixin style-warning {
+  @include style-base($color-warning);
+}
+@mixin style-primary {
+  @include style-base($color-primary);
+}
+@mixin style-secondary {
+  @include style-base($color-secondary);
+}
+@mixin style-default {
+  @include style-base($color-default);
+}
+.style-danger {
+  @include style-danger;
+}
+.style-success {
+  @include style-success;
+}
+.style-info {
+  @include style-info;
+}
+.style-warning {
+  @include style-warning;
+}
+.style-primary {
+  @include style-primary;
+}
+.style-secondary {
+  @include style-secondary;
+}
+.style-default {
+  @include style-default;
+}
+
+/* Buttons */
+
+@mixin btn($color, $hover-color: white, $hover-bg: none, $bg: none, $color-border: 0) {
+  @if ($hover-bg == none) {
+    $hover-bg: $color;
+  }
+  @if ($color-border == 0) {
+    $color-border: $hover-bg;
+  }
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  border: none;
+  @if ($color-border) {
+    border: 1px solid $color-border;
+  }
+  color: $color;
+  background: $bg;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+  font-weight: bold;
+  cursor: pointer;
+
+  $disabled-color: desaturate($color, 50);
+  $disabled-hover-color: desaturate($hover-color, 50);
+  &:hover {
+    background: $hover-bg;
+    color: $hover-color !important;
+  }
+  &:disabled {
+    background: $bg;
+    border-color: $disabled-color;
+    color: $disabled-color !important;
+    cursor: not-allowed;
+  }
+}
+.btn-success {
+  @include btn($color-success);
+}
+.btn-danger {
+  @include btn($color-danger);
+}
+.btn-warning {
+  @include btn($color-warning);
+}
+.btn-info {
+  @include btn($color-info);
+}
+.btn-primary {
+  @include btn($color-primary);
+}
+.btn-secondary {
+  @include btn($color-secondary);
+}
+.btn-default {
+  @include btn($color-default);
+}
+.btn-white {
+  @include btn(white, $hover-color: $color-text);
+}
+.btn-light {
+  @include btn($color-light-blue, $hover-color: $color-text);
+}
+
+/* Alerts */
+@mixin alert($color) {
+  @include style-base($color);
+  background: lightened($color);
+}
+.alert {
+  @include box-spacing(1.3);
+  width: 100%;
+  $m: .2em;
+  margin-top: $m;
+  margin-bottom: $m;
+  border-radius: 4px;
+}
+.alert-danger {
+  @include alert($color-danger);
+}
+.alert-success {
+  @include alert($color-success);
+}
+.alert-warning {
+  @include alert($color-warning);
+}
+.alert-info {
+  @include alert($color-info);
+}
+.alert-primary {
+  @include alert($color-primary);
+}
+.alert-secondary {
+  @include alert($color-secondary);
+}
+.alert-default {
+  @include alert($color-default);
+}
+
+/* Effects */
+$shadow-sm: .05em;
+$shadow-md: .1em;
+$shadow-lg: .2em;
+$shadow-ref: .13em;
+@mixin shadow($props) {
+  -moz-box-shadow: $props;
+  -webkit-box-shadow: $props;
+  box-shadow: $props;
+}
+@mixin drop-shadow($size: $shadow-md, $inset: false) {
+  $intensity: $size / $shadow-ref;
+  $y: 8px * $intensity;
+  $blur-radius: 3px + 7px * $intensity;
+  $spread-radius: 2px + 1px * $intensity;
+  $color: rgba(0, 0, 0, .1);
+  $props: 0 $y $blur-radius $spread-radius $color;
+  @if $inset == true {
+    @include shadow($props inset);
+  }
+  @if $inset == false {
+    @include shadow($props);
+  }
+}
+@mixin drop-shadow-inset($size: $shadow-md) {
+  @include drop-shadow($size, true);
+}
+@mixin drop-shadow-light {
+  @include drop-shadow($shadow-sm);
+}
+@mixin drop-shadow-light-inset {
+  @include drop-shadow(.5, true);
+}
+@mixin drop-shadow-animate($begin, $end) {
+  @include drop-shadow($begin);
+  $raise: 2 * ($end - $begin);
+  $t: .4s;
+  $scale: 1 + .02 * $raise / .34em;
+  transition: transform $t, box-shadow $t;
+  &:hover {
+    @include drop-shadow($end);
+    transform: translateY(-$raise) scale($scale);
+  }
+}
+.drop-shadow-sm-md {
+  @include drop-shadow-animate($shadow-sm, $shadow-md);
+}
+.drop-shadow-sm-lg {
+  @include drop-shadow-animate($shadow-sm, $shadow-lg);
+}
+.drop-shadow-md-lg {
+  @include drop-shadow-animate($shadow-md, $shadow-lg);
+}
+.drop-shadow-sm {
+  @include drop-shadow($shadow-sm);
+}
+.drop-shadow-md {
+  @include drop-shadow($shadow-md);
+}
+.drop-shadow-lg {
+  @include drop-shadow($shadow-lg);
+}
+
+@mixin badge($color) {
+  color: $color;
+  background-color: lightened($color);
+}
+
+.badge {
+  @include box-spacing;
+  display: inline-block;
+  border-radius: 2em;
+  margin: .2em;
+  font-size: small;
+  width: fit-content;
+  height: fit-content;
+}
+.badge-lg {
+  @include box-spacing(1.3);
+  font-size: medium !important;
+}
+.badge-sm {
+  @include box-spacing(0.7);
+  font-size: x-small !important;
+}
+.badge-success {
+  @include style-success;
+  @include badge($color-success);
+}
+.badge-danger {
+  @include style-danger;
+  @include badge($color-danger);
+}
+.badge-warning {
+  @include style-warning;
+  @include badge($color-warning);
+}
+.badge-info {
+  @include style-info;
+  @include badge($color-info);
+}
+.badge-primary {
+  @include style-primary;
+  @include badge($color-primary);
+}
+.badge-secondary {
+  @include style-secondary;
+  @include badge($color-secondary);
+}
+.badge-default {
+  @include style-default;
+  @include badge($color-default);
+}
+.badge-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

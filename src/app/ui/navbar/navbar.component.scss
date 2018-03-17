@@ -1,0 +1,133 @@
+@import '~sass/media-queries';
+@import '~app/showcase-site/sass/variables';
+@import '~app/showcase-site/sass/mixins';
+$margin-page: 2em;
+$col-padding: 10px;
+
+.navbar {
+  position: static;
+  top: 0;
+  padding: 0 $margin-page;
+  margin: 0;
+  background: white;
+  z-index: 10;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.top {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+a.logo-container {
+  display: block;
+  padding: $col-padding;
+  margin: 0 auto;
+}
+
+img.logo {
+  width: 100%;
+  max-width: 15em;
+  padding-top: .3em;
+  padding-bottom: .2em;
+}
+/* Mobile-first narrow navbar */
+.nav-narrow {
+  display: flex;
+  flex-direction: column;
+  flex: 1;  // pushes logo to left
+  margin-top: $margin-page;
+}
+.nav-narrow-links {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  flex-direction: column;
+  flex: 1;
+
+  .links {
+    li:last-child {
+      margin-bottom: $margin-page;
+    }
+  }
+}
+
+i.hamburger {
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: 0;
+  color: $color-dark-blue;
+}
+
+.links {
+  padding-top: 0em;
+  max-height: 100%;
+  transition: max-height 0.3s;
+  overflow: hidden;
+
+  li {
+    text-align: center;
+    margin-left: auto;
+    margin-right: 0;
+
+    & + li {
+      margin-top: 16px;
+    }
+  }
+}
+
+a.nav-link {
+  text-decoration: none;
+  color: rgb(99, 92, 161);
+  font-weight: bold;
+
+  &:hover {
+    color: rgb(46, 37, 128);
+  }
+}
+/* Desktop wide navbar */
+.nav-wide {
+  padding: 0;
+  margin: 2em 0 0;
+  list-style-type: none;
+  display: none;
+  flex: 1;
+
+  .links {
+    display: flex;
+
+    li {
+      @include nav-link($underline: true);
+      margin-top: auto;
+
+      & + li {
+        /* Add space between nav items */
+        margin-left: 16px;
+      }
+    }
+  }
+}
+/* Underline nav links */
+.nav-wide a.nav-link:hover::after {
+  background: rgb(46, 37, 128);
+}
+/* Login button */
+.nav-wide li.login {
+  margin: 0 0 auto auto;
+}
+
+/*  */
+@include media-md() {
+  .nav-wide {
+    display: flex;
+  }
+
+  .nav-narrow {
+    display: none;
+  }
+  .nav-narrow-links {
+    display: none;
+  }
+}

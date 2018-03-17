@@ -1,0 +1,39 @@
+@import '~app/showcase-site/sass/mixins';
+
+#description {
+  @include page-section(1);
+  display: grid;
+  grid-gap: $margin-page;
+  grid-template-columns: 1fr;
+  @include media-md {
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr auto;
+  }
+}
+
+#current-campaign-ha-widget {
+  width: 16em;
+  height: 32em;
+  border: none;
+  @include media-xs {
+    width: 20em;
+    height: 30em;
+  }
+  @include media-lg {
+    width: 26em;
+    height: 26em;
+  }
+}
+
+#donate-ha-widget {
+  box-sizing: border-box;
+  background-color: white;
+  width: 100%;
+  height: 1000px;
+  @include margin-page;
+  padding-top: 0;
+}
+
+#current-campaign {
+  // display: none;
+}

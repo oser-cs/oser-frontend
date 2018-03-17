@@ -1,0 +1,24 @@
+@import '~app/showcase-site/sass/mixins';
+
+#page {
+  @include margin-page;
+}
+
+$grid-gap: 1em;
+#visits {
+  list-style-type: none;
+  margin: 0 auto;
+  width: fit-content;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  @include media-xs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include media-md {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  grid-auto-flow: dense;
+  grid-column-gap: $grid-gap;
+  grid-row-gap: $grid-gap;
+}

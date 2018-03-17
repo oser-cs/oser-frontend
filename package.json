@@ -1,0 +1,58 @@
+{
+  "name": "oser-app",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": {
+    "ng": "ng",
+    "start": "node server.js",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "postinstall": "ng build --prod"
+  },
+  "private": true,
+  "dependencies": {
+    "@agm/core": "^1.0.0-beta.2",
+    "@angular/common": "^4.0.0",
+    "@angular/compiler": "^4.0.0",
+    "@angular/core": "^4.0.0",
+    "@angular/forms": "^4.0.0",
+    "@angular/http": "^4.0.0",
+    "@angular/platform-browser": "^4.0.0",
+    "@angular/platform-browser-dynamic": "^4.0.0",
+    "@angular/router": "^4.0.0",
+    "@angular/cli": "1.4.9",
+    "@angular/compiler-cli": "^4.4.6",
+    "core-js": "^2.4.1",
+    "express": "^4.16.3",
+    "fuse.js": "^3.2.0",
+    "jump.js": "^1.0.2",
+    "ngx-markdown": "^1.5.0",
+    "remove-markdown": "^0.2.2",
+    "rxjs": "^5.1.0",
+    "typescript": "~2.2.0",
+    "zone.js": "^0.8.4"
+  },
+  "devDependencies": {
+    "@types/jasmine": "2.5.38",
+    "@types/node": "~6.0.60",
+    "codelyzer": "~2.0.0",
+    "enhanced-resolve": "^4.0.0",
+    "jasmine-core": "~2.5.2",
+    "jasmine-spec-reporter": "~3.2.0",
+    "karma": "~1.4.1",
+    "karma-chrome-launcher": "~2.0.0",
+    "karma-cli": "~1.0.1",
+    "karma-coverage-istanbul-reporter": "^0.2.0",
+    "karma-jasmine": "~1.1.0",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "protractor": "~5.1.0",
+    "ts-node": "~2.0.0",
+    "tslint": "~4.5.0"
+  },
+  "engines": {
+    "node": "9.5.0",
+    "npm": "5.6.0"
+  }
+}
