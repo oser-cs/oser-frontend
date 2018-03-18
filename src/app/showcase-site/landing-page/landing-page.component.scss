@@ -183,11 +183,16 @@
 
   .cta {
     display: grid;
-    grid-template-areas: "text" "well";
+    grid-template-areas:
+      "text"
+      "well";
     grid-gap: 2em;
     margin-bottom: 2em;
     @include media-lg {
-      grid-template-areas: "text well";
+      // Change layout only if there are partners to show
+      &.has-items {
+        grid-template-areas: "text well";
+      }
     }
   }
 

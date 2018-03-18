@@ -59,7 +59,7 @@
   <div class="heading">
     <h2>Ils ont l'envie, nous sommes le coup de pouce.</h2>
   </div>
-  <div class="cta">
+  <div class="cta" [ngClass]="{'has-items': premiumPartners.length > 0}">
     <div class="cta-text">
       <p>
         Ils nous soutiennent cette année encore : <strong>merci à nos partenaires pour leur engagement !</strong>
@@ -72,12 +72,12 @@
       </div>
     </div>
     <div class="cta-well white">
-      <div *ngFor="let partner of partners">
-        <app-partner *ngIf="partner.premium" [partner]="partner"></app-partner>
+      <div *ngFor="let partner of premiumPartners">
+        <app-partner [partner]="partner"></app-partner>
       </div>
     </div>
   </div>
-  <div class="cta">
+  <div class="cta" [ngClass]="{'has-items': otherPartners.length > 0}">
     <div class="cta-text">
       <p>
         OSER fait partie de la Cordée Mutualisée de l'Université Paris Saclay, projet visant à favoriser l'accès à l'enseignement supérieur, dont les  filières d'excellence, de jeunes quel que soit leur milieu socioculturel. Notre action est ainsi en partie financée par des organismes régionaux et départementaux.
@@ -90,8 +90,8 @@
       </div>
     </div>
     <div class="cta-well">
-      <div *ngFor="let partner of partners">
-        <app-partner *ngIf="!partner.premium" [partner]="partner"></app-partner>
+      <div *ngFor="let partner of otherPartners">
+        <app-partner [partner]="partner"></app-partner>
       </div>
     </div>
   </div>

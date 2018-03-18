@@ -6,7 +6,9 @@ $padding: 1em 1.5em;
   display: grid;
   grid-template-columns: 1fr;
   @include media-md {
-    grid-template-columns: 0.4fr 1fr;
+    &.has-image {
+      grid-template-columns: 0.4fr 1fr;
+    }
   }
   grid-column-gap: 0.5em;
   // display: flex;

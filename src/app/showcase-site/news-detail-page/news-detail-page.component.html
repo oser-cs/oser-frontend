@@ -8,8 +8,10 @@
   <p class="text-muted">Publié le {{ article.date | date:'shortDate' }} à {{ article.date | date:'shortTime' }}</p>
 
   <div class="content">
-    <img [src]="article.src" [alt]="article.title" class="drop-shadow-sm">
-    <markdown [data]="article.content"></markdown>
+    <img *ngIf="article.src" [src]="article.src" [alt]="article.title" class="drop-shadow-sm">
+    <div markdown>
+      <div [innerHTML]="article.content | emojis"></div>
+    </div>
   </div>
 
   <div id="related" *ngIf="relatedArticles && relatedArticles.length > 0">

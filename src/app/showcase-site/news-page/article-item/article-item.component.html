@@ -1,5 +1,5 @@
 <a class="no-style" [routerLink]="['../actualites', article.id]">
-  <div class="card">
+  <div class="card" [ngClass]="{'has-image': article.src}">
     <div class="image">
         <img *ngIf="article.src" [src]="article.src" [alt]="article.title"/>
     </div>
@@ -12,9 +12,7 @@
       <ul class="badge-list">
         <span *ngFor="let category of article.categories" class="badge badge-default">{{ category }}</span>
       </ul>
-      <p>
-        {{ article.preview }}
-      </p>
+      <p [innerHTML]="article.preview | emojis"></p>
       <a [routerLink]="['../actualites', article.id]">Lire la suite</a>
     </div>
   </div>

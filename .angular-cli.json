@@ -19,7 +19,8 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "sass/styles.scss"
+        "sass/styles.scss",
+        "../node_modules/ng2-emoji/css/ng2-emoji.css"
       ],
       "scripts": [
         "../node_modules/marked/lib/marked.js"

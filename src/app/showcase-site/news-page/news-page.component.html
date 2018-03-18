@@ -14,7 +14,7 @@
     </div>
     <ul class="filters" [ngClass]="{'hidden': !filtersVisible}">
       <list-filter class="filter" title="Année" [values]="years" (onSelect)="onSelectYear($event)" [countContains]="articleYears"></list-filter>
-      <list-filter class="filter" title="Catégorie" [values]="categories" (onSelect)="onSelectCategory($event)" [countContains]="articleCategories"></list-filter>
+      <list-filter *ngIf="categories && categories.length > 0" class="filter" title="Catégorie" [values]="categories" (onSelect)="onSelectCategory($event)" [countContains]="articleCategories"></list-filter>
     </ul>
     <hr id="search-hr">
   </div>

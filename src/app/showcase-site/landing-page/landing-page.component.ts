@@ -47,6 +47,16 @@ export class LandingPageComponent implements OnInit {
     );
   }
 
+  get premiumPartners(): Partner[] {
+    if (!this.partners) return [];
+    return this.partners.filter(p => p.premium);
+  }
+
+  get otherPartners(): Partner[] {
+    if (!this.partners) return [];
+    return this.partners.filter(p => !p.premium);
+  }
+
   jumpToContent(): void {
     jump('#qui-sommes-nous');
   }
