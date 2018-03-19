@@ -3,17 +3,15 @@ import { Observable } from 'rxjs/Observable';
 import { Testimony } from './testimony.model';
 import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
-import { Config } from '@app/config';
+import { environment } from '@environments/environment';
 
 
 @Injectable()
 export class TestimonyService {
 
-  private baseUrl: string;
+  private baseUrl = environment.apiUrl + 'testimonies/';
 
-  constructor(private _config: Config, private http: HttpClient) {
-    this.baseUrl = _config.get('apiUrl') + 'testimonies/';
-  }
+  constructor(private http: HttpClient) { }
 
   // Adapt JSON returned by API to return testimonies
   adapt(item: any): Testimony {

@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { Config } from '@app/config';
+import { environment } from '@environments/environment';
 
 @Injectable()
 export class AuthService {
 
-  private loginUrl: string;
+  private loginUrl = environment.apiUrl + 'auth/get-token/';
   private storageKey: string = 'currentUser';
 
   fromGuard: boolean;
@@ -15,9 +15,7 @@ export class AuthService {
 
   private _user: any;
 
-  constructor(private _config: Config, private http: HttpClient) {
-    this.loginUrl = _config.get('apiUrl') + 'auth/get-token/';
-  }
+  constructor(private http: HttpClient) { }
 
   login(username: string, password: string) {
     return this.http.post<any>(this.loginUrl, { username: username, password: password })

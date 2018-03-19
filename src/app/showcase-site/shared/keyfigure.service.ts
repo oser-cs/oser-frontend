@@ -3,17 +3,15 @@ import { Observable } from 'rxjs/Observable';
 import { KeyFigure } from './keyfigure.model';
 import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
-import { Config } from '@app/config';
+import { environment } from '@environments/environment';
 
 
 @Injectable()
 export class KeyFigureService {
 
-  private baseUrl: string;
+  private baseUrl = environment.apiUrl + 'keyfigures/';
 
-  constructor(private _config: Config, private http: HttpClient) {
-    this.baseUrl = _config.get('apiUrl') + 'keyfigures/';
-  }
+  constructor(private http: HttpClient) { }
 
   // Adapt JSON returned by API to match the KeyFigure interface
   adapt(item: any): KeyFigure {

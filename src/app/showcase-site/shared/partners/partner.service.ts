@@ -3,16 +3,15 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { tap, map } from 'rxjs/operators';
 import { Partner } from './partner.model';
-import { Config } from '@app/config';
+import { environment } from '@environments/environment';
+
 
 @Injectable()
 export class PartnerService {
 
-  private baseUrl: string;
+  private baseUrl = environment.apiUrl + 'partners/';
 
-  constructor(private _config: Config, private http: HttpClient) {
-    this.baseUrl = _config.get('apiUrl') + 'partners/';
-  }
+  constructor(private http: HttpClient) {}
 
   adapt(item: any): Partner {
     return new Partner({

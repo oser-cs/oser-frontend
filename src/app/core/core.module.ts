@@ -6,7 +6,6 @@ import { LinkService } from './links';
 import { AuthGuard } from './auth/auth-guard.service';
 import { MessageModule } from './messages';
 import { FuzzyPipe, LineBreaksPipe } from './pipes';
-import { Config } from '@app/config';
 
 @NgModule({
   imports: [
@@ -20,7 +19,6 @@ import { Config } from '@app/config';
   providers: [
     AuthService,
     AuthGuard,
-    Config,
     LinkService,
   ],
   exports: [

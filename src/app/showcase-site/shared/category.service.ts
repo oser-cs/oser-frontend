@@ -2,17 +2,15 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
-import { Config } from '@app/config';
+import { environment } from '@environments/environment';
 
 
 @Injectable()
 export class CategoryService {
 
-  baseUrl: string;
+  baseUrl = environment.apiUrl + 'categories/';
 
-  constructor(private _config: Config, private http: HttpClient) {
-    this.baseUrl = _config.get('apiUrl') + 'categories/';
-  }
+  constructor(private http: HttpClient) { }
 
   // Adapt JSON returned by API to return title of category
   adapt(item: any): any { return item.title; }

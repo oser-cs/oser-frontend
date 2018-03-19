@@ -6,7 +6,8 @@
     "baseUrl": "",
     "types": [],
     "paths": {
-      "@app/*": ["app/*"]
+      "@app/*": ["app/*"],
+      "@environments/*": ["environments/*"]
     }
   },
   "exclude": [

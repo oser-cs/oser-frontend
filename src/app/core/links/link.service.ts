@@ -2,17 +2,15 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { tap, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { Config } from '@app/config';
+import { environment } from '@environments/environment';
 
 @Injectable()
 export class LinkService {
   // Use to retrieve links stored in database.
 
-  baseUrl: string;
+  baseUrl = environment.apiUrl + 'links/';
 
-  constructor(private _config: Config, private http: HttpClient) {
-    this.baseUrl = _config.get('apiUrl') + 'links/';
-  }
+  constructor(private http: HttpClient) { }
 
   get(slug: string): Observable<string> {
     let url = this.baseUrl + `${slug}/`;

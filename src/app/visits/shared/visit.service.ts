@@ -6,25 +6,21 @@ import { map, tap } from 'rxjs/operators';
 import { Visit } from './visit.model';
 import { Place } from './place.model';
 import { AuthService } from '@app/core';
-import { Config } from '@app/config';
+import { environment } from '@environments/environment';
+
 
 @Injectable()
 export class VisitService {
 
-  apiUrl: string;
-  baseUrl: string;
-  participantBaseUrl: string;
+  apiUrl = environment.apiUrl;
+  baseUrl = environment.apiUrl + 'visits/';
+  participantBaseUrl: string = environment.apiUrl + 'visit-participants/';
 
   constructor(
-    private _config: Config,
     private auth: AuthService,
     private http: HttpClient,
     private router: Router,
-    private route: ActivatedRoute) {
-      this.apiUrl = this._config.get('apiUrl');
-      this.baseUrl = this._config.get('apiUrl') + 'visits/';
-      this.participantBaseUrl = this._config.get('apiUrl') + 'visit-participants/';
-    }
+    private route: ActivatedRoute) { }
 
   // Adapt JSON returned by API to match the Visit interface
   adapt(item: any): Visit {
