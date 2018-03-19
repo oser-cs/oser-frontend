@@ -94,3 +94,8 @@ select {
   align-items: center;
   justify-content: center;
 }
+
+// Required for emoji support
+.emoji {
+    display: inline-block;
+}

@@ -6,7 +6,7 @@
     <div class="card-body">
       <h3>{{ article.title }}</h3>
       <h5>Publié le {{ article.date | date:"shortDate" }}</h5>
-      <p>{{ article.preview }}</p>
+      <p [innerHTML]="article.preview | emojis"></p>
       <a>Lire la suite</a>
     </div>
   </div>
