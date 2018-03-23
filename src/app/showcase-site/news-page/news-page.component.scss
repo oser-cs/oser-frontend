@@ -9,27 +9,46 @@ $stick: 1em;
   grid-template-areas:
     "hd"
     "search"
-    "main";
+    "main"
+    "feeds";
   grid-row-gap: 1em;
+  grid-column-gap: 1em;
 
   @include media-sm {
     grid-template-areas:
-      ". hd"
-      "search main"
+      "hd hd"
       "search main";
     grid-template-columns: 1fr 3fr;
   }
 
   @include media-lg {
     grid-template-areas:
-      ". hd ."
-      "search main";
-    grid-template-columns: 1fr 3fr;
+      ". hd hd"
+      "search main feeds";
+    grid-template-columns: 1fr 3fr auto;
   }
 }
 
 .header {
   grid-area: hd;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
+  grid-template-areas:
+    "text"
+    "like-btn";
+  align-items: flex-end;
+  @include media-sm {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr;
+    grid-template-areas: "text like-btn";
+  }
+}
+.like-btn {
+  grid-area: like-btn;
+  @include media-lg {
+    display: none;
+  }
 }
 
 .search {
@@ -94,9 +113,12 @@ $stick: 1em;
 }
 .feeds {
   grid-area: feeds;
+  display: none;
   height: fit-content;
   @include media-lg {
+    display: block;
     position: sticky;
     top: $stick;
   }
+  text-align: center;
 }

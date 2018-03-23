@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://oser-backend-staging.herokuapp.com/api/',
+  apiUrl: 'https://oser-backend.herokuapp.com/api/',
 };
