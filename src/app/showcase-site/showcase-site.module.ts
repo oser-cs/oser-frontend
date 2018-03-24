@@ -30,6 +30,7 @@ import { PartnerService } from './shared/partners';
 
 // Pipes
 import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.component';
+import { CarouselComponent, CarouselDirective, CarouselItemElement } from './carousel';
 
 @NgModule({
   imports: [
@@ -53,6 +54,9 @@ import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.com
     FilterComponent,
     NewsDetailPageComponent,
     PartnerComponent,
+    CarouselComponent,
+    CarouselDirective,
+    CarouselItemElement
   ],
   providers: [
     ArticleService,

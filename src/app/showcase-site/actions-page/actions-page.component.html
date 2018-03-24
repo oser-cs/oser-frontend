@@ -43,17 +43,18 @@
     </li>
   </ul>
   <div class="slideshow drop-shadow-sm">
-    <span class="nav" (click)="slide(-1)"><i class="fa fa-arrow-left fa-2x"></i></span>
-    <ul class="slideshow-list drop-shadow-md">
-      <li *ngFor="let item of slideItems" [hidden]="!(current === item)">
-        <img [src]="item.image" [alt]="item.title">
-        <div class="legend">
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.shortDescription }}</p>
+    <!-- itemWidth must be the length of images in the slideshow -->
+    <carousel #carousel [itemWidth]="600" [interval]="4500">
+      <div *ngFor="let item of slideItems" class="slideshow-list">
+        <div *carouselItem class="slideshow-item">
+          <img [src]="item.image" [alt]="item.title">
+          <div class="legend">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.shortDescription }}</p>
+          </div>
         </div>
-      </li>
-    </ul>
-    <span class="nav" (click)="slide(+1)"><i class="fa fa-arrow-right fa-2x"></i></span>
+      </div>
+    </carousel>
   </div>
 
   <div class="testimonies">

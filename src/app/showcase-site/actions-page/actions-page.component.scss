@@ -10,7 +10,7 @@
   height: 100%;
   z-index: -50;
   /* push image behind everything */
-  background: url("~assets/img/groupe-oser-bw.jpg") no-repeat center;
+  background: url("/assets/img/groupe-oser-bw.jpg") no-repeat center;
   background-size: cover;
   filter: blur(2px);
 }
@@ -86,60 +86,46 @@ li.action {
   flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
+  max-width: 100vw;
+  overflow: hidden;
   @include margin-page;
   z-index: 1;
   @include color-bg($color-light-blue);
+}
 
-  .nav {
-    cursor: pointer;
-    margin: -2em;
-    @include media-md {
-      margin: 1em;
-    }
-    z-index: 4;
-    color: $color-dark-blue;
-    transition: color 0.2s;
+.slideshow-list {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
 
-    &:hover {
-      color: $color-purple;
-    }
+.slideshow-item {
+  position: relative;
+}
+
+.legend {
+  $fix: 6px;
+  @include media-md {
+    position: absolute;
+    bottom: $fix;
+  }
+  margin: 0 auto;
+  margin-top: -$fix;
+  background-color: transp($color-darkest-blue);
+  width: 100%;
+  max-width: 100vw;
+  padding: 1em;
+  box-sizing: border-box;
+  color: white;
+
+  p {
+    margin: 0.3em 0 0;
   }
 
-  ul.slideshow-list {
-    width: 100%;
-    max-width: 35em;
-    position: relative;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-
-    img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    .legend {
-      @include media-md {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-      }
-      background-color: transp($color-darkest-blue);
-      width: 100%;
-      padding: 1em;
-      box-sizing: border-box;
-      color: white;
-
-      p {
-        margin: 0.3em 0 0;
-      }
-
-      h3 {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
-    }
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }
 

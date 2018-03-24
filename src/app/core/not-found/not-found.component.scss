@@ -10,7 +10,7 @@
   height: 100%;
   /* push image behind everything */
   z-index: -3;
-  background: url("~assets/img/groupe-oser-bw.jpg") no-repeat center;
+  background: url("/assets/img/groupe-oser-bw.jpg") no-repeat center;
   background-size: cover;
 
   &::after {
