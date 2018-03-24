@@ -34,8 +34,13 @@
     text-align: left;
     align-items: flex-start;
   }
+  z-index: 1;
   color: white;
-  background: $color-dark-blue;
+  background: linear-gradient(
+    to top right,
+    adjust-hue(darken($color-dark-blue, 7%), -5),
+    $color-dark-blue,
+  );
 }
 
 h1.code-404 {
