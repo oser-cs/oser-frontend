@@ -5,3 +5,4 @@ export * from './auth/auth-guard.service';
 export * from './pipes';
 export * from './links';
 export * from './not-found';
+export * from './documents';

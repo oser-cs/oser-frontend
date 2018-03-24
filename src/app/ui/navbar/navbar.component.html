@@ -9,19 +9,6 @@
           <a class="nav-link" [routerLink]="link.href">{{ link.text }}</a>
         </li>
       </div>
-      <!--<li class="login">
-        <div *ngIf="currentUser; else visitor">
-          <a [routerLink]="loginRoute" class="btn-primary" type="button">
-            <i class="fa fa-user"></i> Espace membre
-          </a>
-          <a class="btn-secondary" (click)="logout()">Déconnexion</a>
-        </div>
-        <ng-template #visitor>
-          <a [routerLink]="loginRoute" class="btn-primary" type="button">
-            <i class="fa fa-power-off"></i> Connexion
-          </a>
-        </ng-template>
-      </li>-->
     </div>
     <div class="nav-narrow">
       <i (click)="toggle()" class="hamburger fa fa-bars fa-2x"></i>
