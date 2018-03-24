@@ -20,7 +20,7 @@ export class DocumentComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.docSub = this.documentService.get(this.slug).subscribe(
       content => this.content = content,
-      e => console.log(e);
+      e => console.log(e)
     );
   }
 
