@@ -70,7 +70,7 @@ export class NewsDetailPageComponent implements OnInit {
 
   navigate(other: Article) {
     // Don't navigate if it is actually the same article
-    if (other.id === this.article.id) return:
+    if (other.id === this.article.id) return;
     // Forget the old article
     this.article = null;
     // Navigate to trigger the fetch of a new article
