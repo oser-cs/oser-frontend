@@ -6,6 +6,7 @@ import { LinkService } from './links';
 import { AuthGuard } from './auth/auth-guard.service';
 import { MessageModule } from './messages';
 import { FuzzyPipe, LineBreaksPipe } from './pipes';
+import { DocumentService, DocumentComponent } from './documents';
 
 @NgModule({
   imports: [
@@ -15,11 +16,13 @@ import { FuzzyPipe, LineBreaksPipe } from './pipes';
   declarations: [
     FuzzyPipe,
     LineBreaksPipe,
+    DocumentComponent,
   ],
   providers: [
     AuthService,
     AuthGuard,
     LinkService,
+    DocumentService,
   ],
   exports: [
     MessageModule,
@@ -27,6 +30,7 @@ import { FuzzyPipe, LineBreaksPipe } from './pipes';
     LineBreaksPipe,
     MarkdownComponent,
     MarkdownPipe,
+    DocumentComponent,
   ]
 })
 export class CoreModule { }
