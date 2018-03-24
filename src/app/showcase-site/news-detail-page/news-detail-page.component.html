@@ -9,9 +9,7 @@
 
   <div class="content">
     <img *ngIf="article.src" [src]="article.src" [alt]="article.title" class="drop-shadow-sm">
-    <div markdown>
-      <div [innerHTML]="article.content | emojis"></div>
-    </div>
+      <div [innerHTML]="article.content | linebreaks | emojis | markdown"></div>
   </div>
 
   <div id="related" *ngIf="relatedArticles && relatedArticles.length > 0">

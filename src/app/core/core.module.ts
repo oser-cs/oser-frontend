@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MarkdownModule, MarkdownComponent } from 'ngx-markdown';
+import { MarkdownModule, MarkdownComponent, MarkdownPipe } from 'ngx-markdown';
 import { AuthService } from './auth/auth.service';
 import { LinkService } from './links';
 import { AuthGuard } from './auth/auth-guard.service';
@@ -26,6 +26,7 @@ import { FuzzyPipe, LineBreaksPipe } from './pipes';
     FuzzyPipe,
     LineBreaksPipe,
     MarkdownComponent,
+    MarkdownPipe,
   ]
 })
 export class CoreModule { }

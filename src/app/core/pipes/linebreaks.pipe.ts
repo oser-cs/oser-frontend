@@ -7,6 +7,7 @@ import * as Fuse from 'fuse.js';
 export class LineBreaksPipe implements PipeTransform {
   transform(text: string, repl: string='<br />'): string {
     if (!text) return '';
-    return text.replace(/\n/g, repl);
+    const replaced = text.replace(/\n/g, repl);
+    return replaced;
   }
 }

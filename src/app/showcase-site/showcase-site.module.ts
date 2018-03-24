@@ -6,7 +6,6 @@ import { CoreModule } from '@app/core';
 import { UiModule } from '@app/ui';
 import { ShowcaseRoutingModule } from './showcase-routing.module';
 import { Ng2EmojiModule } from 'ng2-emoji';
-// import { Ng4TwitterTimelineModule } from 'ng4-twitter-timeline/lib/index';
 
 // Components
 import { ShowcaseSiteComponent } from './showcase-site.component';
