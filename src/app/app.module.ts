@@ -1,5 +1,3 @@
-import { LOCALE_ID } from '@angular/core';
-
 // Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -39,7 +37,6 @@ import { NotFoundComponent } from '@app/core';
     AppRoutingModule,
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'fr' }
   ],
   bootstrap: [AppComponent]
 })

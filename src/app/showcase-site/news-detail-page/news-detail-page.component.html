@@ -1,27 +1,30 @@
-<div id="article" *ngIf="article">
-  <h1>{{ article.title }}</h1>
+<div id="article">
+  <div *ngIf="article; else loading">
+    <h1>{{ article.title }}</h1>
 
-  <ul class="badge-list">
-    <span *ngFor="let category of article.categories" class="badge badge-default badge-lg">{{ category }}</span>
-  </ul>
-
-  <p class="text-muted">Publié le {{ article.date | date:'shortDate' }} à {{ article.date | date:'shortTime' }}</p>
-
-  <div class="content">
-    <img *ngIf="article.src" [src]="article.src" [alt]="article.title" class="drop-shadow-sm">
-      <div [innerHTML]="article.content | linebreaks | emojis | markdown"></div>
-  </div>
-
-  <div id="related" *ngIf="relatedArticles && relatedArticles.length > 0">
-    <h3>Dans la même catégorie…</h3>
-    <ul>
-      <li *ngFor="let related of relatedArticles">
-        <!--
-        TODO FIX: no error but update not triggered
-        See: https://github.com/angular/angular/issues/10207
-        -->
-        <a class="related-link" (click)="navigate(related)">{{ related.title }}</a>
-      </li>
+    <ul class="badge-list">
+      <span *ngFor="let category of article.categories" class="badge badge-default badge-lg">{{ category }}</span>
     </ul>
+
+    <p class="text-muted">Publié le {{ article.date | date:'shortDate' }} à {{ article.date | date:'shortTime' }}</p>
+
+    <div class="content">
+      <img *ngIf="article.src" [src]="article.src" [alt]="article.title" class="drop-shadow-sm">
+      <div [innerHTML]="article.content | linebreaks | markdown | emojis"></div>
+    </div>
+
+    <div id="related" *ngIf="relatedArticles && relatedArticles.length > 0">
+      <h3>Dans la même catégorie…</h3>
+      <ul>
+        <li *ngFor="let related of relatedArticles">
+          <a class="related-link" (click)="navigate(related)">
+            {{ related.title }}
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
+  <ng-template #loading>
+    <load-spinner></load-spinner>
+  </ng-template>
 </div>
