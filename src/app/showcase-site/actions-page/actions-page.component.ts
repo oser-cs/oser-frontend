@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Testimony } from '../shared/testimony.model';
-import { TestimonyService } from '../shared/testimony.service';
-
+import {
+  Testimony, TestimonyService,
+  Action, ActionService
+} from '@app/showcase-site/shared';
 
 class SlideItem {
   title: string;
@@ -38,11 +39,15 @@ export class ActionsPageComponent implements OnInit {
   slideItems: SlideItem[];
   current: SlideItem;
   slideInterval: number = 9000;
+  actions: Action[];
 
-  constructor(private testimonyService: TestimonyService) { }
+  constructor(
+    private testimonyService: TestimonyService,
+    private actionService: ActionService) { }
 
   ngOnInit() {
     this.getTestimonies();
+    this.getActions();
     this.getSlideItems();
   }
 
@@ -51,6 +56,13 @@ export class ActionsPageComponent implements OnInit {
       (res) => this.testimonies = res,
       (e) => console.log(e)
     );
+  }
+
+  getActions(): void {
+    this.actionService.list().subscribe(
+      actions => this.actions = actions,
+      e => console.log(e)
+    )
   }
 
   getSlideItems(): void {

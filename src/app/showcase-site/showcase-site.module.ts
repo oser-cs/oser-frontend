@@ -21,11 +21,14 @@ import { FilterComponent } from './shared/filter/filter.component';
 import { PartnerComponent } from './shared/partners';
 
 // Services
-import { ArticleService } from './shared/article.service';
-import { KeyFigureService } from './shared/keyfigure.service';
-import { TestimonyService } from './shared/testimony.service';
-import { CategoryService } from './shared/category.service';
-import { PartnerService } from './shared/partners';
+import {
+  ArticleService,
+  KeyFigureService,
+  TestimonyService,
+  CategoryService,
+  ActionService,
+  PartnerService,
+} from './shared';
 
 // Pipes
 import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.component';
@@ -57,7 +60,7 @@ import { MentionsComponent } from './mentions/mentions.component';
     CarouselComponent,
     CarouselDirective,
     CarouselItemElement,
-    MentionsComponent
+    MentionsComponent,
   ],
   providers: [
     ArticleService,
@@ -65,6 +68,7 @@ import { MentionsComponent } from './mentions/mentions.component';
     TestimonyService,
     CategoryService,
     PartnerService,
+    ActionService,
   ],
   exports: [
     ShowcaseSiteComponent
