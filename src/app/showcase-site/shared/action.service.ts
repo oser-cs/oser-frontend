@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, filter } from 'rxjs/operators';
 import { Action } from './action.model';
 import { environment } from '@environments/environment';
 
@@ -31,5 +31,11 @@ export class ActionService {
         map((data: any) => data.map(this.adapt)),
         tap(resp => console.log('fetched actions'))
       );
+  }
+
+  listHighlight(): Observable<Action[]> {
+    return this.list().pipe(
+      map(actions => actions.filter(action => action.highlight))
+    );
   }
 }
