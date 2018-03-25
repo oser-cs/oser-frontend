@@ -26,7 +26,7 @@ export class CarouselComponent implements OnInit, AfterViewInit, AfterContentIni
   @Input() itemWidth = 480;
   carouselWrapperStyle: any = {};
   @Input() interval = 5000;  // in ms
-  @Input() timing = '400ms ease-in-out';
+  @Input() timing = '700ms ease-in-out';
   private player: AnimationPlayer;
   private currentSlide = 0;
   slideSub: any;
