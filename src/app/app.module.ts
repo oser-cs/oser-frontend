@@ -1,3 +1,7 @@
+import localeFR from '@angular/common/locales/fr';
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+
 // Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +20,8 @@ import { ShowcaseSiteModule } from './showcase-site/showcase-site.module';
 import { AppComponent } from './app.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 import { NotFoundComponent } from '@app/core';
+
+registerLocaleData(localeFR);
 
 @NgModule({
   declarations: [
@@ -37,6 +43,7 @@ import { NotFoundComponent } from '@app/core';
     AppRoutingModule,
   ],
   providers: [
+    { provide: LOCALE_ID, useValue: 'fr' },
   ],
   bootstrap: [AppComponent]
 })

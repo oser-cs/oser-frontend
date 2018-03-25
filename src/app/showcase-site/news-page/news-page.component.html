@@ -26,12 +26,14 @@
   </div>
 
   <div class="main">
-    <div *ngIf="articles; else loading">
-      <ul *ngIf="articles.length > 0; else empty">
-        <app-article-item *ngFor="let article of articles | fuzzy : search : ['title']" [article]="article" [hidden]="hidden(article)"></app-article-item>
+    <div *ngIf="visibleArticles; else loading">
+      <ul *ngIf="visibleArticles.length > 0; else empty">
+        <app-article-item *ngFor="let article of visibleArticles | fuzzy : search : ['title']" [article]="article"></app-article-item>
       </ul>
       <ng-template #empty>
-        <p>Pas d'articles pour le moment</p>
+        <p class="text-center">
+          Pas d'articles ici pour le moment. Restez à l'écoute !
+        </p>
       </ng-template>
     </div>
     <ng-template #loading>
