@@ -2,8 +2,36 @@
 @import './variables';
 @import './mixins';
 
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700,900');
+// @import url('https://fonts.googleapis.com/css?family=Nunito:400,700,900');
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700,900');
+
+@font-face {
+    font-family: 'Avenir';
+    src: url('/fonts/avenir-lt-std/AvenirLTStd-Roman.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir';
+    src: url('/fonts/avenir-lt-std/AvenirLTDStd-Heavy.otf');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir';
+    src: url('/fonts/avenir-lt-std/AvenirLTDStd-Oblique.otf');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Avenir';
+    src: url('/fonts/avenir-lt-std/AvenirLTDStd-HeavyOblique.otf');
+    font-weight: bold;
+    font-style: italic;
+}
 
 body {
   margin: 0;
