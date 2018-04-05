@@ -8,6 +8,9 @@ import { NotFoundComponent } from '@app/core';
 
 const routes: Routes = [
   { path: '', component: ShowcaseSiteComponent },
+  // NOTE: this route to the 404 page should be the last one,
+  // as it is a default page and will be used if no other route matched
+  // the current URL.
   { path: '**', component: NotFoundComponent, data: {title: 'Page introuvable'} },
   // { path: 'login', component: LoginComponent},
   // { path: 'signup', component: SignupPageComponent },
