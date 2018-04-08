@@ -43,7 +43,7 @@
     <h2>Ils témoignent de leur expérience</h2>
     <div *ngIf="testimonies; else loading">
       <ul class="testimony-list" *ngIf="testimonies.length > 0; else empty">
-        <li *ngFor="let t of testimonies">
+        <li *ngFor="let t of testimonies" class="testimony-item">
           <p>{{ t.content }}</p>
           <cite>{{ t.source }}</cite>
         </li>
