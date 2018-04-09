@@ -6,11 +6,13 @@
       <span *ngFor="let category of article.categories" class="badge badge-default badge-lg">{{ category }}</span>
     </ul>
 
+    <p *ngIf="article.summary">{{ article.summary }}</p>
+
     <p class="text-muted">Publié le {{ article.date | date:'shortDate' }} à {{ article.date | date:'shortTime' }}</p>
 
-    <div class="content">
+    <div class="md-content">
       <img *ngIf="article.src" [src]="article.src" [alt]="article.title" class="drop-shadow-sm">
-      <div [innerHTML]="article.content | linebreaks | markdown | emojis"></div>
+      <div [innerHTML]="article.content | markdown | emojis"></div>
     </div>
 
     <div id="related" *ngIf="relatedArticles && relatedArticles.length > 0">
