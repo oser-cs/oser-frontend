@@ -3,14 +3,37 @@ import * as removeMd from 'remove-markdown';
 export class Article {
   id: number;
   title: string;
+  introduction: string;
   content: string;
-  date: Date;
-  src: string;
+  published: Date;
+  modified: Date;
+  image: string;
+  displayImage: boolean;
   pinned: boolean;
   categories: string[];
 
-  constructor(obj) {
-    for (const k of Object.keys(obj)) { this[k] = obj[k]; }
+  constructor(options: {
+    id: number,
+    title?: string,
+    introduction?: string,
+    content?: string,
+    published?: Date,
+    modified?: Date,
+    image?: string,
+    displayImage?: boolean,
+    pinned?: boolean,
+    categories?: string[],
+  }) {
+    this.id = options.id;
+    this.title = options.title || '';
+    this.introduction = options.introduction || '';
+    this.content = options.content || '';
+    this.published = options.published;
+    this.modified = options.modified;
+    this.image = options.image;
+    this.displayImage = options.displayImage;
+    this.pinned = options.pinned || false;
+    this.categories = options.categories || [];
   }
 
   previewLength: number = 220;

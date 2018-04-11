@@ -47,7 +47,7 @@ export class NewsPageComponent implements OnInit {
     // Only articles corresponding to the current filters should be visible
     this.visibleArticles = this.articles.filter(
       article => {
-        if (this.currentYear && article.date.getFullYear() !== this.currentYear) return false;
+        if (this.currentYear && article.published.getFullYear() !== this.currentYear) return false;
         if (this.currentCategory) {
           if (!article.categories.includes(this.currentCategory)) return false;
         }
@@ -62,11 +62,11 @@ export class NewsPageComponent implements OnInit {
         this.articles = articles;
         // Update set of years
         this.years = Array.from(new Set(
-          this.articles.map(a => a.date.getFullYear())
+          this.articles.map(a => a.published.getFullYear())
         ));
         // Update article years
         this.articleYears = this.articles
-          .map(a => a.date.getFullYear().toString());
+          .map(a => a.published.getFullYear().toString());
         // Update article categories
         this.articleCategories = this.articles.map(a => a.categories);
         this.updateVisibleArticles();

@@ -1,14 +1,14 @@
 <a class="no-style" [routerLink]="['../actualites', article.id]">
-  <div class="card" [ngClass]="{'has-image': article.src}">
+  <div class="card" [ngClass]="{'has-image': article.image}">
     <div class="image">
-        <img *ngIf="article.src" [src]="article.src" [alt]="article.title"/>
+        <img *ngIf="article.image" [src]="article.image" [alt]="article.title"/>
     </div>
     <div class="card-body">
       <h3>
         {{ article.title }}
         <span *ngIf="article.pinned" class="pinned">&nbsp;<i class="fa fa-map-pin"></i>&nbsp;À&nbsp;la&nbsp;une</span>
       </h3>
-      <p class="date text-muted">Publié le {{ article.date | date:'shortDate' }}</p>
+      <p class="date text-muted">Publié le {{ article.published | date:'shortDate' }}</p>
       <ul class="badge-list">
         <span *ngFor="let category of article.categories" class="badge badge-default">{{ category }}</span>
       </ul>

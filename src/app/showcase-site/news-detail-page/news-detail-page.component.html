@@ -8,10 +8,13 @@
 
     <p *ngIf="article.summary">{{ article.summary }}</p>
 
-    <p class="text-muted">Publié le {{ article.date | date:'shortDate' }} à {{ article.date | date:'shortTime' }}</p>
+    <p class="text-muted">
+      Publié le {{ article.published | date:'shortDate' }}
+      à {{ article.published | date:'shortTime' }}<span *ngIf="article.modified">, dernière mise à jour le {{ article.modified | date:'shortDate'}} à {{ article.modified | date:'shortTime' }}</span>
+    </p>
 
     <div class="md-content">
-      <img *ngIf="article.src" [src]="article.src" [alt]="article.title" class="drop-shadow-sm">
+      <img *ngIf="article.image && article.displayImage" [src]="article.image" [alt]="article.title" class="drop-shadow-sm">
       <div [innerHTML]="article.content | markdown | emojis"></div>
     </div>
 
