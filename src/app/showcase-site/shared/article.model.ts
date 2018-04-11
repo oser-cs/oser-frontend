@@ -2,6 +2,7 @@ import * as removeMd from 'remove-markdown';
 
 export class Article {
   id: number;
+  slug: string;
   title: string;
   introduction: string;
   content: string;
@@ -14,6 +15,7 @@ export class Article {
 
   constructor(options: {
     id: number,
+    slug: string,
     title?: string,
     introduction?: string,
     content?: string,
@@ -25,6 +27,7 @@ export class Article {
     categories?: string[],
   }) {
     this.id = options.id;
+    this.slug = options.slug;
     this.title = options.title || '';
     this.introduction = options.introduction || '';
     this.content = options.content || '';

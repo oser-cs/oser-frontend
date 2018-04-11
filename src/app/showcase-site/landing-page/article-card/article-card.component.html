@@ -1,4 +1,4 @@
-<a class="no-style" [routerLink]="['actualites/', article.id]">
+<a class="no-style" [routerLink]="['actualites/', article.slug]">
   <div class="card">
     <div class="image">
       <img *ngIf="article.image" [src]="article.image" [alt]="article.title"/>
