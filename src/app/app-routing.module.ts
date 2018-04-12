@@ -8,12 +8,12 @@ import { NotFoundComponent } from '@app/core';
 
 const routes: Routes = [
   { path: '', component: ShowcaseSiteComponent },
-  { path: '**', component: NotFoundComponent, data: {title: 'Page introuvable'} },
-  // { path: 'login', component: LoginComponent},
-  // { path: 'signup', component: SignupPageComponent },
+  { path: 'login', component: LoginComponent},
+  { path: 'signup', component: SignupPageComponent },
   // { path: '', redirectTo: '/signup', pathMatch: 'full'},
-  // { path: 'gallery', component: UiGalleryComponent}
-]
+  // { path: 'gallery', component: UiGalleryComponent},
+  { path: '**', component: NotFoundComponent, data: {title: 'Page introuvable'} },
+];
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
