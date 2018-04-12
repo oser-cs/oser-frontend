@@ -4,15 +4,15 @@
     <h1 class="form-signin-heading">Inscription</h1>
 
     <label for="email">Identifiants de connexion</label><br/>
-    <input type="text" class="form-control block" name="email" placeholder="Adresse e-mail" required="" [(ngModel)]="student.email"/>
+    <input type="text" class="form-control block" name="email" placeholder="Adresse e-mail" required="" autofocus="" [(ngModel)]="student.email"/>
     <input type="password" class="form-control block" name="password" placeholder="Mot de Passe" required=""
             [(ngModel)]="password"/>
     <input type="password" class="form-control block" name="confirm" placeholder="Confirmer le mot de passe" required=""
             #name="ngModel" [(ngModel)]="confirm"/>
     <div *ngIf="(name.dirty || name.touched)">
-        <div *ngIf="!(pass == confirm)"
+        <div *ngIf="!(password == confirm)"
               class="alert alert-danger">Les mots de passe doivent être identiques</div>
-        <div *ngIf="(pass == confirm)"
+        <div *ngIf="(password == confirm)"
               class="alert alert-valid">Les mots de passe sont identiques</div>
     </div>
     <hr/>
