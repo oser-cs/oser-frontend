@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { StudentService } from '../student.service';
 
 @Component({
   selector: 'app-signup-page',
@@ -7,12 +9,52 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupPageComponent implements OnInit {
 
-  pass: string;
+  student = {
+    firstname: '',
+    last_name: '',
+    birth: '',
+    email: '',
+    phone: '',
+    adress: {
+      street: '',
+      town: '',
+      code: '',
+    },
+    emergency_contact: '',
+    password: ''
+
+  };
+
   confirm: string;
 
-  constructor() { }
+  constructor(private studentService: StudentService) { }
 
   ngOnInit() {
+  }
+
+  addStudent() {
+    if (this.student.firstname
+      && this.student.last_name
+      && this.student.birth
+      && this.student.email
+      && this.student.phone
+      && this.student.adress.street
+      && this.student.adress.town
+      && this.student.adress.code
+      && this.student.emergency_contact
+      && this.student.password) {
+      this.studentService.addNewStudent(this.student.firstname,
+                                        this.student.last_name,
+                                        this.student.birth,
+                                        this.student.email,
+                                        this.student.phone,
+                                        this.student.adress.street,
+                                        this.student.adress.town,
+                                        this.student.adress.code,
+                                        this.student.emergency_contact,
+                                        this.student.password)
+      .subscribe();
+    } else { alert('les champs ne peuvent pas être vides !'); }
   }
 
 }

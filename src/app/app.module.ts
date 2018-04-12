@@ -19,6 +19,9 @@ import { AppComponent } from './app.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 import { NotFoundComponent } from '@app/core';
 
+// Services
+import { StudentService } from './student.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +42,7 @@ import { NotFoundComponent } from '@app/core';
     AppRoutingModule,
   ],
   providers: [
+    StudentService,
     { provide: LOCALE_ID, useValue: 'fr' }
   ],
   bootstrap: [AppComponent]

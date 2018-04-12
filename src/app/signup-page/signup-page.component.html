@@ -4,9 +4,9 @@
     <h1 class="form-signin-heading">Inscription</h1>
 
     <label for="email">Identifiants de connexion</label><br/>
-    <input type="text" class="form-control block" name="email" placeholder="Adresse e-mail" required="" autofocus="" />
+    <input type="text" class="form-control block" name="email" placeholder="Adresse e-mail" required="" [(ngModel)]="student.email"/>
     <input type="password" class="form-control block" name="password" placeholder="Mot de Passe" required=""
-            [(ngModel)]="pass"/>
+            [(ngModel)]="password"/>
     <input type="password" class="form-control block" name="confirm" placeholder="Confirmer le mot de passe" required=""
             #name="ngModel" [(ngModel)]="confirm"/>
     <div *ngIf="(name.dirty || name.touched)">
@@ -18,21 +18,22 @@
     <hr/>
 
     <label for="name">Informations Personnelles</label><br/>
-    <input type="text" class="form-control block" name="name" placeholder="Prénom" required=""/>
-    <input type="text" class="form-control block" name="surname" placeholder="Nom" required=""/>
-    <input type="text" class="form-control block" name="telephone" placeholder="Telephone" required=""/>
+    <input type="text" class="form-control block" name="name" placeholder="Prénom" required="" [(ngModel)]="student.first_name"/>
+    <input type="text" class="form-control block" name="surname" placeholder="Nom" required="" [(ngModel)]="student.last_name"/>
+    <input type="date" class="form-control block" name="birth" placeholder="Date d'anniversaire" required="" [(ngModel)]="student.birth"/>
+    <input type="text" class="form-control block" name="telephone" placeholder="Telephone" required="" [(ngModel)]="student.phone"/>
     <hr/>
 
-    <label for="name">Adresse</label><br/>
-    <input type="text" class="form-control block" name="street" placeholder="Adresse" required=""/>
-    <input type="text" class="form-control block" name="town" placeholder="Ville" required=""/>
-    <input type="text" class="form-control block" name="code" placeholder="Code Postal" required=""/>
+    <label for="adress">Adresse</label><br/>
+    <input type="text" class="form-control block" name="street" placeholder="Adresse" required="" [(ngModel)]="student.adress.street"/>
+    <input type="text" class="form-control block" name="town" placeholder="Ville" required="" [(ngModel)]="student.adress.town"/>
+    <input type="text" class="form-control block" name="code" placeholder="Code Postal" required="" [(ngModel)]="student.adress.code"/>
     <hr/>
 
-    <label for="name">Famille</label><br/>
+    <label for="family">Personne à contacter en cas d'urgence</label><br/>
     <input type="text" class="form-control block" name="nameparent" placeholder="Prénom" required=""/>
     <input type="text" class="form-control block" name="surnameparent" placeholder="Nom" required=""/>
-    <input type="text" class="form-control block" name="telephoneparent" placeholder="Telephone d'un parent" required=""/>
+    <input type="text" class="form-control block" name="telephoneparent" placeholder="Telephone d'un parent" required="" [(ngModel)]="student.emergency_contact"/>
     <br/>
     <br/>
 
