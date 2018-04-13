@@ -18,9 +18,12 @@ export class ArticleService {
     return new Article({
       id: item.id,
       title: item.title,
+      introduction: item.introduction,
       content: item.content,
-      date: new Date(item.published),
-      src: item.image,
+      published: new Date(item.published),
+      modified: item.modified ? new Date(item.modified) : null,
+      image: item.image,
+      displayImage: item.display_image,
       pinned: item.pinned,
       categories: item.categories,
     });

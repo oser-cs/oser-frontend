@@ -32,8 +32,8 @@
   <h2>Nous agissons pour plus d'égalité des chances</h2>
   <ul class="action-bubbles">
     <div class="action-bubble" *ngFor="let action of actions">
-      <img [src]="action.src" [alt]="action.title">
-      <div class="label">{{ action.title }}</div>
+      <img [src]="action.thumbnail" [alt]="action.title">
+      <div class="label">{{ action.title | uppercase }}</div>
     </div>
   </ul>
   <p>De la seconde à la Terminale, nous sommes présents sur tous les fronts pour accompagner le développement de nos lycéens.</p>

@@ -1,6 +1,5 @@
 import { Component, OnInit, Renderer } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Subject } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Article } from '../shared/article.model';
 import { ArticleService } from '../shared/article.service';
@@ -13,7 +12,7 @@ import { ArticleService } from '../shared/article.service';
 export class NewsDetailPageComponent implements OnInit {
 
   article: Article;
-  article$ = new Subject<Article>();
+  articles: Article[] = [];
   relatedArticles: Article[];
   numRelatedArticles: number = 4;
 
@@ -26,42 +25,55 @@ export class NewsDetailPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getArticle();
-  }
-
-  getArticle() {
-    let id = this.route.snapshot.paramMap.get('id');
-    this.articleService.retrieve(id).subscribe(
-      (article) => this.article$.next(article),
-      (e) => console.log(e)
-    );
-    this.article$.subscribe(
-      (article) => {
-        // Scroll to top manually
-        this.renderer.setElementProperty(document.body, "scrollTop", 0);
-        this.article = article;
-        // update page title with article's title
-        this.titleService.setTitle(
-          this.titleService.getTitle() + ' : ' + article.title
-        );
-        // Get articles related to this article
-        this.articleService.list().subscribe(
-          (articles) => this.relatedArticles = articles.filter(a => {
-            let intersection = new Set(
-              this.article.categories.filter(x => a.categories.includes(x)));;
-            return intersection.size > 0;
-          }).slice(0, this.numRelatedArticles),
+    // NOTE: We must avoid race conditions between the fetch of articles and
+    // the subscription to the route parameters.
+    // That's why we use flatMap() to be able to store articles and return
+    // and observable to the route parameters.
+    this.articleService.list().flatMap(articles => {
+      this.articles = articles;
+      return this.route.paramMap;
+    }).subscribe(
+      params => {
+        const id = params.get('id');
+        this.articleService.retrieve(id).subscribe(
+          (article) => {
+            // Scroll to top manually
+            this.renderer.setElementProperty(document.body, "scrollTop", 0);
+            this.article = article;
+            // update page title with article's title
+            this.titleService.setTitle(
+              this.titleService.getTitle() + ' : ' + article.title
+            );
+            this.relatedArticles = this.getRelatedArticles(this.article);
+          },
           (e) => console.log(e)
         );
-      }
+      },
+      e => console.log(e)
     );
+  }
+
+  getRelatedArticles(article: Article): Article[] {
+    return this.articles.filter(a => {
+      // The current article is not considered as related
+      if (a.id === this.article.id) return false;
+      // Related articles are those that have at least one category
+      // in common with this article.
+      let commonCategories = new Set(
+        this.article.categories.filter(
+          category => a.categories.includes(category)
+        )
+      );
+      return commonCategories.size > 0;
+    }).slice(0, this.numRelatedArticles);
   }
 
   navigate(other: Article) {
+    // Don't navigate if it is actually the same article
+    if (other.id === this.article.id) return;
+    // Forget the old article
+    this.article = null;
+    // Navigate to trigger the fetch of a new article
     this.router.navigate(['../', other.id], {relativeTo: this.route});
-    // We stay on the same route so the component is the same and will not be
-    // initialized again. We must trigger a refresh of the article
-    // and scroll to top manually.
-    this.getArticle();
   }
 }

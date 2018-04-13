@@ -10,6 +10,7 @@ import { DocumentService } from './document.service';
 export class DocumentComponent implements OnInit, OnDestroy {
 
   @Input() slug: string;
+  @Input() titleLevel = 1;
   content: string;
   docSub: any;
 
@@ -18,7 +19,8 @@ export class DocumentComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.docSub = this.documentService.get(this.slug).subscribe(
+    const options = { titleLevel: this.titleLevel };
+    this.docSub = this.documentService.get(this.slug, options).subscribe(
       content => this.content = content,
       e => console.log(e)
     );

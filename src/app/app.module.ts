@@ -1,4 +1,6 @@
+import localeFR from '@angular/common/locales/fr';
 import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
 
 // Modules
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,6 +23,8 @@ import { NotFoundComponent } from '@app/core';
 
 // Services
 import { StudentService } from './student.service';
+
+registerLocaleData(localeFR);
 
 @NgModule({
   declarations: [

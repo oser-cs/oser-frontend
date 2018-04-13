@@ -10,20 +10,19 @@ Après avoir cloné le repo :
 $ cd oser-frontend/
 ```
 
-1. Installez `@angular/cli` globalement (`-g`) si ce n'est pas encore fait.
+- Installez `@angular/cli` globalement (`-g`) si ce n'est pas encore fait.
 
 ```
 oser-frontend $ npm install -g @angular/cli
 ```
 
-2. Rendez-vous dans le dossier du projet et installez les dépendances.
+- Installez le reste des dépendances.
 
 ```
-oser-frontend $ cd oser-app/
-oser-app $ npm install
+oser-frontend $ npm install
 ```
 
-3. Lancez le serveur de développement.
+- Lancez le serveur de développement.
 
 ```
 oser-app $ ng serve -o
@@ -36,10 +35,17 @@ $ npm install
 npm WARN: No repository field...
 ```
 
-Si vous obtenez ce message après l'étape 2, il est probable que vous ne soyez pas dans le bon dossier. Assurez-vous d'être dans le dossier du projet (`oser-app`), là où se situe un fichier `package.json` (que npm utilise pour lire et installer les dépendances).
+Si vous obtenez ce message après l'étape 2, il est probable que vous ne soyez pas dans le bon dossier. Assurez-vous d'être dans le dossier du projet (`oser-frontend`), là où se situe un fichier `package.json` (que npm utilise pour lire et installer les dépendances).
 
-```
-ERROR in Error encountered resolving symbol values statically. Calling function 'Ng4TwitterTimelineModule', function calls are not supported.
-```
+## Déploiment
 
-C'est une erreur liée à un package utilisé pour l'affichage d'un feed Twitter sur le site vitrine. Le bug est connu est [suivi sur le repo du package](https://github.com/lokers/ng4-twitter-timeline/issues/1). Déclenchez un *hot reload* (par exemple en ajoutant une ligne à un fichier quelconque) et le build devrait (étrangement) fonctionner.
+Actuellement, le frontend est déployé sur Heroku. Il y a 2 applications, chacune reliée à une branche de ce repo :
+
+- `oser-cs` est reliée à `master`
+- `oser-frontend-dev` est reliée à `dev`
+
+Ainsi, un push sur la branche `master` déclenche un déploiement de l'application `oser-cs`, qui sera accessible dans sa nouvelle version en quelques minutes. Même principe sur la branche `dev`. :+1:
+
+Si une erreur survient lors du déploiement, la nouvelle version n'est pas mise en prod (ouf !) et un email est envoyé à l'adresse mail du secteur Geek.
+
+Les applications sont accessibles à leur adresse au format suivant : `www.<NOM_APP>.herokuapp.com`.

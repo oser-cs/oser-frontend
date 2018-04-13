@@ -2,8 +2,36 @@
 @import './variables';
 @import './mixins';
 
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700,900');
+// @import url('https://fonts.googleapis.com/css?family=Nunito:400,700,900');
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700,900');
+
+@font-face {
+    font-family: 'Avenir';
+    src: url('../assets/fonts/avenir-lt-std/AvenirLTStd-Roman.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir';
+    src: url('../assets/fonts/avenir-lt-std/AvenirLTStd-Heavy.otf');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir';
+    src: url('../assets/fonts/avenir-lt-std/AvenirLTStd-Oblique.otf');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Avenir';
+    src: url('../assets/fonts/avenir-lt-std/AvenirLTStd-HeavyOblique.otf');
+    font-weight: bold;
+    font-style: italic;
+}
 
 body {
   margin: 0;
@@ -98,4 +126,18 @@ select {
 // Required for emoji support
 .emoji {
     display: inline-block;
+}
+
+// Styling of Markdown contents
+.md-content {
+  img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    @include drop-shadow($shadow-sm);
+  }
+  p {
+    text-align: justify;
+  }
 }

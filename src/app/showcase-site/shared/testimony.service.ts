@@ -16,8 +16,8 @@ export class TestimonyService {
   // Adapt JSON returned by API to return testimonies
   adapt(item: any): Testimony {
     return new Testimony({
-      content: item.content,
-      source: item.author,
+      content: item.quote,
+      source: item.source,
     });
   }
 
