@@ -43,12 +43,15 @@ export class Article {
 
   get preview(): string {
     let preview: string;
-    if (this.content.length > this.previewLength) {
+    // Prepend introduction to content if present
+    const source: string = this.introduction ? this.introduction + ' ' + this.content : this.content;
+    if (source.length > this.previewLength) {
       // Truncate the content to only show the beginning of it.
-      preview = this.content.substring(0, this.previewLength) + ' […]';
+      preview = source.substring(0, this.previewLength) + ' […]';
     } else {
-      preview = this.content;
+      preview = source;
     }
+    // Strip any Markdown formatting
     return removeMd(preview);
   }
 }
