@@ -23,11 +23,13 @@ $padding: 1em 1.5em;
   display: none;
   margin-bottom: auto;
   margin-right: 2em;
+  max-height: 12em;
   @include media-xs {
     display: block;
   }
   @include media-md {
     margin: 0;
+    overflow: hidden;
   }
 }
 
