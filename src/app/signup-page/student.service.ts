@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class StudentService {
 
-  private urls = {
-    addStudent : '/api/registrations/',
-  };
+  private apiUrl = environment.apiUrl;
 
 
   constructor(private _http: HttpClient) { }
@@ -22,7 +21,9 @@ export class StudentService {
                   street: String,
                   code: String,
                   town: String,
-                  emergency_contact: String,
+                  nameparent: String,
+                  surnameparent: String,
+                  telephoneparent: String,
                   password: String): Observable<any> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json; charset=utf-8');
@@ -33,15 +34,20 @@ export class StudentService {
       email: email,
       phone: phone,
       adress: {
-        street: street,
+        line1: street,
+        line2: '',
         post_code: code,
         city: town,
       },
-      emergency_contact: emergency_contact,
+      emergency_contact: {
+        first_name: nameparent,
+        last_name: surnameparent,
+        contact: telephoneparent,
+      },
       password: password,
     };
 
-    return this._http.post(this.urls.addStudent, body, { headers: headers });
+    return this._http.post(this.apiUrl + '/registrations/', body, { headers: headers });
     }
 
 }

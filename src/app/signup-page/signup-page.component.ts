@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { StudentService } from '../student.service';
+import { StudentService } from './student.service';
 
 @Component({
   selector: 'app-signup-page',
@@ -20,7 +20,11 @@ export class SignupPageComponent implements OnInit {
       town: '',
       code: '',
     },
-    emergency_contact: '',
+    emergency_contact: {
+      nameparent: '',
+      surnameparent: '',
+      telephoneparent: '',
+    },
     password: ''
 
   };
@@ -33,16 +37,6 @@ export class SignupPageComponent implements OnInit {
   }
 
   addStudent() {
-    if (this.student.firstname
-      && this.student.last_name
-      && this.student.birth
-      && this.student.email
-      && this.student.phone
-      && this.student.adress.street
-      && this.student.adress.town
-      && this.student.adress.code
-      && this.student.emergency_contact
-      && this.student.password) {
       this.studentService.addNewStudent(this.student.firstname,
                                         this.student.last_name,
                                         this.student.birth,
@@ -51,10 +45,11 @@ export class SignupPageComponent implements OnInit {
                                         this.student.adress.street,
                                         this.student.adress.town,
                                         this.student.adress.code,
-                                        this.student.emergency_contact,
+                                        this.student.emergency_contact.nameparent,
+                                        this.student.emergency_contact.surnameparent,
+                                        this.student.emergency_contact.telephoneparent,
                                         this.student.password)
       .subscribe();
-    } else { alert('les champs ne peuvent pas être vides !'); }
-  }
+    }
 
 }

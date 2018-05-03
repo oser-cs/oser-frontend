@@ -22,7 +22,7 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
 import { NotFoundComponent } from '@app/core';
 
 // Services
-import { StudentService } from './student.service';
+import { StudentService } from './signup-page/student.service';
 
 registerLocaleData(localeFR);
 
