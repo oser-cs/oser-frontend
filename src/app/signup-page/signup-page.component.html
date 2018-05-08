@@ -31,9 +31,10 @@
     <hr/>
 
     <label for="family">Personne à contacter en cas d'urgence</label><br/>
-    <input type="text" class="form-control block" name="nameparent" placeholder="Prénom" required=""/>
-    <input type="text" class="form-control block" name="surnameparent" placeholder="Nom" required=""/>
-    <input type="text" class="form-control block" name="telephoneparent" placeholder="Telephone d'un parent" required="" [(ngModel)]="student.emergency_contact"/>
+    <input type="text" class="form-control block" name="nameparent" placeholder="Prénom" required="" [(ngModel)]="student.emergency_contact.nameparent"/>
+    <input type="text" class="form-control block" name="surnameparent" placeholder="Nom" required="" [(ngModel)]="student.emergency_contact.surnameparent"/>
+    <input type="text" class="form-control block" name="home_phone" placeholder="Téléphone fixe" required="" [(ngModel)]="student.emergency_contact.home_phone"/>
+    <input type="text" class="form-control block" name="mobile_phone" placeholder="Téléphone mobile" required="" [(ngModel)]="student.emergency_contact.mobile_phone"/>
     <br/>
     <br/>
 

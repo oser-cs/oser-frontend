@@ -23,7 +23,8 @@ export class StudentService {
                   town: String,
                   nameparent: String,
                   surnameparent: String,
-                  telephoneparent: String,
+                  home_phone: String,
+                  mobile_phone: String,
                   password: String): Observable<any> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json; charset=utf-8');
@@ -42,7 +43,8 @@ export class StudentService {
       emergency_contact: {
         first_name: nameparent,
         last_name: surnameparent,
-        contact: telephoneparent,
+        home_phone: home_phone,
+        mobile_phone: mobile_phone,
       },
       password: password,
     };

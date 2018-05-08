@@ -23,7 +23,8 @@ export class SignupPageComponent implements OnInit {
     emergency_contact: {
       nameparent: '',
       surnameparent: '',
-      telephoneparent: '',
+      home_phone: '',
+      mobile_phone: '',
     },
     password: ''
 
@@ -47,7 +48,8 @@ export class SignupPageComponent implements OnInit {
                                         this.student.adress.code,
                                         this.student.emergency_contact.nameparent,
                                         this.student.emergency_contact.surnameparent,
-                                        this.student.emergency_contact.telephoneparent,
+                                        this.student.emergency_contact.home_phone,
+                                        this.student.emergency_contact.mobile_phone,
                                         this.student.password)
       .subscribe();
     }
