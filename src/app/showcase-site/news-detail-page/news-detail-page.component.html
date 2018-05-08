@@ -1,16 +1,20 @@
 <div id="article">
   <div *ngIf="article; else loading">
-    <h1>{{ article.title }}</h1>
 
     <ul class="badge-list">
-      <span *ngFor="let category of article.categories" class="badge badge-default badge-lg">{{ category }}</span>
+      <span *ngFor="let category of article.categories" class="badge badge-default">{{ category }}</span>
     </ul>
 
-    <p *ngIf="article.summary">{{ article.summary }}</p>
+    <h1>{{ article.title }}</h1>
+
+    <p class="intro" *ngIf="article.introduction">{{ article.introduction }}</p>
+
+    <p class="text-muted">—</p>
 
     <p class="text-muted">
       Publié le {{ article.published | date:'shortDate' }}
-      à {{ article.published | date:'shortTime' }}<span *ngIf="article.modified">, dernière mise à jour le {{ article.modified | date:'shortDate'}} à {{ article.modified | date:'shortTime' }}</span>
+      à {{ article.published | date:'shortTime' }}.
+      <span *ngIf="article.modified">Mis à jour le {{ article.modified | date:'shortDate'}} à {{ article.modified | date:'shortTime' }}.</span>
     </p>
 
     <div class="md-content">
@@ -19,6 +23,7 @@
     </div>
 
     <div id="related" *ngIf="relatedArticles && relatedArticles.length > 0">
+      <hr>
       <h3>Dans la même catégorie…</h3>
       <ul>
         <li *ngFor="let related of relatedArticles">

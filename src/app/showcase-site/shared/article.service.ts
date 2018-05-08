@@ -17,6 +17,7 @@ export class ArticleService {
   adapt(item: any): Article {
     return new Article({
       id: item.id,
+      slug: item.slug,
       title: item.title,
       introduction: item.introduction,
       content: item.content,
@@ -43,8 +44,8 @@ export class ArticleService {
     );
   }
 
-  retrieve(id: number | string): Observable<Article> {
-    let url = this.baseUrl + `${id}/`;
+  retrieve(slug: string): Observable<Article> {
+    let url = this.baseUrl + `${slug}/`;
     return this.http.get<Article>(url)
     .pipe(
       map((article: any) => this.adapt(article)),

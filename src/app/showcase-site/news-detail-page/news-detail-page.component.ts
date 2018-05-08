@@ -34,8 +34,8 @@ export class NewsDetailPageComponent implements OnInit {
       return this.route.paramMap;
     }).subscribe(
       params => {
-        const id = params.get('id');
-        this.articleService.retrieve(id).subscribe(
+        const slug = params.get('slug');
+        this.articleService.retrieve(slug).subscribe(
           (article) => {
             // Scroll to top manually
             this.renderer.setElementProperty(document.body, "scrollTop", 0);

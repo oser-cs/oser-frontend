@@ -44,7 +44,7 @@ const showcaseSiteRoutes: Routes = [
             component: NewsPageComponent,
           },
           {
-            path: ':id',
+            path: ':slug',
             component: NewsDetailPageComponent,
           },
         ]
