@@ -3,7 +3,7 @@
     <img class="logo" src="assets/img/oser-logo.png" alt="">
     <h1 class="form-signin-heading">Inscription</h1>
 
-    <label for="email">Identifiants de connexion</label><br/>
+    <h4 for="email">Identifiants de connexion</h4>
     <input type="text" class="form-control block" name="email" placeholder="Adresse e-mail" required="" autofocus="" [(ngModel)]="student.email"/>
     <input type="password" class="form-control block" name="password" placeholder="Mot de Passe" required=""
             [(ngModel)]="password"/>
@@ -17,27 +17,25 @@
     </div>
     <hr/>
 
-    <label for="name">Informations Personnelles</label><br/>
+    <h4 for="name">Informations Personnelles</h4>
     <input type="text" class="form-control block" name="name" placeholder="Prénom" required="" [(ngModel)]="student.first_name"/>
     <input type="text" class="form-control block" name="surname" placeholder="Nom" required="" [(ngModel)]="student.last_name"/>
     <input type="date" class="form-control block" name="birth" placeholder="Date d'anniversaire" required="" [(ngModel)]="student.birth"/>
     <input type="text" class="form-control block" name="telephone" placeholder="Telephone" required="" [(ngModel)]="student.phone"/>
     <hr/>
 
-    <label for="adress">Adresse</label><br/>
+    <h4 for="adress">Adresse</h4>
     <input type="text" class="form-control block" name="street" placeholder="Adresse" required="" [(ngModel)]="student.adress.street"/>
     <input type="text" class="form-control block" name="town" placeholder="Ville" required="" [(ngModel)]="student.adress.town"/>
     <input type="text" class="form-control block" name="code" placeholder="Code Postal" required="" [(ngModel)]="student.adress.code"/>
     <hr/>
 
-    <label for="family">Personne à contacter en cas d'urgence</label><br/>
+    <h4 for="family">Personne à contacter en cas d'urgence</h4>
     <input type="text" class="form-control block" name="nameparent" placeholder="Prénom" required="" [(ngModel)]="student.emergency_contact.nameparent"/>
     <input type="text" class="form-control block" name="surnameparent" placeholder="Nom" required="" [(ngModel)]="student.emergency_contact.surnameparent"/>
     <input type="text" class="form-control block" name="home_phone" placeholder="Téléphone fixe" required="" [(ngModel)]="student.emergency_contact.home_phone"/>
     <input type="text" class="form-control block" name="mobile_phone" placeholder="Téléphone mobile" required="" [(ngModel)]="student.emergency_contact.mobile_phone"/>
-    <br/>
-    <br/>
-
-    <input class="btn btn-primary" type="submit" value="S'inscrire"/>
+    
+    <input class="btn btn-primary margin" type="submit" value="S'inscrire"/>
   </form>
 </div>
