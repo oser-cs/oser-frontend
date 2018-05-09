@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable()
 export class StudentService {
@@ -23,6 +23,7 @@ export class StudentService {
                   town: String,
                   nameparent: String,
                   surnameparent: String,
+                  email_parent: String,
                   home_phone: String,
                   mobile_phone: String,
                   password: String): Observable<any> {
@@ -43,13 +44,14 @@ export class StudentService {
       emergency_contact: {
         first_name: nameparent,
         last_name: surnameparent,
+        email: email_parent,
         home_phone: home_phone,
         mobile_phone: mobile_phone,
       },
       password: password,
     };
 
-    return this._http.post(this.apiUrl + '/registrations/', body, { headers: headers });
+    return this._http.post(this.apiUrl + 'registrations/', body, { headers: headers });
     }
 
 }
