@@ -1,7 +1,6 @@
-import { environment as devEnv } from './environment';
-
+// Production environment variables
 export const environment = {
   production: true,
-  showcaseApiUrl: devEnv.showcaseApiUrl,
+  showcaseApiUrl: 'https://oser-site-vitrine.herokuapp.com/api/',
   apiUrl: 'https://oser-backend.herokuapp.com/api/',
 };
