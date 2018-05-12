@@ -9,7 +9,7 @@ import { environment } from '@environments/environment';
 @Injectable()
 export class TestimonyService {
 
-  private baseUrl = environment.apiUrl + 'testimonies/';
+  private baseUrl = environment.showcaseApiUrl + 'testimonies/';
 
   constructor(private http: HttpClient) { }
 

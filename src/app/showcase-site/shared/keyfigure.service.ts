@@ -9,7 +9,7 @@ import { environment } from '@environments/environment';
 @Injectable()
 export class KeyFigureService {
 
-  private baseUrl = environment.apiUrl + 'keyfigures/';
+  private baseUrl = environment.showcaseApiUrl + 'keyfigures/';
 
   constructor(private http: HttpClient) { }
 

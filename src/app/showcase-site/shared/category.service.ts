@@ -8,7 +8,7 @@ import { environment } from '@environments/environment';
 @Injectable()
 export class CategoryService {
 
-  baseUrl = environment.apiUrl + 'categories/';
+  baseUrl = environment.showcaseApiUrl + 'categories/';
 
   constructor(private http: HttpClient) { }
 
