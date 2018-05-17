@@ -13,25 +13,25 @@ export class StudentService {
 
   /** Students */
 
-  addNewStudent( firstname: String,
-                  lastname: String,
-                  birthday: String,
-                  email: String,
-                  phone: String,
-                  street: String,
-                  code: String,
-                  town: String,
-                  nameparent: String,
-                  surnameparent: String,
-                  email_parent: String,
-                  home_phone: String,
-                  mobile_phone: String,
-                  password: String): Observable<any> {
+  addNewStudent(first_name: String,
+    last_name: String,
+    birthday: String,
+    email: String,
+    phone: String,
+    street: String,
+    code: String,
+    town: String,
+    nameparent: String,
+    surnameparent: String,
+    email_parent: String,
+    home_phone: String,
+    mobile_phone: String,
+    password: String): Observable<any> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json; charset=utf-8');
     const body = {
-      first_name: firstname,
-      last_name: lastname,
+      first_name: first_name,
+      last_name: last_name,
       date_of_birth: birthday,
       email: email,
       phone: phone,
@@ -52,6 +52,6 @@ export class StudentService {
     };
 
     return this._http.post(this.apiUrl + 'registrations/', body, { headers: headers });
-    }
+  }
 
 }

@@ -6,13 +6,13 @@
     <h4 for="email">Identifiants de connexion</h4>
     <input type="text" class="form-control block" name="email" placeholder="Adresse e-mail" required="" autofocus="" [(ngModel)]="student.email"/>
     <input type="password" class="form-control block" name="password" placeholder="Mot de Passe" required=""
-            [(ngModel)]="password"/>
+            [(ngModel)]="student.password"/>
     <input type="password" class="form-control block" name="confirm" placeholder="Confirmer le mot de passe" required=""
             #name="ngModel" [(ngModel)]="confirm"/>
     <div *ngIf="(name.dirty || name.touched)">
-        <div *ngIf="!(password == confirm)"
+        <div *ngIf="!(student.password == confirm)"
               class="alert alert-danger">Les mots de passe doivent être identiques</div>
-        <div *ngIf="(password == confirm)"
+        <div *ngIf="(student.password == confirm)"
               class="alert alert-valid">Les mots de passe sont identiques</div>
     </div>
     <hr/>
@@ -36,7 +36,7 @@
     <input type="text" class="form-control block" name="email_parent" placeholder="Email contact" required="" [(ngModel)]="student.emergency_contact.email_parent"/>
     <input type="text" class="form-control block" name="home_phone" placeholder="Téléphone fixe" required="" [(ngModel)]="student.emergency_contact.home_phone"/>
     <input type="text" class="form-control block" name="mobile_phone" placeholder="Téléphone mobile" required="" [(ngModel)]="student.emergency_contact.mobile_phone"/>
-    
+
     <input class="btn btn-primary margin" type="submit" value="S'inscrire"/>
   </form>
 </div>

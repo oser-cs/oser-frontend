@@ -10,7 +10,7 @@ import { StudentService } from './student.service';
 export class SignupPageComponent implements OnInit {
 
   student = {
-    firstname: '',
+    first_name: '',
     last_name: '',
     birth: '',
     email: '',
@@ -27,8 +27,7 @@ export class SignupPageComponent implements OnInit {
       home_phone: '',
       mobile_phone: '',
     },
-    password: ''
-
+    password: '',
   };
 
   confirm: string;
@@ -39,21 +38,25 @@ export class SignupPageComponent implements OnInit {
   }
 
   addStudent() {
-      this.studentService.addNewStudent(this.student.firstname,
-                                        this.student.last_name,
-                                        this.student.birth,
-                                        this.student.email,
-                                        this.student.phone,
-                                        this.student.adress.street,
-                                        this.student.adress.town,
-                                        this.student.adress.code,
-                                        this.student.emergency_contact.nameparent,
-                                        this.student.emergency_contact.surnameparent,
-                                        this.student.emergency_contact.email_parent,
-                                        this.student.emergency_contact.home_phone,
-                                        this.student.emergency_contact.mobile_phone,
-                                        this.student.password)
-      .subscribe();
-    }
+    this.studentService.addNewStudent(
+      this.student.first_name,
+      this.student.last_name,
+      this.student.birth,
+      this.student.email,
+      this.student.phone,
+      this.student.adress.street,
+      this.student.adress.town,
+      this.student.adress.code,
+      this.student.emergency_contact.nameparent,
+      this.student.emergency_contact.surnameparent,
+      this.student.emergency_contact.email_parent,
+      this.student.emergency_contact.home_phone,
+      this.student.emergency_contact.mobile_phone,
+      this.student.password,
+    ).subscribe(
+      resp => console.log(resp),
+      err => console.log(err),
+    );
+  }
 
 }
