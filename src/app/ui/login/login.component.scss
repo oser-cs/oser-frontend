@@ -41,3 +41,21 @@
 #login-btn {
   margin-top: 1em;
 }
+
+.form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.block {
+  width: 100%;
+}
+
+.background {
+  background-color: rgb(3, 180, 180);
+}

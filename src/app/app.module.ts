@@ -21,6 +21,9 @@ import { AppComponent } from './app.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 import { NotFoundComponent } from '@app/core';
 
+// Services
+import { StudentService } from './signup-page/student.service';
+
 registerLocaleData(localeFR);
 
 @NgModule({
@@ -43,7 +46,8 @@ registerLocaleData(localeFR);
     AppRoutingModule,
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'fr' },
+    StudentService,
+    { provide: LOCALE_ID, useValue: 'fr' }
   ],
   bootstrap: [AppComponent]
 })
