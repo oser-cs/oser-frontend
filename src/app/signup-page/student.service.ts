@@ -1,32 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class StudentService {
 
   private apiUrl = environment.apiUrl;
 
-
   constructor(private _http: HttpClient) { }
 
   /** Students */
 
-  addNewStudent(first_name: String,
-    last_name: String,
-    birthday: String,
-    email: String,
-    phone: String,
-    street: String,
-    code: String,
-    town: String,
-    nameparent: String,
-    surnameparent: String,
-    email_parent: String,
-    home_phone: String,
-    mobile_phone: String,
-    password: String): Observable<any> {
+  addNewStudent(first_name: string,
+    last_name: string,
+    birthday: string,
+    email: string,
+    phone: string,
+    street: string,
+    code: string,
+    town: string,
+    nameparent: string,
+    surnameparent: string,
+    email_parent: string,
+    home_phone: string,
+    mobile_phone: string,
+    password: string): Observable<any> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json; charset=utf-8');
     const body = {
