@@ -54,8 +54,7 @@ export class SignupPageComponent implements OnInit {
       this.student.emergency_contact.mobile_phone,
       this.student.password,
     ).subscribe(
-      resp => console.log(resp),
-      err => console.log(err),
+      resp => console.log(resp)
     );
   }
 

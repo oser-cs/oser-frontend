@@ -21,8 +21,7 @@ export class DocumentComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const options = { titleLevel: this.titleLevel };
     this.docSub = this.documentService.get(this.slug, options).subscribe(
-      content => this.content = content,
-      e => console.log(e)
+      content => this.content = content
     );
   }
 

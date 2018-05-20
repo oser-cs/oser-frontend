@@ -41,8 +41,7 @@ export class VisitsListComponent implements OnInit {
         this.userVisits$.next(this.visits.filter(
           visit => visit.participants.map(p => p.user.id).includes(user.id)
         ));
-      },
-      (e) => console.log(e)
+      }
     );
   }
 }

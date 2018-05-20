@@ -20,8 +20,7 @@ export class AboutPageComponent implements OnInit {
 
   getKeyFigures(): void {
     this.keyFigureService.list().subscribe(
-      (keyFigures) => this.keyFigures = keyFigures,
-      (e) => console.log(e)
+      (keyFigures) => this.keyFigures = keyFigures
     );
   }
 

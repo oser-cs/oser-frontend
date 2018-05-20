@@ -35,22 +35,19 @@ export class LandingPageComponent implements OnInit {
 
   getArticles(): void {
     this.articleService.first(this.numArticles).subscribe(
-      (articles) => this.articles = articles,
-      (e) => console.log(e)
+      (articles) => this.articles = articles
     );
   }
 
   getActions(): void {
     this.actionService.listHighlight().subscribe(
-      actions => this.actions = actions,
-      e => console.log(e)
+      actions => this.actions = actions
     )
   }
 
   getPartners(): void {
     this.partnerService.list().subscribe(
-      (partners) => this.partners = partners,
-      (e) => console.log(e)
+      (partners) => this.partners = partners
     );
   }
 

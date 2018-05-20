@@ -40,8 +40,7 @@ export class VisitDetailComponent implements OnInit {
       location => {
         this.lat = location.lat;
         this.lng = location.lng;
-      },
-      err => console.log(err),
+      }
     );
   }
 
@@ -57,7 +56,7 @@ export class VisitDetailComponent implements OnInit {
         this.visit = visit;
         this.getUserParticipate();
         this.getVisitLocation();
-      }, (e) => console.log(e)
+      }
     );
   }
 
@@ -75,8 +74,7 @@ export class VisitDetailComponent implements OnInit {
         this.formActive = false;
         this.visit.participants.push(participant);
         this.getUserParticipate();
-      },
-      (e) => console.log(e)
+      }
     );
   }
 
@@ -89,8 +87,7 @@ export class VisitDetailComponent implements OnInit {
         this.userParticipates = false;
         const index = this.visit.participants.indexOf(participant);
         this.visit.participants.splice(index, 1);
-      },
-      (e) => console.log(e)
+      }
     );
   }
 

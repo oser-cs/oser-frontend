@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
       },
       error => {
         this.loading = false;
-        console.log(error);
         this.messageService.error(
             "L'identifiant ou le mot de passe est incorrect.");
       }

@@ -45,11 +45,9 @@ export class NewsDetailPageComponent implements OnInit {
               this.titleService.getTitle() + ' : ' + article.title
             );
             this.relatedArticles = this.getRelatedArticles(this.article);
-          },
-          (e) => console.log(e)
+          }
         );
-      },
-      e => console.log(e)
+      }
     );
   }
 

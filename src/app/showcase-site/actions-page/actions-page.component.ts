@@ -53,15 +53,13 @@ export class ActionsPageComponent implements OnInit {
 
   getTestimonies(): void {
     this.testimonyService.list().subscribe(
-      (res) => this.testimonies = res,
-      (e) => console.log(e)
+      (res) => this.testimonies = res
     );
   }
 
   getActions(): void {
     this.actionService.list().subscribe(
-      actions => this.actions = actions,
-      e => console.log(e)
+      actions => this.actions = actions
     )
   }
 

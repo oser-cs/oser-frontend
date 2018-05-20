@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { tap, map } from 'rxjs/operators';
 import { environment } from 'environments/environment';
@@ -19,14 +20,13 @@ export class AuthService {
 
   fromGuard: boolean;
   redirectUrl: string;
+  fromUnauthorized: boolean;
 
-  private userAdapter: UserAdapter;
+  private userAdapter = new UserAdapter();
   private user = new StoredUser();
   private token = new StoredToken();
 
-  constructor(private http: HttpClient) {
-    this.userAdapter = new UserAdapter();
-  }
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(username: string, password: string) {
     return this.http.post<any>(this.loginUrl, { username: username, password: password }).pipe(
@@ -37,6 +37,10 @@ export class AuthService {
     );
   }
 
+  redirectLogin() {
+    this.router.navigate(['/login']);
+  }
+
   getUser(): User {
     return this.user.get();
   }
@@ -45,18 +49,15 @@ export class AuthService {
     return this.token.get();
   }
 
-  /*
-  Headers for use in authenticated calls to the backend API.
-  */
-  getHeaders(): HttpHeaders {
-    let token = this.getToken();
-    return new HttpHeaders({
-      Authorization: 'Token ' + token,
-    });
+  // Headers for use in authenticated calls to the backend API.
+  getAuthorizationHeaders(): HttpHeaders {
+    return new HttpHeaders({ Authorization: 'Token ' + this.getToken() });
   }
 
   get isLoggedIn(): boolean {
-    if (this.user.get()) return true;
+    if (this.user.get()) {
+      return true;
+    }
     return false;
   }
 

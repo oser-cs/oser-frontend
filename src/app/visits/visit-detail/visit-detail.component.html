@@ -70,6 +70,11 @@
     <p [innerHTML]="visit.description"></p>
   </div>
 
+  <div *ngIf="visit.place.description">
+    <h2>À propos du lieu</h2>
+    <markdown [data]="visit.place.description"></markdown>
+  </div>
+
   <h2>Informations pratiques</h2>
 
   <table class="tips">
@@ -96,19 +101,17 @@
     <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
   </agm-map>
 
-  <h2>Tuteurs organisateurs</h2>
+  <div *ngIf="visit.organizers.length > 0">
+    <h2>Tuteurs organisateurs</h2>
 
-  <ul>
-    <li *ngFor="let organizer of visit.organizers">
-      {{ organizer.user.firstName }} {{ organizer.user.lastName}}
-      <span *ngIf="organizer.user.phoneNumber">
-        (tél. : <app-reveal [content]="organizer.user.phoneNumber"></app-reveal>)
-      </span>
-    </li>
-  </ul>
-  <div *ngIf="visit.place.description">
-    <h3>À propos de {{ visit.place.name }}</h3>
-    <markdown [data]="visit.place.description"></markdown>
+    <ul>
+      <li *ngFor="let organizer of visit.organizers">
+        {{ organizer.user.firstName }} {{ organizer.user.lastName}}
+        <span *ngIf="organizer.user.phoneNumber">
+          (tél. : <app-reveal [content]="organizer.user.phoneNumber"></app-reveal>)
+        </span>
+      </li>
+    </ul>
   </div>
 
 </div>

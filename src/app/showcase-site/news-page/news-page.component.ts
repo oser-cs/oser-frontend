@@ -38,8 +38,7 @@ export class NewsPageComponent implements OnInit {
     this.getArticles();
     this.getCategories();
     this.searchTerm$.subscribe(
-      (value) => this.search = value,
-      (e) => console.log(e)
+      (value) => this.search = value
     );
   }
 
@@ -70,15 +69,13 @@ export class NewsPageComponent implements OnInit {
         // Update article categories
         this.articleCategories = this.articles.map(a => a.categories);
         this.updateVisibleArticles();
-      },
-      (e) => console.log(e)
+      }
     );
   }
 
   getCategories(): void {
     this.categoryService.list().subscribe(
-      (categories) => this.categories = categories,
-      (e) => console.log(e)
+      (categories) => this.categories = categories
     );
   }
 
