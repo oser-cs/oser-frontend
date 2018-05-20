@@ -3,48 +3,51 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { tap, map } from 'rxjs/operators';
 import { environment } from 'environments/environment';
+import { User } from './models';
+import { ObjectStoredItem, SimpleStoredItem } from '../storage';
+import { UserAdapter } from './adapters';
+
+
+class StoredUser extends ObjectStoredItem<User> { key = 'oser-cs-user-info'; }
+class StoredToken extends SimpleStoredItem { key = 'oser-cs-user-token'; }
+
 
 @Injectable()
 export class AuthService {
 
   private loginUrl = environment.apiUrl + 'auth/get-token/';
-  private storageKey: string = 'currentUser';
 
   fromGuard: boolean;
   redirectUrl: string;
 
-  private _user: any;
+  private userAdapter: UserAdapter;
+  private user = new StoredUser();
+  private token = new StoredToken();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.userAdapter = new UserAdapter();
+  }
 
   login(username: string, password: string) {
     return this.http.post<any>(this.loginUrl, { username: username, password: password }).pipe(
-      map(user => {
-        this.user = user;
-        return true;
-      })
+      tap(data => this.token.set(data.token)),
+      map(data => this.userAdapter.adapt(data.user)),
+      tap((user: User) => this.user.set(user)),
+      map(() => true),
     );
   }
 
-  private set user(user: any) {
-    // store user details and token in local storage to keep user logged in between page refreshes
-    localStorage.setItem(this.storageKey, JSON.stringify(user));
-  }
-
-  private get user(): any {
-    return JSON.parse(localStorage.getItem(this.storageKey));
-  }
-
-  getUser(): any {
-    return this.user;
+  getUser(): User {
+    return this.user.get();
   }
 
   getToken(): string {
-    let user = this.user;
-    if (user) return user.token;
-    return null;
+    return this.token.get();
   }
 
+  /*
+  Headers for use in authenticated calls to the backend API.
+  */
   getHeaders(): HttpHeaders {
     let token = this.getToken();
     return new HttpHeaders({
@@ -53,12 +56,12 @@ export class AuthService {
   }
 
   get isLoggedIn(): boolean {
-    if (localStorage.getItem(this.storageKey)) return true;
+    if (this.user.get()) return true;
     return false;
   }
 
   logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem(this.storageKey);
+    this.user.destroy();
+    this.token.destroy();
   }
 }

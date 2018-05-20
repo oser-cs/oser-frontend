@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Visit } from '@app/visits/shared';
 import { Observable } from 'rxjs/Observable';
+import { Visit } from '../shared';
 
 @Component({
   selector: 'visit-card',
@@ -16,11 +16,9 @@ export class VisitCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    if (this.userParticipates$) {
-      this.userParticipates$.subscribe(v => {
-        this.userParticipates = v;
-      });
-    }
+    this.userParticipates$.subscribe(
+      (participates: boolean) => this.userParticipates = participates
+    );
   }
 
 }

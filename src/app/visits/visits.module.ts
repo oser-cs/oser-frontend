@@ -16,7 +16,7 @@ import { VisitCardComponent } from './visit-card/visit-card.component';
 import { VisitDetailComponent } from './visit-detail/visit-detail.component';
 
 // Services
-import { VisitService } from './shared/visit.service';
+import { VisitService, ParticipantService } from './shared';
 
 @NgModule({
   imports: [
@@ -38,6 +38,7 @@ import { VisitService } from './shared/visit.service';
   ],
   providers: [
     VisitService,
+    ParticipantService,
   ],
 })
 export class VisitsModule { }

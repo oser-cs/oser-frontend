@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from '@app/core';
+import { AuthService } from 'app/core';
 
 export class Link {
   href: string;

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { VisitService } from '../shared/visit.service';
-import { Visit } from '../shared/visit.model';
-import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
-import { AuthService } from '@app/core';
+import { AuthService } from 'app/core';
+import { Visit, VisitService } from '../shared/';
 
 @Component({
   selector: 'app-visits-list',
@@ -14,8 +13,7 @@ export class VisitsListComponent implements OnInit {
 
   visits: Visit[];
   nextVisits: Visit[];
-  userVisits: Visit[];
-  userVisits$ = new Subject<Visit[]>();
+  userVisits$ = new BehaviorSubject<Visit[]>([]);
 
   constructor(
     private visitService: VisitService,
@@ -29,7 +27,7 @@ export class VisitsListComponent implements OnInit {
   userParticipates(visit: Visit): Observable<boolean> {
     return new Observable<boolean>(obs => {
       this.userVisits$.subscribe(
-        (visits) => obs.next(visits.map(v => v.id).includes(visit.id))
+        (userVisits) => obs.next(userVisits.map(v => v.id).includes(visit.id))
       );
     });
   }
@@ -37,22 +35,12 @@ export class VisitsListComponent implements OnInit {
   getVisits(): void {
     this.visitService.list().subscribe(
       (visits) => {
-        // save list of visits
         this.visits = visits;
-        // compute list of upcoming visits
         this.nextVisits = this.visits.filter(visit => !visit.passed);
-        // get visits of user
-        let user = this.auth.getUser().user;
-        this.visitService.visitsOf(user.id).subscribe(
-          (visits) => {
-            this.userVisits$.next(visits);
-          },
-          (e) => console.log(e)
-        );
-        this.userVisits$.subscribe(
-          (visits) => this.userVisits = visits,
-          e => console.log(e)
-        );
+        let user = this.auth.getUser();
+        this.userVisits$.next(this.visits.filter(
+          visit => visit.participants.map(p => p.user.id).includes(user.id)
+        ));
       },
       (e) => console.log(e)
     );

@@ -1,23 +1,29 @@
 <div id="visit" *ngIf="visit">
-  <h1>{{ visit.title }}</h1>
-  <p>
-    <strong>{{ visit.date | date:"EEEE d MMMM" }} – {{ visit.date | date:"shortTime"}}</strong> – {{ visit.place.name }}
-  </p>
+  <div class="text-center">
+    <h1>{{ visit.title }}</h1>
+    <p>
+      <strong>{{ visit.date | date:"EEEE d MMMM" }} – {{ visit.date | date:"shortTime"}}</strong> – {{ visit.place.name }}
+    </p>
 
-  <div>
-    <img [src]="visit.image" [alt]="visit.title" class="drop-shadow-sm">
-  </div>
+    <!-- Metadata badges -->
+    <div>
+      <span *ngIf="visit.registrationsOpen" class="badge badge-warning badge-lg"><i class="fa fa-clock-o"></i>
+        Inscriptions avant le {{ visit.deadline | date:"dd/MM à HH:mm" }}
+      </span>
+      <span *ngIf="!visit.registrationsOpen" class="badge badge-danger badge-lg">
+        <i class="fa fa-times"></i> Inscriptions fermées
+      </span>
+      <span *ngIf="visit.participants.length > 0" class="badge badge-info badge-lg">
+        <i class="fa fa-user"></i> {{ visit.participants.length }} participants
+      </span>
+    </div>
 
-  <h2>Résumé</h2>
-  <p [innerHTML]="visit.summary | linebreaks"></p>
+    <!-- Show register button if user does not participate -->
+    <div *ngIf="visit.registrationsOpen && !userParticipates" class="text-center">
+      <button id="participate-btn" type="button" name="button" class="btn-success" (click)="formActive = true">Je m'inscris</button>
+    </div>
 
-  <span *ngIf="visit.registrationsOpen" class="badge badge-warning badge-lg"><i class="fa fa-clock-o"></i> Inscriptions avant le {{ visit.deadline | date:"dd/MM à HH:mm" }}</span>
-  <span *ngIf="!visit.registrationsOpen" class="badge badge-danger badge-lg"><i class="fa fa-times"></i> Inscriptions fermées</span>
-  <span *ngIf="numParticipants > 0" class="badge badge-info badge-lg"><i class="fa fa-user"></i> {{ numParticipants }} participants</span>
-
-  <!-- Show register button if user does not participate -->
-  <div *ngIf="visit.registrationsOpen && !userParticipates">
-    <button id="participate-btn" type="button" name="button" class="btn-success" (click)="formActive = true">Je m'inscris</button>
+    <img id="illustration" [src]="visit.image" [alt]="visit.title" class="drop-shadow-sm">
   </div>
 
   <!-- If user participates, show them relevant info -->
@@ -29,6 +35,12 @@
     <!-- And a shy-ish unregister link -->
     <p class="text-muted">Tu as un empêchement et souhaites <span class="link-muted" (click)="leave()">te désinscrire ?</span></p>
   </div>
+
+  <div *ngIf="visit.summary">
+    <h2>Résumé</h2>
+    <p [innerHTML]="visit.summary | linebreaks"></p>
+  </div>
+
 
   <!-- Modal register form -->
   <div id="register-form" class="modal" [hidden]="!formActive" (click)="clickModal($event)">
@@ -53,27 +65,32 @@
     </form>
   </div>
 
-  <h2>Détail des activités</h2>
-  <p [innerHTML]="visit.description | linebreaks"></p>
+  <div *ngIf="visit.description">
+    <h2>Détail des activités</h2>
+    <p [innerHTML]="visit.description"></p>
+  </div>
 
   <h2>Informations pratiques</h2>
 
-  <ul class="tips">
-    <li>
-      <strong>Adresse</strong> : <span [innerHTML]="visit.place.address | linebreaks:', '"></span>
-    </li>
-    <li>
-      <strong>Date</strong> : {{ visit.date | date:"fullDate" }}
-    </li>
-    <li>
-      <strong>Heure de rendez-vous</strong> : {{ visit.date | date:"shortTime"}}
-    </li>
-  </ul>
+  <table class="tips">
+    <tr>
+      <td>Adresse</td>
+      <td>{{ visit.place.address.toString() }}</td>
+    </tr>
+    <tr>
+      <td>Date</td>
+      <td>{{ visit.date | date:"fullDate" }}</td>
+    </tr>
+    <tr>
+      <td>Heure de rendez-vous</td>
+      <td>{{ visit.date | date:"shortTime"}}</td>
+    </tr>
+  </table>
 
   <h3>Contacts utiles</h3>
   <ul>
     <li *ngFor="let organizer of visit.organizers">
-      {{ organizer.first_name + ' ' + organizer.last_name }} : {{ organizer.gender === 'F' ? 'organisatrice' : 'organisateur'}} ({{ organizer.phone_number }})
+      {{ organizer }} : {{ organizer.gender === 'F' ? 'organisatrice' : 'organisateur'}} ({{ organizer.phoneNumber }})
     </li>
   </ul>
   <div *ngIf="visit.place.description">
