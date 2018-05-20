@@ -5,7 +5,7 @@
     <p *ngIf="fromOtherPage" class="alert alert-danger">Vous devez vous connecter pour accéder à cette page.</p>
     <messages></messages>
     <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
-      <!-- Username field -->
+      <!-- Email field -->
       <div class="form-group" [ngClass]="{'has-error': f.submitted && !username.valid}">
         <input type="text" class="form-control block" name="username" [(ngModel)]="model.username" #username="ngModel" required placeholder="Adresse électronique">
         <p *ngIf="f.submitted && !username.valid" class="alert alert-danger">Ce champ est obligatoire</p>

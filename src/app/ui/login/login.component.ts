@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from '@app/core';
-import { MessageService } from '@app/core';
+import { AuthService } from '../../core';
+import { MessageService } from '../../core';
 
 @Component({
   selector: 'login',
@@ -44,9 +44,8 @@ export class LoginComponent implements OnInit {
       error => {
         this.loading = false;
         console.log(error);
-        if (error.error && error.error.non_field_errors) {
-          this.messageService.error(error.error.non_field_errors);
-        }
+        this.messageService.error(
+            "L'identifiant ou le mot de passe est incorrect.");
       }
     );
   }

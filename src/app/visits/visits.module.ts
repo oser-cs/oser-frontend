@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { VisitsRoutingModule } from './visits-routing.module';
-import { CoreModule } from '@app/core';
-import { UiModule } from '@app/ui';
+import { CoreModule } from '../core';
+import { UiModule } from '../ui';
 import { AgmCoreModule } from '@agm/core';
 
 // Components

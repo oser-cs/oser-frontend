@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import { environment } from '@environments/environment';
+import { tap, map } from 'rxjs/operators';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class AuthService {
@@ -18,15 +18,12 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string) {
-    return this.http.post<any>(this.loginUrl, { username: username, password: password })
-      .map(user => {
-        // login successful if there's a token and a user in the response
-        if (user && user.token && user.user) {
-          this.user = user;
-          return true;
-        }
-        return false;
-      });
+    return this.http.post<any>(this.loginUrl, { username: username, password: password }).pipe(
+      map(user => {
+        this.user = user;
+        return true;
+      })
+    );
   }
 
   private set user(user: any) {

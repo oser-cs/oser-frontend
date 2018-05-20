@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SignupPageComponent } from './signup-page/signup-page.component';
-import { LoginComponent } from '@app/ui';
-import { UiGalleryComponent }  from '@app/ui';
+import { LoginComponent } from './ui';
+import { UiGalleryComponent }  from './ui';
 import { ShowcaseSiteComponent } from './showcase-site/showcase-site.component';
-import { NotFoundComponent } from '@app/core';
+import { NotFoundComponent } from './core';
 
 const routes: Routes = [
   { path: '', component: ShowcaseSiteComponent },

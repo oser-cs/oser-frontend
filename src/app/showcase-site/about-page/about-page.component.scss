@@ -44,16 +44,15 @@
   background-color: white;
   @include media-lg {
     display: grid;
-    grid-template-areas: "text image" "text .";
+    grid-template-areas: "left right" "left .";
     grid-template-columns: 1fr auto;
     grid-template-rows: 1fr auto;
   }
 
   .content {
     @include margin-page;
-    grid-area: "text";
-    grid-rows: 1/2;
-    /* Span all text rows */
+    grid-area: "left";
+    grid-rows: 1/2;  /* Span all rows */
   }
 
   .claim {
@@ -64,7 +63,7 @@
   .carrousel {
     @include margin-page;
     padding-top: 0;
-    grid-area: "image";
+    grid-area: "right";
     @include media-lg {
       padding: 0;
       display: flex;

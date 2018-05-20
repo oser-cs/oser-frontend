@@ -11,15 +11,16 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
 // App modules
-import { CoreModule } from '@app/core';
-import { UiModule } from '@app/ui';
+import { CoreModule } from './core';
+import { UiModule } from './ui';
 import { AppRoutingModule } from './app-routing.module';
 import { ShowcaseSiteModule } from './showcase-site/showcase-site.module';
+import { VisitsModule } from './visits';
 
 // Components
 import { AppComponent } from './app.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
-import { NotFoundComponent } from '@app/core';
+import { NotFoundComponent } from './core';
 
 // Services
 import { StudentService } from './signup-page/student.service';
@@ -41,6 +42,7 @@ registerLocaleData(localeFR);
     UiModule,
     HttpClientModule,
     ShowcaseSiteModule,
+    VisitsModule,
     // Global routing module must be after all modules with child routers
     // to ensure wildcard pages are handled properly (eg 404 page).
     AppRoutingModule,

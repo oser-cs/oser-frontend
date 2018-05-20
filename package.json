@@ -25,6 +25,7 @@
     "@angular/platform-browser": "^5.0.0",
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
+    "autoprefixer": "^8.5.0",
     "core-js": "^2.4.1",
     "express": "^4.16.3",
     "fuse.js": "^3.2.0",
