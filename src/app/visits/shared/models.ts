@@ -61,7 +61,7 @@ export class Visit {
   title: string;
   summary: string;
   description: string;
-  place: Place | string;
+  place: Place;
   date: Date;
   passed: boolean;
   deadline: Date;
@@ -77,7 +77,7 @@ export class Visit {
     title: string,
     summary: string;
     description?: string,
-    place: Place | string,
+    place: Place,
     date: Date,
     passed: boolean,
     deadline: Date,
@@ -105,11 +105,11 @@ export class Visit {
   }
 
   get address(): string {
-    if (typeof this.place === 'string') {
-      return this.place;
-    } else {
+    if (this.place.address) {
       // Preprend the place's name for better geocoding results
       return this.place.name + ', ' + this.place.address.toString();
+    } else {
+      return this.place.name;
     }
   }
 

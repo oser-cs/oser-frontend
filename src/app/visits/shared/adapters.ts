@@ -31,7 +31,7 @@ export class PlaceAdapter {
       id: item.id,
       name: item.name,
       description: item.description,
-      address: this.addressAdapter.adapt(item.address),
+      address: item.address ? this.addressAdapter.adapt(item.address) : null,
     }
   }
 }
@@ -60,7 +60,7 @@ export class OrganizerAdapter {
   adapt(item: any): Organizer {
     return {
       id: item.id,
-      user: this.userAdapter.adapt(item.user),
+      user: item.user ? this.userAdapter.adapt(item.user) : null,
     }
   }
 }
@@ -81,12 +81,13 @@ export class SimpleVisitAdapter {
         user: { id: id },
       })
     );
+    const place = this.placeAdapter.adapt({name: item.place});
     return new Visit({
       id: item.id,
       title: item.title,
       summary: item.summary,
       description: item.description,
-      place: item.place,
+      place: place,
       date: new Date(item.date),
       passed: item.passed,
       deadline: new Date(item.deadline),
@@ -117,7 +118,7 @@ export class VisitAdapter {
       title: item.title,
       summary: item.summary,
       description: item.description,
-      place: this.placeAdapter.adapt(item.place),
+      place: item.place ? this.placeAdapter.adapt(item.place) : null,
       date: new Date(item.date),
       passed: item.passed,
       deadline: new Date(item.deadline),
