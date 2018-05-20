@@ -5,11 +5,11 @@
 
     <h1>Connexion</h1>
 
-    <p *ngIf="auth.fromGuard" class="alert alert-danger">
+    <p *ngIf="fromGuard" class="alert alert-danger">
       Oops ! Vous devez vous connecter pour accéder à cette page.
     </p>
 
-    <p *ngIf="auth.fromUnauthorized" class="alert alert-danger">
+    <p *ngIf="fromUnauthorized" class="alert alert-danger">
       Oops ! Vous n'avez pas les permissions requises pour accéder à cette page.
     </p>
 

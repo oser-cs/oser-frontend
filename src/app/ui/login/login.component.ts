@@ -25,8 +25,12 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  get fromOtherPage(): boolean {
+  get fromGuard(): boolean {
     return this.auth.fromGuard;
+  }
+
+  get fromUnauthorized(): boolean {
+    return this.auth.fromUnauthorized;
   }
 
   login() {

@@ -26,6 +26,7 @@ export class TokenInterceptor implements HttpInterceptor {
   toLoginPage() {
     this.auth.redirectUrl = this.location.path();
     this.auth.fromUnauthorized = true;
+    this.auth.logout();  // forget credentials as they may be corrupt
     this.auth.redirectLogin();
   }
 
