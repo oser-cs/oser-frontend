@@ -1,0 +1,11 @@
+@import '~sass/variables';
+
+.click-to-reveal {
+  background: $color-light-gray;
+  padding: .5em;
+  cursor: pointer;
+  &:hover {
+    background: $color-light-blue;
+  }
+  border-radius: 4px;
+}

@@ -74,6 +74,10 @@
 
   <table class="tips">
     <tr>
+      <td>Lieu</td>
+      <td>{{ visit.place.name }}</td>
+    </tr>
+    <tr>
       <td>Adresse</td>
       <td>{{ visit.place.address.toString() }}</td>
     </tr>
@@ -87,10 +91,19 @@
     </tr>
   </table>
 
-  <h3>Contacts utiles</h3>
+  <h3>Se rendre à cette sortie</h3>
+  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="17">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  </agm-map>
+
+  <h2>Tuteurs organisateurs</h2>
+
   <ul>
     <li *ngFor="let organizer of visit.organizers">
-      {{ organizer }} : {{ organizer.gender === 'F' ? 'organisatrice' : 'organisateur'}} ({{ organizer.phoneNumber }})
+      {{ organizer.user.firstName }} {{ organizer.user.lastName}}
+      <span *ngIf="organizer.user.phoneNumber">
+        (tél. : <app-reveal [content]="organizer.user.phoneNumber"></app-reveal>)
+      </span>
     </li>
   </ul>
   <div *ngIf="visit.place.description">
@@ -98,8 +111,4 @@
     <markdown [data]="visit.place.description"></markdown>
   </div>
 
-  <h3>Se rendre à cette sortie</h3>
-  <agm-map [latitude]="lat" [longitude]="lng">
-    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-  </agm-map>
 </div>

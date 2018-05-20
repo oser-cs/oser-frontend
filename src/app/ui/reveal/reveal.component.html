@@ -1,0 +1,6 @@
+<span *ngIf="revealed">
+  {{ content }}
+</span>
+<span *ngIf="!revealed" class="click-to-reveal" (click)="revealed = true">
+  {{ label }}
+</span>

@@ -104,4 +104,13 @@ export class Visit {
     this.organizers = opts.organizers || [];
   }
 
+  get address(): string {
+    if (typeof this.place === 'string') {
+      return this.place;
+    } else {
+      // Preprend the place's name for better geocoding results
+      return this.place.name + ', ' + this.place.address.toString();
+    }
+  }
+
 }

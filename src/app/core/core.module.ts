@@ -4,6 +4,7 @@ import { MarkdownModule, MarkdownComponent, MarkdownPipe } from 'ngx-markdown';
 import { AuthService } from './auth/auth.service';
 import { LinkService } from './links';
 import { AuthGuard } from './auth/auth-guard.service';
+import { GeocodingService } from './geocoding.service';
 import { MessageModule } from './messages';
 import { FuzzyPipe, LineBreaksPipe } from './pipes';
 import { DocumentService, DocumentComponent } from './documents';
@@ -23,6 +24,7 @@ import { DocumentService, DocumentComponent } from './documents';
     AuthGuard,
     LinkService,
     DocumentService,
+    GeocodingService,
   ],
   exports: [
     MessageModule,
