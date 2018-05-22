@@ -1,4 +1,8 @@
 <div id="visit" *ngIf="visit">
+  <app-register-form [visible]="registerFormActive" (closed)="registerFormActive = false" [userId]="userId" [visit]="visit" (participate)="onParticipate($event)"></app-register-form>
+
+  <app-leave-form [visible]="leaveFormActive" (closed)="leaveFormActive = false" [visit]="visit" [userId]="userId" (left)="userParticipates = false"></app-leave-form>
+
   <div class="text-center">
     <h1>{{ visit.title }}</h1>
     <p>
@@ -20,7 +24,7 @@
 
     <!-- Show register button if user does not participate -->
     <div *ngIf="visit.registrationsOpen && !userParticipates" class="text-center">
-      <button id="participate-btn" type="button" name="button" class="btn-success" (click)="formActive = true">Je m'inscris</button>
+      <button id="participate-btn" type="button" name="button" class="btn-success" (click)="registerFormActive = true">Je m'inscris</button>
     </div>
 
     <img id="illustration" [src]="visit.image" [alt]="visit.title" class="drop-shadow-sm">
@@ -28,32 +32,24 @@
 
   <!-- If user participates, show them relevant info -->
   <div *ngIf="userParticipates">
+
     <p class="alert alert-success"><i class="fa fa-ticket"></i> Tu participes à cette sortie.</p>
+
+    <!-- And a shy-ish unregister link -->
+    <p class="text-muted">Tu as un empêchement et souhaites <span class="link-muted" (click)="leaveFormActive = true">te désinscrire ?</span></p>
+
     <p class="alert alert-warning">
       <i class="fa fa-exclamation-triangle"></i> Avant de te rendre à la sortie, télécharge <a [href]="visit.permissionSheet">l'autorisation de sortie</a>. Fais-la remplir par tes parents et remet-la aux tuteurs le jour de la sortie.
     </p>
+
     <p class="alert alert-default">
       <i class="fa fa-file-text"></i> Les organisateurs ont rédigé une <a [href]="visit.factSheet">fiche sortie</a>. N'hésite pas à en prendre connaissance avant de te rendre à la sortie !
     </p>
-    <!-- And a shy-ish unregister link -->
-    <p class="text-muted">Tu as un empêchement et souhaites <span class="link-muted" (click)="leave()">te désinscrire ?</span></p>
   </div>
 
   <div *ngIf="visit.summary">
     <h2>Résumé</h2>
     <p [innerHTML]="visit.summary | linebreaks"></p>
-  </div>
-
-  <!-- Modal register form -->
-  <div id="register-form" class="modal" [hidden]="!formActive" (click)="clickModal($event)">
-    <form name="form" class="modal-content" (ngSubmit)="participate()" novalidate>
-      <h2>Inscription à la sortie</h2>
-      <p>Tu t'apprêtes à t'inscrire à la sortie {{ visit.title }}.</p>
-      <div class="text-center">
-        <button class="btn-success">Confirmer mon inscription</button>
-        <load-spinner *ngIf="formLoading"></load-spinner>
-      </div>
-    </form>
   </div>
 
   <div *ngIf="visit.description">

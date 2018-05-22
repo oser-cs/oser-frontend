@@ -17,7 +17,7 @@ export class VisitDetailComponent implements OnInit {
   lng = 3.520;
   userId: number;
   userParticipates: boolean = false;
-  formActive: boolean = false;
+  registerFormActive = false;
   formLoading: boolean = false;
 
   constructor(
@@ -60,35 +60,9 @@ export class VisitDetailComponent implements OnInit {
     );
   }
 
-  clickModal(e): void {
-    if (e.target === document.getElementById('register-form')) {
-      this.formActive = false;
-    }
-  }
-
-  participate(): void {
-    this.formLoading = true;
-    this.participantService.add(this.visit.id, this.userId).subscribe(
-      (participant: Participant) => {
-        this.formLoading = false;
-        this.formActive = false;
-        this.visit.participants.push(participant);
-        this.getUserParticipate();
-      }
-    );
-  }
-
-  leave(): void {
-    const participant = this.visit.participants.find(
-      p => p.user.id === this.userId
-    );
-    this.participantService.remove(participant).subscribe(
-      resp => {
-        this.userParticipates = false;
-        const index = this.visit.participants.indexOf(participant);
-        this.visit.participants.splice(index, 1);
-      }
-    );
+  onParticipate(participant: Participant) {
+    this.visit.participants.push(participant);
+    this.getUserParticipate();
   }
 
 }

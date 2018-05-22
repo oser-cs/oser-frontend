@@ -17,6 +17,8 @@ import { VisitDetailComponent } from './visit-detail/visit-detail.component';
 
 // Services
 import { VisitService, ParticipantService } from './shared';
+import { LeaveFormComponent } from './leave-form/leave-form.component';
+import { RegisterFormComponent } from './register-form/register-form.component';
 
 @NgModule({
   imports: [
@@ -35,6 +37,8 @@ import { VisitService, ParticipantService } from './shared';
     ToggleButtonComponent,
     VisitCardComponent,
     VisitDetailComponent,
+    LeaveFormComponent,
+    RegisterFormComponent,
   ],
   providers: [
     VisitService,
