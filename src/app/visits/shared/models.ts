@@ -63,12 +63,15 @@ export class Visit {
   description: string;
   place: Place;
   date: Date;
+  startTime: Date;
+  endTime: Date;
+  meetingPlace: string;
   passed: boolean;
   deadline: Date;
   registrationsOpen: boolean;
   image: string;
   factSheet: string;
-  attachedFiles: any[];
+  permissionSheet: string;
   participants: Participant[];
   organizers: Organizer[];
 
@@ -79,12 +82,15 @@ export class Visit {
     description?: string,
     place: Place,
     date: Date,
+    startTime: Date,
+    endTime: Date,
     passed: boolean,
+    meetingPlace?: string;
     deadline: Date,
     registrationsOpen: boolean,
     image: string;
     factSheet?: string;
-    attachedFiles?: any[],
+    permissionSheet?: string;
     participants?: Participant[];
     organizers?: Organizer[],
   }) {
@@ -94,12 +100,15 @@ export class Visit {
     this.description = opts.description || null;
     this.place = opts.place;
     this.date = opts.date;
+    this.startTime = opts.startTime;
+    this.endTime = opts.endTime;
     this.passed = opts.passed;
+    this.meetingPlace = opts.meetingPlace;
     this.deadline = opts.deadline;
     this.registrationsOpen = opts.registrationsOpen;
     this.image = opts.image;
     this.factSheet = opts.factSheet;
-    this.attachedFiles = opts.attachedFiles || [];
+    this.permissionSheet = opts.permissionSheet;
     this.participants = opts.participants || [];
     this.organizers = opts.organizers || [];
   }
