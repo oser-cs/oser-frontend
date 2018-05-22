@@ -9,9 +9,9 @@
 
     <p class="intro" *ngIf="article.introduction">{{ article.introduction }}</p>
 
-    <p class="text-muted">—</p>
+    <p class="text-muted-sm">—</p>
 
-    <p class="text-muted">
+    <p class="text-muted-sm">
       Publié le {{ article.published | date:'shortDate' }}
       à {{ article.published | date:'shortTime' }}.
       <span *ngIf="article.modified">Mis à jour le {{ article.modified | date:'shortDate'}} à {{ article.modified | date:'shortTime' }}.</span>

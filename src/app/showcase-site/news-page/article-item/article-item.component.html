@@ -8,7 +8,7 @@
         {{ article.title }}
         <span *ngIf="article.pinned" class="pinned">&nbsp;<i class="fa fa-map-pin"></i>&nbsp;À&nbsp;la&nbsp;une</span>
       </h3>
-      <p class="date text-muted">Publié le {{ article.published | date:'shortDate' }}</p>
+      <p class="date text-muted-sm">Publié le {{ article.published | date:'shortDate' }}</p>
       <ul class="badge-list">
         <span *ngFor="let category of article.categories" class="badge badge-default">{{ category }}</span>
       </ul>

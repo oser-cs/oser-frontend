@@ -78,10 +78,14 @@ select {
   -webkit-appearance: none;
 }
 
-.text-muted {
+.text-muted-sm {
   font-size: smaller;
   color: gray;
 }
+.text-muted {
+  color: gray;
+}
+
 
 .text-white {
   color: white;

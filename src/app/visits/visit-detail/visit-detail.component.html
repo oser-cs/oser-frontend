@@ -6,7 +6,11 @@
   <div class="text-center">
     <h1>{{ visit.title }}</h1>
     <p>
-      <strong>{{ visit.date | date:"EEEE d MMMM" }} – {{ visit.date | date:"shortTime"}}</strong> – {{ visit.place.name }}
+      <strong>{{ visit.date | date:"EEEE d MMMM" }} – {{ visit.startTime | date:"shortTime"}}</strong> – {{ visit.place.name }}
+    </p>
+
+    <p *ngIf="visit.summary" class="text-muted">
+      {{ visit.summary }}
     </p>
 
     <!-- Metadata badges -->
@@ -20,6 +24,9 @@
       <span *ngIf="visit.participants.length > 0" class="badge badge-info badge-lg">
         <i class="fa fa-user"></i> {{ visit.participants.length }} participants
       </span>
+      <span *ngIf="userParticipates" class="badge badge-success badge-lg">
+        <i class="fa fa-ticket"></i> Tu participes à cette sortie.
+      </span>
     </div>
 
     <!-- Show register button if user does not participate -->
@@ -27,34 +34,28 @@
       <button id="participate-btn" type="button" name="button" class="btn-success" (click)="registerFormActive = true">Je m'inscris</button>
     </div>
 
+    <div *ngIf="userParticipates">
+
+      <!-- And a shy-ish unregister link -->
+      <p class="text-muted-sm">Tu as un empêchement et souhaites <span class="link-muted" (click)="leaveFormActive = true">te désinscrire ?</span></p>
+
+      <!-- Related documents -->
+
+      <p class="alert alert-warning">
+        <i class="fa fa-exclamation-triangle"></i> Avant de te rendre à la sortie, télécharge <a [href]="visit.permissionSheet">l'autorisation de sortie</a>. Fais-la remplir par tes parents et remet-la aux tuteurs le jour de la sortie.
+      </p>
+
+      <p class="alert alert-default">
+        <i class="fa fa-file-text"></i> Les organisateurs ont rédigé une <a [href]="visit.factSheet">fiche sortie</a>. N'hésite pas à en prendre connaissance avant de te rendre à la sortie !
+      </p>
+    </div>
+
     <img id="illustration" [src]="visit.image" [alt]="visit.title" class="drop-shadow-sm">
-  </div>
-
-  <!-- If user participates, show them relevant info -->
-  <div *ngIf="userParticipates">
-
-    <p class="alert alert-success"><i class="fa fa-ticket"></i> Tu participes à cette sortie.</p>
-
-    <!-- And a shy-ish unregister link -->
-    <p class="text-muted">Tu as un empêchement et souhaites <span class="link-muted" (click)="leaveFormActive = true">te désinscrire ?</span></p>
-
-    <p class="alert alert-warning">
-      <i class="fa fa-exclamation-triangle"></i> Avant de te rendre à la sortie, télécharge <a [href]="visit.permissionSheet">l'autorisation de sortie</a>. Fais-la remplir par tes parents et remet-la aux tuteurs le jour de la sortie.
-    </p>
-
-    <p class="alert alert-default">
-      <i class="fa fa-file-text"></i> Les organisateurs ont rédigé une <a [href]="visit.factSheet">fiche sortie</a>. N'hésite pas à en prendre connaissance avant de te rendre à la sortie !
-    </p>
-  </div>
-
-  <div *ngIf="visit.summary">
-    <h2>Résumé</h2>
-    <p [innerHTML]="visit.summary | linebreaks"></p>
   </div>
 
   <div *ngIf="visit.description">
     <h2>Détail des activités</h2>
-    <p [innerHTML]="visit.description"></p>
+    <markdown [data]="visit.description"></markdown>
   </div>
 
   <div *ngIf="visit.place.description">
