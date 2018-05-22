@@ -18,14 +18,21 @@
       <span *ngIf="visit.registrationsOpen" class="badge badge-warning badge-lg"><i class="fa fa-clock-o"></i>
         Inscriptions avant le {{ visit.deadline | date:"dd/MM à HH:mm" }}
       </span>
-      <span *ngIf="!visit.registrationsOpen" class="badge badge-danger badge-lg">
+      <span *ngIf="!visit.registrationsOpen" class="badge badge-danger badge-lg" [ngClass]="{'tooltip': !visit.passed}">
         <i class="fa fa-times"></i> Inscriptions fermées
+        <span class="tooltip-text drop-shadow-sm" *ngIf="!visit.passed">
+          Tu peux malgré tout tenter de t'inscrire en
+          <a href="mailto:oser.sortie@gmail.com">nous envoyant un email</a>.
+        </span>
       </span>
       <span *ngIf="visit.participants.length > 0" class="badge badge-info badge-lg">
         <i class="fa fa-user"></i> {{ visit.participants.length }} participants
       </span>
       <span *ngIf="userParticipates" class="badge badge-success badge-lg">
-        <i class="fa fa-ticket"></i> Tu participes à cette sortie.
+        <i class="fa fa-ticket"></i> Tu <span [ngSwitch]="visit.passed">
+          <span *ngSwitchCase="true">as participé</span>
+          <span *ngSwitchDefault>participes</span>
+        </span> à cette sortie.
       </span>
     </div>
 
@@ -34,17 +41,15 @@
       <button id="participate-btn" type="button" name="button" class="btn-success" (click)="registerFormActive = true">Je m'inscris</button>
     </div>
 
-    <div *ngIf="userParticipates">
+    <div *ngIf="userParticipates && !visit.passed">
 
       <!-- And a shy-ish unregister link -->
       <p class="text-muted-sm">Tu as un empêchement et souhaites <span class="link-muted" (click)="leaveFormActive = true">te désinscrire ?</span></p>
 
       <!-- Related documents -->
-
       <p class="alert alert-warning">
         <i class="fa fa-exclamation-triangle"></i> Avant de te rendre à la sortie, télécharge <a [href]="visit.permissionSheet">l'autorisation de sortie</a>. Fais-la remplir par tes parents et remet-la aux tuteurs le jour de la sortie.
       </p>
-
       <p class="alert alert-default">
         <i class="fa fa-file-text"></i> Les organisateurs ont rédigé une <a [href]="visit.factSheet">fiche sortie</a>. N'hésite pas à en prendre connaissance avant de te rendre à la sortie !
       </p>

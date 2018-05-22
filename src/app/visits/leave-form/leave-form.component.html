@@ -3,13 +3,16 @@
   <form name="form" class="modal-content" (ngSubmit)="onLeave()" novalidate>
     <h2>Désistement : {{ visit.title }}</h2>
     <p>
-      Peux-tu nous expliquer en quelques mots la raison de ton désistement ? Ton message ne sera envoyé qu'aux tuteurs organisateurs.
+      Merci de prendre le temps de nous signaler que tu ne peux pas être présent.
+    </p>
+    <p>
+      Peux-tu nous expliquer aux tuteurs organisateurs la raison de ton désistement ?
     </p>
     <div>
       <textarea name="reason" [(ngModel)]="reason" rows="4"></textarea>
     </div>
     <div class="text-center">
-      <button class="btn-success">Me désister</button>
+      <button class="btn-success">Me désinscrire</button>
       <load-spinner *ngIf="loading"></load-spinner>
     </div>
   </form>
