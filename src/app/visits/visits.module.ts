@@ -7,6 +7,7 @@ import { VisitsRoutingModule } from './visits-routing.module';
 import { CoreModule } from '../core';
 import { UiModule } from '../ui';
 import { AgmCoreModule } from '@agm/core';
+import { MomentModule } from 'ngx-moment';
 
 // Components
 import { VisitsComponent } from './visits.component';
@@ -24,6 +25,7 @@ import { RegisterFormComponent } from './register-form/register-form.component';
   imports: [
     CommonModule,
     FormsModule,
+    MomentModule,
     CoreModule,
     UiModule,
     VisitsRoutingModule,

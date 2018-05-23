@@ -1,9 +1,9 @@
 <div id="article">
   <div *ngIf="article; else loading">
 
-    <ul class="badge-list">
+    <div>
       <span *ngFor="let category of article.categories" class="badge badge-default">{{ category }}</span>
-    </ul>
+    </div>
 
     <h1>{{ article.title }}</h1>
 

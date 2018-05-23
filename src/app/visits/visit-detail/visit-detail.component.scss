@@ -56,29 +56,3 @@ img {
     font-weight: bold;
   }
 }
-
-.tooltip {
-  position: relative;
-  text-decoration: underline;
-  text-decoration-style: dotted;
-
-  .tooltip-text {
-    visibility: hidden;
-    background-color: white;
-    color: $color-text;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 4px;
-
-    // Position the tooltip text
-    position: absolute;
-    width: 15em;
-    top: 100%;
-    left: 50%;
-    margin-left: -7.5em;
-    z-index: 1;
-  }
-  &:hover .tooltip-text {
-    visibility: visible;
-  }
-}

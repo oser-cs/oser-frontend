@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { MomentModule } from 'ngx-moment';
 
 // App modules
 import { CoreModule } from './core';
@@ -38,6 +39,7 @@ registerLocaleData(localeFR);
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
+    MomentModule,
     CoreModule,
     UiModule,
     HttpClientModule,

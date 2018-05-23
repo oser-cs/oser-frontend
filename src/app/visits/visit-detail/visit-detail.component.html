@@ -18,11 +18,11 @@
       <span *ngIf="visit.registrationsOpen" class="badge badge-warning badge-lg"><i class="fa fa-clock-o"></i>
         Inscriptions avant le {{ visit.deadline | date:"dd/MM à HH:mm" }}
       </span>
-      <span *ngIf="!visit.registrationsOpen" class="badge badge-danger badge-lg" [ngClass]="{'tooltip': !visit.passed}">
-        <i class="fa fa-times"></i> Inscriptions fermées
+      <span *ngIf="!visit.registrationsOpen" class="badge badge-danger badge-lg" [ngClass]="{'tooltip bottom': !visit.passed}">
+        <i class="fa fa-times"></i> Inscriptions fermées {{ visit.deadline | amLocale:'fr' | amTimeAgo }}
         <span class="tooltip-text drop-shadow-sm" *ngIf="!visit.passed">
-          Tu peux malgré tout tenter de t'inscrire en
-          <a href="mailto:oser.sortie@gmail.com">nous envoyant un email</a>.
+          Tu peux encore tenter de t'inscrire
+          <a href="mailto:oser.sortie@gmail.com?subject=Inscription à la sortie : {{ visit.title }}">par email</a>.
         </span>
       </span>
       <span *ngIf="visit.participants.length > 0" class="badge badge-info badge-lg">
@@ -55,7 +55,7 @@
       </p>
     </div>
 
-    <img id="illustration" [src]="visit.image" [alt]="visit.title" class="drop-shadow-sm">
+    <img id="illustration" *ngIf="visit.image" [src]="visit.image" [alt]="visit.title" class="drop-shadow-sm">
   </div>
 
   <div *ngIf="visit.description">

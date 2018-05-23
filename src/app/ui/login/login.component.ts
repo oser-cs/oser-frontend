@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.loading = true;
-    this.auth.login(this.model.username, this.model.password).subscribe(
+    this.auth.login(this.model.email, this.model.password).subscribe(
       () => {
         this.loading = false;
         if (this.auth.isLoggedIn) {

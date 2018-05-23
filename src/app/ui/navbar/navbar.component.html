@@ -19,10 +19,12 @@
       <li *ngFor="let link of links">
         <a (click)="toggle()" class="nav-link" [routerLink]="link.href">{{ link.text }}</a>
       </li>
+      <!--
       <li>
         <a class="nav-link" [routerLink]="loginRoute">
           <i class="fa fa-power-off"></i> Connexion</a>
       </li>
+      -->
     </div>
   </div>
 </div>
