@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
+import { forkJoin } from 'rxjs/observable/forkJoin';
 import { Visit, Place, Participant } from './models';
 import { VisitAdapter, SimpleVisitAdapter, ParticipantAdapter } from './adapters';
 import { environment } from 'environments/environment';
@@ -29,11 +30,17 @@ export class ParticipantService {
     );
   }
 
-  remove(participant: Participant): Observable<any> {
+  remove(participant: Participant, visit: Visit, userId: number | string, reason: string): Observable<any> {
     const url = this.apiUrl + `${participant.id}/`;
-    return this.http.delete(url).pipe(
+    const remove = this.http.delete(url).pipe(
       tap(_ => console.log(`user ${participant.user.id} removed from visit ${participant.visitId}`))
     );
+    const notifyUrl = this.apiUrl + 'abandon/';
+    const notifyBody = { user: userId, visit: visit.id, reason: reason };
+    const notify = this.http.post(notifyUrl, notifyBody).pipe(
+      tap(() => console.log('email sent to visits team')),
+    );
+    return forkJoin([remove, notify]);
   }
 
 }

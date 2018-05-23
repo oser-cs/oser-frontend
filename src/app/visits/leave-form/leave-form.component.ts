@@ -14,6 +14,7 @@ export class LeaveFormComponent implements OnInit {
   @Output() left: EventEmitter<any> = new EventEmitter();
   @Output() closed: EventEmitter<any> = new EventEmitter();
   loading = false;
+  reason: string;
 
   constructor(private participantService: ParticipantService) { }
 
@@ -35,9 +36,8 @@ export class LeaveFormComponent implements OnInit {
     const participant = this.visit.participants.find(
       p => p.user.id === this.userId
     );
-    this.participantService.remove(participant).subscribe(
-      resp => {
-        alert('Ce sera bientôt envoyé par mail !');
+    this.participantService.remove(participant, this.visit, this.userId, this.reason).subscribe(
+      () => {
         const index = this.visit.participants.indexOf(participant);
         this.visit.participants.splice(index, 1);
         this.onClose();
