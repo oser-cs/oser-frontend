@@ -12,6 +12,7 @@ import { DocumentService, DocumentComponent } from './documents';
 @NgModule({
   imports: [
     CommonModule,
+    MessageModule,
     MarkdownModule.forRoot(),
   ],
   declarations: [

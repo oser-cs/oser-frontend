@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from './message.service';
+import { Message } from './message.model';
 
 @Component({
   selector: 'messages',
@@ -7,13 +8,21 @@ import { MessageService } from './message.service';
   styleUrls: ['./message.component.scss']
 })
 export class MessageComponent implements OnInit {
-  message: string;
+  messages: Message[];
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService) {
+    this.messages = [];
+  }
 
   ngOnInit() {
-    this.messageService.getMessage().subscribe(
-      message => this.message = message
+    this.messageService.stream().subscribe(
+      message => {
+        if (message === null) {
+          this.messages = [];
+        } else {
+          this.messages.push(message);
+        }
+      }
     );
   }
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   Testimony, TestimonyService,
   Action, ActionService
-} from '@app/showcase-site/shared';
+} from 'app/showcase-site/shared';
 
 class SlideItem {
   title: string;

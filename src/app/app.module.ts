@@ -25,6 +25,7 @@ import { NotFoundComponent } from './core';
 
 // Services
 import { StudentService } from './signup-page/student.service';
+import { MessageService } from './core';
 
 registerLocaleData(localeFR);
 
@@ -51,6 +52,7 @@ registerLocaleData(localeFR);
   ],
   providers: [
     StudentService,
+    MessageService,
     { provide: LOCALE_ID, useValue: 'fr' }
   ],
   bootstrap: [AppComponent]

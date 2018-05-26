@@ -5,7 +5,7 @@ import {APP_BASE_HREF} from '@angular/common';
 // Modules
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { MessageModule } from '@app/core';
+import { MessageModule } from 'app/core';
 // Components
 import { AppComponent } from './app.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';

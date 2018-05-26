@@ -13,7 +13,6 @@ export class LoginComponent implements OnInit {
   model: any = {};
   loading: boolean = false;
   defaultRedirectUrl: string = '/';
-  loginSuccessful: 'Connexion réussie';
 
   constructor(
     private route: ActivatedRoute,
@@ -23,23 +22,21 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-  }
-
-  get fromGuard(): boolean {
-    return this.auth.fromGuard;
-  }
-
-  get fromUnauthorized(): boolean {
-    return this.auth.fromUnauthorized;
+    if (this.auth.fromGuard) {
+      this.messageService.error('Oops ! Vous devez vous connecter pour accéder à cette page.');
+    }
+    if (this.auth.fromUnauthorized) {
+      this.messageService.error("Oops ! Vous n'avez pas les permissions requises pour accéder à cette page.");
+    }
   }
 
   login() {
     this.loading = true;
+    this.messageService.clear();
     this.auth.login(this.model.email, this.model.password).subscribe(
       () => {
         this.loading = false;
         if (this.auth.isLoggedIn) {
-          this.messageService.success(this.loginSuccessful, true);
           // Get redirect URL from the auth service, provided by the auth guard.
           let redirect = this.auth.redirectUrl ? this.auth.redirectUrl : this.defaultRedirectUrl;
           this.router.navigate([redirect]);
@@ -47,8 +44,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         this.loading = false;
-        this.messageService.error(
-            "L'identifiant ou le mot de passe est incorrect.");
+        this.messageService.error("L'identifiant ou le mot de passe est incorrect.");
       }
     );
   }

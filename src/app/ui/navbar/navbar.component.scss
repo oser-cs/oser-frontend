@@ -78,7 +78,7 @@ i.hamburger {
   }
 }
 
-a.nav-link {
+.nav-link {
   text-decoration: none;
   color: rgb(99, 92, 161);
   font-weight: bold;
@@ -110,7 +110,7 @@ a.nav-link {
   }
 }
 /* Underline nav links */
-.nav-wide a.nav-link:hover::after {
+.nav-wide .nav-link:hover::after {
   background: rgb(46, 37, 128);
 }
 /* Login button */

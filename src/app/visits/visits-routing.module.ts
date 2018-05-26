@@ -7,7 +7,7 @@ import { AuthGuard } from '../core';
 
 const visitsRoutes: Routes = [
   {
-    path: 'visits',
+    path: 'sorties',
     component: VisitsComponent,
     // require login to access visits
     canActivate: [AuthGuard],

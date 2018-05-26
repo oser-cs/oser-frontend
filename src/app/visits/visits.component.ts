@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'app/core';
 import { Link } from 'app/ui';
 
 @Component({
@@ -9,10 +11,19 @@ import { Link } from 'app/ui';
 export class VisitsComponent implements OnInit {
 
   navLinks: Link[] = [
-    {href: '/visits', 'text': 'Sorties'},
+    {href: '/sorties', text: 'Sorties'},
+    {action: () => this.logout(), text: 'Déconnexion'},
   ];
 
-  constructor() { }
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+  ) { }
+
+  logout() {
+    this.auth.logout();
+    this.router.navigate(['/']);
+  }
 
   ngOnInit() {
   }

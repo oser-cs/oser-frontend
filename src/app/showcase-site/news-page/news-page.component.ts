@@ -3,7 +3,7 @@ import { Subject } from 'rxjs/Subject';
 import { Article } from '../shared/article.model';
 import { ArticleService } from '../shared/article.service';
 import { CategoryService } from '../shared/category.service';
-import { FuzzyPipe } from '@app/core';
+import { FuzzyPipe } from 'app/core';
 
 
 @Component({

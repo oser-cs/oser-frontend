@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 
 // Modules
 import { CommonModule } from '@angular/common';
-import { CoreModule } from '@app/core';
-import { UiModule } from '@app/ui';
+import { CoreModule } from 'app/core';
+import { UiModule } from 'app/ui';
 import { ShowcaseRoutingModule } from './showcase-routing.module';
 import { Ng2EmojiModule } from 'ng2-emoji';
 

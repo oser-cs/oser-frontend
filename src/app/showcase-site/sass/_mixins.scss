@@ -20,17 +20,16 @@
 
 /* Navigation */
 @mixin nav-link($underline: false) {
-  a {
-    text-decoration: none;
-    color: $color-purple;
-    font-weight: bold;
-    // change color on hover
-    &:hover {
-      color: $color-dark-blue;
-    }
-    @if $underline {
-      @include link-underline($height: 0.1em, $color: $color-dark-blue);
-    }
+  text-decoration: none;
+  color: $color-purple;
+  font-weight: bold;
+  cursor: pointer;
+  // change color on hover
+  &:hover {
+    color: $color-dark-blue;
+  }
+  @if $underline {
+    @include link-underline($height: 0.1em, $color: $color-dark-blue);
   }
 }
 

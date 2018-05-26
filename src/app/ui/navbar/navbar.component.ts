@@ -3,7 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'app/core';
 
 export class Link {
-  href: string;
+  href?: string;
+  action?: () => void;
   text: string;
 }
 

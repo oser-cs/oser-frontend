@@ -1,44 +1,49 @@
 import { Injectable } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { MessageType, Message } from './message.model';
 
 @Injectable()
 export class MessageService {
-  // Generic message service
-  // Add a <messages></messages> tag in a component to use.
-  // See: LoginComponent
 
-  private subject = new Subject<any>();
+  private messageStream$ = new BehaviorSubject<Message>(null);
   private keepAfterNavigationChange = false;
 
   constructor(private router: Router) {
-      // clear messages on route change
-      router.events.subscribe(event => {
-          if (event instanceof NavigationStart) {
-              if (this.keepAfterNavigationChange) {
-                  // only keep for a single location change
-                  this.keepAfterNavigationChange = false;
-              } else {
-                  // clear message
-                  this.subject.next();
-              }
-          }
-      });
+    // clear messages on route change
+    router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        if (this.keepAfterNavigationChange) {
+          // only keep for a single location change
+          this.keepAfterNavigationChange = false;
+        } else {
+          this.clear();
+        }
+      }
+    });
+  }
+
+  private addMessage(message: Message) {
+    this.messageStream$.next(message);
   }
 
   success(message: string, keepAfterNavigationChange = false) {
       this.keepAfterNavigationChange = keepAfterNavigationChange;
-      this.subject.next({ type: 'success', text: message });
+      this.addMessage({ type: MessageType.SUCCESS, text: message });
   }
 
   error(message: string, keepAfterNavigationChange = false) {
       this.keepAfterNavigationChange = keepAfterNavigationChange;
-      this.subject.next({ type: 'error', text: message });
+      this.addMessage({ type: MessageType.ERROR, text: message });
   }
 
-  getMessage(): Observable<any> {
-      return this.subject.asObservable();
+  stream(): Observable<Message> {
+      return this.messageStream$.asObservable();
+  }
+
+  clear() {
+    this.messageStream$.next(null);
   }
 
 }

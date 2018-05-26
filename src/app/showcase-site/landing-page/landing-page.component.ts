@@ -3,7 +3,7 @@ import {
   Article, ArticleService,
   Action, ActionService,
   Partner, PartnerService,
-} from '@app/showcase-site/shared';
+} from 'app/showcase-site/shared';
 import jump from 'jump.js';
 import * as config from './config.json';
 
