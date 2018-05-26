@@ -36,11 +36,14 @@ export class LeaveFormComponent implements OnInit {
     const participant = this.visit.participants.find(
       p => p.user.id === this.userId
     );
+    this.loading = true;
     this.participantService.remove(participant, this.visit, this.userId, this.reason).subscribe(
       () => {
+        this.loading = false;
         const index = this.visit.participants.indexOf(participant);
         this.visit.participants.splice(index, 1);
         this.onClose();
+        this.reason = null;
         this.left.emit();
       }
     );
