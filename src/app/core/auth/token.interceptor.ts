@@ -15,9 +15,14 @@ export class TokenInterceptor implements HttpInterceptor {
     return next.handle(request).do(
       (event: HttpEvent<any>) => { },
       (error: any) => {
-        console.log(error);  // log all HTTP errors
+        // log all HTTP errors
+        console.error(error);
         if (error instanceof HttpErrorResponse && error.status === 401) {
           this.toLoginPage();
+        } else if (error instanceof HttpErrorResponse && error.status === 0) {
+          // Status 0 is a CORS error in Angular
+          // Generally means that backend server is down
+          this.toErrorPage();
         }
       },
     );
@@ -28,6 +33,10 @@ export class TokenInterceptor implements HttpInterceptor {
     this.auth.fromUnauthorized = true;
     this.auth.logout();  // forget credentials as they may be corrupt
     this.auth.redirectLogin();
+  }
+
+  toErrorPage() {
+    // TODO
   }
 
   attachToken(request: HttpRequest<any>): HttpRequest<any> {

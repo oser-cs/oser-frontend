@@ -21,6 +21,9 @@ import { VisitService, ParticipantService } from './shared';
 import { LeaveFormComponent } from './leave-form/leave-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 
+// Resolvers
+import { VisitsResolver, VisitResolver } from './shared';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -45,6 +48,8 @@ import { RegisterFormComponent } from './register-form/register-form.component';
   providers: [
     VisitService,
     ParticipantService,
+    VisitsResolver,
+    VisitResolver,
   ],
 })
 export class VisitsModule { }

@@ -4,6 +4,7 @@ import { VisitsComponent } from './visits.component';
 import { VisitsListComponent } from './visits-list/visits-list.component';
 import { VisitDetailComponent } from './visit-detail/visit-detail.component';
 import { AuthGuard } from '../core';
+import { VisitsResolver, VisitResolver } from './shared';
 
 const visitsRoutes: Routes = [
   {
@@ -12,8 +13,14 @@ const visitsRoutes: Routes = [
     // require login to access visits
     canActivate: [AuthGuard],
     children: [
-      { path: '', component: VisitsListComponent },
-      { path: ':id', component: VisitDetailComponent },
+      {
+        path: '', component: VisitsListComponent,
+        resolve: { 'visits': VisitsResolver }
+      },
+      {
+        path: ':id', component: VisitDetailComponent,
+        resolve: { 'visit': VisitResolver }
+      },
     ],
   }
 ]

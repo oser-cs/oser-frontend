@@ -27,7 +27,7 @@ export class VisitsListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getVisits();
+    this.visits = this.route.snapshot.data['visits'];
     this.sub.add(this.route.fragment.subscribe(
       fragment => {
         if (fragment === 'past') {
@@ -57,18 +57,6 @@ export class VisitsListComponent implements OnInit {
   userParticipates(visit: Visit): Observable<boolean> {
     return this.userVisits$.pipe(
       map(userVisits => userVisits.map(v => v.id).includes(visit.id))
-    );
-  }
-
-  getVisits(): void {
-    this.visitService.list().subscribe(
-      (visits) => {
-        this.visits = visits;
-        let user = this.auth.getUser();
-        this.userVisits$.next(this.visits.filter(
-          visit => visit.participants.map(p => p.user.id).includes(user.id)
-        ));
-      }
     );
   }
 

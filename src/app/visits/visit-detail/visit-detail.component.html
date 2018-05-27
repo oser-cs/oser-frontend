@@ -1,4 +1,4 @@
-<div id="visit" *ngIf="visit">
+<div id="visit">
   <app-register-form [visible]="registerFormActive" (closed)="registerFormActive = false" [userId]="userId" [visit]="visit" (participate)="onParticipate($event)"></app-register-form>
 
   <app-leave-form [visible]="leaveFormActive" (closed)="leaveFormActive = false" [visit]="visit" [userId]="userId" (left)="userParticipates = false"></app-leave-form>

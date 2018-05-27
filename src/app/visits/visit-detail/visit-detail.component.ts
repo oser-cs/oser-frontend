@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService, GeocodingService } from 'app/core';
-import { Visit, VisitService, Participant, ParticipantService } from '../shared';
+import { Visit, Participant } from '../shared';
 
 @Component({
   selector: 'app-visit-detail',
@@ -22,17 +22,15 @@ export class VisitDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private visitService: VisitService,
-    private participantService: ParticipantService,
     private auth: AuthService,
     private geocoding: GeocodingService,
   ) { }
 
   ngOnInit() {
+    this.visit = this.route.snapshot.data['visit'];
+    this.getUserParticipate();
+    this.getVisitLocation();
     this.userId = this.auth.getUser().id;
-    this.route.paramMap.subscribe(
-      params => this.getVisit(params.get('id'))
-    );
   }
 
   getVisitLocation() {
@@ -48,16 +46,6 @@ export class VisitDetailComponent implements OnInit {
     this.userParticipates = this.visit.participants.map(
       p => p.user.id
     ).includes(this.userId);
-  }
-
-  getVisit(visitId: string | number): void {
-    this.visitService.retrieve(visitId).subscribe(
-      (visit) => {
-        this.visit = visit;
-        this.getUserParticipate();
-        this.getVisitLocation();
-      }
-    );
   }
 
   onParticipate(participant: Participant) {
