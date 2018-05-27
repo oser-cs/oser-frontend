@@ -7,7 +7,7 @@ export class ErrorService {
   constructor(private router: Router) { }
 
   panic() {
-    this.router.navigate(['/error']);
+    this.router.navigate(['/500']);
   }
 
   notFound() {

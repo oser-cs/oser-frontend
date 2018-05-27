@@ -122,7 +122,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'error',
+    path: '500',
     component: InternalErrorComponent,
     data: { title: 'Erreur interne' },
   },

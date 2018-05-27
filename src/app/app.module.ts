@@ -21,7 +21,6 @@ import { VisitsModule } from './visits';
 // Components
 import { AppComponent } from './app.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
-import { NotFoundComponent } from './core';
 
 // Services
 import { StudentService } from './signup-page/student.service';
@@ -33,7 +32,6 @@ registerLocaleData(localeFR);
   declarations: [
     AppComponent,
     SignupPageComponent,
-    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

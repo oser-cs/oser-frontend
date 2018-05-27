@@ -1,15 +1,1 @@
-<div class="layout">
-  <div class="container drop-shadow-sm">
-    <div id="logo">
-      <img src="assets/img/oser-logo-white.png" alt="Logo OSER">
-    </div>
-    <h1 class="code-404">404</h1>
-    <div class="content">
-      <h2>Oups !</h2>
-      <p>La page que vous recherchez semble introuvable.</p>
-    </div>
-
-    <a [routerLink]="['/']" class="btn-light">Retourner à l'accueil</a>
-  </div>
-  <span class="background"></span>
-</div>
+<app-error-page [code]="404" message="La page que vous recherchez semble introuvable."></app-error-page>
