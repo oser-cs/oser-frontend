@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
-  Testimony, TestimonyService,
+  Testimony,
   Action, ActionService
 } from 'app/showcase-site/shared';
 
