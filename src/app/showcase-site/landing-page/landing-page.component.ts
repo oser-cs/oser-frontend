@@ -24,7 +24,7 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit() {
     this.actions = this.route.snapshot.data['actions'];
-    this.articles = this.route.snapshot.data['articles'];
+    this.partners = this.route.snapshot.data['partners'];
     this.getArticles();
   }
 
