@@ -1,26 +1,35 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Visit } from './models';
+import { ErrorService } from 'app/core';
 import { VisitService } from './visit.service';
 
 @Injectable()
 export class VisitsResolver implements Resolve<Visit[]> {
 
-  constructor(private visitService: VisitService) { }
+  constructor(
+    private visitService: VisitService,
+    private errorService: ErrorService) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Visit[]> {
-    return this.visitService.list();
+  resolve(): Observable<Visit[]> {
+    return this.visitService.list().pipe(
+      catchError(e => Observable.of(null))
+    );
   }
 }
 
 @Injectable()
 export class VisitResolver implements Resolve<Visit> {
 
-  constructor(private visitService: VisitService) { }
+  constructor(
+    private visitService: VisitService,
+    private errorService: ErrorService) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Visit> {
-    const id = route.paramMap.get('id');
-    return this.visitService.retrieve(id);
+  resolve(route: ActivatedRouteSnapshot): Observable<Visit> {
+    return this.visitService.retrieve(route.paramMap.get('id')).pipe(
+      catchError(e => Observable.of(null))
+    );
   }
 }

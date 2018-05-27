@@ -7,7 +7,9 @@ import { LinkService } from './links';
 import { GeocodingService, MapsAPIResolver } from './geocoding.service';
 import { MessageModule } from './messages';
 import { FuzzyPipe, LineBreaksPipe } from './pipes';
-import { DocumentService, DocumentComponent } from './documents';
+import { DocumentService } from './document.service';
+import { ErrorService } from './error.service';
+import { InternalErrorComponent } from './internal-error';
 
 @NgModule({
   imports: [
@@ -18,7 +20,7 @@ import { DocumentService, DocumentComponent } from './documents';
   declarations: [
     FuzzyPipe,
     LineBreaksPipe,
-    DocumentComponent,
+    InternalErrorComponent,
   ],
   providers: [
     AuthService,
@@ -28,6 +30,7 @@ import { DocumentService, DocumentComponent } from './documents';
     DocumentService,
     GeocodingService,
     MapsAPIResolver,
+    ErrorService,
   ],
   exports: [
     MessageModule,
@@ -35,7 +38,6 @@ import { DocumentService, DocumentComponent } from './documents';
     LineBreaksPipe,
     MarkdownComponent,
     MarkdownPipe,
-    DocumentComponent,
   ]
 })
 export class CoreModule { }

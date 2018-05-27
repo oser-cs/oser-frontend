@@ -8,14 +8,14 @@
       Sorties passées
     </li>
   </ul>
-  <div *ngIf="displayedVisits; else loading">
+  <div *ngIf="visits; else loading">
     <ul id="visits" *ngIf="displayedVisits && displayedVisits.length > 0; else empty">
       <li *ngFor="let visit of displayedVisits">
         <visit-card [visit]="visit" [userParticipates$]="userParticipates(visit)"></visit-card>
       </li>
     </ul>
     <ng-template #empty>
-      <p class="text-center">Pas de sorties en ce moment.</p>
+      <p class="text-center">Pas de sorties à afficher ici.</p>
     </ng-template>
   </div>
   <ng-template #loading>

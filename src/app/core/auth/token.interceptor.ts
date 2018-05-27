@@ -3,40 +3,42 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse
 import { Location } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './auth.service';
+import { ErrorService } from '../error.service';
 
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor(private auth: AuthService, private location: Location) { }
+  constructor(
+    private auth: AuthService,
+    private location: Location,
+    private errorService: ErrorService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     request = this.attachToken(request);
     return next.handle(request).do(
       (event: HttpEvent<any>) => { },
-      (error: any) => {
-        // log all HTTP errors
-        console.error(error);
-        if (error instanceof HttpErrorResponse && error.status === 401) {
-          this.toLoginPage();
-        } else if (error instanceof HttpErrorResponse && error.status === 0) {
-          // Status 0 is a CORS error in Angular
-          // Generally means that backend server is down
-          this.toErrorPage();
-        }
-      },
+      (error: any) => this.onError(error),
     );
   }
 
-  toLoginPage() {
-    this.auth.redirectUrl = this.location.path();
-    this.auth.fromUnauthorized = true;
-    this.auth.logout();  // forget credentials as they may be corrupt
-    this.auth.redirectLogin();
-  }
+  onError(error: any) {
+    console.error(error);
 
-  toErrorPage() {
-    // TODO
+    if (error instanceof HttpErrorResponse) {
+      if (error.status === 401) {
+        this.auth.redirectUrl = this.location.path();
+        this.auth.fromUnauthorized = true;
+        this.auth.logout();  // forget credentials as they may be corrupt
+        this.auth.redirectLogin();
+      } else if (error.status === 0) {
+        // Status 0 is a CORS error
+        // Generally means that backend server is down
+        // this.errorService.panic();
+      } else if (error.status === 404) {
+        this.errorService.notFound();
+      }
+    }
   }
 
   attachToken(request: HttpRequest<any>): HttpRequest<any> {

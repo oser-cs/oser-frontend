@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Resolve } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { filter, map, mergeMap } from 'rxjs/operators';
 
@@ -40,7 +40,7 @@ export class MapsAPIResolver implements Resolve<Geocoder> {
 
   constructor(private loader: MapsAPILoader) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Geocoder> {
+  resolve(): Observable<Geocoder> {
     return Observable.fromPromise(this.loader.load()).pipe(
       map(() => new google.maps.Geocoder())
     );

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 import { LoginComponent, UiGalleryComponent } from './ui';
-import { NotFoundComponent, AuthGuard, MapsAPIResolver } from './core';
+import { InternalErrorComponent, NotFoundComponent, AuthGuard, MapsAPIResolver } from './core';
 
 import {
   ShowcaseSiteComponent,
@@ -51,7 +51,7 @@ const routes: Routes = [
       {
         path: 'qui-sommes-nous',
         component: AboutPageComponent,
-        resolve: {'keyFigures': KeyFiguresResolver },
+        resolve: { 'keyFigures': KeyFiguresResolver },
         data: { title: 'Qui sommes-nous ?' },
       },
       {
@@ -104,7 +104,7 @@ const routes: Routes = [
       }
     ]
   },
-  { path: 'login', component: LoginComponent},
+  { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupPageComponent },
   {
     path: 'sorties',
@@ -121,16 +121,22 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'error',
+    component: InternalErrorComponent,
+    data: { title: 'Erreur interne' },
+  },
   // { path: '', redirectTo: '/signup', pathMatch: 'full'},
   // { path: 'gallery', component: UiGalleryComponent},
-  // NOTE: this route to the 404 page should be the last one,
-  // as it is a default page and will be used if no other route matched
-  // the current URL.
-  { path: '**', component: NotFoundComponent, data: {title: 'Page introuvable'} },
+  {
+    path: '**',
+    component: NotFoundComponent,
+    data: { title: 'Page introuvable' },
+  },
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }
