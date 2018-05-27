@@ -1,2 +1,4 @@
-export * from './visits-routing.module';
 export * from './visits.module';
+export * from './visits-list';
+export * from './visit-detail';
+export * from './visits.component';

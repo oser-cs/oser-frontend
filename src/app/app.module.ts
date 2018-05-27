@@ -46,8 +46,6 @@ registerLocaleData(localeFR);
     HttpClientModule,
     ShowcaseSiteModule,
     VisitsModule,
-    // Global routing module must be after all modules with child routers
-    // to ensure wildcard pages are handled properly (eg 404 page).
     AppRoutingModule,
   ],
   providers: [

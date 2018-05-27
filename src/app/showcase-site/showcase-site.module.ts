@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 
 // Modules
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { CoreModule } from 'app/core';
 import { UiModule } from 'app/ui';
-import { ShowcaseRoutingModule } from './showcase-routing.module';
 import { Ng2EmojiModule } from 'ng2-emoji';
 
 // Components
@@ -38,10 +38,9 @@ import { MentionsComponent } from './mentions/mentions.component';
 @NgModule({
   imports: [
     CommonModule,
-    ShowcaseRoutingModule,
+    RouterModule,
     CoreModule,
     UiModule,
-    // Ng4TwitterTimelineModule.forRoot(),
     Ng2EmojiModule.forRoot(),
   ],
   declarations: [

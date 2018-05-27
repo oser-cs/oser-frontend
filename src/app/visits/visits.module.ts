@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 // Modules
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { VisitsRoutingModule } from './visits-routing.module';
+import { RouterModule } from '@angular/router';
 import { CoreModule } from '../core';
 import { UiModule } from '../ui';
 import { AgmCoreModule } from '@agm/core';
@@ -30,8 +30,8 @@ import { VisitsResolver, VisitResolver } from './shared';
     FormsModule,
     MomentModule,
     CoreModule,
+    RouterModule,
     UiModule,
-    VisitsRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDXPxwZpx9EiwarLAZ3yzUANK9D4q0X9cI',
     }),

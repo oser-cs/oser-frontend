@@ -4,7 +4,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MarkdownModule, MarkdownComponent, MarkdownPipe } from 'ngx-markdown';
 import { AuthService, AuthGuard, TokenInterceptor } from './auth';
 import { LinkService } from './links';
-import { GeocodingService } from './geocoding.service';
+import { GeocodingService, MapsAPIResolver } from './geocoding.service';
 import { MessageModule } from './messages';
 import { FuzzyPipe, LineBreaksPipe } from './pipes';
 import { DocumentService, DocumentComponent } from './documents';
@@ -27,6 +27,7 @@ import { DocumentService, DocumentComponent } from './documents';
     LinkService,
     DocumentService,
     GeocodingService,
+    MapsAPIResolver,
   ],
   exports: [
     MessageModule,

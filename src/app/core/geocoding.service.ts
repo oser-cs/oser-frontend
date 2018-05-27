@@ -1,41 +1,48 @@
 import { Injectable } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { filter, map, mergeMap } from 'rxjs/operators';
 
 declare const google: any;
 
-interface Location {
+export interface Location {
   lat: number;
   lng: number;
+}
+
+export interface Geocoder {
+  geocode: (
+    opts: {address: string},
+    fn: (results: any, status: string) => void,
+  ) => void;
 }
 
 @Injectable()
 export class GeocodingService {
 
-  private geocoder: any;
-  ready = false;
-  ready$ = new Subject<boolean>();
-
-  constructor(private loader: MapsAPILoader) {
-    this.loader.load().then(() => {
-      this.geocoder = new google.maps.Geocoder();
-      this.ready = true;
-      this.ready$.next(true);
-    });
-  }
-
-  locate(address: string): Observable<Location> {
+  locate(geocoder: Geocoder, address: string): Observable<Location> {
     return new Observable(obs => {
-      this.geocoder.geocode({address: address}, (results, status) => {
+      geocoder.geocode({address: address}, (results, status) => {
         if (status === 'OK') {
           const loc = results[0].geometry.location;
           obs.next({lat: loc.lat(), lng: loc.lng()});
         } else {
           obs.error('Google was not successful: ' + status);
         }
-      })
-    })
+      });
+    });
   }
+}
 
+@Injectable()
+export class MapsAPIResolver implements Resolve<Geocoder> {
+
+  constructor(private loader: MapsAPILoader) { }
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Geocoder> {
+    return Observable.fromPromise(this.loader.load()).pipe(
+      map(() => new google.maps.Geocoder())
+    );
+  }
 }
