@@ -12,7 +12,7 @@ interface Options {
 @Injectable()
 export class DocumentService {
 
-  private baseUrl = environment.apiUrl + 'documents/';
+  private baseUrl = environment.showcaseApiUrl + 'documents/';
 
   constructor(private http: HttpClient) { }
 

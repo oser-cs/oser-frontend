@@ -1,3 +1,4 @@
+// Production environment variables
 export const environment = {
   production: true,
   showcaseApiUrl: 'https://oser-site-vitrine.herokuapp.com/api/',
