@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  Article, ArticleService,
-  Action, ActionService,
-  Partner, PartnerService,
-} from 'app/showcase-site/shared';
+import { Article, ArticleService, Action, Partner } from 'app/showcase-site/shared';
+import { ActivatedRoute } from '@angular/router';
 import jump from 'jump.js';
-import * as config from './config.json';
+import { environment } from 'environments/environment';
 
 
 @Component({
@@ -18,36 +15,22 @@ export class LandingPageComponent implements OnInit {
   actions: Action[];
   articles: Article[];
   partners: Partner[];
-  // Max number of articles to show in the "Actualités" section
-  numArticles: number = <number>config['numArticles'];
+  numArticles: number = environment.numArticles;
 
   constructor(
     private articleService: ArticleService,
-    private partnerService: PartnerService,
-    private actionService: ActionService,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
+    this.actions = this.route.snapshot.data['actions'];
+    this.articles = this.route.snapshot.data['articles'];
     this.getArticles();
-    this.getActions();
-    this.getPartners();
   }
 
   getArticles(): void {
     this.articleService.first(this.numArticles).subscribe(
       (articles) => this.articles = articles
-    );
-  }
-
-  getActions(): void {
-    this.actionService.listHighlight().subscribe(
-      actions => this.actions = actions
-    )
-  }
-
-  getPartners(): void {
-    this.partnerService.list().subscribe(
-      (partners) => this.partners = partners
     );
   }
 

@@ -8,3 +8,4 @@ export * from './keyfigure.service';
 export * from './testimony.model';
 export * from './testimony.service';
 export * from './partners';
+export * from './documents.resolvers';

@@ -7,3 +7,4 @@ export * from './not-found';
 export * from './documents';
 export * from './storage';
 export * from './geocoding.service';
+export * from './resolvers';

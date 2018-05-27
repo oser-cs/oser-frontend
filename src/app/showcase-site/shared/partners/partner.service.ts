@@ -1,17 +1,14 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
-import { tap, map } from 'rxjs/operators';
 import { Partner } from './partner.model';
-import { environment } from '@environments/environment';
+import { Injectable } from '@angular/core';
+import { environment } from 'environments/environment';
+import { SimpleListResolver } from 'app/core';
 
 
 @Injectable()
-export class PartnerService {
+export class PartnersResolver extends SimpleListResolver<Partner> {
 
-  private baseUrl = environment.showcaseApiUrl + 'partners/';
-
-  constructor(private http: HttpClient) {}
+  name = 'partners';
+  url = environment.showcaseApiUrl + 'partners/';
 
   adapt(item: any): Partner {
     return new Partner({
@@ -21,12 +18,4 @@ export class PartnerService {
       premium: item.premium,
     });
   }
-
-  list(): Observable<Partner[]> {
-    return this.http.get(this.baseUrl).pipe(
-      map((partners: any) => partners.map(this.adapt)),
-      tap(resp => console.log('fetched partners')),
-    );
-  }
-
 }

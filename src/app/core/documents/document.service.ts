@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { map, tap } from 'rxjs/operators';
-import { environment } from '@environments/environment';
+import { environment } from 'environments/environment';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve } from '@angular/router';
 
 interface Options {
   titleLevel: number;
@@ -16,9 +17,6 @@ export class DocumentService {
   constructor(private http: HttpClient) { }
 
   adapt(data: any, options: Options): string {
-    // API gives title and content as separate elements, where content
-    // is formatted with Markdown.
-    // Put them into a single Markdown string.
     const title = data.title;
     const content = data.content;
     const titleMark = '#'.repeat(options.titleLevel || 1);
@@ -32,5 +30,18 @@ export class DocumentService {
       tap(resp => console.log('fetched document'))
     );
   }
+}
 
+
+@Injectable()
+export abstract class DocumentResolver implements Resolve<string> {
+
+  abstract slug: string;
+  opts: any = {};
+
+  constructor(private service: DocumentService) { }
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<string> {
+    return this.service.get(this.slug, this.opts);
+  }
 }

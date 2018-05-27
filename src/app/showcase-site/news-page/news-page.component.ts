@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
-import { Article } from '../shared/article.model';
-import { ArticleService } from '../shared/article.service';
-import { CategoryService } from '../shared/category.service';
+import { Article, ArticleService } from '../shared';
 import { FuzzyPipe } from 'app/core';
 
 
@@ -31,12 +30,12 @@ export class NewsPageComponent implements OnInit {
   filtersVisible: boolean = true;
 
   constructor(
-    private articleService: ArticleService,
-    private categoryService: CategoryService) { }
+    private route: ActivatedRoute,
+    private articleService: ArticleService) { }
 
   ngOnInit() {
     this.getArticles();
-    this.getCategories();
+    this.categories = this.route.snapshot.data['categories'];
     this.searchTerm$.subscribe(
       (value) => this.search = value
     );
@@ -70,12 +69,6 @@ export class NewsPageComponent implements OnInit {
         this.articleCategories = this.articles.map(a => a.categories);
         this.updateVisibleArticles();
       }
-    );
-  }
-
-  getCategories(): void {
-    this.categoryService.list().subscribe(
-      (categories) => this.categories = categories
     );
   }
 

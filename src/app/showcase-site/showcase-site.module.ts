@@ -22,12 +22,13 @@ import { PartnerComponent } from './shared/partners';
 
 // Services
 import {
-  ArticleService,
-  KeyFigureService,
-  TestimonyService,
-  CategoryService,
-  ActionService,
-  PartnerService,
+  ArticleService, ArticlesResolver, ArticleResolver,
+  KeyFiguresResolver,
+  TestimoniesResolver,
+  CategoriesResolver,
+  ActionService, ActionsResolver,
+  PartnersResolver,
+  MentionsResolver, DonateResolver,
 } from './shared';
 
 // Pipes
@@ -62,12 +63,13 @@ import { MentionsComponent } from './mentions/mentions.component';
     MentionsComponent,
   ],
   providers: [
-    ArticleService,
-    KeyFigureService,
-    TestimonyService,
-    CategoryService,
-    PartnerService,
-    ActionService,
+    ArticleService, ArticlesResolver, ArticleResolver,
+    KeyFiguresResolver,
+    TestimoniesResolver,
+    CategoriesResolver,
+    PartnersResolver,
+    ActionService, ActionsResolver,
+    MentionsResolver, DonateResolver,
   ],
   exports: [
     ShowcaseSiteComponent

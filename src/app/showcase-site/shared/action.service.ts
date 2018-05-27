@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { map, tap, filter } from 'rxjs/operators';
 import { Action } from './action.model';
-import { environment } from '@environments/environment';
+import { environment } from 'environments/environment';
+import { ObjectListResolver } from 'app/core';
 
 
 @Injectable()
@@ -38,4 +40,9 @@ export class ActionService {
       map(actions => actions.filter(action => action.highlight))
     );
   }
+}
+
+@Injectable()
+export class ActionsResolver extends ObjectListResolver<Action> {
+  constructor(service: ActionService) {super(service);}
 }

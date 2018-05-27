@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { KeyFigure } from '../shared/keyfigure.model';
-import { KeyFigureService } from '../shared/keyfigure.service';
 
 
 @Component({
@@ -12,16 +12,10 @@ export class AboutPageComponent implements OnInit {
 
   keyFigures: KeyFigure[];
 
-  constructor(private keyFigureService: KeyFigureService) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getKeyFigures();
-  }
-
-  getKeyFigures(): void {
-    this.keyFigureService.list().subscribe(
-      (keyFigures) => this.keyFigures = keyFigures
-    );
+    this.keyFigures = this.route.snapshot.data['keyFigures'];
   }
 
 }

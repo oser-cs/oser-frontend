@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {
   Testimony, TestimonyService,
   Action, ActionService
@@ -41,26 +42,12 @@ export class ActionsPageComponent implements OnInit {
   slideInterval: number = 9000;
   actions: Action[];
 
-  constructor(
-    private testimonyService: TestimonyService,
-    private actionService: ActionService) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getTestimonies();
-    this.getActions();
+    this.actions = this.route.snapshot.data['actions'];
+    this.testimonies = this.route.snapshot.data['testimonies'];
     this.getSlideItems();
-  }
-
-  getTestimonies(): void {
-    this.testimonyService.list().subscribe(
-      (res) => this.testimonies = res
-    );
-  }
-
-  getActions(): void {
-    this.actionService.list().subscribe(
-      actions => this.actions = actions
-    )
   }
 
   getSlideItems(): void {
