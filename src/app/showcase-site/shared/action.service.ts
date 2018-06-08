@@ -43,5 +43,5 @@ export class ActionService {
 
 @Injectable()
 export class ActionsResolver extends ObjectListResolver<Action> {
-  constructor(service: ActionService) {super(service);}
+  constructor(public service: ActionService) {super();}
 }

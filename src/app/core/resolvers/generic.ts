@@ -12,14 +12,9 @@ interface Retrievable<T> {
 }
 
 
-@Injectable()
 export abstract class ObjectListResolver<T> implements Resolve<T[]> {
 
-  private service: Listable<T>;
-
-  constructor(service: Listable<T>) {
-    this.service = service;
-  }
+  public service: Listable<T>;
 
   resolve(): Observable<T[]> {
     return this.service.list().pipe(
@@ -29,15 +24,10 @@ export abstract class ObjectListResolver<T> implements Resolve<T[]> {
 }
 
 
-@Injectable()
 export abstract class ObjectResolver<T> implements Resolve<T> {
 
-  private service: Retrievable<T>;
+  public service: Retrievable<T>;
   abstract lookupKey: string;
-
-  constructor(service: Retrievable<T>) {
-    this.service = service;
-  }
 
   resolve(route: ActivatedRouteSnapshot): Observable<T> {
     const id: any = route.paramMap.get(this.lookupKey);

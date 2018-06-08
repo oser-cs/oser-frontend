@@ -55,12 +55,12 @@ export class ArticleService {
 
 @Injectable()
 export class ArticlesResolver extends ObjectListResolver<Article> {
-  constructor(service: ArticleService) { super(service); }
+  constructor(public service: ArticleService) { super(); }
 }
 
 
 @Injectable()
 export class ArticleResolver extends ObjectResolver<Article> {
   lookupKey = 'slug';
-  constructor(service: ArticleService) { super(service); }
+  constructor(public service: ArticleService) { super(); }
 }
