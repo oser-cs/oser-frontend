@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 import { Resolve } from '@angular/router';
 import { environment } from 'environments/environment';
 
@@ -20,7 +20,7 @@ export abstract class SimpleListResolver<T> implements Resolve<T[]> {
     return this.http.get<T[]>(this.url).pipe(
       map((items: any[]) => items.map(this.adapt)),
       tap(resp => console.log('fetched ' + this.name)),
-      catchError(e => Observable.of(null)),
+      catchError(e => of(null)),
     );
   }
 }

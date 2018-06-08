@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { Observable, Subject } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService, GeocodingService, Location } from 'app/core';
 import { Visit, Participant } from '../shared';

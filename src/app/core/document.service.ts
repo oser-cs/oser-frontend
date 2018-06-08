@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable, of } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
 import { environment } from 'environments/environment';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve } from '@angular/router';
@@ -43,7 +43,7 @@ export abstract class DocumentResolver implements Resolve<string> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<string> {
     return this.service.get(this.slug, this.opts).pipe(
-      catchError(e => Observable.of(null))
+      catchError(e => of(null))
     );
   }
 }

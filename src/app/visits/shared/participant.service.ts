@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { mergeMap, map, tap } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { mergeMap, map, tap } from 'rxjs/operators';
 import { Visit, Place, Participant } from './models';
 import { VisitAdapter, SimpleVisitAdapter, ParticipantAdapter } from './adapters';
 import { environment } from 'environments/environment';

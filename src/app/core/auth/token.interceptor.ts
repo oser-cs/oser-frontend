@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 import { Location } from '@angular/common';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { ErrorService } from '../error.service';
 
@@ -16,9 +17,11 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     request = this.attachToken(request);
-    return next.handle(request).do(
-      (event: HttpEvent<any>) => { },
-      (error: any) => this.onError(error),
+    return next.handle(request).pipe(
+      tap(
+        (event: HttpEvent<any>) => { },
+        (error: any) => this.onError(error),
+      ),
     );
   }
 

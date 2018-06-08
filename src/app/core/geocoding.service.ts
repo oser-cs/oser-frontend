@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
 import { Resolve } from '@angular/router';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, from } from 'rxjs';
 import { filter, map, mergeMap } from 'rxjs/operators';
 
 declare const google: any;
@@ -41,7 +41,7 @@ export class MapsAPIResolver implements Resolve<Geocoder> {
   constructor(private loader: MapsAPILoader) { }
 
   resolve(): Observable<Geocoder> {
-    return Observable.fromPromise(this.loader.load()).pipe(
+    return from(this.loader.load()).pipe(
       map(() => new google.maps.Geocoder())
     );
   }

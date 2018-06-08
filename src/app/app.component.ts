@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
+import { filter, map, mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -26,20 +24,20 @@ export class AppComponent implements OnInit {
     // Each time we navigate to a new route, update the page
     // title based on the route's data.title value.
     // Source: https://toddmotto.com/dynamic-page-titles-angular-2-router-events
-    this.router.events
+    this.router.events.pipe(
       // React to NavigationEnd events only
-      .filter(event => event instanceof NavigationEnd)
+      filter(event => event instanceof NavigationEnd),
       // Get the activated route object instead of the actual event
-      .map(() => this.activatedRoute)
+      map(() => this.activatedRoute),
       // Traverse the child route path to get the last activated route
-      .map(route => {
+      map(route => {
         while (route.firstChild) route = route.firstChild;
         return route;
-      })
+      }),
       // Retrieve the route's data object
-      .filter(route => route.outlet == 'primary')
-      .mergeMap(route => route.data)
-      .subscribe(
+      filter(route => route.outlet == 'primary'),
+      mergeMap(route => route.data),
+    ).subscribe(
         data => this.titleService.setTitle('OSER' + (data['title'] ? ' | ' + data['title'] : ''))
       );
   }
