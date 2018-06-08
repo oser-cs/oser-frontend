@@ -28,6 +28,8 @@ export abstract class ObjectListResolver<T> implements Resolve<T[]> {
   }
 }
 
+
+@Injectable()
 export abstract class ObjectResolver<T> implements Resolve<T> {
 
   private service: Retrievable<T>;

@@ -18,6 +18,7 @@ export class VisitDetailComponent implements OnInit {
   userParticipates: boolean = false;
   registerFormActive = false;
   formLoading: boolean = false;
+  leaveFormActive = false;
   private geocoder: any;
 
   constructor(
