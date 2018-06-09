@@ -79,6 +79,7 @@ export class SimpleVisitAdapter {
       id => ({
         id: null,
         user: { id: id },
+        visitId: item.id,
       })
     );
     const place = this.placeAdapter.adapt({name: item.place});

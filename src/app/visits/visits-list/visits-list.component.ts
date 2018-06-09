@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, BehaviorSubject, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { tap, map, filter, find, first } from 'rxjs/operators';
 import { AuthService } from 'app/core';
-import { Visit, VisitService } from '../shared/';
+import { Visit, VisitService, Participant } from '../shared/';
 
 @Component({
   selector: 'app-visits-list',
@@ -14,7 +14,7 @@ export class VisitsListComponent implements OnInit {
 
   visits: Visit[];
   _passed = false;
-  userVisits$ = new BehaviorSubject<Visit[]>([]);
+  participations$ = new BehaviorSubject<Participant>(null);
   sub: Subscription = new Subscription();
 
   constructor(
@@ -26,6 +26,12 @@ export class VisitsListComponent implements OnInit {
 
   ngOnInit() {
     this.visits = this.route.snapshot.data['visits'];
+    this.visits.forEach(
+      visit => visit.participants.forEach(
+        p => this.participations$.next(p)
+      )
+    );
+    const userId = this.auth.getUser().id;
     this.sub.add(this.route.fragment.subscribe(
       fragment => {
         if (fragment === 'past') {
@@ -52,9 +58,9 @@ export class VisitsListComponent implements OnInit {
     this.router.navigate(['./'], opts);
   }
 
-  userParticipates(visit: Visit): Observable<boolean> {
-    return this.userVisits$.pipe(
-      map(userVisits => userVisits.map(v => v.id).includes(visit.id))
+  userParticipant(visit: Visit): Observable<Participant> {
+    return this.participations$.pipe(
+      first((p: Participant) => p.visitId === visit.id),
     );
   }
 

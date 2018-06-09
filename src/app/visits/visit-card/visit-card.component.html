@@ -22,12 +22,16 @@
           <i class="fa fa-times"></i> Inscriptions fermées
         </span>
 
-        <span *ngIf="visit.participants.length > 0" class="badge badge-info">
-          {{ visit.participants.length }} inscrits
+        <span *ngIf="acceptedParticipants > 0" class="badge badge-info">
+          {{ acceptedParticipants }} participants
         </span>
 
-        <span *ngIf="userParticipates" class="badge badge-success">
+        <span *ngIf="participant && participant.accepted" class="badge badge-success">
           Inscrit
+        </span>
+
+        <span *ngIf="participant && !participant.accepted" class="badge badge-info">
+          En attente
         </span>
 
       </div>

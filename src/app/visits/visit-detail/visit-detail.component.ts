@@ -15,7 +15,8 @@ export class VisitDetailComponent implements OnInit {
   lat = 50.350;
   lng = 3.520;
   userId: number;
-  userParticipates: boolean = false;
+  participant: Participant;
+  acceptedParticipants = 0;
   registerFormActive = false;
   formLoading: boolean = false;
   leaveFormActive = false;
@@ -30,9 +31,10 @@ export class VisitDetailComponent implements OnInit {
   ngOnInit() {
     this.visit = this.route.snapshot.data['visit'];
     this.geocoder = this.route.snapshot.data['geocoder'];
-    this.getUserParticipate();
-    this.getVisitLocation();
     this.userId = this.auth.getUser().id;
+    this.getParticipant();
+    this.getAcceptedParticipants();
+    this.getVisitLocation();
   }
 
   getVisitLocation() {
@@ -44,15 +46,22 @@ export class VisitDetailComponent implements OnInit {
     );
   }
 
-  getUserParticipate() {
-    this.userParticipates = this.visit.participants.map(
-      p => p.user.id
-    ).includes(this.userId);
+  getParticipant() {
+    this.participant = this.visit.participants.find(
+      p => p.user.id === this.userId
+    );
   }
 
   onParticipate(participant: Participant) {
     this.visit.participants.push(participant);
-    this.getUserParticipate();
+    this.getParticipant();
+    this.getAcceptedParticipants();
+  }
+
+  getAcceptedParticipants() {
+    this.acceptedParticipants = this.visit.participants.filter(
+      p => p.accepted
+    ).length;
   }
 
 }

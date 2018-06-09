@@ -11,7 +11,7 @@
   <div *ngIf="visits; else loading">
     <ul id="visits" *ngIf="displayedVisits && displayedVisits.length > 0; else empty">
       <li *ngFor="let visit of displayedVisits">
-        <visit-card [visit]="visit" [userParticipates$]="userParticipates(visit)"></visit-card>
+        <visit-card [visit]="visit" [participant$]="userParticipant(visit)"></visit-card>
       </li>
     </ul>
     <ng-template #empty>

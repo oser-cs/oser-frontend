@@ -12,7 +12,7 @@
       <textarea name="reason" [(ngModel)]="reason" required rows="3"></textarea>
     </div>
     <div class="text-center">
-      <button class="btn-success" type="submit" [disabled]="!form.valid">Me désinscrire</button>
+      <button class="btn-success" type="submit" [disabled]="loading || !form.valid">Me désinscrire</button>
       <load-spinner *ngIf="loading"></load-spinner>
     </div>
   </form>
