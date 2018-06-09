@@ -7,7 +7,9 @@ import { AuthService } from './auth.service';
 import { ErrorService } from '../error.service';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class TokenInterceptor implements HttpInterceptor {
 
   constructor(

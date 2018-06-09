@@ -31,9 +31,7 @@ import { RegisterFormComponent } from './register-form/register-form.component';
     FormsModule,
     MomentModule,
     RouterModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDXPxwZpx9EiwarLAZ3yzUANK9D4q0X9cI',
-    }),
+    AgmCoreModule,
     CoreModule,
     SharedModule,
     VisitsRoutingModule,

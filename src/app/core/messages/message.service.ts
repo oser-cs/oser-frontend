@@ -3,7 +3,9 @@ import { Router, NavigationStart } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { MessageType, Message } from './message.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class MessageService {
 
   private messageStream$ = new BehaviorSubject<Message>(null);

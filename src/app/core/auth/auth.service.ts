@@ -13,7 +13,9 @@ class StoredUser extends ObjectStoredItem<User> { key = 'oser-cs-user-info'; }
 class StoredToken extends SimpleStoredItem { key = 'oser-cs-user-token'; }
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthService {
 
   private loginUrl = environment.apiUrl + 'auth/get-token/';

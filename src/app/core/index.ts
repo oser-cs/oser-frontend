@@ -2,7 +2,6 @@ export { CoreModule } from './core.module';
 export * from './messages';
 export * from './auth';
 export * from './pipes';
-export * from './links';
 export * from './not-found';
 export * from './document.service';
 export * from './storage';

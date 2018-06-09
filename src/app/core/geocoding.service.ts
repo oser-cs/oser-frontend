@@ -18,7 +18,9 @@ export interface Geocoder {
   ) => void;
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class GeocodingService {
 
   locate(geocoder: Geocoder, address: string): Observable<Location> {
@@ -35,7 +37,9 @@ export class GeocodingService {
   }
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class MapsAPIResolver implements Resolve<Geocoder> {
 
   constructor(private loader: MapsAPILoader) { }

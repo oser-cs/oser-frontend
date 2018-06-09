@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ErrorService {
 
   constructor(private router: Router) { }

@@ -9,7 +9,9 @@ interface Options {
   titleLevel: number;
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class DocumentService {
 
   private baseUrl = environment.showcaseApiUrl + 'documents/';
