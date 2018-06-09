@@ -6,7 +6,10 @@ import { Visit } from './models';
 import { ErrorService } from 'app/core';
 import { VisitService } from './visit.service';
 
-@Injectable()
+
+@Injectable({
+  providedIn: 'root',
+})
 export class VisitsResolver implements Resolve<Visit[]> {
 
   constructor(
@@ -20,7 +23,9 @@ export class VisitsResolver implements Resolve<Visit[]> {
   }
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class VisitResolver implements Resolve<Visit> {
 
   constructor(

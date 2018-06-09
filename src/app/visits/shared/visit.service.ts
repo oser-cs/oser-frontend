@@ -7,7 +7,9 @@ import { VisitAdapter, SimpleVisitAdapter } from './adapters';
 import { environment } from 'environments/environment';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class VisitService {
 
   baseUrl = environment.apiUrl + 'visits/';

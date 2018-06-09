@@ -26,14 +26,6 @@ import {
   MentionsResolver, DonateResolver,
 } from './showcase-site/shared';
 
-import {
-  VisitsComponent,
-  VisitsListComponent,
-  VisitDetailComponent
-} from './visits';
-
-import { VisitsResolver, VisitResolver } from './visits/shared';
-
 const routes: Routes = [
   {
     path: '',
@@ -108,18 +100,8 @@ const routes: Routes = [
   { path: 'signup', component: SignupPageComponent },
   {
     path: 'sorties',
-    component: VisitsComponent,
     canActivate: [AuthGuard],
-    children: [
-      {
-        path: '', component: VisitsListComponent,
-        resolve: { 'visits': VisitsResolver },
-      },
-      {
-        path: ':id', component: VisitDetailComponent,
-        resolve: { 'visit': VisitResolver, 'geocoder': MapsAPIResolver },
-      },
-    ],
+    loadChildren: './visits/visits.module#VisitsModule',
   },
   {
     path: '500',

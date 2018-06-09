@@ -8,7 +8,9 @@ import { VisitAdapter, SimpleVisitAdapter, ParticipantAdapter } from './adapters
 import { environment } from 'environments/environment';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ParticipantService {
 
   private apiUrl: string = environment.apiUrl + 'participations/';

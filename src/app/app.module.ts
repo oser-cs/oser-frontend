@@ -16,7 +16,6 @@ import { CoreModule } from './core';
 import { SharedModule } from './shared';
 import { AppRoutingModule } from './app-routing.module';
 import { ShowcaseSiteModule } from './showcase-site/showcase-site.module';
-import { VisitsModule } from './visits';
 
 // Components
 import { AppComponent } from './app.component';
@@ -43,7 +42,6 @@ registerLocaleData(localeFR);
     SharedModule,
     HttpClientModule,
     ShowcaseSiteModule,
-    VisitsModule,
     AppRoutingModule,
   ],
   providers: [
