@@ -68,11 +68,8 @@ export class OrganizerAdapter {
 
 export class SimpleVisitAdapter {
 
-  private placeAdapter: PlaceAdapter;
-
-  constructor() {
-    this.placeAdapter = new PlaceAdapter();
-  }
+  private placeAdapter = new PlaceAdapter();
+  private participantAdapter = new ParticipantAdapter();
 
   adapt(item: any): Visit {
     const fromUserIds = (arr: number[]) => (arr || []).map(
@@ -81,6 +78,9 @@ export class SimpleVisitAdapter {
         user: { id: id },
         visitId: item.id,
       })
+    );
+    const participants = item.participants.map(
+      p => this.participantAdapter.adapt(p)
     );
     const place = this.placeAdapter.adapt({name: item.place});
     return new Visit({
@@ -96,7 +96,7 @@ export class SimpleVisitAdapter {
       deadline: new Date(item.deadline),
       registrationsOpen: item.registrations_open,
       image: item.image,
-      participants: fromUserIds(item.participants),
+      participants: participants,
       organizers: fromUserIds(item.organizers),
     })
   }

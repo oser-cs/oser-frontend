@@ -30,8 +30,12 @@
           Inscrit
         </span>
 
-        <span *ngIf="participant && !participant.accepted" class="badge badge-info">
+        <span *ngIf="participant && participant.accepted === null" class="badge badge-info">
           En attente
+        </span>
+
+        <span *ngIf="participant && participant.accepted === false" class="badge badge-danger">
+          Inscription rejetée
         </span>
 
       </div>

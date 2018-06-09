@@ -14,8 +14,9 @@ export class VisitsListComponent implements OnInit {
 
   visits: Visit[];
   _passed = false;
-  participations$ = new BehaviorSubject<Participant>(null);
+  participations$ = new BehaviorSubject<Participant[]>(null);
   sub: Subscription = new Subscription();
+  userId: number;
 
   constructor(
     private visitService: VisitService,
@@ -25,13 +26,10 @@ export class VisitsListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.userId = this.auth.getUser().id;
     this.visits = this.route.snapshot.data['visits'];
-    this.visits.forEach(
-      visit => visit.participants.forEach(
-        p => this.participations$.next(p)
-      )
-    );
-    const userId = this.auth.getUser().id;
+    const participations = [].concat(...this.visits.map(v => v.participants));
+    this.participations$.next(participations);
     this.sub.add(this.route.fragment.subscribe(
       fragment => {
         if (fragment === 'past') {
@@ -60,7 +58,10 @@ export class VisitsListComponent implements OnInit {
 
   userParticipant(visit: Visit): Observable<Participant> {
     return this.participations$.pipe(
-      first((p: Participant) => p.visitId === visit.id),
+      map(ps => ps.filter(p => p.visitId === visit.id)),
+      map(ps => ps.filter(p => p.user.id === this.userId)),
+      map(ps => ps[0]),
+      tap(console.log),
     );
   }
 

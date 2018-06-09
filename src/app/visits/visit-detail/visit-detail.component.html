@@ -35,8 +35,11 @@
             <span *ngSwitchDefault>participes</span>
           </span> à cette sortie.
         </span>
-        <span *ngIf="!participant.accepted" class="badge badge-info badge-lg">
+        <span *ngIf="participant.accepted === null" class="badge badge-info badge-lg">
           <i class="fa fa-info"></i> Ton inscription est en attente de validation par les organisateurs.
+        </span>
+        <span *ngIf="participant.accepted === false" class="badge badge-danger badge-lg">
+          <i class="fa fa-times"></i> Ton inscription a été rejetée.
         </span>
       </span>
     </div>
