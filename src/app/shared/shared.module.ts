@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { UiGalleryComponent } from './ui-gallery/ui-gallery.component';
 import { LoadSpinnerComponent } from './load-spinner/load-spinner.component';
 import { RevealComponent } from './reveal/reveal.component';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { RevealComponent } from './reveal/reveal.component';
     UiGalleryComponent,
     LoadSpinnerComponent,
     RevealComponent,
+    FilterComponent,
   ],
   exports: [
     NavbarComponent,
@@ -31,6 +33,7 @@ import { RevealComponent } from './reveal/reveal.component';
     LoginComponent,
     LoadSpinnerComponent,
     RevealComponent,
+    FilterComponent,
   ]
 })
 export class SharedModule { }

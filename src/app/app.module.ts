@@ -15,7 +15,6 @@ import { MomentModule } from 'ngx-moment';
 import { CoreModule } from './core';
 import { SharedModule } from './shared';
 import { AppRoutingModule } from './app-routing.module';
-import { ShowcaseSiteModule } from './showcase-site/showcase-site.module';
 
 // Components
 import { AppComponent } from './app.component';
@@ -41,7 +40,6 @@ registerLocaleData(localeFR);
     CoreModule,
     SharedModule,
     HttpClientModule,
-    ShowcaseSiteModule,
     AppRoutingModule,
   ],
   providers: [

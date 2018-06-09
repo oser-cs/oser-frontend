@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Article, ArticleService, Action, Partner } from 'app/showcase-site/shared';
+import { Article, ArticleService, Action, Partner } from '../shared';
 import { ActivatedRoute } from '@angular/router';
 import jump from 'jump.js';
 import { environment } from 'environments/environment';

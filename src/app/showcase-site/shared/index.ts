@@ -7,5 +7,6 @@ export * from './keyfigure.model';
 export * from './keyfigure.service';
 export * from './testimony.model';
 export * from './testimony.service';
-export * from './partners';
+export * from './partner.model';
+export * from './partner.service';
 export * from './documents.resolvers';

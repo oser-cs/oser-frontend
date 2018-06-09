@@ -4,7 +4,9 @@ import { environment } from 'environments/environment';
 import { SimpleListResolver } from 'app/core';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class TestimoniesResolver extends SimpleListResolver<Testimony> {
 
   name = 'testimonies';

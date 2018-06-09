@@ -81,7 +81,7 @@
     </div>
     <div class="cta-well white" *ngIf="partners; else loading">
       <div *ngFor="let partner of premiumPartners">
-        <app-partner [partner]="partner"></app-partner>
+        <app-partner-logo [partner]="partner"></app-partner-logo>
       </div>
     </div>
     <ng-template #loading>
@@ -102,7 +102,7 @@
     </div>
     <div class="cta-well" *ngIf="partners; else loading">
       <div *ngFor="let partner of otherPartners">
-        <app-partner [partner]="partner"></app-partner>
+        <app-partner-logo [partner]="partner"></app-partner-logo>
       </div>
     </div>
     <ng-template #loading>

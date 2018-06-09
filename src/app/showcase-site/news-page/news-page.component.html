@@ -19,8 +19,8 @@
       <span class="dropdown"><i class="fa fa-angle-down"></i></span>
     </div>
     <ul class="filters" [ngClass]="{'hidden': !filtersVisible}">
-      <list-filter class="filter" title="Année" [values]="years" (onSelect)="onSelectYear($event)" [countContains]="articleYears"></list-filter>
-      <list-filter *ngIf="categories && categories.length > 0" class="filter" title="Catégorie" [values]="categories" (onSelect)="onSelectCategory($event)" [countContains]="articleCategories"></list-filter>
+      <app-filter class="filter" title="Année" [values]="years" (onSelect)="onSelectYear($event)" [countContains]="articleYears"></app-filter>
+      <app-filter *ngIf="categories && categories.length > 0" class="filter" title="Catégorie" [values]="categories" (onSelect)="onSelectCategory($event)" [countContains]="articleCategories"></app-filter>
     </ul>
     <hr id="search-hr">
   </div>

@@ -7,7 +7,9 @@ import { environment } from 'environments/environment';
 import { ObjectListResolver, ObjectResolver } from 'app/core';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ArticleService {
 
   private baseUrl = environment.showcaseApiUrl + 'articles/';
@@ -53,13 +55,17 @@ export class ArticleService {
 }
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ArticlesResolver extends ObjectListResolver<Article> {
   constructor(public service: ArticleService) { super(); }
 }
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ArticleResolver extends ObjectResolver<Article> {
   lookupKey = 'slug';
   constructor(public service: ArticleService) { super(); }

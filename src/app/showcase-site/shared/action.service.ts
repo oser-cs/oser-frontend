@@ -8,7 +8,9 @@ import { environment } from 'environments/environment';
 import { ObjectListResolver } from 'app/core';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ActionService {
 
   private baseUrl = environment.showcaseApiUrl + 'actions/';
@@ -41,7 +43,9 @@ export class ActionService {
   }
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ActionsResolver extends ObjectListResolver<Action> {
   constructor(public service: ActionService) {super();}
 }

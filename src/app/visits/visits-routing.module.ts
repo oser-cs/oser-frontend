@@ -10,6 +10,7 @@ import { VisitsResolver, VisitResolver } from './shared';
 const routes: Routes = [
   {
     path: '',
+    data: { title: 'Sorties' },
     component: VisitsComponent,
     canActivate: [AuthGuard],
     children: [
