@@ -13,7 +13,7 @@ import { MomentModule } from 'ngx-moment';
 
 // App modules
 import { CoreModule } from './core';
-import { UiModule } from './ui';
+import { SharedModule } from './shared';
 import { AppRoutingModule } from './app-routing.module';
 import { ShowcaseSiteModule } from './showcase-site/showcase-site.module';
 import { VisitsModule } from './visits';
@@ -40,7 +40,7 @@ registerLocaleData(localeFR);
     HttpModule,
     MomentModule,
     CoreModule,
-    UiModule,
+    SharedModule,
     HttpClientModule,
     ShowcaseSiteModule,
     VisitsModule,

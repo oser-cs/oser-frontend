@@ -15,32 +15,18 @@
 
     <!-- Metadata badges -->
     <div>
-      <span *ngIf="visit.registrationsOpen" class="badge badge-warning badge-lg"><i class="fa fa-clock-o"></i>
-        Inscriptions avant le {{ visit.deadline | date:"dd/MM à HH:mm" }}
-      </span>
-      <span *ngIf="!visit.registrationsOpen" class="badge badge-danger badge-lg" [ngClass]="{'tooltip bottom': !visit.passed}">
-        <i class="fa fa-times"></i> Inscriptions fermées <span *ngIf="!visit.passed">{{ visit.deadline | amLocale:'fr' | amTimeAgo }}</span>
-        <span class="tooltip-text drop-shadow-sm" *ngIf="!visit.passed">
-          Tu peux encore tenter de t'inscrire
-          <a href="mailto:oser.sortie@gmail.com?subject=Inscription à la sortie : {{ visit.title }}">par email</a>.
-        </span>
-      </span>
-      <span *ngIf="acceptedParticipants > 0" class="badge badge-default badge-lg">
-        <i class="fa fa-user"></i> {{ acceptedParticipants }} participants
-      </span>
+      <app-registration-badge
+        [title]="visit.title"
+        [open]="visit.registrationsOpen"
+        [passed]="visit.passed"
+        [deadline]="visit.deadline"></app-registration-badge>
+      <app-participant-number-badge
+        [number]="acceptedParticipants"></app-participant-number-badge>
+
       <span *ngIf="participant">
-        <span *ngIf="participant.accepted" class="badge badge-success badge-lg">
-          <i class="fa fa-ticket"></i> Tu <span [ngSwitch]="visit.passed">
-            <span *ngSwitchCase="true">as participé</span>
-            <span *ngSwitchDefault>participes</span>
-          </span> à cette sortie.
-        </span>
-        <span *ngIf="participant.accepted === null" class="badge badge-info badge-lg">
-          <i class="fa fa-info"></i> Ton inscription est en attente de validation par les organisateurs.
-        </span>
-        <span *ngIf="participant.accepted === false" class="badge badge-danger badge-lg">
-          <i class="fa fa-times"></i> Ton inscription a été rejetée.
-        </span>
+        <app-participation-badge
+          [accepted]="participant.accepted"
+          [passed]="visit.passed"></app-participation-badge>
       </span>
     </div>
 
@@ -52,12 +38,16 @@
     <div *ngIf="participant && !visit.passed">
 
       <!-- And a shy-ish unregister link -->
-      <p class="text-muted-sm">Tu as un empêchement et souhaites <span class="link-muted" (click)="leaveFormActive = true">te désinscrire ?</span></p>
+      <p class="text-muted-sm">
+        Tu as un empêchement et souhaites
+        <span class="link-muted" (click)="leaveFormActive = true">
+          te désinscrire ?
+        </span>
+      </p>
 
       <!-- Related documents -->
       <p class="alert alert-info" *ngIf="visit.permissionSheet">
-        {{ visit.permissionSheet }}
-        <i class="fa fa-exclamation-triangle"></i> Avant de te rendre à la sortie, télécharge <a [href]="visit.permissionSheet">l'autorisation de sortie</a>. Fais-la remplir par tes parents et remet-la aux tuteurs le jour de la sortie.
+        <i class="fa fa-exclamation-triangle"></i>Avant de te rendre à la sortie, télécharge <a [href]="visit.permissionSheet">l'autorisation de sortie</a>. Fais-la remplir par tes parents et remets-la aux tuteurs le jour de la sortie.
       </p>
       <p class="alert alert-default" *ngIf="visit.factSheet">
         <i class="fa fa-file-text"></i> Les organisateurs ont rédigé une <a [href]="visit.factSheet">fiche sortie</a>. N'hésite pas à en prendre connaissance avant de te rendre à la sortie !
@@ -78,50 +68,19 @@
   </div>
 
   <h2>Informations pratiques</h2>
-
-  <table class="tips">
-    <tr>
-      <td>Lieu</td>
-      <td>{{ visit.place.name }}</td>
-    </tr>
-    <tr>
-      <td>Adresse</td>
-      <td>{{ visit.place.address.toString() }}</td>
-    </tr>
-    <tr>
-      <td>Date</td>
-      <td>{{ visit.date | date:"fullDate" }}</td>
-    </tr>
-    <tr>
-      <td>Heure de début</td>
-      <td>{{ visit.startTime | date:"shortTime"}}</td>
-    </tr>
-    <tr>
-      <td>Heure de fin estimée</td>
-      <td>{{ visit.endTime | date:"shortTime"}}</td>
-    </tr>
-    <tr>
-      <td>Lieu de rendez-vous</td>
-      <td>{{ visit.meetingPlace }}</td>
-    </tr>
-  </table>
+  <app-useful-information [visit]="visit"></app-useful-information>
 
   <h2>Se rendre à cette sortie</h2>
-  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="17">
-    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-  </agm-map>
+  <app-visit-location-map
+    [geocoder]="geocoder"
+    [address]="visit.address"></app-visit-location-map>
 
   <div *ngIf="visit.organizers.length > 0">
     <h2>Tuteurs organisateurs</h2>
 
-    <ul>
-      <li *ngFor="let organizer of visit.organizers">
-        {{ organizer.user.firstName }} {{ organizer.user.lastName}}
-        <span *ngIf="organizer.user.phoneNumber">
-          (tél. : <app-reveal [content]="organizer.user.phoneNumber"></app-reveal>)
-        </span>
-      </li>
-    </ul>
+    <div class="organizers">
+      <app-organizer-card *ngFor="let organizer of visit.organizers" [organizer]="organizer.user"></app-organizer-card>
+    </div>
   </div>
 
 </div>

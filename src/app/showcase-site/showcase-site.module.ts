@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CoreModule } from 'app/core';
-import { UiModule } from 'app/ui';
+import { SharedModule } from 'app/shared';
 import { Ng2EmojiModule } from 'ng2-emoji';
 
 // Components
@@ -41,7 +41,7 @@ import { MentionsComponent } from './mentions/mentions.component';
     CommonModule,
     RouterModule,
     CoreModule,
-    UiModule,
+    SharedModule,
     Ng2EmojiModule.forRoot(),
   ],
   declarations: [

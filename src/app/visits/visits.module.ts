@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CoreModule } from '../core';
-import { UiModule } from '../ui';
+import { SharedModule } from '../shared';
 import { AgmCoreModule } from '@agm/core';
 import { MomentModule } from 'ngx-moment';
 
@@ -23,6 +23,12 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 
 // Resolvers
 import { VisitsResolver, VisitResolver } from './shared';
+import { RegistrationBadgeComponent } from './registration-badge/registration-badge.component';
+import { ParticipantNumberBadgeComponent } from './participant-number-badge/participant-number-badge.component';
+import { ParticipationBadgeComponent } from './participation-badge/participation-badge.component';
+import { UsefulInformationComponent } from './useful-information/useful-information.component';
+import { VisitLocationMapComponent } from './visit-location-map/visit-location-map.component';
+import { OrganizerCardComponent } from './organizer-card/organizer-card.component';
 
 @NgModule({
   imports: [
@@ -31,7 +37,7 @@ import { VisitsResolver, VisitResolver } from './shared';
     MomentModule,
     CoreModule,
     RouterModule,
-    UiModule,
+    SharedModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDXPxwZpx9EiwarLAZ3yzUANK9D4q0X9cI',
     }),
@@ -44,6 +50,12 @@ import { VisitsResolver, VisitResolver } from './shared';
     VisitDetailComponent,
     LeaveFormComponent,
     RegisterFormComponent,
+    RegistrationBadgeComponent,
+    ParticipantNumberBadgeComponent,
+    ParticipationBadgeComponent,
+    UsefulInformationComponent,
+    VisitLocationMapComponent,
+    OrganizerCardComponent,
   ],
   providers: [
     VisitService,

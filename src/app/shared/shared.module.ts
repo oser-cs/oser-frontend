@@ -33,4 +33,4 @@ import { RevealComponent } from './reveal/reveal.component';
     RevealComponent,
   ]
 })
-export class UiModule { }
+export class SharedModule { }

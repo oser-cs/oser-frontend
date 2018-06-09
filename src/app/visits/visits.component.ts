@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'app/core';
-import { Link } from 'app/ui';
+import { Link } from 'app/shared';
 
 @Component({
   selector: 'app-visits',

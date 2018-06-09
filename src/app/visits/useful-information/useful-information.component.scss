@@ -1,0 +1,11 @@
+@import '~sass/media-queries';
+
+table {
+  width: 100%;
+  border: none;
+  border-spacing: .5em;
+
+  td:nth-child(1) {
+    font-weight: bold;
+  }
+}

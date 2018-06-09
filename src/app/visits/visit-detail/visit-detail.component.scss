@@ -19,10 +19,6 @@
   }
 }
 
-agm-map {
-  height: 400px;
-}
-
 #participate-btn {
   margin-top: 1em;
 }
@@ -48,11 +44,10 @@ img {
   height: auto;
 }
 
-.tips {
-  width: 100%;
-  border: none;
-
-  td:nth-child(1) {
-    font-weight: bold;
+.organizers {
+  display: flex;
+  flex-flow: row wrap;
+  app-organizer-card {
+    margin: .5em;
   }
 }

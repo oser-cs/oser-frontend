@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService, GeocodingService, Location } from 'app/core';
+import { AuthService, Geocoder } from 'app/core';
 import { Visit, Participant } from '../shared';
 
 @Component({
@@ -12,38 +12,26 @@ import { Visit, Participant } from '../shared';
 export class VisitDetailComponent implements OnInit {
 
   visit: Visit;
-  lat = 50.350;
-  lng = 3.520;
   userId: number;
   participant: Participant;
   acceptedParticipants = 0;
   registerFormActive = false;
   formLoading: boolean = false;
   leaveFormActive = false;
-  private geocoder: any;
+  geocoder: Geocoder;
 
   constructor(
     private route: ActivatedRoute,
     private auth: AuthService,
-    private geocoding: GeocodingService,
   ) { }
 
   ngOnInit() {
     this.visit = this.route.snapshot.data['visit'];
     this.geocoder = this.route.snapshot.data['geocoder'];
+    console.log(this.geocoder);
     this.userId = this.auth.getUser().id;
     this.getParticipant();
     this.getAcceptedParticipants();
-    this.getVisitLocation();
-  }
-
-  getVisitLocation() {
-    this.geocoding.locate(this.geocoder, this.visit.address).subscribe(
-      location => {
-        this.lat = location.lat;
-        this.lng = location.lng;
-      }
-    );
   }
 
   getParticipant() {

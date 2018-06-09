@@ -26,4 +26,8 @@ export class User {
     this.phoneNumber = opts.phoneNumber;
     this.dateOfBirth = opts.dateOfBirth;
   }
+
+  get fullName(): string {
+    return [this.firstName, this.lastName].filter(x => x).join(' ');
+  }
 }

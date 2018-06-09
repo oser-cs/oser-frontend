@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SignupPageComponent } from './signup-page/signup-page.component';
-import { LoginComponent, UiGalleryComponent } from './ui';
+import { LoginComponent, UiGalleryComponent } from './shared';
 import { InternalErrorComponent, NotFoundComponent, AuthGuard, MapsAPIResolver } from './core';
 
 import {

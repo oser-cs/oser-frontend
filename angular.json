@@ -31,10 +31,12 @@
           },
           "configurations": {
             "local": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.local.ts"
-              }]
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.local.ts"
+                }
+              ]
             },
             "dev-production": {
               "optimization": true,
@@ -58,10 +60,12 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.prod.ts"
-              }]
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
             }
           }
         },
@@ -116,7 +120,7 @@
           }
         }
       }
-    },
+    }
   },
   "defaultProject": "oser-app",
   "schematics": {
