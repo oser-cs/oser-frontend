@@ -1,0 +1,29 @@
+@import '~@angular/material/theming';
+@import './palettes';
+
+$palette-primary: mat-palette($primary-palette, 700, 300, 900);
+$palette-accent: mat-palette($accent-palette);
+$palette-warn: mat-palette($warn-palette);
+
+$theme: mat-light-theme(
+    $palette-primary,
+    $palette-accent,
+    $palette-warn
+);
+
+$typography: mat-typography-config(
+  $font-family: 'Nunito, sans-serif'
+);
+
+
+.radio-v {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+mat-radio-button {
+  margin: .5em 0;
+}
+mat-radio-group {
+  margin-bottom: .5em;
+}

@@ -41,6 +41,11 @@ export class EditionForm extends EditionFormSchema {
     super();
     Object.assign(this, args);
   }
+
+  get open(): boolean {
+    const now = new Date();
+    return now <= this.deadline;
+  }
 }
 
 
@@ -56,6 +61,20 @@ export class EditionFormAdapter implements IAdapter<EditionForm> {
       deadline: new Date(data.deadline),
       recipient: data.recipient ? this.recipientAdapter.adapt(data.recipient) : null,
       form: this.formAdapter.adapt(data.form),
+    })
+  }
+}
+
+
+export class EditionFormSimpleAdapter implements IAdapter<EditionForm> {
+
+  adapt(data: any): EditionForm {
+    return new EditionForm({
+      id: data.id,
+      editionId: data.edition,
+      deadline: new Date(data.deadline),
+      recipient: null,
+      form: null,
     })
   }
 }

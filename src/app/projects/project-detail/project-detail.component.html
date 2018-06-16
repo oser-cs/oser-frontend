@@ -13,6 +13,14 @@
 <ul>
   <li *ngFor="let edition of project.editions">
     <h3>{{ edition.fullTitle(project) }}</h3>
-    <a [routerLink]="['./' + edition.id + '/inscription']">S'inscrire</a>
+    <div *ngIf="edition.editionForm; else noForm">
+      <a *ngIf="edition.editionForm.open; else tooLate" mat-raised-button color="accent" [routerLink]="['./' + edition.id + '/inscription']">S'inscrire</a>
+      <ng-template #tooLate>
+        Les inscriptions à cette édition sont fermées.
+      </ng-template>
+    </div>
+    <ng-template #noForm>
+      <p>Le dossier d'inscription sera bientôt disponible.</p>
+    </ng-template>
   </li>
 </ul>

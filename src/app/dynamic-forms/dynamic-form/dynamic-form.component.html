@@ -8,51 +8,61 @@
     <!-- Render each question in the section -->
     <div *ngFor="let question of section.questions">
 
-      <!-- The question itself -->
-      <h4>{{ question.text }}</h4>
+      <div [ngSwitch]="question.type" class="full-width">
+        <!-- Use the correct widget to answer the question -->
 
-      <!-- Optional help text -->
-      <p class="text-muted" *ngIf="question.helpText">
-        {{ question.helpText }}
-      </p>
+        <mat-form-field *ngSwitchCase="'text-small'" class="full-width">
+          <input
+            matInput
+            [required]="question.required"
+            [placeholder]="question.text">
+          <mat-hint *ngIf="question.helpText">{{ question.helpText }}</mat-hint>
+        </mat-form-field>
 
-      <!-- Select the correct widget to answer the question -->
+        <mat-form-field *ngSwitchCase="'text-long'" class="full-width">
+          <textarea
+            matInput
+            [required]="question.required"
+            [placeholder]="question.text"></textarea>
+          <mat-hint *ngIf="question.helpText">{{ question.helpText }}</mat-hint>
+        </mat-form-field>
 
-      <div [ngSwitch]="question.type">
+        <mat-form-field *ngSwitchCase="'date'" class="full-width">
+          <input
+            matInput
+            [required]="question.required"
+            [placeholder]="question.text"
+            [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-hint *ngIf="question.helpText">{{ question.helpText }}</mat-hint>
+        </mat-form-field>
 
-        <div *ngSwitchCase="'text-small'">
-          <input type="text" [name]="question.htmlName">
+        <div *ngSwitchCase="'yes-no'" class="full-width">
+          <mat-label style="display: block;">{{ question.text }}</mat-label>
+          <mat-radio-group class="radio-v"
+            [required]="question.required">
+            <mat-radio-button [value]="true">Oui</mat-radio-button>
+            <mat-radio-button [value]="false">Non</mat-radio-button>
+            <mat-hint *ngIf="question.helpText">{{ question.helpText }}</mat-hint>
+          </mat-radio-group>
         </div>
 
-        <div *ngSwitchCase="'text-long'">
-          <textarea [name]="question.htmlName" rows="8"></textarea>
+        <div *ngSwitchCase="'sex'" class="full-width">
+          <mat-label style="display: block;">{{ question.text }}</mat-label>
+          <mat-radio-group class="radio-v"
+            [required]="question.required">
+            <mat-radio-button [value]="'M'">Masculin</mat-radio-button>
+            <mat-radio-button [value]="'F'">Féminin</mat-radio-button>
+            <mat-hint *ngIf="question.helpText">{{ question.helpText }}</mat-hint>
+          </mat-radio-group>
         </div>
 
-        <div *ngSwitchCase="'text-long'">
-          <textarea [name]="question.htmlName" rows="8"></textarea>
-        </div>
-
-        <div *ngSwitchCase="'date'">
-          <input type="text" [name]="question.htmlName" placeholder="Date au format JJ/MM/AA">
-        </div>
-
-        <div *ngSwitchCase="'yes-no'">
-          <select [name]="question.htmlName">
-            <option [value]="true">Oui</option>
-            <option [value]="false">Non</option>
-          </select>
-        </div>
-
-        <div *ngSwitchCase="'sex'">
-          <select [name]="question.htmlName">
-            <option value="M">Masculin</option>
-            <option value="F">Féminin</option>
-          </select>
-        </div>
-
-        <div *ngSwitchDefault>{{ question.text }}</div>
+        <div *ngSwitchDefault>Type de question inconnu</div>
 
       </div>
     </div>
   </div>
+
+  <button mat-raised-button color="primary" type="submit">Envoyer</button>
 </form>

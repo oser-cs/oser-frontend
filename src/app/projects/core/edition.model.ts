@@ -1,5 +1,5 @@
 import { User, UserAdapter, IAdapter } from 'app/core';
-import { EditionForm, EditionFormAdapter } from './edition-form.model';
+import { EditionForm, EditionFormAdapter, EditionFormSimpleAdapter } from './edition-form.model';
 import { Participation, ParticipationAdapter } from './participation.model';
 
 
@@ -49,6 +49,8 @@ export class EditionAdapter implements IAdapter<Edition> {
 
 export class EditionSimpleAdapter implements IAdapter<Edition> {
 
+  private editionFormAdapter = new EditionFormSimpleAdapter();
+
   adapt(data: any): Edition {
     return new Edition({
       id: data.id,
@@ -58,7 +60,7 @@ export class EditionSimpleAdapter implements IAdapter<Edition> {
       projectId: data.project,
       organizers: new Array(data.organizers),
       participations: new Array(data.participations),
-      editionForm: null,
+      editionForm: data.edition_form ? this.editionFormAdapter.adapt(data.edition_form) : null,
     })
   }
 }
