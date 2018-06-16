@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ModelApiService, ObjectListResolver, ObjectResolver } from 'app/core';
-import { Project, ProjectAdapter } from './project.model';
+import { Project, ProjectAdapter, ProjectSimpleAdapter } from './project.model';
 
 
 @Injectable({
@@ -10,9 +10,16 @@ import { Project, ProjectAdapter } from './project.model';
 export class ProjectService extends ModelApiService<Project> {
 
   baseUrl = this.apiUrl + 'projects/';
-  adapter = new ProjectAdapter();
 
   constructor(public http: HttpClient) { super(); }
+
+  getAdapter(action: string) {
+    if (action === 'retrieve') {
+      return new ProjectAdapter();
+    } else {
+      return new ProjectSimpleAdapter();
+    }
+  }
 }
 
 
@@ -28,6 +35,6 @@ export class ProjectListResolver extends ObjectListResolver<Project> {
   providedIn: 'root'
 })
 export class ProjectResolver extends ObjectResolver<Project> {
-  routeLookupKey = 'id';
+  routeLookupKey = 'projectId';
   constructor(public service: ProjectService) { super(); }
 }

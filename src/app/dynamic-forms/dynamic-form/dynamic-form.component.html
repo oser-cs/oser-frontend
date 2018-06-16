@@ -1,0 +1,58 @@
+<form>
+  <h1>{{ form.title }}</h1>
+
+  <!-- Render each section in the form -->
+  <div *ngFor="let section of form.sections">
+    <h2>{{ section.title }}</h2>
+
+    <!-- Render each question in the section -->
+    <div *ngFor="let question of section.questions">
+
+      <!-- The question itself -->
+      <h4>{{ question.text }}</h4>
+
+      <!-- Optional help text -->
+      <p class="text-muted" *ngIf="question.helpText">
+        {{ question.helpText }}
+      </p>
+
+      <!-- Select the correct widget to answer the question -->
+
+      <div [ngSwitch]="question.type">
+
+        <div *ngSwitchCase="'text-small'">
+          <input type="text" [name]="question.htmlName">
+        </div>
+
+        <div *ngSwitchCase="'text-long'">
+          <textarea [name]="question.htmlName" rows="8"></textarea>
+        </div>
+
+        <div *ngSwitchCase="'text-long'">
+          <textarea [name]="question.htmlName" rows="8"></textarea>
+        </div>
+
+        <div *ngSwitchCase="'date'">
+          <input type="text" [name]="question.htmlName" placeholder="Date au format JJ/MM/AA">
+        </div>
+
+        <div *ngSwitchCase="'yes-no'">
+          <select [name]="question.htmlName">
+            <option [value]="true">Oui</option>
+            <option [value]="false">Non</option>
+          </select>
+        </div>
+
+        <div *ngSwitchCase="'sex'">
+          <select [name]="question.htmlName">
+            <option value="M">Masculin</option>
+            <option value="F">Féminin</option>
+          </select>
+        </div>
+
+        <div *ngSwitchDefault>{{ question.text }}</div>
+
+      </div>
+    </div>
+  </div>
+</form>

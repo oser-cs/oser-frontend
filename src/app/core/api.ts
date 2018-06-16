@@ -18,19 +18,22 @@ export class ApiService {
 export abstract class ModelApiService<T> extends ApiService {
 
   abstract baseUrl: string;
-  abstract adapter: IAdapter<T>;
   public http: HttpClient;
 
   list(): Observable<T[]> {
+    const adapter = this.getAdapter('list');
     return this.http.get(this.baseUrl).pipe(
-      map((data: any[]) => data.map(item => this.adapter.adapt(item))),
+      map((data: any[]) => data.map(item => adapter.adapt(item))),
     )
   }
 
   retrieve(id: any): Observable<T> {
+    const adapter = this.getAdapter('retrieve');
     const url = this.baseUrl + `${id}/`;
     return this.http.get(url).pipe(
-      map((data: any) => this.adapter.adapt(data)),
+      map((data: any) => adapter.adapt(data)),
     )
   }
+
+  abstract getAdapter(action: string): IAdapter<T>;
 }

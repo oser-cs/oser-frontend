@@ -1,40 +1,5 @@
-import { UserInfo } from 'app/core';
+import { Address, UserInfo } from 'app/core';
 
-export interface Country {
-  name: string;
-  code: string;
-}
-
-export interface IAddress {
-  line1: string;
-  line2: string;
-  postCode: string;
-  city: string;
-  country: Country;
-}
-
-export class Address {
-
-  line1: string;
-  line2: string;
-  postCode: string;
-  city: string;
-  country: Country;
-
-  constructor(opts: IAddress) {
-    this.line1 = opts.line1;
-    this.line2 = opts.line2;
-    this.postCode = opts.postCode;
-    this.city = opts.city;
-    this.country = opts.country;
-  }
-
-  toString(): string {
-    return [this.line1, this.line2, this.postCode, this.city, this.country.name]
-      .filter(el => el)
-      .join(', ');
-  }
-}
 
 export interface Place {
   id: number;

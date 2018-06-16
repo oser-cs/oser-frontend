@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
-import { ProjectResolver, ProjectListResolver } from './core/project.service';
+import { ProjectResolver, ProjectListResolver, EditionResolver } from './core';
 
 const routes: Routes = [
   {
@@ -12,13 +12,17 @@ const routes: Routes = [
     resolve: { projects: ProjectListResolver },
   },
   {
-    path: ':id',
+    path: ':projectId',
     component: ProjectDetailComponent,
     resolve: { project: ProjectResolver },
   },
   {
-    path: ':id/inscription',
+    path: ':projectId/:editionId/inscription',
     component: RegistrationFormComponent,
+    resolve: {
+      edition: EditionResolver,
+      project: ProjectResolver
+    },
   },
 ];
 
