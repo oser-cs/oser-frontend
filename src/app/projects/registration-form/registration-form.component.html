@@ -1,3 +1,4 @@
 <div class="container">
-  <dynamic-form [form]="edition.editionForm.form" [reset$]="reset$" (submitted)="onSubmit($event)"></dynamic-form>
+  <a [routerLink]="['/projets']">Retour aux projets</a>
+  <dynamic-form [form]="edition.editionForm.form" (submitted)="onSubmit($event)"></dynamic-form>
 </div>

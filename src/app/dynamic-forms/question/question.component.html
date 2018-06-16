@@ -31,7 +31,7 @@
   </mat-form-field>
 
   <div *ngSwitchCase="'yes-no'" class="full-width">
-    <mat-label style="display: block;">{{ question.text }}</mat-label>
+    <mat-label style="display: block;" required>{{ question.text }}</mat-label>
     <mat-radio-group class="radio-v"
       [formControlName]="question.id"
       [required]="question.required">

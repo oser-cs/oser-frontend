@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription, Subject } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
 import { AuthService } from 'app/core';
 import { Project, Edition, Participation, ParticipationService } from '../core';
@@ -17,11 +17,11 @@ export class RegistrationFormComponent implements OnInit, OnDestroy {
   project: Project;
   edition: Edition;
 
-  reset$: Subject<void> = new Subject();
   subscription = new Subscription();
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private auth: AuthService,
     private participationService: ParticipationService,
     private snackbar: MatSnackBar,
@@ -37,7 +37,7 @@ export class RegistrationFormComponent implements OnInit, OnDestroy {
     this.participationService.create(user.id, this.edition.id, entry).subscribe(
       (participation: Participation) => {
         this.openSuccessSnackbar();
-        this.reset$.next();
+        this.router.navigate(['/projets']);
       }
     );
   }

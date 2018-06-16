@@ -6,6 +6,8 @@ import {
   MatSnackBarModule,
 } from '@angular/material';
 
+import { MomentModule } from 'ngx-moment';
+
 import { DynamicFormsModule } from 'app/dynamic-forms';
 
 import { ProjectsRoutingModule } from './projects-routing.module';
@@ -17,6 +19,7 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
 @NgModule({
   imports: [
     CommonModule,
+    MomentModule,
     // Angular Material
     MatButtonModule,
     MatSnackBarModule,
