@@ -67,6 +67,6 @@ export class ArticlesResolver extends ObjectListResolver<Article> {
   providedIn: 'root',
 })
 export class ArticleResolver extends ObjectResolver<Article> {
-  lookupKey = 'slug';
+  routeLookupKey = 'slug';
   constructor(public service: ArticleService) { super(); }
 }

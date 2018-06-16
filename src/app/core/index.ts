@@ -9,3 +9,5 @@ export * from './geocoding.service';
 export * from './resolvers';
 export * from './internal-error';
 export * from './error.service';
+export * from './interfaces';
+export * from './api';

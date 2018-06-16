@@ -1,0 +1,11 @@
+<a [routerLink]="['../']">Retour</a>
+
+<h1>{{ project.name }}</h1>
+
+<div *ngIf="project.logo">
+  <img [src]="project.logo" [alt]="project.name">
+</div>
+
+<p>{{ project.description }}</p>
+
+<a class="btn-primary" [routerLink]="['inscription']">S'inscrire</a>
