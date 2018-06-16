@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import {
   MatButtonModule,
+  MatSnackBarModule,
 } from '@angular/material';
 
 import { DynamicFormsModule } from 'app/dynamic-forms';
@@ -18,6 +19,7 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
     CommonModule,
     // Angular Material
     MatButtonModule,
+    MatSnackBarModule,
     // App modules
     ProjectsRoutingModule,
     DynamicFormsModule,

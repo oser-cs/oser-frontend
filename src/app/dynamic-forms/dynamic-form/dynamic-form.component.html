@@ -1,11 +1,11 @@
-<form [formGroup]="formGroup">
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
   <h1>{{ form.title }}</h1>
 
   {{ formGroup.value | json}}
 
   <div *ngFor="let section of form.sections">
     <h2>{{ section.title }}</h2>
-    <app-question *ngFor="let question of section.questions" [question]="question" [formGroup]="formGroup.controls[section.id]"></app-question>
+    <app-question *ngFor="let question of section.questions" [question]="question" [formGroup]="formGroup"></app-question>
   </div>
 
   <button mat-raised-button color="primary" [disabled]="!formGroup.valid" type="submit">Envoyer</button>
