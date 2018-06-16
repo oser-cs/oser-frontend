@@ -20,8 +20,8 @@ export class Question extends QuestionSchema {
     Object.assign(this, args);
   }
 
-  get htmlName(): string {
-    return slugify(this.text);
+  get key(): string {
+    return slugify(this.text, '');
   }
 }
 

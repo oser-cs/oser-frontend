@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Form } from '../core';
+import { FormGroup } from '@angular/forms';
+import { Form, FormService } from '../core';
 
 @Component({
   selector: 'dynamic-form',
@@ -9,10 +10,16 @@ import { Form } from '../core';
 export class DynamicFormComponent implements OnInit {
 
   @Input() form: Form;
+  formGroup: FormGroup;
 
-  constructor() { }
+  constructor(private formService: FormService) { }
 
   ngOnInit() {
+    this.createForm();
+  }
+
+  createForm() {
+    this.formGroup = this.formService.toFormGroup({form: this.form});
   }
 
 }

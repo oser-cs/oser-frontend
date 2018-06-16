@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatFormFieldModule,
   MatInputModule,
@@ -10,10 +11,13 @@ import {
   MatNativeDateModule,
 } from '@angular/material';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import { QuestionComponent } from './question/question.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     // Angular Material
     MatDatepickerModule,
     MatNativeDateModule,
@@ -25,6 +29,7 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
   ],
   declarations: [
     DynamicFormComponent,
+    QuestionComponent,
   ],
   exports: [
     DynamicFormComponent,
