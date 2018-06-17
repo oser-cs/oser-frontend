@@ -10,7 +10,7 @@ import { StudentService } from './student.service';
 export class SignupPageComponent implements OnInit {
 
   student = {
-    firstname: '',
+    first_name: '',
     last_name: '',
     birth: '',
     email: '',
@@ -27,11 +27,8 @@ export class SignupPageComponent implements OnInit {
       home_phone: '',
       mobile_phone: '',
     },
-    password: ''
 
   };
-
-  confirm: string;
 
   constructor(private studentService: StudentService) { }
 
@@ -39,7 +36,8 @@ export class SignupPageComponent implements OnInit {
   }
 
   addStudent() {
-      this.studentService.addNewStudent(this.student.firstname,
+    console.log(this.student)
+      this.studentService.addNewStudent(this.student.first_name,
                                         this.student.last_name,
                                         this.student.birth,
                                         this.student.email,
@@ -51,8 +49,7 @@ export class SignupPageComponent implements OnInit {
                                         this.student.emergency_contact.surnameparent,
                                         this.student.emergency_contact.email_parent,
                                         this.student.emergency_contact.home_phone,
-                                        this.student.emergency_contact.mobile_phone,
-                                        this.student.password)
+                                        this.student.emergency_contact.mobile_phone)
       .subscribe();
     }
 
