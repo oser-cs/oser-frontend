@@ -60,7 +60,7 @@ hr {
   color: $color;
   background-color: $color;
 }
-// input, button {
+// input {
 //   font-size: inherit;
 //   font-family: inherit;
 // }
@@ -77,6 +77,8 @@ hr {
 
 button {
   cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
 }
 // select {
 //   font-family: inherit;

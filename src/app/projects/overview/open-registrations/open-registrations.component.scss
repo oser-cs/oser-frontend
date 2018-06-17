@@ -1,0 +1,27 @@
+@import '~sass/variables';
+
+.container {
+  color: white;
+  .text-muted {
+    color: $color-purple-light;
+  }
+}
+
+#title {
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  td.action {
+    text-align: center;
+    padding: 0 1em;
+  }
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  tr {
+    padding-bottom: .5em;
+  }
+}

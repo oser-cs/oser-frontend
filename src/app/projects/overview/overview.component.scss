@@ -1,0 +1,28 @@
+@import '~sass/mixins';
+@import '~sass/variables';
+
+.panes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.pane-content {
+  padding: 3em;
+  width: fit-content;
+}
+
+.pane-left {
+  background: $color-dark-blue;
+  @include drop-shadow($shadow-sm);
+  .pane-content {
+    margin-left: auto;
+  }
+}
+
+.pane-right {
+  background: $color-light-blue;
+  @include drop-shadow($shadow-sm, $inset: true);
+  .pane-content {
+    margin-right: auto;
+  }
+}

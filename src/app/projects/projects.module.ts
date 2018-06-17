@@ -16,7 +16,7 @@ import { ProjectsComponent } from './projects.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
-import { OverviewComponent } from './overview/overview.component';
+import { OverviewComponent, OpenRegistrationsComponent, MyParticipationsOverviewComponent } from './overview';
 import { RegisterWizardComponent } from './register-wizard/register-wizard.component';
 import { MyParticipationsComponent } from './my-participations/my-participations.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -42,6 +42,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     RegisterWizardComponent,
     MyParticipationsComponent,
     NavbarComponent,
+    OpenRegistrationsComponent,
+    MyParticipationsOverviewComponent,
   ],
 })
 export class ProjectsModule { }
