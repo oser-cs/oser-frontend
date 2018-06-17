@@ -10,6 +10,9 @@ import { UiGalleryComponent } from './ui-gallery/ui-gallery.component';
 import { LoadSpinnerComponent } from './load-spinner/load-spinner.component';
 import { RevealComponent } from './reveal/reveal.component';
 import { FilterComponent } from './filter/filter.component';
+import { NavItemComponent } from './nav-item/nav-item.component';
+import { NavGroupComponent } from './nav-group/nav-group.component';
+import { NavGroupVerticalComponent } from './nav-group-vertical/nav-group-vertical.component';
 
 @NgModule({
   imports: [
@@ -26,6 +29,9 @@ import { FilterComponent } from './filter/filter.component';
     LoadSpinnerComponent,
     RevealComponent,
     FilterComponent,
+    NavItemComponent,
+    NavGroupComponent,
+    NavGroupVerticalComponent,
   ],
   exports: [
     NavbarComponent,

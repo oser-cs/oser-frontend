@@ -1,45 +1,21 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, Input } from '@angular/core';
 import { AuthService } from 'app/core';
-
-export class Link {
-  href?: string;
-  action?: () => void;
-  text: string;
-}
+import { Link } from '../nav.model';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
 
-  currentUser: any;
-  visible: boolean;
+  visible = false;
   @Input() links: Link[] = [];
-  // Use leading slash for absolute URL
-  loginRoute = '/login';
 
-  constructor(
-    private router: Router,
-    private auth: AuthService,
-  ) {
-    this.visible = false;
-  }
-
-  ngOnInit() {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-  }
+  constructor() { }
 
   toggle(): void {
     this.visible = !this.visible;
-  }
-
-  logout(): void {
-    this.auth.logout();
-    // refresh component
-    this.ngOnInit();
   }
 
 }
