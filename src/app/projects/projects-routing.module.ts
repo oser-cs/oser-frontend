@@ -4,6 +4,9 @@ import { ProjectsComponent } from './projects.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
+import { RegisterWizardComponent } from './register-wizard/register-wizard.component';
+import { OverviewComponent } from './overview/overview.component';
+import { MyParticipationsComponent } from './my-participations/my-participations.component';
 import { ProjectResolver, ProjectListResolver, EditionResolver } from './core';
 
 const routes: Routes = [
@@ -13,8 +16,16 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: ProjectListComponent,
+        component: OverviewComponent,
         resolve: { projects: ProjectListResolver },
+      },
+      {
+        path: 'inscription',
+        component: RegisterWizardComponent,
+      },
+      {
+        path: 'mes-inscriptions',
+        component: MyParticipationsComponent,
       },
       {
         path: ':projectId',

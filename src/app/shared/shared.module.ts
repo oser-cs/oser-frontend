@@ -40,6 +40,8 @@ import { NavGroupVerticalComponent } from './nav-group-vertical/nav-group-vertic
     LoadSpinnerComponent,
     RevealComponent,
     FilterComponent,
+    NavGroupComponent,
+    NavGroupVerticalComponent
   ]
 })
 export class SharedModule { }
