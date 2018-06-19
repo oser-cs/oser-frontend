@@ -30,6 +30,7 @@ export class RecipientAdapter implements IAdapter<Recipient> {
 export class EditionFormSchema {
   id: number;
   editionId: number;
+  title: string;
   deadline: Date;
   recipient: Recipient;
   form: Form;
@@ -57,6 +58,7 @@ export class EditionFormAdapter implements IAdapter<EditionForm> {
   adapt(data: any): EditionForm {
     return new EditionForm({
       id: data.id,
+      title: data.title,
       editionId: data.edition,
       deadline: new Date(data.deadline),
       recipient: data.recipient ? this.recipientAdapter.adapt(data.recipient) : null,
@@ -71,6 +73,7 @@ export class EditionFormSimpleAdapter implements IAdapter<EditionForm> {
   adapt(data: any): EditionForm {
     return new EditionForm({
       id: data.id,
+      title: data.title,
       editionId: data.edition,
       deadline: new Date(data.deadline),
       recipient: null,

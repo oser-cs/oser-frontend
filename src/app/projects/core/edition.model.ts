@@ -12,6 +12,7 @@ export class EditionSchema {
   organizers: User[];
   participations: Participation[];
   editionForm: EditionForm;
+  participates: boolean;
 }
 
 export class Edition extends EditionSchema {
@@ -43,6 +44,7 @@ export class EditionAdapter implements IAdapter<Edition> {
       organizers: data.organizers.map(item => this.userAdapter.adapt(item)),
       participations: data.participations.map(item => this.participationAdapter.adapt(item)),
       editionForm: data.edition_form ? this.editionFormAdapter.adapt(data.edition_form) : null,
+      participates: data.participates,
     })
   }
 }
@@ -61,6 +63,7 @@ export class EditionSimpleAdapter implements IAdapter<Edition> {
       organizers: new Array(data.organizers),
       participations: new Array(data.participations),
       editionForm: data.edition_form ? this.editionFormAdapter.adapt(data.edition_form) : null,
+      participates: data.participates,
     })
   }
 }

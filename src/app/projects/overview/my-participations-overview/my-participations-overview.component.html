@@ -2,20 +2,28 @@
   <h2 id="title">Mes inscriptions</h2>
   <a routerLink="./mes-inscriptions">Gérer mes inscriptions</a>
 
-  <p>1 inscription en attente</p>
+  <p>
+    {{ participations.length }}
+    <span [ngPlural]="participations.length">
+      <ng-template ngPluralCase="=1">inscription</ng-template>
+      <ng-template ngPluralCase="other">inscriptions</ng-template>
+    </span>
+    en attente
+  </p>
 
   <table>
-    <tr>
+    <tr *ngFor="let participation of participations">
       <td>
         <p>
-          <strong>Inscriptions à Oser la Prépa 2018</strong>
+          <strong>{{ participation.editionFormTitle }}</strong>
         </p>
         <p class="text-muted">
-          <strong>En attente</strong>
+          <strong>{{ participation.status }}</strong>
         </p>
         <p class="text-muted">
-          Soumis le 8 juin 2018 à 15h56.
-          <a href="#">Détails</a>
+          Soumis le
+          {{ participation.submitted | amLocale: 'fr' | amDateFormat: 'LL' }}
+          à {{ participation.submitted | amLocale: 'fr' | amDateFormat: 'HH:mm' }} • <a href="#">Détails</a>
         </p>
       </td>
       <td class="action">

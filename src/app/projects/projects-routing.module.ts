@@ -7,7 +7,11 @@ import { RegistrationFormComponent } from './registration-form/registration-form
 import { RegisterWizardComponent } from './register-wizard/register-wizard.component';
 import { OverviewComponent } from './overview/overview.component';
 import { MyParticipationsComponent } from './my-participations/my-participations.component';
-import { ProjectResolver, ProjectListResolver, EditionResolver } from './core';
+import {
+  ProjectResolver, ProjectListResolver,
+  EditionResolver, EditionOpenRegistrationListResolver,
+  UserPendingParticipationListResolver,
+} from './core';
 
 const routes: Routes = [
   {
@@ -17,7 +21,11 @@ const routes: Routes = [
       {
         path: '',
         component: OverviewComponent,
-        resolve: { projects: ProjectListResolver },
+        resolve: {
+          projects: ProjectListResolver,
+          editions: EditionOpenRegistrationListResolver,
+          participations: UserPendingParticipationListResolver,
+        },
       },
       {
         path: 'inscription',

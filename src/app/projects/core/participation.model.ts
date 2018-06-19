@@ -6,6 +6,7 @@ export class ParticipationSchema {
   submitted: Date;
   user: User;
   editionId: number;
+  editionFormTitle: string;
   state: string;
 }
 
@@ -26,7 +27,8 @@ export class ParticipationAdapter implements IAdapter<Participation> {
       id: data.id,
       submitted: new Date(data.submitted),
       user: this.userAdapter.adapt(data.user),
-      editionId: data.edition,
+      editionId: data.edition_id,
+      editionFormTitle: data.edition_form_title,
       state: data.state,
     });
   }

@@ -2,35 +2,31 @@
   <h2 id="title">Inscriptions ouvertes</h2>
   <a routerLink="./inscription">M'inscrire à un projet</a>
 
-  <p>2 projets ouverts à l'inscription</p>
+  <p>
+    {{ editions.length }}
+    <span [ngPlural]="editions.length">
+      <ng-template ngPluralCase="=1">projet ouvert</ng-template>
+      <ng-template ngPluralCase="other">projets ouverts</ng-template>
+    </span>
+    à l'inscription
+  </p>
 
   <table>
-    <tr>
+    <tr *ngFor="let edition of editions">
       <td>
         <p>
-          <strong>Inscriptions à (Art)cessible 2019</strong>
+          <strong>{{ edition.editionForm.title }}</strong>
         </p>
         <p class="text-muted">
-          Avant le 30/02/2019 /
-          <span style="font-weight: bold;">140 jours restants</span>
+          Avant le {{ edition.editionForm.deadline | amLocale: 'fr' | amDateFormat: 'LL' }} •
+          <span style="font-weight: bold;">
+            {{ edition.editionForm.deadline | amLocale: 'fr' | amDifference: today: 'days' }} jours restants
+          </span>
         </p>
       </td>
-      <td class="action">
-        <button class="btn-light">Je m'inscris</button>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <p>
-          <strong>Inscriptions à Oser la Prépa 2018</strong>
-        </p>
-        <p class="text-muted">
-          Avant le 30/06/2018 /
-          <span style="font-weight: bold;">4 jours restants</span>
-        </p>
-      </td>
-      <td class="action">
-        Inscription effectuée
+      <td class="action" [ngSwitch]="edition.participates">
+        <button *ngSwitchCase="false" class="btn-light">Je m'inscris</button>
+        <span *ngSwitchCase="true">Inscription effectuée</span>
       </td>
     </tr>
   </table>
