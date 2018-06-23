@@ -1,0 +1,13 @@
+#stepper {
+  max-width: 60em;
+  padding: 0 2em;
+  margin: auto;
+}
+
+#file-downloads {
+  display: flex;
+  flex-flow: row wrap;
+  a {
+    margin: 0 1em;
+  }
+}

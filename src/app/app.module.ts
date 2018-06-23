@@ -45,7 +45,7 @@ registerLocaleData(localeFR);
   providers: [
     StudentService,
     MessageService,
-    { provide: LOCALE_ID, useValue: 'fr' }
+    { provide: LOCALE_ID, useValue: 'fr' },
   ],
   bootstrap: [AppComponent]
 })

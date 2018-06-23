@@ -1,3 +1,85 @@
-<p>
-  register-wizard works!
-</p>
+<!-- Step-by-step wizard provided by Angular Material -->
+<mat-horizontal-stepper linear="true" #stepper id="stepper" (selectionChange)="onChangeStep($event)">
+
+  <!-- Select project -->
+  <mat-step [stepControl]="formGroup.controls.project" label="Sélection du projet">
+    <h3>À quel projet souhaites-tu t'inscrire ?</h3>
+    <form [formGroup]="formGroup.controls.project">
+      <mat-form-field>
+        <mat-select placeholder="Projet" formControlName="editionId" required>
+          <mat-option *ngFor="let edition of editions" [value]="edition.id">
+            {{ edition.project }} {{ edition.year }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <section>
+        <button mat-button color="primary" [disabled]="!formGroup.controls.project.valid" matStepperNext>Suivant</button>
+      </section>
+    </form>
+  </mat-step>
+
+  <!-- Fill in the project's form -->
+  <mat-step label="Remplissage du formulaire">
+    <dynamic-form #editionForm (submitted)="onSubmitForm()" [submitButton]="false"></dynamic-form>
+    <section>
+      <button mat-button matStepperPrevious>Précédent</button>
+      <button mat-button color="primary" [disabled]="!formGroup.controls.project.valid" matStepperNext (click)="saveFormValue()">Suivant</button>
+    </section>
+  </mat-step>
+
+  <!--
+    Allow to download edition-specific attachments
+    that student needs to send back via post
+  -->
+  <mat-step [stepControl]="formGroup.controls.documents" label="Documents">
+    <h3>Documents</h3>
+    <form [formGroup]="formGroup.controls.documents" *ngIf="edition && edition.editionForm.form.files.length > 0; else noFiles">
+      <p>Tu peux maintenant télécharger les documents papiers.</p>
+      <section>
+        <p>
+          Ces documents sont à imprimer et à renvoyer
+          <strong>
+            impérativement avant le {{ edition.editionForm.deadline | amLocale: 'fr' | amDateFormat: 'LL' }}
+          </strong>
+          par voie postale à l'adresse suivante :
+        </p>
+        <p>
+          {{ edition.editionForm.recipient.user.fullName }} <br />
+          {{ edition.editionForm.recipient.address.toString() }}
+        </p>
+      </section>
+      <p id="file-downloads">
+        <a mat-raised-button color="accent" *ngFor="let file of edition.editionForm.form.files" [href]="file.url" [download]="file.name" target="_blank">
+          {{ file.name }}
+        </a>
+      </p>
+      <section>
+        <mat-checkbox formControlName="downloaded" required="true">
+          J'ai téléchargé les documents
+        </mat-checkbox>
+        <p>
+          <mat-hint>
+            Tu pourras aussi retrouver ces documents plus tard dans la section "Mes inscriptions".
+          </mat-hint>
+        </p>
+      </section>
+    </form>
+    <ng-template #noFiles>
+      <p>Il n'y a pas de documents supplémentaires à remplir pour ce projet.</p>
+      <p>Tu peux passer à l'étape suivante.</p>
+    </ng-template>
+    <section>
+      <button mat-button matStepperPrevious>Précédent</button>
+      <button mat-button matStepperNext color="primary" [disabled]="!formGroup.controls.documents.valid">Suivant</button>
+    </section>
+  </mat-step>
+
+  <!-- Recap -->
+  <mat-step label="Récapitulatif">
+    <h3>Récapitulatif</h3>
+  </mat-step>
+
+  <!-- Done -->
+  <mat-step label="Terminé">
+  </mat-step>
+</mat-horizontal-stepper>

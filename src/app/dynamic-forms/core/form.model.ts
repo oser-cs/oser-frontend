@@ -73,10 +73,37 @@ export class SectionAdapter implements IAdapter<Section> {
 }
 
 
+export class FileSchema {
+  id: number;
+  name: string;
+  url: string;
+}
+
+export class File extends FileSchema {
+
+  constructor(args: FileSchema) {
+    super();
+    Object.assign(this, args);
+  }
+}
+
+export class FileAdapter implements IAdapter<File> {
+
+  adapt(data: any): File {
+    return new File({
+      id: data.id,
+      name: data.name,
+      url: data.file,
+    });
+  }
+}
+
+
 export class FormSchema {
   id: number;
   title: string;
   sections: Section[];
+  files: File[];
 }
 
 
@@ -92,12 +119,14 @@ export class Form extends FormSchema {
 export class FormAdapter implements IAdapter<Form> {
 
   private sectionAdapter = new SectionAdapter();
+  private fileAdapter = new FileAdapter();
 
   adapt(data: any): Form {
     return new Form({
       id: data.id,
       title: data.title,
       sections: data.sections.map(item => this.sectionAdapter.adapt(item)),
+      files: data.files.map(item => this.fileAdapter.adapt(item)),
     })
   }
 }

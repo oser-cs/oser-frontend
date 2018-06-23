@@ -1,9 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
   MatButtonModule,
   MatSnackBarModule,
+  MatStepperModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatAutocompleteModule,
+  MatSelectModule,
+  MatCheckboxModule,
 } from '@angular/material';
 
 import { MomentModule } from 'ngx-moment';
@@ -13,7 +20,6 @@ import { DynamicFormsModule } from 'app/dynamic-forms';
 
 import { ProjectsRoutingModule } from './projects-routing.module';
 import { ProjectsComponent } from './projects.component';
-import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { OverviewComponent, OpenRegistrationsComponent, MyParticipationsOverviewComponent } from './overview';
@@ -24,10 +30,19 @@ import { NavbarComponent } from './navbar/navbar.component';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    // Third party
     MomentModule,
     // Angular Material
     MatButtonModule,
     MatSnackBarModule,
+    MatStepperModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatCheckboxModule,
     // App modules
     SharedModule,
     ProjectsRoutingModule,
@@ -35,14 +50,13 @@ import { NavbarComponent } from './navbar/navbar.component';
   ],
   declarations: [
     ProjectsComponent,
-    RegistrationFormComponent,
+    NavbarComponent,
     ProjectListComponent,
     ProjectDetailComponent,
     OverviewComponent,
-    RegisterWizardComponent,
-    MyParticipationsComponent,
-    NavbarComponent,
     OpenRegistrationsComponent,
+    MyParticipationsComponent,
+    RegisterWizardComponent,
     MyParticipationsOverviewComponent,
   ],
 })

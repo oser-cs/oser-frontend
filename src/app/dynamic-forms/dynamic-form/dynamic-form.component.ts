@@ -10,8 +10,19 @@ import { Form, FormService, FormEntryPayload, } from '../core';
 })
 export class DynamicFormComponent implements OnInit, OnDestroy {
 
-  @Input() form: Form;
+  _form: Form;
+
+  get form(): Form {
+    return this._form;
+  }
+
+  @Input('form') set form(form: Form) {
+    this._form = form;
+    this.createForm();
+  }
   @Input() reset$: Observable<any>;
+  @Input() submitButton = true;
+  @Input() submitLabel = 'Envoyer';
   @Output() submitted: EventEmitter<FormEntryPayload> = new EventEmitter();
 
   formGroup: FormGroup;
@@ -21,21 +32,28 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
   constructor(private formService: FormService) { }
 
   ngOnInit() {
-    this.createForm();
     if (this.reset$) {
       this.reset$.subscribe(
-        () => this.formGroup.reset()
+        () => this.formGroup && this.formGroup.reset()
       );
     }
   }
 
   createForm() {
-    this.formGroup = this.formService.toFormGroup(this.form);
+    if (this.form) {
+      this.formGroup = this.formService.toFormGroup(this.form);
+    } else {
+      this.formGroup = null;
+    }
+  }
+
+  get value(): FormEntryPayload {
+    const payload = this.formService.toAnswersPayload(this.form, this.formGroup);
+    return payload;
   }
 
   onSubmit() {
-    const payload = this.formService.toAnswersPayload(this.form, this.formGroup);
-    this.submitted.emit(payload);
+    this.submitted.emit(this.value);
   }
 
   ngOnDestroy() {

@@ -19,13 +19,13 @@
         </p>
         <p class="text-muted">
           Avant le {{ edition.editionForm.deadline | amLocale: 'fr' | amDateFormat: 'LL' }} •
-          <span style="font-weight: bold;">
+          <strong>
             {{ edition.editionForm.deadline | amLocale: 'fr' | amDifference: today: 'days' }} jours restants
-          </span>
+          </strong>
         </p>
       </td>
       <td class="action" [ngSwitch]="edition.participates">
-        <button *ngSwitchCase="false" class="btn-light">Je m'inscris</button>
+        <a mat-raised-button color="primary" [routerLink]="['inscription']">Je m'inscris</a>
         <span *ngSwitchCase="true">Inscription effectuée</span>
       </td>
     </tr>

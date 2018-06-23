@@ -37,7 +37,6 @@ export class FormService {
       Object.assign(group, this.toRawFormGroup(section.questions));
     });
     const formGroup = new FormGroup(group);
-    console.log(formGroup);
     return formGroup;
   }
 

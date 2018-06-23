@@ -7,7 +7,7 @@ export class EditionSchema {
   id: number;
   name: string;
   year: number;
-  projectId: number;
+  project: string;
   description: string;
   organizers: User[];
   participations: Participation[];
@@ -40,7 +40,7 @@ export class EditionAdapter implements IAdapter<Edition> {
       name: data.name,
       description: data.description,
       year: data.year,
-      projectId: data.project,
+      project: data.project,
       organizers: data.organizers.map(item => this.userAdapter.adapt(item)),
       participations: data.participations.map(item => this.participationAdapter.adapt(item)),
       editionForm: data.edition_form ? this.editionFormAdapter.adapt(data.edition_form) : null,
@@ -59,7 +59,7 @@ export class EditionSimpleAdapter implements IAdapter<Edition> {
       name: data.name,
       description: data.description,
       year: data.year,
-      projectId: data.project,
+      project: data.project,
       organizers: new Array(data.organizers),
       participations: new Array(data.participations),
       editionForm: data.edition_form ? this.editionFormAdapter.adapt(data.edition_form) : null,
