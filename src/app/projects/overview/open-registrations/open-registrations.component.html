@@ -11,24 +11,20 @@
     à l'inscription
   </p>
 
-  <table>
-    <tr *ngFor="let edition of editions">
-      <td>
-        <p>
-          <strong>{{ edition.editionForm.title }}</strong>
-        </p>
-        <p class="text-muted">
-          Avant le {{ edition.editionForm.deadline | amLocale: 'fr' | amDateFormat: 'LL' }} •
-          <strong>
-            {{ edition.editionForm.deadline | amLocale: 'fr' | amDifference: today: 'days' }} jours restants
-          </strong>
-        </p>
-      </td>
-      <td class="action" [ngSwitch]="edition.participates">
-        <a mat-raised-button color="primary" [routerLink]="['inscription']">Je m'inscris</a>
-        <span *ngSwitchCase="true">Inscription effectuée</span>
-      </td>
-    </tr>
-  </table>
+  <div role="list" id="editions">
+    <div role="listitem" *ngFor="let edition of editions">
+      <p>
+        <a routerLink="inscription" class="no-color">
+          {{ edition.editionForm.title }}
+        </a>
+      </p>
+      <p class="text-muted">
+        Avant le {{ edition.editionForm.deadline | amLocale: 'fr' | amDateFormat: 'LL' }} •
+        <strong>
+          {{ edition.editionForm.deadline | amLocale: 'fr' | amDifference: today: 'days' }} jours restants
+        </strong>
+      </p>
+    </div>
+  </div>
 
 </div>

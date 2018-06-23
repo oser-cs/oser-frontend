@@ -12,15 +12,13 @@
   padding: 0;
 }
 
-table {
-  border-collapse: separate;
-  border-spacing: 0 1em;
-  td.action {
-    text-align: center;
-    padding: 0 1em;
-  }
+#editions {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1em;
   p {
     margin: 0;
     padding: 0;
+
   }
 }
