@@ -10,6 +10,7 @@ export class QuestionSchema {
   helpText: string;
   required: boolean;
   sectionId: number;
+  answer: string;
 }
 
 
@@ -36,6 +37,7 @@ export class QuestionAdapter implements IAdapter<Question> {
       helpText: data.help_text,
       required: data.required,
       sectionId: data.section,
+      answer: null,
     })
   }
 }
@@ -99,13 +101,23 @@ export class FileAdapter implements IAdapter<File> {
 }
 
 
+interface Answer {
+  question: number;
+  answer: string;
+}
+
+export interface FormEntryPayload {
+  form: number;
+  answers: Answer[];
+}
+
+
 export class FormSchema {
   id: number;
   title: string;
   sections: Section[];
   files: File[];
 }
-
 
 export class Form extends FormSchema {
 
@@ -114,7 +126,6 @@ export class Form extends FormSchema {
     Object.assign(this, args);
   }
 }
-
 
 export class FormAdapter implements IAdapter<Form> {
 
@@ -128,5 +139,18 @@ export class FormAdapter implements IAdapter<Form> {
       sections: data.sections.map(item => this.sectionAdapter.adapt(item)),
       files: data.files.map(item => this.fileAdapter.adapt(item)),
     })
+  }
+
+  toPayload(form: Form): FormEntryPayload {
+    const answers: Answer[] = [];
+    form.sections.forEach(section => {
+      section.questions.forEach(question => {
+        answers.push({ question: question.id, answer: question.answer });
+      })
+    })
+    return {
+      form: form.id,
+      answers: answers,
+    };
   }
 }

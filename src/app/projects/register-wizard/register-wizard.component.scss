@@ -1,3 +1,5 @@
+@import '~sass/variables';
+
 #stepper {
   max-width: 60em;
   padding: 0 2em;
@@ -10,4 +12,22 @@
   a {
     margin: 0 1em;
   }
+}
+
+#form-entry {
+  max-width: 30em;
+  margin: 1em auto;
+}
+
+.organizers {
+  display: flex;
+  .organizer {
+    width: fit-content;
+    margin: auto;
+  }
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
 }

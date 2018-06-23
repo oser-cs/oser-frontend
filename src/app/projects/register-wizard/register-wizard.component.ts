@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Edition, EditionService } from '../core';
-import { DynamicFormComponent, FormEntryPayload } from 'app/dynamic-forms';
-import { MatStepper } from '@angular/material';
+import { AuthService } from 'app/core';
+import { Edition, EditionService, ParticipationService } from '../core';
+import { DynamicFormComponent, Form } from 'app/dynamic-forms';
+import { MatStepper, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-register-wizard',
@@ -14,15 +15,20 @@ export class RegisterWizardComponent implements OnInit {
 
   editions: Edition[];
   edition: Edition;
-  dynamicFormValue: FormEntryPayload;
+  initialEditionId: number;
+  form: Form;
   @ViewChild(DynamicFormComponent) editionForm: DynamicFormComponent;
   @ViewChild('stepper') stepper: MatStepper;
+  formSent = false;
 
   formGroup: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
+    private auth: AuthService,
     private editionService: EditionService,
+    private participationService: ParticipationService,
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit() {
@@ -30,7 +36,7 @@ export class RegisterWizardComponent implements OnInit {
     this.initForms();
   }
 
-  initForms() {
+  private initForms() {
     this.formGroup = new FormGroup({
       project: new FormGroup({
         editionId: new FormControl(null, Validators.required),
@@ -41,7 +47,7 @@ export class RegisterWizardComponent implements OnInit {
     });
   }
 
-  loadForm() {
+  private loadForm() {
     this.editionService.retrieve(this.formGroup.value.project.editionId).subscribe(
       edition => {
         this.edition = edition;
@@ -52,17 +58,56 @@ export class RegisterWizardComponent implements OnInit {
   }
 
   onSubmitForm() {
-    this.saveFormValue();
+    this.form = this.editionForm.form;
     this.stepper.next();
   }
 
-  saveFormValue() {
-    this.dynamicFormValue = this.editionForm.value;
+  private saveParticipation() {
+  }
+
+  register() {
+    if (!this.formSent) {
+      const userId = this.auth.getUser().id;
+      this.participationService.create(userId, this.edition.id, this.form).subscribe(
+        (participation) => {
+          console.log(participation);
+          this.formSent = true;
+          this.stepper.next();
+          // Open a confirmation snackbar
+          const message = `Demande d'inscription envoyée. Tu recevras bientôt un email de confirmation.`;
+          this.snackBar.open(message, 'OK', { duration: 3000 });
+        },
+        e => {
+          console.log(e);
+          // Notify that something went wrong
+        }
+      );
+    } else {
+      this.stepper.next();
+    }
   }
 
   onChangeStep(stepperSelectionEvent) {
-    if (stepperSelectionEvent.previouslySelectedIndex === 0 && stepperSelectionEvent.selectedIndex === 1) {
-      this.loadForm();
+    const current = stepperSelectionEvent.selectedIndex;
+    const previous = stepperSelectionEvent.previouslySelectedIndex;
+    // When going to the 'select' step, record the current edition ID
+    if (current === 0) {
+      this.initialEditionId = this.formGroup.value.project.editionId;
+    }
+    // When switching to the 'form' step, only load the edition's form if the
+    // edition has changed
+    if (previous === 0 && current === 1) {
+      const editionChanged = this.formGroup.value.project.editionId !== this.initialEditionId
+      if (editionChanged) {
+        this.loadForm();
+      }
+    }
+    if (previous === 1 && current === 2) {
+      this.editionForm.save();
+      this.form = this.editionForm.form;
+    }
+    if (previous === 3 && current === 4) {
+      this.register();
     }
   }
 

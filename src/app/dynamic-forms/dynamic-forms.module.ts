@@ -14,6 +14,7 @@ import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/materia
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { QuestionComponent } from './question/question.component';
+import { FormEntryComponent } from './form-entry/form-entry.component';
 
 
 export const DATE_FORMATS = {
@@ -46,9 +47,11 @@ export const DATE_FORMATS = {
   declarations: [
     DynamicFormComponent,
     QuestionComponent,
+    FormEntryComponent,
   ],
   exports: [
     DynamicFormComponent,
+    FormEntryComponent,
   ],
   providers: [
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },

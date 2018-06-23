@@ -5,12 +5,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatButtonModule,
   MatSnackBarModule,
+  MatCardModule,
   MatStepperModule,
   MatInputModule,
   MatFormFieldModule,
   MatAutocompleteModule,
   MatSelectModule,
   MatCheckboxModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatIconModule,
+  MatListModule,
 } from '@angular/material';
 
 import { MomentModule } from 'ngx-moment';
@@ -37,12 +42,17 @@ import { NavbarComponent } from './navbar/navbar.component';
     // Angular Material
     MatButtonModule,
     MatSnackBarModule,
+    MatCardModule,
     MatStepperModule,
     MatInputModule,
     MatAutocompleteModule,
     MatFormFieldModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatListModule,
     // App modules
     SharedModule,
     ProjectsRoutingModule,
