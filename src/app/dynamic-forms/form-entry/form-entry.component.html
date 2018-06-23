@@ -4,7 +4,12 @@
     <h4 class="section-title">{{ section.title }}</h4>
     <p class="answer" *ngFor="let question of section.questions">
       <strong>{{ question.text }}</strong> :
-      {{ question.answer }}
+      <span [ngSwitch]="question.type">
+        <span *ngSwitchCase="'date'">
+          {{ question.answer | amLocale: 'fr' | amDateFormat: 'LL' }}
+        </span>
+        <span *ngSwitchDefault>{{ question.answer }}</span>
+      </span>
     </p>
   </div>
 </div>

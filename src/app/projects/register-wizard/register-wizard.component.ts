@@ -41,9 +41,7 @@ export class RegisterWizardComponent implements OnInit {
       project: new FormGroup({
         editionId: new FormControl(null, Validators.required),
       }),
-      documents: new FormGroup({
-        downloaded: new FormControl(false, Validators.required),
-      }),
+      documents: new FormGroup({}),
     });
   }
 
@@ -52,6 +50,9 @@ export class RegisterWizardComponent implements OnInit {
       edition => {
         this.edition = edition;
         this.editionForm.form = edition.editionForm.form;
+        if (this.editionForm.form.files.length >= 0) {
+          this.formGroup.controls.documents['downloaded'] = new FormControl(false, Validators.required);
+        }
       },
       e => console.log(e),
     );
@@ -60,9 +61,6 @@ export class RegisterWizardComponent implements OnInit {
   onSubmitForm() {
     this.form = this.editionForm.form;
     this.stepper.next();
-  }
-
-  private saveParticipation() {
   }
 
   register() {
