@@ -27,7 +27,7 @@
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <a mat-raised-button color="primary" [href]="downloadUrl">
+  <a *ngIf="documents.length > 0" mat-raised-button color="primary" [href]="downloadUrl">
     <mat-icon>archive</mat-icon>
     Télécharger au format ZIP
   </a>
