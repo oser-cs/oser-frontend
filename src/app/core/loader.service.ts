@@ -12,8 +12,6 @@ export class LoaderService {
     return this.loading$.asObservable().pipe(
       // Prevent having multiple false's or multiple true's
       distinctUntilChanged(),
-      // Add a small debounce time
-      debounceTime(10),
     );
   }
 
