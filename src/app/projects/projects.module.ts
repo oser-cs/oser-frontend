@@ -41,6 +41,7 @@ import { DocumentsRecipientComponent } from './documents-recipient/documents-rec
 import { EditionContactComponent } from './edition-contact/edition-contact.component';
 import { EditionContactDialogComponent } from './edition-contact-dialog/edition-contact-dialog.component';
 import { UnregisterDialogComponent } from './unregister-dialog/unregister-dialog.component';
+import { ActivateDialogComponent } from './activate-dialog/activate-dialog.component';
 
 @NgModule({
   imports: [
@@ -88,12 +89,14 @@ import { UnregisterDialogComponent } from './unregister-dialog/unregister-dialog
     EditionContactComponent,
     EditionContactDialogComponent,
     UnregisterDialogComponent,
+    ActivateDialogComponent,
   ],
   entryComponents: [
     AnswersDialogComponent,
     DocumentsDialogComponent,
     EditionContactDialogComponent,
     UnregisterDialogComponent,
+    ActivateDialogComponent,
   ],
 })
 export class ProjectsModule { }

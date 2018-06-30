@@ -7,6 +7,7 @@ import { AnswersDialogComponent } from '../answers-dialog/answers-dialog.compone
 import { DocumentsDialogComponent } from '../documents-dialog/documents-dialog.component';
 import { EditionContactDialogComponent } from '../edition-contact-dialog/edition-contact-dialog.component';
 import { UnregisterDialogComponent } from '../unregister-dialog/unregister-dialog.component';
+import { ActivateDialogComponent } from '../activate-dialog/activate-dialog.component';
 import { Participation, ParticipationService, EditionService, ParticipationState } from '../core';
 
 @Component({
@@ -91,7 +92,19 @@ export class MyParticipationsComponent implements OnInit, OnDestroy {
   }
 
   openActivate(participation: Participation) {
-    // TODO
+    this.editionService.retrieve(participation.editionId).subscribe(
+      edition => {
+        const dialogRef = this.dialog.open(ActivateDialogComponent, { data: { edition }});
+        const sub = dialogRef.afterClosed().pipe(
+          filter(result => result),
+          mergeMap(() => this.participationService.reactivate(participation.id)),
+          tap(() => participation.state = ParticipationState.PENDING),
+          map(() => `Ton inscription à ${edition.project} ${edition.year} a été renvoyée.`),
+          tap(message => this.snackBar.open(message, 'OK', { duration: 4000 })),
+        ).subscribe();
+        this.sub.add(sub);
+      }
+    );
   }
 
   openDelete(participation: Participation) {
