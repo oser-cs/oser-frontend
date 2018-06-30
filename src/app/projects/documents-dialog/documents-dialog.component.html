@@ -27,9 +27,9 @@
 </mat-dialog-content>
 
 <mat-dialog-actions>
+  <button mat-button matDialogClose>Fermer</button>
   <a *ngIf="documents.length > 0" mat-raised-button color="primary" [href]="downloadUrl">
     <mat-icon>archive</mat-icon>
     Télécharger au format ZIP
   </a>
-  <button mat-button matDialogClose>Fermer</button>
 </mat-dialog-actions>
