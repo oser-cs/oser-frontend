@@ -1,137 +1,117 @@
-import { Visit, Place, Address, Country, Participant, Organizer } from './models';
-import { UserAdapter } from 'app/core';
+import { Visit, Place, Participant, Organizer } from './models';
+import { UserAdapter, AddressAdapter, IAdapter } from 'app/core';
 
 
-export class AddressAdapter {
-  adapt(item: any): Address {
-    return new Address({
-      line1: item.line1,
-      line2: item.line2,
-      postCode: item.post_code,
-      city: item.city,
-      country: {
-        name: item.country.name,
-        code: item.country.code,
-      },
-    });
-  }
-}
+export class PlaceAdapter implements IAdapter<Place> {
 
+  private addressAdapter = new AddressAdapter();
 
-export class PlaceAdapter {
-
-  private addressAdapter: AddressAdapter;
-
-  constructor() {
-    this.addressAdapter = new AddressAdapter();
-  }
-
-  adapt(item: any): Place {
+  adapt(data: any): Place {
     return {
-      id: item.id,
-      name: item.name,
-      description: item.description,
-      address: item.address ? this.addressAdapter.adapt(item.address) : null,
+      id: data.id,
+      name: data.name,
+      description: data.description,
+      address: data.address ? this.addressAdapter.adapt(data.address) : null,
     }
   }
 }
 
 
-export class ParticipantAdapter {
+export class ParticipantAdapter implements IAdapter<Participant> {
 
   private userAdapter = new UserAdapter();
 
-  adapt(item: any): Participant {
+  adapt(data: any): Participant {
     return {
-      id: item.id,
-      present: item.present,
-      accepted: item.accepted,
-      user: this.userAdapter.adapt(item.user),
-      visitId: item.visit,
+      id: data.id,
+      present: data.present,
+      accepted: data.accepted,
+      user: this.userAdapter.adapt(data.user),
+      visitId: data.visit,
     }
   }
 }
 
 
-export class OrganizerAdapter {
+export class OrganizerAdapter implements IAdapter<Organizer> {
 
   private userAdapter = new UserAdapter();
 
-  adapt(item: any): Organizer {
+  adapt(data: any): Organizer {
     return {
-      id: item.id,
-      user: item.user ? this.userAdapter.adapt(item.user) : null,
+      id: data.id,
+      user: data.user ? this.userAdapter.adapt(data.user) : null,
     }
   }
 }
 
 
-export class SimpleVisitAdapter {
+export class SimpleVisitAdapter implements IAdapter<Visit> {
 
   private placeAdapter = new PlaceAdapter();
   private participantAdapter = new ParticipantAdapter();
 
-  adapt(item: any): Visit {
+  adapt(data: any): Visit {
     const fromUserIds = (arr: number[]) => (arr || []).map(
       id => ({
         id: null,
         user: { id: id },
-        visitId: item.id,
+        visitId: data.id,
       })
     );
-    const participants = item.participants.map(
+    const participants = data.participants.map(
       p => this.participantAdapter.adapt(p)
     );
-    const place = this.placeAdapter.adapt({name: item.place});
+    const place = this.placeAdapter.adapt({ name: data.place });
     return new Visit({
-      id: item.id,
-      title: item.title,
-      summary: item.summary,
-      description: item.description,
+      id: data.id,
+      title: data.title,
+      summary: data.summary,
+      description: data.description,
       place: place,
-      date: new Date(item.date),
-      startTime: new Date(Date.parse(`1 Jan 2000 ${item.start_time}`)),
-      endTime: new Date(Date.parse(`1 Jan 2000 ${item.end_time}`)),
-      passed: item.passed,
-      deadline: new Date(item.deadline),
-      registrationsOpen: item.registrations_open,
-      image: item.image,
+      date: new Date(data.date),
+      startTime: new Date(Date.parse(`1 Jan 2000 ${data.start_time}`)),
+      endTime: new Date(Date.parse(`1 Jan 2000 ${data.end_time}`)),
+      passed: data.passed,
+      deadline: new Date(data.deadline),
+      registrationsOpen: data.registrations_open,
+      image: data.image,
       participants: participants,
-      organizers: fromUserIds(item.organizers),
+      organizers: fromUserIds(data.organizers),
     })
   }
 }
 
 
-export class VisitAdapter {
+export class VisitAdapter implements IAdapter<Visit> {
 
   private placeAdapter = new PlaceAdapter();
   private participantAdapter = new ParticipantAdapter();
   private organizerAdapter = new OrganizerAdapter();
 
-  adapt(item: any): Visit {
-    const participants = item.participants.map(
+  adapt(data: any): Visit {
+    const participants = data.participants.map(
       p => this.participantAdapter.adapt(p)
     );
-    const organizers = item.organizers.map(
+    const organizers = data.organizers.map(
       o => this.organizerAdapter.adapt(o)
     );
     return new Visit({
-      id: item.id,
-      title: item.title,
-      summary: item.summary,
-      description: item.description,
-      place: item.place ? this.placeAdapter.adapt(item.place) : null,
-      date: new Date(item.date),
-      startTime: new Date(Date.parse(`1 Jan 2000 ${item.start_time}`)),
-      endTime: new Date(Date.parse(`1 Jan 2000 ${item.end_time}`)),
-      passed: item.passed,
-      meetingPlace: item.meeting,
-      deadline: new Date(item.deadline),
-      registrationsOpen: item.registrations_open,
-      image: item.image,
-      factSheet: item.fact_sheet,
-      permissionSheet: item.permission,
+      id: data.id,
+      title: data.title,
+      summary: data.summary,
+      description: data.description,
+      place: data.place ? this.placeAdapter.adapt(data.place) : null,
+      date: new Date(data.date),
+      startTime: new Date(Date.parse(`1 Jan 2000 ${data.start_time}`)),
+      endTime: new Date(Date.parse(`1 Jan 2000 ${data.end_time}`)),
+      passed: data.passed,
+      meetingPlace: data.meeting,
+      deadline: new Date(data.deadline),
+      registrationsOpen: data.registrations_open,
+      image: data.image,
+      factSheet: data.fact_sheet,
+      permissionSheet: data.permission,
       participants: participants,
       organizers: organizers,
     });

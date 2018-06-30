@@ -15,6 +15,11 @@ const routes: Routes = [
     loadChildren: './visits/visits.module#VisitsModule',
   },
   {
+    path: 'projets',
+    canActivate: [AuthGuard],
+    loadChildren: './projects/projects.module#ProjectsModule',
+  },
+  {
     path: 'login', component: LoginComponent
   },
   {

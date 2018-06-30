@@ -4,24 +4,11 @@
       <img src='assets/img/oser-logo.png' alt='Logo' class='logo'>
     </a>
     <div class="nav-wide">
-      <div class="links">
-        <li *ngFor="let link of links">
-          <a *ngIf="link.href; else action" class="nav-link" [routerLink]="link.href">{{ link.text }}</a>
-          <ng-template #action>
-            <span class="nav-link" (click)="link.action()">{{ link.text }}</span>
-          </ng-template>
-        </li>
-      </div>
+      <app-nav-group [links]="links"></app-nav-group>
     </div>
-    <div class="nav-narrow">
-      <i (click)="toggle()" class="hamburger fa fa-bars fa-2x"></i>
-    </div>
+    <i (click)="toggle()" class="hamburger fa fa-bars fa-2x"></i>
   </div>
-  <div class="nav-narrow-links">
-    <div [hidden]="!visible" class="links">
-      <li *ngFor="let link of links">
-        <a (click)="toggle()" class="nav-link" [routerLink]="link.href">{{ link.text }}</a>
-      </li>
-    </div>
+  <div class="nav-narrow">
+    <app-nav-group-vertical *ngIf="visible" [links]="links"(click)="toggle()"></app-nav-group-vertical>
   </div>
 </div>

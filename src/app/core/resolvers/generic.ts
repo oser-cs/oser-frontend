@@ -27,10 +27,10 @@ export abstract class ObjectListResolver<T> implements Resolve<T[]> {
 export abstract class ObjectResolver<T> implements Resolve<T> {
 
   public service: Retrievable<T>;
-  abstract lookupKey: string;
+  abstract routeLookupKey: string;
 
   resolve(route: ActivatedRouteSnapshot): Observable<T> {
-    const id: any = route.paramMap.get(this.lookupKey);
+    const id: any = route.paramMap.get(this.routeLookupKey);
     return this.service.retrieve(id).pipe(
       catchError(e => of(null))
     );
