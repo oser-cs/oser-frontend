@@ -153,10 +153,16 @@
       </mat-accordion>
 
       <p>
-        En cas de questions, tu peux contacter les organisateurs :
+        En cas de questions, tu peux
+        <span [ngSwitch]="edition.organizers.length">
+          <span *ngSwitchCase="0">
+            <app-mailto [subject]="'Questions à propos de ' + edition.project + ' édition ' + edition.year">nous contacter</app-mailto>.
+          </span>
+          <span *ngSwitchDefault>contacter les organisateurs :</span>
+        </span>
       </p>
 
-      <div class="organizers">
+      <div class="organizers" *ngIf="edition.organizers">
         <mat-card *ngFor="let organizer of edition.organizers" class="organizer">
           <mat-card-content>
             <mat-list dense>
