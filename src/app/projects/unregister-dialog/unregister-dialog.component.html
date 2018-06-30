@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>
+  Se désinscrire de {{ edition.project }} {{ edition.year }} ?
+</h1>
+
+<mat-dialog-content>
+  <p>
+    Une fois désinscrit, ta participation sera annulée et les organisateurs
+    en seront informés.
+  </p>
+  <p>
+    Tu devras effectuer le processus d'inscription à nouveau pour te réinscrire.
+  </p>
+  <p>
+    <strong>
+      Cette action est irréversible.
+    </strong>
+  </p>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button [matDialogClose]="false">Ne pas me désinscrire</button>
+  <button mat-raised-button color="warn" [matDialogClose]="true">Me désinscrire</button>
+</mat-dialog-actions>

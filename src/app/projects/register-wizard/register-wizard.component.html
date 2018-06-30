@@ -50,7 +50,7 @@
         </mat-list-item>
       </mat-nav-list>
       <p>
-        <a mat-raised-button color="primary" [href]="downloadUrl">
+        <a mat-raised-button [href]="downloadUrl">
           <mat-icon>archive</mat-icon>
           Télécharger au format ZIP
         </a>
@@ -98,6 +98,12 @@
 
       <p>
         Ta demande d'inscription pour l'édition {{ edition.year }} de <strong>{{ edition.project }}</strong> a bien été envoyée.
+      </p>
+
+      <p>
+        <a mat-raised-button color="primary" routerLink="/projets">
+          Retour aux projets
+        </a>
       </p>
 
       <h2>Prochaines étapes</h2>
@@ -152,8 +158,6 @@
       <p>
         <app-edition-contact [edition]="edition"></app-edition-contact>
       </p>
-
-      <p><a mat-button color="primary" routerLink="/projets">Retour aux projets</a></p>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

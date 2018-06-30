@@ -41,6 +41,13 @@ export class ParticipationService extends ApiService {
     );
   }
 
+  destroy(id: any): Observable<void> {
+    const url = this.baseUrl + `${id}/`;
+    return this.http.delete(url).pipe(
+      map(() => null)
+    );
+  }
+
   pendingForUser(userId: number): Observable<Participation[]> {
     return this.list({ user: String(userId), state: 'pending' });
   }
