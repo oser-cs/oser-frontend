@@ -108,4 +108,8 @@ export class RegisterWizardComponent implements OnInit {
     }
   }
 
+  get downloadUrl(): string {
+    return this.editionService.getDownloadUrl(this.edition.id);
+  }
+
 }

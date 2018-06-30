@@ -31,38 +31,43 @@
     Allow to download edition-specific attachments
     that student needs to send back via post
   -->
-  <mat-step [stepControl]="formGroup.controls.documents" label="Documents">
+  <mat-step label="Documents">
     <h3>Documents</h3>
-    <form [formGroup]="formGroup.controls.documents" *ngIf="edition && edition.editionForm.form.files.length > 0; else noFiles">
+
+    <form *ngIf="edition && edition.editionForm.form.files.length > 0; else noFiles">
       <p>Tu peux maintenant télécharger les documents papiers.</p>
 
       <!-- Deadline and address where documents need to be sent -->
       <app-documents-recipient [deadline]="edition.editionForm.deadline" [recipient]="edition.editionForm.recipient"></app-documents-recipient>
 
       <!-- List of downloable files -->
-      <p id="file-downloads">
-        <a mat-raised-button color="accent" *ngFor="let file of edition.editionForm.form.files" [href]="file.url" [download]="file.name" target="_blank">
-          {{ file.name }}
+      <mat-nav-list>
+        <mat-list-item *ngFor="let document of edition.editionForm.form.files">
+          <mat-icon matListIcon>get_app</mat-icon>
+          <a [href]="document.url" download target="_blank" matLine>
+            {{ document.name }}
+          </a>
+        </mat-list-item>
+      </mat-nav-list>
+      <p>
+        <a mat-raised-button color="primary" [href]="downloadUrl">
+          <mat-icon>archive</mat-icon>
+          Télécharger au format ZIP
         </a>
       </p>
-      <section>
-        <mat-checkbox formControlName="downloaded" required="true">
-          J'ai téléchargé les documents
-        </mat-checkbox>
-        <p>
-          <mat-hint>
-            Tu pourras aussi retrouver ces documents plus tard dans la section "Mes inscriptions".
-          </mat-hint>
-        </p>
-      </section>
+      <p class="text-muted">
+        Tu pourras retrouver ces documents plus tard dans la section "Mes inscriptions".
+      </p>
     </form>
+
     <ng-template #noFiles>
       <p>Il n'y a pas de documents supplémentaires à remplir pour ce projet.</p>
       <p>Tu peux passer à l'étape suivante.</p>
     </ng-template>
+
     <section class="nav-buttons">
       <button mat-button matStepperPrevious>Précédent</button>
-      <button mat-button matStepperNext color="primary" [disabled]="!formGroup.controls.documents.valid">Suivant</button>
+      <button mat-button matStepperNext color="primary">Suivant</button>
     </section>
   </mat-step>
 
@@ -145,34 +150,8 @@
       </mat-accordion>
 
       <p>
-        En cas de questions, tu peux
-        <span [ngSwitch]="edition.organizers.length">
-          <span *ngSwitchCase="0">
-            <app-mailto [subject]="'Questions à propos de ' + edition.project + ' édition ' + edition.year">nous contacter</app-mailto>.
-          </span>
-          <span *ngSwitchDefault>contacter les organisateurs :</span>
-        </span>
+        <app-edition-contact [edition]="edition"></app-edition-contact>
       </p>
-
-      <div class="organizers" *ngIf="edition.organizers">
-        <mat-card *ngFor="let organizer of edition.organizers" class="organizer">
-          <mat-card-content>
-            <mat-list dense>
-              <mat-list-item>
-                <strong>{{ organizer.fullName }}</strong>
-              </mat-list-item>
-              <mat-list-item *ngIf="organizer.email">
-                <mat-icon matListIcon>mail_outline</mat-icon>
-                {{ organizer.email }}
-              </mat-list-item>
-              <mat-list-item *ngIf="organizer.phoneNumber">
-                <mat-icon matListIcon>phone</mat-icon>
-                {{ organizer.phoneNumber }}
-              </mat-list-item>
-            </mat-list>
-          </mat-card-content>
-        </mat-card>
-      </div>
 
       <p><a mat-button color="primary" routerLink="/projets">Retour aux projets</a></p>
     </div>

@@ -18,10 +18,22 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #more="matMenu">
-        <button mat-menu-item (click)="openAnswers(participation)">Mes réponses</button>
-        <button mat-menu-item (click)="openDocuments(participation)">Documents</button>
-        <button mat-menu-item>Contact</button>
-        <button mat-menu-item color="warn">Annuler</button>
+        <button mat-menu-item (click)="openAnswers(participation)">
+          <mat-icon>notes</mat-icon>
+          Mes réponses
+        </button>
+        <button mat-menu-item (click)="openDocuments(participation)">
+          <mat-icon>attach_file</mat-icon>
+          Documents
+        </button>
+        <button mat-menu-item (click)="openContact(participation)">
+          <mat-icon>dialpad</mat-icon>
+          Contact
+        </button>
+        <button mat-menu-item color="warn">
+          <mat-icon>cancel</mat-icon>
+          Me désinscrire
+        </button>
       </mat-menu>
     </mat-list-item>
   </mat-list>

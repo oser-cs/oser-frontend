@@ -6,25 +6,9 @@
   margin: auto;
 }
 
-#file-downloads {
-  display: flex;
-  flex-flow: row wrap;
-  a {
-    margin: 0 1em;
-  }
-}
-
 #form-entry {
   max-width: 30em;
   margin: 1em auto;
-}
-
-.organizers {
-  display: flex;
-  .organizer {
-    width: fit-content;
-    margin: auto;
-  }
 }
 
 .nav-buttons {

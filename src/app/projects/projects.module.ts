@@ -37,6 +37,8 @@ import { ParticipationStateComponent } from './participation-state/participation
 import { AnswersDialogComponent } from './answers-dialog/answers-dialog.component';
 import { DocumentsDialogComponent } from './documents-dialog/documents-dialog.component';
 import { DocumentsRecipientComponent } from './documents-recipient/documents-recipient.component';
+import { EditionContactComponent } from './edition-contact/edition-contact.component';
+import { EditionContactDialogComponent } from './edition-contact-dialog/edition-contact-dialog.component';
 
 @NgModule({
   imports: [
@@ -80,10 +82,13 @@ import { DocumentsRecipientComponent } from './documents-recipient/documents-rec
     AnswersDialogComponent,
     DocumentsDialogComponent,
     DocumentsRecipientComponent,
+    EditionContactComponent,
+    EditionContactDialogComponent,
   ],
   entryComponents: [
     AnswersDialogComponent,
     DocumentsDialogComponent,
+    EditionContactDialogComponent,
   ],
 })
 export class ProjectsModule { }
