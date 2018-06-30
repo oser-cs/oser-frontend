@@ -16,6 +16,7 @@ import {
   MatExpansionModule,
   MatIconModule,
   MatListModule,
+  MatMenuModule,
 } from '@angular/material';
 
 import { MomentModule } from 'ngx-moment';
@@ -31,6 +32,8 @@ import { OverviewComponent, OpenRegistrationsComponent, MyParticipationsOverview
 import { RegisterWizardComponent } from './register-wizard/register-wizard.component';
 import { MyParticipationsComponent } from './my-participations/my-participations.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ParticipationStateComponent } from './participation-state/participation-state.component';
+import { AnswersDialogComponent } from './answers-dialog/answers-dialog.component';
 
 @NgModule({
   imports: [
@@ -53,6 +56,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatExpansionModule,
     MatIconModule,
     MatListModule,
+    MatMenuModule,
     // App modules
     SharedModule,
     ProjectsRoutingModule,
@@ -68,6 +72,11 @@ import { NavbarComponent } from './navbar/navbar.component';
     MyParticipationsComponent,
     RegisterWizardComponent,
     MyParticipationsOverviewComponent,
+    ParticipationStateComponent,
+    AnswersDialogComponent,
+  ],
+  entryComponents: [
+    AnswersDialogComponent,
   ],
 })
 export class ProjectsModule { }

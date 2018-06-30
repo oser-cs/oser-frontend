@@ -1,3 +1,28 @@
-<p>
-  my-participations works!
-</p>
+<div class="container">
+  <h1>Mes inscriptions</h1>
+
+  <p>
+    <a routerLink="../inscription">M'inscrire à un projet</a>
+  </p>
+
+  <mat-list role="list">
+    <mat-list-item role="listitem" *ngFor="let participation of participations">
+      <a matLine href="#" class="no-color">
+        {{ participation.editionFormTitle }}
+      </a>
+      <p class="text-muted" matLine>
+        Soumis le {{ participation.submitted | amLocale: 'fr' | amDateFormat: 'LL' }} à {{ participation.submitted | amLocale: 'fr' | amDateFormat: 'HH:mm' }}
+      </p>
+      <app-participation-state matLine [state]="participation.state"></app-participation-state>
+      <button mat-icon-button [matMenuTriggerFor]="more">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #more="matMenu">
+        <button mat-menu-item (click)="openAnswers(participation)">Mes réponses</button>
+        <button mat-menu-item>Documents</button>
+        <button mat-menu-item>Contact</button>
+        <button mat-menu-item color="warn">Annuler</button>
+      </mat-menu>
+    </mat-list-item>
+  </mat-list>
+</div>

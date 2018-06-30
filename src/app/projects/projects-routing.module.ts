@@ -10,6 +10,7 @@ import {
   ProjectResolver, ProjectListResolver,
   EditionResolver, EditionOpenRegistrationListResolver,
   UserPendingParticipationListResolver,
+  UserParticipationListResolver,
 } from './core';
 
 const routes: Routes = [
@@ -34,6 +35,7 @@ const routes: Routes = [
       {
         path: 'mes-inscriptions',
         component: MyParticipationsComponent,
+        resolve: { participations: UserParticipationListResolver },
       },
       {
         path: ':projectId',

@@ -1,13 +1,22 @@
 import { User, UserAdapter, IAdapter } from 'app/core';
 
 
+export enum ParticipationState {
+  PENDING = 'pending',
+  VALID = 'valid',
+  ACCEPTED = 'accepted',
+  REJECTED = 'rejected',
+  CANCELLED = 'cancelled',
+}
+
+
 export class ParticipationSchema {
   id: number;
   submitted: Date;
   user: User;
   editionId: number;
   editionFormTitle: string;
-  state: string;
+  state: ParticipationState;
 }
 
 export class Participation extends ParticipationSchema {

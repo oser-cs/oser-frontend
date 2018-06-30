@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ModelApiService, ObjectListResolver, ObjectResolver } from 'app/core';
 import { Edition, EditionAdapter, EditionSimpleAdapter } from './edition.model';
+import { Form, FormAdapter } from 'app/dynamic-forms';
 
 
 @Injectable({
@@ -25,9 +26,17 @@ export class EditionService extends ModelApiService<Edition> {
 
   openRegistrationsOnly(): Observable<Edition[]> {
     const url = this.baseUrl + 'open_registrations/';
-    const adapter = this.getAdapter('openRegistrations');
+    const adapter = new EditionSimpleAdapter();
     return this.http.get(url).pipe(
       map((data: any[]) => data.map(item => adapter.adapt(item))),
+    );
+  }
+
+  form(id: number): Observable<Form> {
+    const url = this.baseUrl + `${id}/form/`;
+    const adapter = new FormAdapter();
+    return this.http.get(url).pipe(
+      map((data: any) => adapter.adapt(data)),
     );
   }
 }
