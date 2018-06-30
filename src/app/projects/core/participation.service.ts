@@ -41,6 +41,13 @@ export class ParticipationService extends ApiService {
     );
   }
 
+  cancel(id: any): Observable<void> {
+    const url = this.baseUrl + `${id}/cancel/`;
+    return this.http.post(url, {}).pipe(
+      map(() => null)
+    );
+  }
+
   destroy(id: any): Observable<void> {
     const url = this.baseUrl + `${id}/`;
     return this.http.delete(url).pipe(

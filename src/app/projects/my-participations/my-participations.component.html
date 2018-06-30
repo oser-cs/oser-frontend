@@ -18,21 +18,29 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #more="matMenu">
-        <button mat-menu-item (click)="openAnswers(participation)">
+        <button mat-menu-item (click)="openAnswers(participation)" *ngIf="canViewAnswers(participation)">
           <mat-icon>notes</mat-icon>
           Mes réponses
         </button>
-        <button mat-menu-item (click)="openDocuments(participation)">
+        <button mat-menu-item (click)="openDocuments(participation)" *ngIf="canViewDocuments(participation)">
           <mat-icon>attach_file</mat-icon>
           Documents
         </button>
-        <button mat-menu-item (click)="openContact(participation)">
+        <button mat-menu-item (click)="openContact(participation)" *ngIf="canViewContact(participation)">
           <mat-icon>dialpad</mat-icon>
           Contact
         </button>
-        <button mat-menu-item (click)="openUnregister(participation)">
+        <button mat-menu-item (click)="openUnregister(participation)" *ngIf="canViewCancel(participation)">
           <mat-icon>cancel</mat-icon>
-          Me désinscrire
+          Annuler
+        </button>
+        <button mat-menu-item (click)="openActivate(participation)" *ngIf="canViewActivate(participation)">
+          <mat-icon>send</mat-icon>
+          Renvoyer
+        </button>
+        <button mat-menu-item (click)="openDelete(participation)" *ngIf="canViewDelete(participation)">
+          <mat-icon>delete</mat-icon>
+          Supprimer
         </button>
       </mat-menu>
     </mat-list-item>

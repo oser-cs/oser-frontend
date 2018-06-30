@@ -26,6 +26,10 @@ h1, h2 {
   text-align: center;
 }
 
+.text-success {
+  color: $color-success;
+}
+
 a {
   text-decoration: none;
   color: $color-accent;

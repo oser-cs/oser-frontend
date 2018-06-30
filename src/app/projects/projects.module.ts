@@ -18,6 +18,7 @@ import {
   MatListModule,
   MatMenuModule,
   MatDividerModule,
+  MatTooltipModule,
 } from '@angular/material';
 
 import { MomentModule } from 'ngx-moment';
@@ -64,6 +65,7 @@ import { UnregisterDialogComponent } from './unregister-dialog/unregister-dialog
     MatListModule,
     MatMenuModule,
     MatDividerModule,
+    MatTooltipModule,
     // App modules
     SharedModule,
     ProjectsRoutingModule,

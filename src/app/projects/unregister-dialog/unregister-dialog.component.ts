@@ -11,11 +11,13 @@ import { Edition } from '../core';
 export class UnregisterDialogComponent implements OnInit {
 
   edition: Edition;
+  delete: boolean;
 
   constructor(@Inject(MAT_DIALOG_DATA) private data: any) { }
 
   ngOnInit() {
     this.edition = this.data.edition;
+    this.delete = this.data.delete || false;
   }
 
 }

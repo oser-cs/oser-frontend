@@ -1,23 +1,52 @@
-<h1 mat-dialog-title>
-  Se désinscrire de {{ edition.project }} {{ edition.year }} ?
-</h1>
+<ng-template [ngIf]="delete">
+  <h1 mat-dialog-title>
+    Supprimer ton inscription à {{ edition.project }} {{ edition.year }} ?
+    <span [ngSwitch]="delete">
+      <span *ngSwitchCase="true">
+      </span>
+      <span *ngSwitchDefault>
+        Annuler ton inscription à {{ edition.project }} {{ edition.year }} ?
+      </span>
+    </span>
+  </h1>
 
-<mat-dialog-content>
-  <p>
-    Une fois désinscrit, ta participation sera annulée et les organisateurs
-    en seront informés.
-  </p>
-  <p>
-    Tu devras effectuer le processus d'inscription à nouveau pour te réinscrire.
-  </p>
-  <p>
-    <strong>
-      Cette action est irréversible.
-    </strong>
-  </p>
-</mat-dialog-content>
+  <mat-dialog-content>
+    <p>
+      Tu sortiras du processus d'inscription et les organisateurs seront informés de ta décision.
+    </p>
+    <p>
+      Tu devras à nouveau effectuer le processus d'inscription pour te réinscrire.
+    </p>
+    <p>
+      <strong>
+        Cette action est irréversible.
+      </strong>
+    </p>
+  </mat-dialog-content>
 
-<mat-dialog-actions>
-  <button mat-button [matDialogClose]="false">Ne pas me désinscrire</button>
-  <button mat-raised-button color="warn" [matDialogClose]="true">Me désinscrire</button>
-</mat-dialog-actions>
+  <mat-dialog-actions>
+    <button mat-button [matDialogClose]="false">Ne pas supprimer mon inscription</button>
+    <button mat-raised-button color="warn" [matDialogClose]="true">Supprimer mon inscription</button>
+  </mat-dialog-actions>
+</ng-template>
+
+<ng-template [ngIf]="!delete">
+  <h1 mat-dialog-title>
+    Annuler ton inscription à {{ edition.project }} {{ edition.year }} ?
+  </h1>
+
+  <mat-dialog-content>
+    <p>
+      Tu sortiras du processus d'inscription et les organisateurs en seront informés.
+    </p>
+    <p>
+      Si tu souhaites finalement participer,
+      tu pourras réactiver ton inscription depuis la section "Mes inscriptions".
+    </p>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button [matDialogClose]="false">Ne pas annuler mon inscription</button>
+    <button mat-raised-button color="warn" [matDialogClose]="true">Annuler mon inscription</button>
+  </mat-dialog-actions>
+</ng-template>
