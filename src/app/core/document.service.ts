@@ -29,7 +29,6 @@ export class DocumentService {
     let url = this.baseUrl + `${slug}/`;
     return this.http.get<string>(url).pipe(
       map((data: any) => this.adapt(data, options)),
-      tap(resp => console.log('fetched document'))
     );
   }
 }

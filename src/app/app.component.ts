@@ -2,7 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute, NavigationStart, NavigationEnd } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { filter, map, mergeMap, debounceTime } from 'rxjs/operators';
+import { filter, map, mergeMap } from 'rxjs/operators';
+import { LoaderService } from './core';
 
 @Component({
   selector: 'app-root',
@@ -11,25 +12,25 @@ import { filter, map, mergeMap, debounceTime } from 'rxjs/operators';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  active: boolean;
+  active = false;
   sub = new Subscription();
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private titleService: Title
+    private titleService: Title,
+    private loaderService: LoaderService,
   ) { }
 
   ngOnInit() {
     this.sub.add(
-      this.title$().subscribe(
-        title => this.titleService.setTitle(title)
-      )
+      this.title$().subscribe(title => this.titleService.setTitle(title))
     );
     this.sub.add(
-      this.active$().subscribe(
-        active => this.active = active
-      )
+      this.loaderService.loading().subscribe(loading => {
+        console.log(loading);
+        this.active = !loading;
+      })
     );
   }
 
