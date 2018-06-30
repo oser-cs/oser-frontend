@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { AnswersDialogComponent } from '../answers-dialog/answers-dialog.component';
-import { Participation, ParticipationService } from '../core';
+import { DocumentsDialogComponent } from '../documents-dialog/documents-dialog.component';
+import { Participation, ParticipationService, EditionService } from '../core';
 
 @Component({
   selector: 'app-my-participations',
@@ -17,6 +18,7 @@ export class MyParticipationsComponent implements OnInit {
     private route: ActivatedRoute,
     private dialog: MatDialog,
     private participationService: ParticipationService,
+    private editionService: EditionService,
   ) { }
 
   ngOnInit() {
@@ -25,8 +27,20 @@ export class MyParticipationsComponent implements OnInit {
 
   openAnswers(participation: Participation) {
     this.participationService.entry(participation).subscribe(
-      form => {
-        this.dialog.open(AnswersDialogComponent, { data: { form } });
+      form => this.dialog.open(AnswersDialogComponent, { data: { form } })
+    );
+  }
+
+  openDocuments(participation: Participation) {
+    this.editionService.documents(participation.editionId).subscribe(
+      result => {
+        const data = {
+          editionId: participation.editionId,
+          documents: result.documents,
+          deadline: result.deadline,
+          recipient: result.recipient,
+        };
+        this.dialog.open(DocumentsDialogComponent, { width: '480px', data });
       }
     );
   }

@@ -35,19 +35,11 @@
     <h3>Documents</h3>
     <form [formGroup]="formGroup.controls.documents" *ngIf="edition && edition.editionForm.form.files.length > 0; else noFiles">
       <p>Tu peux maintenant télécharger les documents papiers.</p>
-      <section>
-        <p>
-          Ces documents sont à imprimer et à renvoyer
-          <strong>
-            impérativement avant le {{ edition.editionForm.deadline | amLocale: 'fr' | amDateFormat: 'LL' }}
-          </strong>
-          par voie postale à l'adresse suivante :
-        </p>
-        <p>
-          {{ edition.editionForm.recipient.user.fullName }} <br />
-          {{ edition.editionForm.recipient.address.toString() }}
-        </p>
-      </section>
+
+      <!-- Deadline and address where documents need to be sent -->
+      <app-documents-recipient [deadline]="edition.editionForm.deadline" [recipient]="edition.editionForm.recipient"></app-documents-recipient>
+
+      <!-- List of downloable files -->
       <p id="file-downloads">
         <a mat-raised-button color="accent" *ngFor="let file of edition.editionForm.form.files" [href]="file.url" [download]="file.name" target="_blank">
           {{ file.name }}

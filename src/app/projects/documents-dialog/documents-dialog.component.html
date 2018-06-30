@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>
+  Documents
+</h1>
+
+<mat-dialog-content>
+  <div *ngIf="documents.length > 0; else noDocs">
+    <p>
+      Tu trouveras ci-dessous les documents supplémentaires à remplir pour ce projet.
+    </p>
+
+    <app-documents-recipient [deadline]="deadline" [recipient]="recipient"></app-documents-recipient>
+
+    <mat-divider></mat-divider>
+
+    <mat-nav-list>
+      <mat-list-item *ngFor="let document of documents">
+        <mat-icon matListIcon>get_app</mat-icon>
+        <a [href]="document.url" download target="_blank" matLine>
+          {{ document.name }}
+        </a>
+      </mat-list-item>
+    </mat-nav-list>
+  </div>
+  <ng-template #noDocs>
+    <p>Il n'y a pas de documents supplémentaires à remplir pour ce projet.</p>
+  </ng-template>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <a mat-raised-button color="primary" [href]="downloadUrl">
+    <mat-icon>archive</mat-icon>
+    Télécharger au format ZIP
+  </a>
+  <button mat-button matDialogClose>Fermer</button>
+</mat-dialog-actions>

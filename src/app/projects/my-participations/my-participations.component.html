@@ -7,9 +7,9 @@
 
   <mat-list role="list">
     <mat-list-item role="listitem" *ngFor="let participation of participations">
-      <a matLine href="#" class="no-color">
+      <p matLine class="clickable" (click)="openAnswers(participation)">
         {{ participation.editionFormTitle }}
-      </a>
+      </p>
       <p class="text-muted" matLine>
         Soumis le {{ participation.submitted | amLocale: 'fr' | amDateFormat: 'LL' }} à {{ participation.submitted | amLocale: 'fr' | amDateFormat: 'HH:mm' }}
       </p>
@@ -19,7 +19,7 @@
       </button>
       <mat-menu #more="matMenu">
         <button mat-menu-item (click)="openAnswers(participation)">Mes réponses</button>
-        <button mat-menu-item>Documents</button>
+        <button mat-menu-item (click)="openDocuments(participation)">Documents</button>
         <button mat-menu-item>Contact</button>
         <button mat-menu-item color="warn">Annuler</button>
       </mat-menu>

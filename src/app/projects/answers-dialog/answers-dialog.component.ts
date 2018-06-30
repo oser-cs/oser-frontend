@@ -12,13 +12,10 @@ export class AnswersDialogComponent implements OnInit {
 
   form: Form;
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) private data: any,
-  ) {
-  }
+  constructor(@Inject(MAT_DIALOG_DATA) private data: any) { }
 
   ngOnInit() {
-    this.form = this.data.form;
+    this.form = this.data.form || null;
   }
 
 }
