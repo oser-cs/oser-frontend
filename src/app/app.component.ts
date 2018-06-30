@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { filter, map, mergeMap } from 'rxjs/operators';
+import { Router, ActivatedRoute, NavigationStart, NavigationEnd } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
+import { filter, map, mergeMap, debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
+
+  active: boolean;
+  sub = new Subscription();
 
   constructor(
     private router: Router,
@@ -16,16 +20,29 @@ export class AppComponent implements OnInit {
     private titleService: Title
   ) { }
 
-  public setTitle(title: string) {
-    this.titleService.setTitle(title);
+  ngOnInit() {
+    this.sub.add(
+      this.title$().subscribe(
+        title => this.titleService.setTitle(title)
+      )
+    );
+    this.sub.add(
+      this.active$().subscribe(
+        active => this.active = active
+      )
+    );
   }
 
-  ngOnInit() {
-    // Each time we navigate to a new route, update the page
-    // title based on the route's data.title value.
-    // Source: https://toddmotto.com/dynamic-page-titles-angular-2-router-events
-    this.router.events.pipe(
-      // React to NavigationEnd events only
+  private active$(): Observable<boolean> {
+    return this.router.events.pipe(
+      filter(event => event instanceof NavigationStart || event instanceof NavigationEnd),
+      map(event => event instanceof NavigationEnd),
+    );
+  }
+
+  private title$(): Observable<string> {
+    return this.router.events.pipe(
+      // When a navigation finishes
       filter(event => event instanceof NavigationEnd),
       // Get the activated route object instead of the actual event
       map(() => this.activatedRoute),
@@ -37,8 +54,13 @@ export class AppComponent implements OnInit {
       // Retrieve the route's data object
       filter(route => route.outlet == 'primary'),
       mergeMap(route => route.data),
-    ).subscribe(
-        data => this.titleService.setTitle('OSER' + (data['title'] ? ' | ' + data['title'] : ''))
-      );
+      // Retrieve the route title
+      map(data => data['title']),
+      map(title => 'OSER' + (title ? ' | ' + title : ''))
+    );
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

@@ -23,6 +23,7 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
 // Services
 import { StudentService } from './signup-page/student.service';
 import { MessageService } from './core';
+import { SplashComponent } from './splash/splash.component';
 
 registerLocaleData(localeFR);
 
@@ -30,6 +31,7 @@ registerLocaleData(localeFR);
   declarations: [
     AppComponent,
     SignupPageComponent,
+    SplashComponent,
   ],
   imports: [
     BrowserModule,
