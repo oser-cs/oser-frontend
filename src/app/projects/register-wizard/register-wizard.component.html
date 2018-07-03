@@ -20,7 +20,7 @@
 
   <!-- Fill in the project's form -->
   <mat-step [stepControl]="editionForm.formGroup" label="Remplissage du formulaire">
-    <dynamic-form #editionForm (submitted)="onSubmitForm()" [submitButton]="false"></dynamic-form>
+    <dynamic-form #editionForm (submitted)="onEditionFormSubmitted()" [submitButton]="false"></dynamic-form>
     <section class="nav-buttons" *ngIf="editionForm.formGroup">
       <button mat-button matStepperPrevious>Précédent</button>
       <button mat-button color="primary" [disabled]="!editionForm.formGroup.valid" matStepperNext>Suivant</button>
@@ -85,7 +85,10 @@
     </mat-card>
     <section class="nav-buttons">
       <button mat-button matStepperPrevious>Précédent</button>
-      <button mat-raised-button color="primary" matStepperNext type="button">Confirmer mon inscription</button>
+      <button mat-raised-button color="primary" (click)="register()" type="button">
+        Confirmer mon inscription
+        <app-load-spinner *ngIf="loading" [block]="false"></app-load-spinner>
+      </button>
     </section>
   </mat-step>
 

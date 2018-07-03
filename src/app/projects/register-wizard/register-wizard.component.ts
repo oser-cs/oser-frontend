@@ -20,6 +20,7 @@ export class RegisterWizardComponent implements OnInit {
   @ViewChild(DynamicFormComponent) editionForm: DynamicFormComponent;
   @ViewChild('stepper') stepper: MatStepper;
   formSent = false;
+  loading = false;
 
   formGroup: FormGroup;
 
@@ -58,7 +59,7 @@ export class RegisterWizardComponent implements OnInit {
     );
   }
 
-  onSubmitForm() {
+  onEditionFormSubmitted() {
     this.form = this.editionForm.form;
     this.stepper.next();
   }
@@ -66,8 +67,10 @@ export class RegisterWizardComponent implements OnInit {
   register() {
     if (!this.formSent) {
       const userId = this.auth.getUser().id;
+      this.loading = true;
       this.participationService.create(userId, this.edition.id, this.form).subscribe(
         (participation) => {
+          this.loading = false;
           this.formSent = true;
           this.stepper.next();
           // Open a confirmation snackbar
@@ -75,8 +78,9 @@ export class RegisterWizardComponent implements OnInit {
           this.snackBar.open(message, 'OK', { duration: 3000 });
         },
         e => {
+          this.loading = false;
           console.log(e);
-          // Notify that something went wrong
+          // TODO Notify that something went wrong
         }
       );
     } else {
@@ -102,9 +106,6 @@ export class RegisterWizardComponent implements OnInit {
     if (previous === 1 && current === 2) {
       this.editionForm.save();
       this.form = this.editionForm.form;
-    }
-    if (previous === 3 && current === 4) {
-      this.register();
     }
   }
 
