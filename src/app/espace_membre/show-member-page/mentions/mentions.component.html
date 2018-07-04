@@ -1,0 +1,6 @@
+<div class="page">
+  <markdown *ngIf="document; else loading" [data]="document"></markdown>
+  <ng-template #loading>
+    <load-spinner></load-spinner>
+  </ng-template>
+</div>
