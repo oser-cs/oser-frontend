@@ -13,6 +13,7 @@ import { FilterComponent } from './filter/filter.component';
 import { NavItemComponent } from './nav-item/nav-item.component';
 import { NavGroupComponent } from './nav-group/nav-group.component';
 import { NavGroupVerticalComponent } from './nav-group-vertical/nav-group-vertical.component';
+import { MailtoComponent } from './mailto/mailto.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { NavGroupVerticalComponent } from './nav-group-vertical/nav-group-vertic
     NavItemComponent,
     NavGroupComponent,
     NavGroupVerticalComponent,
+    MailtoComponent,
   ],
   exports: [
     NavbarComponent,
@@ -41,7 +43,8 @@ import { NavGroupVerticalComponent } from './nav-group-vertical/nav-group-vertic
     RevealComponent,
     FilterComponent,
     NavGroupComponent,
-    NavGroupVerticalComponent
+    NavGroupVerticalComponent,
+    MailtoComponent,
   ]
 })
 export class SharedModule { }

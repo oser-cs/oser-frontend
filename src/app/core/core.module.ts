@@ -5,6 +5,8 @@ import { AgmCoreModule } from '@agm/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MarkdownModule, MarkdownComponent, MarkdownPipe } from 'ngx-markdown';
 import { TokenInterceptor } from './auth';
+import { LoaderService } from './loader.service';
+import { LoaderInterceptor } from  './loader.interceptor';
 import { MessageModule } from './messages';
 import { FuzzyPipe, LineBreaksPipe } from './pipes';
 import { NotFoundComponent } from './not-found';
@@ -29,7 +31,9 @@ import { ErrorPageComponent } from './error-page';
     ErrorPageComponent,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
+    LoaderService,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
   ],
   exports: [
     MessageModule,

@@ -1,4 +1,4 @@
-<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()" *ngIf="form">
   <h1>{{ form.title }}</h1>
 
   <div *ngFor="let section of form.sections">
@@ -6,5 +6,5 @@
     <app-question *ngFor="let question of section.questions" [question]="question" [formGroup]="formGroup"></app-question>
   </div>
 
-  <button mat-raised-button color="primary" style="margin-top: 1em;" [disabled]="!formGroup.valid" type="submit">Envoyer</button>
+  <button *ngIf="submitButton" mat-button color="primary" style="margin-top: 1em;" [disabled]="!formGroup.valid" type="submit">{{ submitLabel }}</button>
 </form>

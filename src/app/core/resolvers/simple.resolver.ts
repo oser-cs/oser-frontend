@@ -19,7 +19,6 @@ export abstract class SimpleListResolver<T> implements Resolve<T[]> {
   resolve(): Observable<T[]> {
     return this.http.get<T[]>(this.url).pipe(
       map((items: any[]) => items.map(this.adapt)),
-      tap(resp => console.log('fetched ' + this.name)),
       catchError(e => of(null)),
     );
   }
