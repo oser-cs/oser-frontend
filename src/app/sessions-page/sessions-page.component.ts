@@ -9,9 +9,5 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./sessions-page.component.scss']
 })
 export class SessionsPageComponent {
-
-
-  constructor(private route: ActivatedRoute) { }
-
-
+  constructor(private route: ActivatedRoute) {}
 }

@@ -2,8 +2,8 @@
 @import '~sass/variables';
 $margin-page: 2em;
 $col-padding: 10px;
-/*
-.navbar {
+
+.blue_navbar {
   position: static;
   top: 0;
   padding: 0 $margin-page;
@@ -35,7 +35,7 @@ img.logo {
   padding-bottom: .2em;
 }
 
-i.hamburger {
+i.blue_hamburger {
   cursor: pointer;
   margin-left: auto;
   margin-right: 0;
@@ -46,7 +46,7 @@ i.hamburger {
   }
 }
 
-.nav-wide {
+.blue_nav-wide {
   height: 100%;
   margin-top: auto;
   display: none;
@@ -55,10 +55,9 @@ i.hamburger {
     display: flex;
   }
 }
-.nav-narrow {
+.blue_nav-narrow {
   display: block;
   @include media-md() {
     display: none;
   }
 }
-*/

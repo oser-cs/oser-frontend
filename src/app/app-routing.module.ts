@@ -4,6 +4,7 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
 import { LoginComponent, UiGalleryComponent } from './shared';
 import { InternalErrorComponent, NotFoundComponent, AuthGuard, MapsAPIResolver } from './core';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -20,10 +21,12 @@ const routes: Routes = [
     loadChildren: './projects/projects.module#ProjectsModule',
   },
   {
-    path: 'login', component: LoginComponent
+    path: 'login', 
+    component: LoginComponent
   },
   {
-    path: 'signup', component: SignupPageComponent
+    path: 'signup', 
+    component: SignupPageComponent
   },
   {
     path: '500',
@@ -34,6 +37,15 @@ const routes: Routes = [
     path: '**',
     component: NotFoundComponent,
     data: { title: 'Page introuvable' },
+  },
+
+  {
+    path: 'students',
+    loadChildren: './students-home-page/students-home-page.module#StudentsHomePageModule',
+  },
+  {
+    path: 'nos-seances',
+    loadChildren: './sessions-page/sessions-page.module#SessionsPageModule',
   },
 ];
 
