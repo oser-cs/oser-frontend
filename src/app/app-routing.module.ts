@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SignupPageComponent } from './signup-page/signup-page.component';
-import { StudentsHomePageComponent } from './students-home-page/students-home-page.component';
 import { LoginComponent, UiGalleryComponent } from './shared';
 import { InternalErrorComponent, NotFoundComponent, AuthGuard, MapsAPIResolver } from './core';
 
@@ -10,6 +9,11 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: './showcase-site/showcase-site.module#ShowcaseSiteModule',
+  },
+  
+  {
+    path: '',
+    loadChildren: './showcase-espacemembre/showcase-espacemembre.module#ShowcaseEspacemembreModule',
   },
   {
     path: 'sorties',
@@ -40,10 +44,6 @@ const routes: Routes = [
     data: { title: 'Page introuvable' },
   },
 
-  {
-    path: 'students',
-    component : StudentsHomePageComponent,
-  },
   {
     path: 'nos-seances',
     loadChildren: './sessions-page/sessions-page.module#SessionsPageModule',
