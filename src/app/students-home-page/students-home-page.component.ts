@@ -1,14 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-
+import { ActivatedRoute,Router } from '@angular/router';
+import { Link } from 'app/shared';
 @Component({
   selector: 'students-home-page',
   templateUrl: './students-home-page.component.html',
   styleUrls: ['./students-home-page.component.scss']
 })
-export class StudentsHomePageComponent  {
+export class StudentsHomePageComponent implements OnInit {
 
- 
-  constructor(private route: ActivatedRoute) { }
+  navLinks: Link[] = [
+    {href: '/sorties', text: 'Sorties'}, 
+  ];
+  constructor(private router: Router) { }
+
+  ngOnInit() {
+  }
 
 }

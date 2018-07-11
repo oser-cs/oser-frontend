@@ -7,10 +7,10 @@ import { StudentsHomePageComponent } from './students-home-page.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'students',
     data: { title: 'Espace Membre' },
     component: StudentsHomePageComponent,
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
     //children: [
       //{
         //path: '', component: VisitsListComponent,
@@ -25,3 +25,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class StudentsHomePageRoutingModule { }
+

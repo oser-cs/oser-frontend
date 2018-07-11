@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SignupPageComponent } from './signup-page/signup-page.component';
+import { StudentsHomePageComponent } from './students-home-page/students-home-page.component';
 import { LoginComponent, UiGalleryComponent } from './shared';
 import { InternalErrorComponent, NotFoundComponent, AuthGuard, MapsAPIResolver } from './core';
 
@@ -41,7 +42,7 @@ const routes: Routes = [
 
   {
     path: 'students',
-    loadChildren: './students-home-page/students-home-page.module#StudentsHomePageModule',
+    component : StudentsHomePageComponent,
   },
   {
     path: 'nos-seances',
