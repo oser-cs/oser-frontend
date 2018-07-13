@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { StudentsHomePageComponent } from './students-home-page';
 import { ShowcaseEspacemembreComponent } from './showcase-espacemembre.component';
+import { SessionsPageComponent } from './sessions-page';
 
 //   import {} from './shared';
 
@@ -17,7 +18,15 @@ const routes: Routes = [
         resolve: {
         
         },
+        
         data: { title: 'Accueil' },
+      },
+      {
+        path: 'sessions',
+        component: SessionsPageComponent,
+        resolve: {
+        
+        },
       },
     ]
   },

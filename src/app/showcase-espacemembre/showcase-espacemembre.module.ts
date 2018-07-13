@@ -11,7 +11,7 @@ import { ShowcaseEspacemembreRoutingModule } from './showcase-espacemembre-routi
 // Components
 import { ShowcaseEspacemembreComponent } from './showcase-espacemembre.component';
 import { StudentsHomePageComponent } from './students-home-page';
-
+import { SessionsPageComponent } from './sessions-page';
 
 @NgModule({
   imports: [
@@ -25,6 +25,7 @@ import { StudentsHomePageComponent } from './students-home-page';
   declarations: [
     ShowcaseEspacemembreComponent,
     StudentsHomePageComponent,
+    SessionsPageComponent,
   ],
   exports: [
     ShowcaseEspacemembreComponent

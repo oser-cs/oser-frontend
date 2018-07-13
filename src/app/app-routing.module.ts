@@ -44,10 +44,6 @@ const routes: Routes = [
     data: { title: 'Page introuvable' },
   },
 
-  {
-    path: 'nos-seances',
-    loadChildren: './sessions-page/sessions-page.module#SessionsPageModule',
-  },
 ];
 
 @NgModule({
