@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard, MapsAPIResolver } from 'app/core';
 
 import { StudentsHomePageComponent } from './students-home-page';
 import { ShowcaseEspacemembreComponent } from './showcase-espacemembre.component';
@@ -11,18 +12,19 @@ const routes: Routes = [
   {
     path: '',
     component: ShowcaseEspacemembreComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'students',
+        data: { title: 'Accueil' },
         component: StudentsHomePageComponent,
         resolve: {
         
         },
-        
-        data: { title: 'Accueil' },
       },
       {
         path: 'sessions',
+        data: { title: 'Séances' },
         component: SessionsPageComponent,
         resolve: {
         

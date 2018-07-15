@@ -13,6 +13,7 @@ const routes: Routes = [
   
   {
     path: '',
+    canActivate: [AuthGuard],
     loadChildren: './showcase-espacemembre/showcase-espacemembre.module#ShowcaseEspacemembreModule',
   },
   {
