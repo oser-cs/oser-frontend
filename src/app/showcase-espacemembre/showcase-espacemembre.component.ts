@@ -14,7 +14,6 @@ export class ShowcaseEspacemembreComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private router: Router,
-    
     private renderer: Renderer
   ) {  }
 
