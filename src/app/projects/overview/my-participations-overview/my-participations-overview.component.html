@@ -13,7 +13,9 @@
 
   <div *ngFor="let participation of participations" class="row">
     <p>
-      <strong>{{ participation.editionFormTitle }}</strong>
+      <a routerLink="mes-inscriptions" class="no-color">
+        {{ participation.editionFormTitle }}
+      </a>
     </p>
     <p class="text-muted">
       <strong>{{ participation.status }}</strong>
@@ -21,7 +23,7 @@
     <p class="text-muted">
       Soumis le
       {{ participation.submitted | amLocale: 'fr' | amDateFormat: 'LL' }}
-      à {{ participation.submitted | amLocale: 'fr' | amDateFormat: 'HH:mm' }} • <a href="#">Détails</a>
+      à {{ participation.submitted | amLocale: 'fr' | amDateFormat: 'HH:mm' }}
     </p>
   </div>
 

@@ -23,7 +23,6 @@ export class VisitService {
   list(): Observable<Visit[]> {
     return this.http.get<Visit>(this.baseUrl).pipe(
       map((visits: any) => visits.map(v => this.simpleAdapter.adapt(v))),
-      tap(resp => console.log('fetched visits')),
     );
   }
 
@@ -31,7 +30,6 @@ export class VisitService {
     let url = this.baseUrl + `${id}/`;
     return this.http.get<Visit>(url).pipe(
       map(v => this.adapter.adapt(v)),
-      tap(resp => console.log('fetched visit')),
     );
   }
 

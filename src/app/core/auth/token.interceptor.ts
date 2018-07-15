@@ -36,12 +36,12 @@ export class TokenInterceptor implements HttpInterceptor {
         this.auth.fromUnauthorized = true;
         this.auth.logout();  // forget credentials as they may be corrupt
         this.auth.redirectLogin();
-      } else if (error.status === 0) {
-        // Status 0 is a CORS error
-        // Generally means that backend server is down
-        // this.errorService.panic();
-      } else if (error.status === 404) {
-        this.errorService.notFound();
+      // } else if (error.status === 0) {
+      //   // Status 0 is a CORS error
+      //   // Generally means that backend server is down
+      //   // this.errorService.panic();
+      // } else if (error.status === 404) {
+      //   this.errorService.notFound();
       }
     }
   }

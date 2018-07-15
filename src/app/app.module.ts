@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { MatProgressBarModule } from '@angular/material';
 import { MomentModule } from 'ngx-moment';
 
 // App modules
@@ -23,6 +24,7 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
 // Services
 import { StudentService } from './signup-page/student.service';
 import { MessageService } from './core';
+import { SplashComponent } from './splash/splash.component';
 
 registerLocaleData(localeFR);
 
@@ -30,6 +32,7 @@ registerLocaleData(localeFR);
   declarations: [
     AppComponent,
     SignupPageComponent,
+    SplashComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ registerLocaleData(localeFR);
     FormsModule,
     HttpModule,
     MomentModule,
+    MatProgressBarModule,
     CoreModule,
     SharedModule,
     HttpClientModule,
@@ -45,7 +49,7 @@ registerLocaleData(localeFR);
   providers: [
     StudentService,
     MessageService,
-    { provide: LOCALE_ID, useValue: 'fr' }
+    { provide: LOCALE_ID, useValue: 'fr' },
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,39 @@
+<ng-template [ngIf]="edition">
+  En cas de questions concernant {{ edition.project }} ou le processus d'inscription, tu peux
+  <span [ngSwitch]="edition.organizers.length">
+    <span *ngSwitchCase="0">
+      <app-mailto [subject]="'Questions à propos de ' + edition.project + ' édition ' + edition.year">nous contacter</app-mailto>.
+    </span>
+    <span *ngSwitchDefault>contacter les organisateurs :</span>
+  </span>
+
+  <div class="organizers" *ngIf="edition.organizers">
+
+    <mat-card *ngFor="let organizer of edition.organizers" class="organizer">
+      <!-- Header: name and role -->
+      <mat-card-header>
+        <mat-card-title>
+          {{ organizer.user.fullName }}
+        </mat-card-title>
+        <mat-card-subtitle *ngIf="organizer.role">
+          {{ organizer.role }}
+        </mat-card-subtitle>
+      </mat-card-header>
+      <!-- Content: contact means -->
+      <mat-card-content>
+        <mat-list dense>
+          <mat-list-item *ngIf="organizer.user.email">
+            <mat-icon matListIcon>mail_outline</mat-icon>
+            {{ organizer.user.email }}
+          </mat-list-item>
+          <mat-list-item *ngIf="organizer.user.phoneNumber">
+            <mat-icon matListIcon>phone</mat-icon>
+            {{ organizer.user.phoneNumber }}
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+
+</ng-template>
