@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { AuthService } from 'app/core';
-import {Link } from '../nav.model';
+import { Link } from '../nav.model';
 
 @Component({
   selector: 'blue_navbar.component',
