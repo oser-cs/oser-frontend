@@ -4,10 +4,17 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
 import { LoginComponent, UiGalleryComponent } from './shared';
 import { InternalErrorComponent, NotFoundComponent, AuthGuard, MapsAPIResolver } from './core';
 
+
 const routes: Routes = [
   {
     path: '',
     loadChildren: './showcase-site/showcase-site.module#ShowcaseSiteModule',
+  },
+  
+  {
+    path: 'membres',
+    canActivate: [AuthGuard],
+    loadChildren: './showcase-espacemembre/showcase-espacemembre.module#ShowcaseEspacemembreModule',
   },
   {
     path: 'sorties',
@@ -20,10 +27,12 @@ const routes: Routes = [
     loadChildren: './projects/projects.module#ProjectsModule',
   },
   {
-    path: 'login', component: LoginComponent
+    path: 'login', 
+    component: LoginComponent
   },
   {
-    path: 'signup', component: SignupPageComponent
+    path: 'signup', 
+    component: SignupPageComponent
   },
   {
     path: '500',
@@ -35,6 +44,7 @@ const routes: Routes = [
     component: NotFoundComponent,
     data: { title: 'Page introuvable' },
   },
+
 ];
 
 @NgModule({
