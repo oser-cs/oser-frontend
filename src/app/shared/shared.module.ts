@@ -13,6 +13,7 @@ import { FilterComponent } from './filter/filter.component';
 import { NavItemComponent } from './nav-item/nav-item.component';
 import { NavGroupComponent } from './nav-group/nav-group.component';
 import { NavGroupVerticalComponent } from './nav-group-vertical/nav-group-vertical.component';
+import { BlueNavbarComponent } from './blue_navbar/blue_navbar.component';
 import { MailtoComponent } from './mailto/mailto.component';
 
 @NgModule({
@@ -33,6 +34,7 @@ import { MailtoComponent } from './mailto/mailto.component';
     NavItemComponent,
     NavGroupComponent,
     NavGroupVerticalComponent,
+    BlueNavbarComponent,
     MailtoComponent,
   ],
   exports: [
@@ -44,6 +46,7 @@ import { MailtoComponent } from './mailto/mailto.component';
     FilterComponent,
     NavGroupComponent,
     NavGroupVerticalComponent,
+    BlueNavbarComponent,
     MailtoComponent,
   ]
 })

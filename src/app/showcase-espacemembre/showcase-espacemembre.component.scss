@@ -1,0 +1,14 @@
+/*
+Sticky footer solution from
+https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/
+*/
+#showcase-espacemembre {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+/* Make main content expand to pull footer to the bottom */
+.content {
+  flex: 1;
+}
