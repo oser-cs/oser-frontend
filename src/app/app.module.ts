@@ -11,6 +11,16 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressBarModule } from '@angular/material';
 import { MomentModule } from 'ngx-moment';
+import {
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule,
+  MatButtonModule,
+  MatRadioModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatIconModule,
+} from '@angular/material';
 
 // App modules
 import { CoreModule } from './core';
@@ -45,6 +55,14 @@ registerLocaleData(localeFR);
     SharedModule,
     HttpClientModule,
     AppRoutingModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatButtonModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatIconModule,
   ],
   providers: [
     StudentService,

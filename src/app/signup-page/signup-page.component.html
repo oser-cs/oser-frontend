@@ -1,47 +1,375 @@
 <div class="content background">
   <form ngNoForm class="form-signin">
-    <img class="logo" src="assets/img/oser-logo.png" alt="">
+    <img class="logo" src="assets/img/oser-logo.png" alt=""/>
     <h1 class="form-signin-heading">Inscription</h1>
 
-    <h4 for="email">Identifiants de connexion</h4>
-    <input type="text" class="form-control block" name="email" placeholder="Adresse e-mail" required="" autofocus="" [(ngModel)]="student.email"/>
-    <input type="password" class="form-control block" name="password" placeholder="Mot de Passe" required=""
-            [(ngModel)]="student.password"/>
-    <input type="password" class="form-control block" name="confirm" placeholder="Confirmer le mot de passe" required=""
-            #name="ngModel" [(ngModel)]="confirm"/>
+    <h3 for="email">Identifiants de connexion</h3>
+    <mat-form-field class="block">
+        <input matInput  name="email" placeholder="Adresse mail" required [(ngModel)]="student.email">
+    </mat-form-field>
+    <mat-form-field class="block">
+        <input matInput placeholder="Mot de passe" [type]="hide ? 'password' : 'text'" required [(ngModel)]="student.password">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+    </mat-form-field>
+    <mat-form-field class="block">
+            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required #name="ngModel" [(ngModel)]="confirm">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+    </mat-form-field>
     <div *ngIf="(name.dirty || name.touched)">
         <div *ngIf="!(student.password == confirm)"
               class="alert alert-danger">Les mots de passe doivent être identiques</div>
         <div *ngIf="(student.password == confirm)"
               class="alert alert-valid">Les mots de passe sont identiques</div>
     </div>
-    <hr/>
 
-    <h4 for="name">Informations Personnelles</h4>
-    <input type="text" class="form-control block" name="name" placeholder="Prénom" required="" [(ngModel)]="student.first_name"/>
-    <input type="text" class="form-control block" name="surname" placeholder="Nom" required="" [(ngModel)]="student.last_name"/>
-    <input type="date" class="form-control block" name="birth" placeholder="Date d'anniversaire" required="" [(ngModel)]="student.birth"/>
-    <input type="text" class="form-control block" name="telephone" placeholder="Telephone" required="" [(ngModel)]="student.phone"/>
-    <hr/>
+    <h3 for="name">Informations Personnelles</h3>
+    <mat-form-field class="block">
+        <mat-select placeholder="Tu es..." required>
+            <mat-option value="option">un garçon</mat-option>
+            <mat-option value="option">une fille</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="block">
+        <input matInput name="surname" placeholder="Nom" required [(ngModel)]="student.last_name">
+    </mat-form-field>
+    <mat-form-field class="block">
+        <input matInput name="name" placeholder="Prénom" required [(ngModel)]="student.first_name">
+    </mat-form-field>
+    <mat-form-field class="block">
+        <input matInput [matDatepicker]="picker" name="birth" placeholder="Date d'anniversaire" disable required [(ngModel)]="student.birth">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="block">
+        <input matInput name="telephone" placeholder="Telephone" required [(ngModel)]="student.phone">
+    </mat-form-field>
 
-    <h4 for="adress">Adresse</h4>
-    <input type="text" class="form-control block" name="street" placeholder="Adresse" required="" [(ngModel)]="student.adress.street"/>
-    <input type="text" class="form-control block" name="town" placeholder="Ville" required="" [(ngModel)]="student.adress.town"/>
-    <input type="text" class="form-control block" name="code" placeholder="Code Postal" required="" [(ngModel)]="student.adress.code"/>
-    <hr/>
+    <h3 for="adress">Adresse</h3>
+    <mat-form-field class="block">
+        <input matInput name="street" placeholder="Adresse" required [(ngModel)]="student.adress.street">
+    </mat-form-field>
+    <mat-form-field class="block">
+        <input matInput name="town" placeholder="Ville" required [(ngModel)]="student.adress.town">
+    </mat-form-field>
+    <mat-form-field class="block">
+        <input matInput name="code" placeholder="Code Postal" required [(ngModel)]="student.adress.code">
+    </mat-form-field>
 
-    <h4 for="adress">Ecole</h4>
-    <input type="text" class="form-control block" name="street" placeholder="Adresse" required="" [(ngModel)]="student.adress.street"/>
-    <input type="text" class="form-control block" name="town" placeholder="Ville" required="" [(ngModel)]="student.adress.town"/>
-    <input type="text" class="form-control block" name="code" placeholder="Code Postal" required="" [(ngModel)]="student.adress.code"/>
-    <hr/>
+    <h3 for="school">Ecole</h3>
+    <mat-form-field class="block">
+        <mat-select placeholder="Tu viens du..." name="lycee" required>
+            <mat-option value="option">Lycée Charles Peguy (Paris)</mat-option>
+            <mat-option value="option">Lycée Charles Peguy (Bobigny)</mat-option>
+            <mat-option value="option">Lycée Jean Jaurès (Châtenay)</mat-option>
+            <mat-option value="option">Lycée Jean Jaurès (Montreuil)</mat-option>
+            <mat-option value="option">Lycée Henri Matisse (Montreuil)</mat-option>
+            <mat-option value="option">Lycée Emmanuel Mounier</mat-option>
+            <mat-option value="option">Lycée Robert Doisneau</mat-option>
+            <mat-option value="option">Lycée du Parc des Loges</mat-option>
+            <mat-option value="option">Lycée René Cassin</mat-option>
+            <mat-option value="option">Lycée Paul Belmondo-Arpajon</mat-option>
+            <mat-option value="option">Lycée Jean-Baptiste Corot</mat-option>
+            <mat-option value="option">Lycée Gaspard Monge</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="block">
+        <mat-select placeholder="Tu es en..." name="class" required>
+            <mat-option value="option">Seconde</mat-option>
+            <mat-option value="option">Première ES</mat-option>
+            <mat-option value="option">Première L</mat-option>
+            <mat-option value="option">Première S</mat-option>
+            <mat-option value="option">Première STMG</mat-option>
+            <mat-option value="option">Première STI2D</mat-option>
+            <mat-option value="option">Terminale ES</mat-option>
+            <mat-option value="option">Terminale L</mat-option>
+            <mat-option value="option">Terminale S</mat-option>
+        </mat-select>
+    </mat-form-field>
 
-    <h4 for="family">Personne à contacter en cas d'urgence</h4>
-    <input type="text" class="form-control block" name="nameparent" placeholder="Prénom" required="" [(ngModel)]="student.emergency_contact.nameparent"/>
-    <input type="text" class="form-control block" name="surnameparent" placeholder="Nom" required="" [(ngModel)]="student.emergency_contact.surnameparent"/>
-    <input type="text" class="form-control block" name="email_parent" placeholder="Email contact" required="" [(ngModel)]="student.emergency_contact.email_parent"/>
-    <input type="text" class="form-control block" name="home_phone" placeholder="Téléphone fixe" required="" [(ngModel)]="student.emergency_contact.home_phone"/>
-    <input type="text" class="form-control block" name="mobile_phone" placeholder="Téléphone mobile" required="" [(ngModel)]="student.emergency_contact.mobile_phone"/>
+    <h3 for="family">Personne à contacter en cas d'urgence</h3>
+    <mat-form-field class="block">
+        <input matInput name="nameparent" placeholder="Prénom" required [(ngModel)]="student.emergency_contact.nameparent">
+    </mat-form-field>
+    <mat-form-field class="block">
+        <input matInput name="surnameparent" placeholder="Nom" required [(ngModel)]="student.emergency_contact.surnameparent">
+    </mat-form-field>
+    <mat-form-field class="block">
+        <input matInput name="email_parent" placeholder="Email contact" required [(ngModel)]="student.emergency_contact.email_parent">
+    </mat-form-field>
+    <mat-form-field class="block">
+        <input matInput name="home_phone" placeholder="Téléphone fixe" required [(ngModel)]="student.emergency_contact.home_phone">
+    </mat-form-field>
+    <mat-form-field class="block">
+        <input matInput name="mobile_phone" placeholder="Téléphone mobile" required [(ngModel)]="student.emergency_contact.mobile_phone">
+    </mat-form-field>
+
+    <h3 for="information">Informations</h3>
+    <mat-form-field class="block">
+        <mat-select placeholder="Quelle est l'activité de ton père ?" name="father_activity" required>
+            <mat-option value="option">Agriculteur</mat-option>
+            <mat-option value="option">Artisans, commerçants et chefs d'entreprise</mat-option>
+            <mat-option value="option">Cadres, professions intellectuelles supérieures</mat-option>
+            <mat-option value="option">Enseignants et assimilés</mat-option>
+            <mat-option value="option">Professions intermédiaires</mat-option>
+            <mat-option value="option">Employés</mat-option>
+            <mat-option value="option">Ouvriers</mat-option>
+            <mat-option value="option">Retraité</mat-option>
+            <mat-option value="option">Inactifs</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="block">
+        <mat-select placeholder="Quelle est l'activité de ton mère ?" name="mother_activity" required>
+            <mat-option value="option">Agriculteur</mat-option>
+            <mat-option value="option">Artisans, commerçants et chefs d'entreprise</mat-option>
+            <mat-option value="option">Cadres, professions intellectuelles supérieures</mat-option>
+            <mat-option value="option">Enseignants et assimilés</mat-option>
+            <mat-option value="option">Professions intermédiaires</mat-option>
+            <mat-option value="option">Employés</mat-option>
+            <mat-option value="option">Ouvriers</mat-option>
+            <mat-option value="option">Retraité</mat-option>
+            <mat-option value="option">Inactifs</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="block">
+        <mat-select placeholder="Es-tu boursier ?" name="scholarship" required>
+            <mat-option value="option">Non</mat-option>
+            <mat-option value="option">Oui, échelon 1</mat-option>
+            <mat-option value="option">Oui, échelon 2</mat-option>
+            <mat-option value="option">Oui, échelon 3</mat-option>
+            <mat-option value="option">Oui, échelon 4</mat-option>
+            <mat-option value="option">Oui, échelon 5</mat-option>
+            <mat-option value="option">Oui, échelon 6</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="block">
+        <input matInput name="parent_status" placeholder="Statut des parents (mariés, divorcés, en concubinage, famille monoparentale, ...)" required>
+    </mat-form-field>
+    <mat-form-field class="block">
+        <input matInput name="children_number" placeholder="Nombre d'enfant à charge" required>
+    </mat-form-field>
+
+    <h3>OSER, les études, et toi</h3>
+    <mat-form-field class="block">
+        <input matInput name="why_oser" placeholder="Qu'est ce qui t'a poussé à t'inscrire à OSER ?" required>
+    </mat-form-field>
+    <mat-form-field class="block">
+        <input matInput name="presentation_oser" placeholder="Que penses-tu de la présentation d'OSER dans ton lycée ?" required>
+    </mat-form-field>
+    <mat-form-field class="block">
+        <mat-select placeholder="Connais-tu les différentes filières disponibles après le Bac ?" name="after_bac" required>
+            <mat-option value="option">Oui, je suis super bien renseigné !</mat-option>
+            <mat-option value="option">Oui, j'ai déjà fait quelques recherches</mat-option>
+            <mat-option value="option">Moyennement, j'en ai entendu parler</mat-option>
+            <mat-option value="option">Pas du tout</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="block">
+        <mat-select placeholder="As-tu déjà participé à un forum d'orientation ?" name="orientation_forum" required>
+            <mat-option value="option">Oui, plusieurs fois</mat-option>
+            <mat-option value="option">Oui, une fois</mat-option>
+            <mat-option value="option">Non</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <h3>Questionnaire personnel</h3>
+    <div class="labelPersonalQuestions">
+        <label class="labelPersonalInfo">Te sens-tu à l'aise à l'oral ?</label>
+        <mat-radio-group class="dots">
+            Pas du tout
+            <mat-radio-button class="dot" value="1">1</mat-radio-button>
+            <mat-radio-button class="dot" value="2">2</mat-radio-button>
+            <mat-radio-button class="dot" value="3">3</mat-radio-button>
+            <mat-radio-button class="dot" value="4">4</mat-radio-button>
+            <mat-radio-button class="dot" value="5">5</mat-radio-button>
+            Complétement
+        </mat-radio-group>
+    </div>
+    <div class="labelPersonalQuestions">
+        <label class="labelPersonalInfo">Te sens-tu à l'aise dans le système scolaire ?</label>
+        <mat-radio-group class="dots">
+            Pas du tout
+            <mat-radio-button class="dot" value="1">1</mat-radio-button>
+            <mat-radio-button class="dot" value="2">2</mat-radio-button>
+            <mat-radio-button class="dot" value="3">3</mat-radio-button>
+            <mat-radio-button class="dot" value="4">4</mat-radio-button>
+            <mat-radio-button class="dot" value="5">5</mat-radio-button>
+            Complétement
+        </mat-radio-group>
+    </div>
+    <div class="labelPersonalQuestions">
+        <label class="labelPersonalInfo">Te sens-tu confiant(e) sur ta capacité à obtenir les études que tu souhaites ?</label>
+        <mat-radio-group class="dots">
+            Pas du tout
+            <mat-radio-button class="dot" value="1">1</mat-radio-button>
+            <mat-radio-button class="dot" value="2">2</mat-radio-button>
+            <mat-radio-button class="dot" value="3">3</mat-radio-button>
+            <mat-radio-button class="dot" value="4">4</mat-radio-button>
+            <mat-radio-button class="dot" value="5">5</mat-radio-button>
+            Complétement
+        </mat-radio-group>
+    </div>
+    <div class="labelPersonalQuestions">
+        <label class="labelPersonalInfo">Te sens-tu encouragé(e) par ton entourage à faire des études supérieures ?</label>
+        <mat-radio-group class="dots">
+            Pas du tout
+            <mat-radio-button class="dot" value="1">1</mat-radio-button>
+            <mat-radio-button class="dot" value="2">2</mat-radio-button>
+            <mat-radio-button class="dot" value="3">3</mat-radio-button>
+            <mat-radio-button class="dot" value="4">4</mat-radio-button>
+            <mat-radio-button class="dot" value="5">5</mat-radio-button>
+            Complétement
+        </mat-radio-group>
+    </div>
+    <div class="labelPersonalQuestions">
+        <label class="labelPersonalInfo">Te sens-tu poussé(e) par ton entourage vers l'actualité ?</label>
+        <mat-radio-group class="dots">
+            Pas du tout
+            <mat-radio-button class="dot" value="1">1</mat-radio-button>
+            <mat-radio-button class="dot" value="2">2</mat-radio-button>
+            <mat-radio-button class="dot" value="3">3</mat-radio-button>
+            <mat-radio-button class="dot" value="4">4</mat-radio-button>
+            <mat-radio-button class="dot" value="5">5</mat-radio-button>
+            Complétement
+        </mat-radio-group>
+    </div>
+    <div class="labelPersonalQuestions">
+        <label class="labelPersonalInfo">Te sens-tu poussé(e) par ton entourage vers les sciences ?</label>
+        <mat-radio-group class="dots">
+            Pas du tout
+            <mat-radio-button class="dot" value="1">1</mat-radio-button>
+            <mat-radio-button class="dot" value="2">2</mat-radio-button>
+            <mat-radio-button class="dot" value="3">3</mat-radio-button>
+            <mat-radio-button class="dot" value="4">4</mat-radio-button>
+            <mat-radio-button class="dot" value="5">5</mat-radio-button>
+            Complétement
+        </mat-radio-group>
+    </div>
+    <div class="labelPersonalQuestions">
+        <label class="labelPersonalInfo">Te sens-tu poussé(e) par ton entourage vers la culture ?</label>
+        <mat-radio-group class="dots">
+            Pas du tout
+            <mat-radio-button class="dot" value="1">1</mat-radio-button>
+            <mat-radio-button class="dot" value="2">2</mat-radio-button>
+            <mat-radio-button class="dot" value="3">3</mat-radio-button>
+            <mat-radio-button class="dot" value="4">4</mat-radio-button>
+            <mat-radio-button class="dot" value="5">5</mat-radio-button>
+            Complétement
+        </mat-radio-group>
+    </div>
+    <div class="labelPersonalQuestions">
+        <label class="labelPersonalInfo">Penses-tu t'intégrer facilement dans un groupe ?</label>
+        <mat-radio-group class="dots">
+            Pas du tout
+            <mat-radio-button class="dot" value="1">1</mat-radio-button>
+            <mat-radio-button class="dot" value="2">2</mat-radio-button>
+            <mat-radio-button class="dot" value="3">3</mat-radio-button>
+            <mat-radio-button class="dot" value="4">4</mat-radio-button>
+            <mat-radio-button class="dot" value="5">5</mat-radio-button>
+            Complétement
+        </mat-radio-group>
+    </div>
+    <div class="labelPersonalQuestions">
+        <label class="labelPersonalInfo">Quels sont tes principaux loisirs et tes activités extra-scolaires ?</label>
+        <mat-radio-group class="dots">
+            Pas du tout
+            <mat-radio-button class="dot" value="1">1</mat-radio-button>
+            <mat-radio-button class="dot" value="2">2</mat-radio-button>
+            <mat-radio-button class="dot" value="3">3</mat-radio-button>
+            <mat-radio-button class="dot" value="4">4</mat-radio-button>
+            <mat-radio-button class="dot" value="5">5</mat-radio-button>
+            Complétement
+        </mat-radio-group>
+    </div>
+
+    <div class="labelPersonalQuestions">
+        <label class="practice">Quelle est ta pratique des activités suivantes ?</label>
+        <label class="labelPracticeInfo">Aller au musée</label>
+        <mat-radio-group class="dots">
+            Jamais
+            <mat-radio-button class="dot" value="1">1</mat-radio-button>
+            <mat-radio-button class="dot" value="2">2</mat-radio-button>
+            <mat-radio-button class="dot" value="3">3</mat-radio-button>
+            <mat-radio-button class="dot" value="4">4</mat-radio-button>
+            Plusieurs fois par an
+        </mat-radio-group>
+        <label class="labelPracticeInfo">Aller au théâtre</label>
+        <mat-radio-group class="dots">
+            Jamais
+            <mat-radio-button class="dot" value="1">1</mat-radio-button>
+            <mat-radio-button class="dot" value="2">2</mat-radio-button>
+            <mat-radio-button class="dot" value="3">3</mat-radio-button>
+            <mat-radio-button class="dot" value="4">4</mat-radio-button>
+            Plusieurs fois par an
+        </mat-radio-group>
+        <label class="labelPracticeInfo">Aller au cinéma</label>
+        <mat-radio-group class="dots">
+            Jamais
+            <mat-radio-button class="dot" value="1">1</mat-radio-button>
+            <mat-radio-button class="dot" value="2">2</mat-radio-button>
+            <mat-radio-button class="dot" value="3">3</mat-radio-button>
+            <mat-radio-button class="dot" value="4">4</mat-radio-button>
+            Plusieurs fois par an
+        </mat-radio-group>
+    </div>
+    <div class="labelPersonalQuestions">
+        <label class="practice">Quelle est ta pratique des activités suivantes ?</label>
+        <label class="labelPracticeInfo">Regarder le journal télévisé</label>
+        <mat-radio-group class="dots">
+            Jamais
+            <mat-radio-button class="dot" value="1">1</mat-radio-button>
+            <mat-radio-button class="dot" value="2">2</mat-radio-button>
+            <mat-radio-button class="dot" value="3">3</mat-radio-button>
+            <mat-radio-button class="dot" value="4">4</mat-radio-button>
+            Plusieurs fois par an
+        </mat-radio-group>
+        <label class="labelPracticeInfo">Lire les journaux</label>
+        <mat-radio-group class="dots">
+            Jamais
+            <mat-radio-button class="dot" value="1">1</mat-radio-button>
+            <mat-radio-button class="dot" value="2">2</mat-radio-button>
+            <mat-radio-button class="dot" value="3">3</mat-radio-button>
+            <mat-radio-button class="dot" value="4">4</mat-radio-button>
+            Plusieurs fois par an
+        </mat-radio-group>
+        <label class="labelPracticeInfo">Lire un livre</label>
+        <mat-radio-group class="dots">
+            Jamais
+            <mat-radio-button class="dot" value="1">1</mat-radio-button>
+            <mat-radio-button class="dot" value="2">2</mat-radio-button>
+            <mat-radio-button class="dot" value="3">3</mat-radio-button>
+            <mat-radio-button class="dot" value="4">4</mat-radio-button>
+            Plusieurs fois par an
+        </mat-radio-group>
+    </div>
+
+    <h3>Langues, voyages et échanges</h3>
+    <mat-form-field class="block">
+        <mat-select placeholder="As-tu un correspondant étranger ?" name="after_bac" required>
+            <mat-option value="option">Oui, j'en ai un actuellement</mat-option>
+            <mat-option value="option">Oui, j'en ai déjà eu</mat-option>
+            <mat-option value="option">Non</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="block">
+        <mat-select placeholder="Serais-tu intéressé à en avoir un via l'intermédiaire de OSER ?" name="after_bac" required>
+            <mat-option value="option">Oui</mat-option>
+            <mat-option value="option">Non</mat-option>
+            <mat-option value="option">Peut être</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="block">
+        <textarea matInput placeholder="As-tu déjà visité d'autres pays ? combien ? lesquels ? dans quels cadres ? (familles colonies, école, stages linguistiques...) ?"></textarea>
+    </mat-form-field>
+
+    <h3>Lettre de motivation</h3>
+    <mat-form-field class="block">
+        <div class="textMotivation">
+            Dis-nous pourquoi tu as envie de participer à OSER, et ce que tu penses que cela pourrait t'apporter.
+            Parle-nous de toi, de ton caractère. N'hésite pas à nous raconter des expériences de ta vie, tes projets pour le futur, etc.
+            Nous avons envie de te connaître ! :)
+        </div>
+        <textarea matInput></textarea>
+    </mat-form-field>
     
     <input class="btn btn-primary margin" type="button" value="S'inscrire" (click)="addStudent()"/>
   </form>

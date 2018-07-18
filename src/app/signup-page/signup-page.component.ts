@@ -9,6 +9,8 @@ import { StudentService } from './student.service';
 })
 export class SignupPageComponent implements OnInit {
 
+  hide = true;
+
   student = {
     first_name: '',
     last_name: '',

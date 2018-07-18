@@ -6,7 +6,7 @@
 
 .form-signin {
   width: 100%;
-  max-width: 30em;
+  max-width: 45em;
   background: white;
   border: 1px solid lightgray;
   border-radius: 8px;
@@ -70,4 +70,39 @@
 
 .margin{
   margin-top: 40px;
+}
+
+.labelPersonalQuestions{
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: rgb(236, 236, 236);
+}
+
+.dots{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+}
+
+.dot{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.practice{
+  margin-bottom: 15px;
+}
+
+.labelPracticeInfo{
+  font-size: 14px;
+}
+
+.textMotivation{
+  margin-bottom: 10px;
 }
