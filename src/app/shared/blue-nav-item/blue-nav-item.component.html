@@ -1,0 +1,8 @@
+<div class="blue-nav-link">
+  <a *ngIf="link.href; else action" class="no-style" [routerLink]="link.href">
+    {{ link.text }}
+  </a>
+  <ng-template #action>
+    <div (click)="link.action()">{{ link.text }}</div>
+  </ng-template>
+</div>

@@ -14,18 +14,9 @@ const routes: Routes = [
   {
     path: 'membres',
     canActivate: [AuthGuard],
-    loadChildren: './showcase-espacemembre/showcase-espacemembre.module#ShowcaseEspacemembreModule',
+    loadChildren: './showcase-member/showcase-member.module#ShowcaseMemberModule',
   },
-  {
-    path: 'sorties',
-    canActivate: [AuthGuard],
-    loadChildren: './visits/visits.module#VisitsModule',
-  },
-  {
-    path: 'projets',
-    canActivate: [AuthGuard],
-    loadChildren: './projects/projects.module#ProjectsModule',
-  },
+
   {
     path: 'login', 
     component: LoginComponent
