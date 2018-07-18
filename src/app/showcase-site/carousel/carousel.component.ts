@@ -3,13 +3,12 @@
 import {
   Component, OnInit, OnDestroy, Input, AfterViewInit, AfterContentInit,
   ContentChildren, ViewChildren, ViewChild, QueryList, ElementRef,
-  AnimationPlayer,
 } from '@angular/core';
 import {
-  AnimationFactory, AnimationBuilder,
+  AnimationFactory, AnimationBuilder, AnimationPlayer,
   animate, style
 } from '@angular/animations';
-import { Observable } from 'rxjs/Rx';
+import { Observable, interval, timer } from 'rxjs';
 import { CarouselDirective, CarouselItemElement } from './carousel.directive';
 
 @Component({
@@ -45,7 +44,7 @@ export class CarouselComponent implements OnInit, AfterViewInit, AfterContentIni
   }
   ngAfterContentInit() {
     // Go to the next element
-    this.slideSub = Observable.interval(this.interval).subscribe(_ => {
+    this.slideSub = interval(this.interval).subscribe(_ => {
       if (this.paused) return;
       this.next();
     });
@@ -73,7 +72,7 @@ export class CarouselComponent implements OnInit, AfterViewInit, AfterContentIni
       this.pausedSub.unsubscribe();
     }
     // Turn on automatic sliding back after an interval
-    this.pausedSub = Observable.timer(this.interval).subscribe(
+    this.pausedSub = timer(this.interval).subscribe(
       _ => this.paused = false
     );
     this.goTo(index);

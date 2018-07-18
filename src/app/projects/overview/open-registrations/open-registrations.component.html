@@ -1,0 +1,34 @@
+<div class="container">
+  <h2 id="title">Inscriptions ouvertes</h2>
+  <a routerLink="./inscription">M'inscrire à un projet</a>
+
+  <p>
+    {{ editions.length }}
+    <span [ngPlural]="editions.length">
+      <ng-template ngPluralCase="=1">projet ouvert</ng-template>
+      <ng-template ngPluralCase="other">projets ouverts</ng-template>
+    </span>
+    à l'inscription
+  </p>
+
+  <table>
+    <tr *ngFor="let edition of editions">
+      <td>
+        <p>
+          <strong>{{ edition.editionForm.title }}</strong>
+        </p>
+        <p class="text-muted">
+          Avant le {{ edition.editionForm.deadline | amLocale: 'fr' | amDateFormat: 'LL' }} •
+          <span style="font-weight: bold;">
+            {{ edition.editionForm.deadline | amLocale: 'fr' | amDifference: today: 'days' }} jours restants
+          </span>
+        </p>
+      </td>
+      <td class="action" [ngSwitch]="edition.participates">
+        <button *ngSwitchCase="false" class="btn-light">Je m'inscris</button>
+        <span *ngSwitchCase="true">Inscription effectuée</span>
+      </td>
+    </tr>
+  </table>
+
+</div>

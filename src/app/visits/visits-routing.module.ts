@@ -1,30 +1,33 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { VisitsComponent } from './visits.component';
-import { VisitsListComponent } from './visits-list/visits-list.component';
-import { VisitDetailComponent } from './visit-detail/visit-detail.component';
-import { AuthGuard } from '@app/core';
+import { AuthGuard, MapsAPIResolver } from 'app/core';
 
-const visitsRoutes: Routes = [
+import { VisitsComponent } from './visits.component';
+import { VisitsListComponent } from './visits-list';
+import { VisitDetailComponent } from './visit-detail';
+import { VisitsResolver, VisitResolver } from './shared';
+
+const routes: Routes = [
   {
-    path: 'visits',
+    path: '',
+    data: { title: 'Sorties' },
     component: VisitsComponent,
+    canActivate: [AuthGuard],
     children: [
       {
-        path: '',
-        // require login to access visits
-        canActivate: [AuthGuard],
-        children: [
-          { path: '', component: VisitsListComponent },
-          { path: ':id', component: VisitDetailComponent },
-        ],
+        path: '', component: VisitsListComponent,
+        resolve: { 'visits': VisitsResolver },
+      },
+      {
+        path: ':id', component: VisitDetailComponent,
+        resolve: { 'visit': VisitResolver, 'geocoder': MapsAPIResolver },
       },
     ],
-  }
-]
+  },
+];
 
 @NgModule({
-  imports: [RouterModule.forChild(visitsRoutes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class VisitsRoutingModule { }

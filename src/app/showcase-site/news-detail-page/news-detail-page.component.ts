@@ -1,8 +1,7 @@
 import { Component, OnInit, Renderer } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Article } from '../shared/article.model';
-import { ArticleService } from '../shared/article.service';
+import { Article, ArticleService } from '../shared';
 
 @Component({
   selector: 'app-news-detail-page',
@@ -19,37 +18,15 @@ export class NewsDetailPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private articleService: ArticleService,
     private titleService: Title,
-    private renderer: Renderer,
   ) { }
 
   ngOnInit() {
-    // NOTE: We must avoid race conditions between the fetch of articles and
-    // the subscription to the route parameters.
-    // That's why we use flatMap() to be able to store articles and return
-    // and observable to the route parameters.
-    this.articleService.list().flatMap(articles => {
-      this.articles = articles;
-      return this.route.paramMap;
-    }).subscribe(
-      params => {
-        const slug = params.get('slug');
-        this.articleService.retrieve(slug).subscribe(
-          (article) => {
-            // Scroll to top manually
-            this.renderer.setElementProperty(document.body, "scrollTop", 0);
-            this.article = article;
-            // update page title with article's title
-            this.titleService.setTitle(
-              this.titleService.getTitle() + ' : ' + article.title
-            );
-            this.relatedArticles = this.getRelatedArticles(this.article);
-          },
-          (e) => console.log(e)
-        );
-      },
-      e => console.log(e)
+    this.article = this.route.snapshot.data['article'];
+    this.articles = this.route.snapshot.data['articles'];
+    this.relatedArticles = this.getRelatedArticles(this.article);
+    this.titleService.setTitle(
+      this.titleService.getTitle() + ' : ' + this.article.title
     );
   }
 

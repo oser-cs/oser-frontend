@@ -1,0 +1,19 @@
+<!-- Modal register form -->
+<div id="leave-form" class="modal" [hidden]="!visible" (click)="clickModal($event)">
+  <form name="form" class="modal-content" (ngSubmit)="form.valid && onLeave()" novalidate #form="ngForm">
+    <h2>Désistement : {{ visit.title }}</h2>
+    <p>
+      Merci de prendre le temps de nous signaler que tu ne peux pas être présent.
+    </p>
+    <p>
+      Peux-tu expliquer aux tuteurs organisateurs la raison de ton désistement ?
+    </p>
+    <div>
+      <textarea name="reason" [(ngModel)]="reason" required rows="3"></textarea>
+    </div>
+    <div class="text-center">
+      <button class="btn-success" type="submit" [disabled]="loading || !form.valid">Me désinscrire</button>
+      <load-spinner *ngIf="loading"></load-spinner>
+    </div>
+  </form>
+</div>

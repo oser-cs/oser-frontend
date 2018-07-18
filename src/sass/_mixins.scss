@@ -255,8 +255,6 @@ $shadow-ref: .13em;
   border-radius: 2em;
   margin: .2em;
   font-size: small;
-  width: fit-content;
-  height: fit-content;
 }
 .badge-lg {
   @include box-spacing(1.3);
@@ -294,11 +292,107 @@ $shadow-ref: .13em;
   @include style-default;
   @include badge($color-default);
 }
-.badge-list {
+ul.badge-list {
   list-style-type: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+@mixin tooltip($size, $arrow-size, $position) {
+  position: relative;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+
+  .tooltip-text {
+    visibility: hidden;
+    background-color: white;
+    color: $color-text;
+    text-align: center;
+    padding: .5em 0;
+    border-radius: 4px;
+    width: $size;
+
+    // Position the tooltip text
+    position: absolute;
+    @if $position == 'top' {
+      bottom: 100%;
+      margin-left: -$size/2;
+      left: 50%;
+    }
+    @if $position == 'bottom' {
+      top: 100%;
+      margin-left: -$size/2;
+      left: 50%
+    }
+    @if $position == 'right' {
+      top: -5px;
+      left: 105%;
+    }
+    @if $position == 'left' {
+      top: -5px;
+      right: 105%;
+    }
+
+    // Place on top
+    z-index: 1;
+
+    // Tooltip arrow
+    &::after {
+      content: ' ';
+      position: absolute;
+      @if $position == 'top' {
+        // arrow at the bottom of the tooltip
+        top: 100%;
+        left: 50%;
+        margin-left: -$arrow-size;
+        border-color: white transparent transparent transparent;
+      }
+      @if $position == 'bottom' {
+        // arrow at the top of the tooltip
+        bottom: 100%;
+        left: 50%;
+        margin-left: -$arrow-size;
+        border-color: transparent transparent white transparent;
+      }
+      @if $position == 'right' {
+        top: 50%;
+        right: 100%;
+        margin-top: -$arrow-size;
+        border-color: transparent white transparent transparent;
+      }
+      @if $position == 'left' {
+        top: 50%;
+        left: 100%;
+        margin-top: -$arrow-size;
+        border-color: transparent transparent transparent white;
+      }
+      border-width: $arrow-size;
+      border-style: solid;
+    }
+  }
+  &:hover {
+    .tooltip-text {
+      visibility: visible;
+    }
+  }
+}
+
+.tooltip {
+  $size: 15em;
+  $arrow-size: 5px;
+  &.top {
+    @include tooltip($size: $size, $arrow-size: $arrow-size, $position: 'top');
+  }
+  &.bottom {
+    @include tooltip($size: $size, $arrow-size: $arrow-size, $position: 'bottom');
+  }
+  &.right {
+    @include tooltip($size: $size, $arrow-size: $arrow-size, $position: 'right');
+  }
+  &.left {
+    @include tooltip($size: $size, $arrow-size: $arrow-size, $position: 'left');
+  }
 }

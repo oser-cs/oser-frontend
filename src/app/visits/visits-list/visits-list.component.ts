@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { VisitService } from '../shared/visit.service';
-import { Visit } from '../shared/visit.model';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
-import { AuthService } from '@app/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, BehaviorSubject, Subscription } from 'rxjs';
+import { tap, map, filter, find, first } from 'rxjs/operators';
+import { AuthService } from 'app/core';
+import { Visit, VisitService, Participant } from '../shared/';
 
 @Component({
   selector: 'app-visits-list',
@@ -13,48 +13,64 @@ import { AuthService } from '@app/core';
 export class VisitsListComponent implements OnInit {
 
   visits: Visit[];
-  nextVisits: Visit[];
-  userVisits: Visit[];
-  userVisits$ = new Subject<Visit[]>();
+  _passed = false;
+  participations$ = new BehaviorSubject<Participant[]>(null);
+  sub: Subscription = new Subscription();
+  userId: number;
 
   constructor(
     private visitService: VisitService,
     private auth: AuthService,
+    private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-    this.getVisits();
+    this.userId = this.auth.getUser().id;
+    this.visits = this.route.snapshot.data['visits'];
+    const participations = [].concat(...this.visits.map(v => v.participants));
+    this.participations$.next(participations);
+    this.sub.add(this.route.fragment.subscribe(
+      fragment => {
+        if (fragment === 'past') {
+          this._passed = true;
+        } else if (fragment === 'next') {
+          this._passed = false;
+        }
+      }
+    ));
   }
 
-  userParticipates(visit: Visit): Observable<boolean> {
-    return new Observable<boolean>(obs => {
-      this.userVisits$.subscribe(
-        (visits) => obs.next(visits.map(v => v.id).includes(visit.id))
-      );
-    });
+  get passed(): boolean {
+    return this._passed;
   }
 
-  getVisits(): void {
-    this.visitService.list().subscribe(
-      (visits) => {
-        // save list of visits
-        this.visits = visits;
-        // compute list of upcoming visits
-        this.nextVisits = this.visits.filter(visit => !visit.passed);
-        // get visits of user
-        let user = this.auth.getUser().user;
-        this.visitService.visitsOf(user.id).subscribe(
-          (visits) => {
-            this.userVisits$.next(visits);
-          },
-          (e) => console.log(e)
-        );
-        this.userVisits$.subscribe(
-          (visits) => this.userVisits = visits,
-          e => console.log(e)
-        );
-      },
-      (e) => console.log(e)
+  set passed(passed: boolean) {
+    this._passed = passed;
+    let opts: any = { relativeTo: this.route };
+    if (passed) {
+      opts.fragment = 'past';
+    } else {
+      opts.fragment = 'next';
+    }
+    this.router.navigate(['./'], opts);
+  }
+
+  userParticipant(visit: Visit): Observable<Participant> {
+    return this.participations$.pipe(
+      map(ps => ps.filter(p => p.visitId === visit.id)),
+      map(ps => ps.filter(p => p.user.id === this.userId)),
+      map(ps => ps[0]),
+      tap(console.log),
     );
+  }
+
+  get displayedVisits(): Visit[] {
+    if (!this.visits) return [];
+    return this.visits.filter(visit => visit.passed === this.passed);
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

@@ -1,10 +1,12 @@
 @import '~sass/mixins';
+@import '~sass/variables';
 
 #visit {
   @include margin-page;
   margin: 0 auto;
   max-width: 40em;
   position: relative;
+
   &::before {
     content: '';
     position: absolute;
@@ -17,46 +19,35 @@
   }
 }
 
-agm-map {
-  height: 400px;
-}
 #participate-btn {
   margin-top: 1em;
 }
+
+img#illustration {
+  display: block;
+  margin: 1em auto;
+}
+
 #header {
   margin-bottom: $margin-page;
 }
+
 .columns {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: $margin-page;
 }
+
 img {
   display: block;
   max-width: 100%;
   height: auto;
 }
-.tips {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
 
-// Modal register form
-
-.modal {
-  position: fixed;
-  z-index: 5;  // stay on top
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;  // enable scroll if needed
-  background-color: transparentize(black, .4);
-}
-.modal-content {
-  background: white;
-  margin: 15% auto;
-  max-width: 30em;
-  padding: 3em;
+.organizers {
+  display: flex;
+  flex-flow: row wrap;
+  app-organizer-card {
+    margin: .5em;
+  }
 }

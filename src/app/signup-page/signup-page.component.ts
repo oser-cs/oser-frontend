@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { StudentService } from './student.service';
 
 @Component({
@@ -27,7 +27,7 @@ export class SignupPageComponent implements OnInit {
       home_phone: '',
       mobile_phone: '',
     },
-
+    password: '',
   };
 
   constructor(private studentService: StudentService) { }
@@ -36,21 +36,24 @@ export class SignupPageComponent implements OnInit {
   }
 
   addStudent() {
-    console.log(this.student)
-      this.studentService.addNewStudent(this.student.first_name,
-                                        this.student.last_name,
-                                        this.student.birth,
-                                        this.student.email,
-                                        this.student.phone,
-                                        this.student.adress.street,
-                                        this.student.adress.town,
-                                        this.student.adress.code,
-                                        this.student.emergency_contact.nameparent,
-                                        this.student.emergency_contact.surnameparent,
-                                        this.student.emergency_contact.email_parent,
-                                        this.student.emergency_contact.home_phone,
-                                        this.student.emergency_contact.mobile_phone)
-      .subscribe();
-    }
+    this.studentService.addNewStudent(
+      this.student.first_name,
+      this.student.last_name,
+      this.student.birth,
+      this.student.email,
+      this.student.phone,
+      this.student.adress.street,
+      this.student.adress.town,
+      this.student.adress.code,
+      this.student.emergency_contact.nameparent,
+      this.student.emergency_contact.surnameparent,
+      this.student.emergency_contact.email_parent,
+      this.student.emergency_contact.home_phone,
+      this.student.emergency_contact.mobile_phone,
+      this.student.password,
+    ).subscribe(
+      resp => console.log(resp)
+    );
+  }
 
 }

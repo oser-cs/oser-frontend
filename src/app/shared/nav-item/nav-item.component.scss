@@ -1,0 +1,20 @@
+@import '~sass/variables';
+
+.nav-link {
+  text-decoration: none;
+  color: $color-purple;
+  font-weight: bold;
+  padding: 1em .5em;
+  box-sizing: border-box;
+  border-bottom: 2px solid transparent;
+  transition: color 200ms, border-color 200ms;
+
+  a {
+    display: block;
+  }
+
+  &:hover {
+    color: $color-dark-blue;
+    border-color: $color-dark-blue;
+  }
+}

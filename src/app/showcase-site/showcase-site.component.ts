@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer } from '@angular/core';
-import { Link } from '@app/ui';
+import { Link } from 'app/shared';
 
 @Component({
   selector: 'app-showcase-site',

@@ -1,0 +1,28 @@
+<div class="container">
+  <h2 id="title">Mes inscriptions</h2>
+  <a routerLink="./mes-inscriptions">Gérer mes inscriptions</a>
+
+  <p>
+    {{ participations.length }}
+    <span [ngPlural]="participations.length">
+      <ng-template ngPluralCase="=1">inscription</ng-template>
+      <ng-template ngPluralCase="other">inscriptions</ng-template>
+    </span>
+    en attente
+  </p>
+
+  <div *ngFor="let participation of participations" class="row">
+    <p>
+      <strong>{{ participation.editionFormTitle }}</strong>
+    </p>
+    <p class="text-muted">
+      <strong>{{ participation.status }}</strong>
+    </p>
+    <p class="text-muted">
+      Soumis le
+      {{ participation.submitted | amLocale: 'fr' | amDateFormat: 'LL' }}
+      à {{ participation.submitted | amLocale: 'fr' | amDateFormat: 'HH:mm' }} • <a href="#">Détails</a>
+    </p>
+  </div>
+
+</div>

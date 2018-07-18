@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { map, tap, filter } from 'rxjs/operators';
 import { Action } from './action.model';
-import { environment } from '@environments/environment';
+import { environment } from 'environments/environment';
+import { ObjectListResolver } from 'app/core';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ActionService {
 
-  private baseUrl = environment.apiUrl + 'actions/';
+  private baseUrl = environment.showcaseApiUrl + 'actions/';
 
   constructor(private http: HttpClient) { }
 
@@ -26,11 +30,10 @@ export class ActionService {
   }
 
   list(): Observable<Action[]> {
-    return this.http.get<Action>(this.baseUrl)
-      .pipe(
-        map((data: any) => data.map(this.adapt)),
-        tap(resp => console.log('fetched actions'))
-      );
+    return this.http.get<Action>(this.baseUrl).pipe(
+      map((data: any) => data.map(this.adapt)),
+      tap(resp => console.log('fetched actions'))
+    );
   }
 
   listHighlight(): Observable<Action[]> {
@@ -38,4 +41,11 @@ export class ActionService {
       map(actions => actions.filter(action => action.highlight))
     );
   }
+}
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ActionsResolver extends ObjectListResolver<Action> {
+  constructor(public service: ActionService) {super();}
 }

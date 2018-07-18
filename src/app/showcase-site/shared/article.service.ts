@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { Article } from './article.model';
-import { environment } from '@environments/environment';
+import { environment } from 'environments/environment';
+import { ObjectListResolver, ObjectResolver } from 'app/core';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ArticleService {
 
-  private baseUrl = environment.apiUrl + 'articles/';
+  private baseUrl = environment.showcaseApiUrl + 'articles/';
 
   constructor(private http: HttpClient) { }
 
-  // Adapt JSON returned by API to match the Article interface
   adapt(item: any): Article {
     return new Article({
       id: item.id,
@@ -31,11 +33,10 @@ export class ArticleService {
   }
 
   list(): Observable<Article[]> {
-    return this.http.get<Article>(this.baseUrl)
-      .pipe(
-        map((articles: any) => articles.map(this.adapt)),
-        tap(resp => console.log('fetched articles'))
-      );
+    return this.http.get<Article>(this.baseUrl).pipe(
+      map((articles: any) => articles.map(this.adapt)),
+      tap(resp => console.log('fetched articles'))
+    );
   }
 
   first(n: number): Observable<Article[]> {
@@ -46,10 +47,26 @@ export class ArticleService {
 
   retrieve(slug: string): Observable<Article> {
     let url = this.baseUrl + `${slug}/`;
-    return this.http.get<Article>(url)
-    .pipe(
+    return this.http.get<Article>(url).pipe(
       map((article: any) => this.adapt(article)),
       tap(resp => console.log('fetched article'))
     );
   }
+}
+
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ArticlesResolver extends ObjectListResolver<Article> {
+  constructor(public service: ArticleService) { super(); }
+}
+
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ArticleResolver extends ObjectResolver<Article> {
+  routeLookupKey = 'slug';
+  constructor(public service: ArticleService) { super(); }
 }

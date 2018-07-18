@@ -1,88 +1,86 @@
-<div id="visit" *ngIf="visit">
-  <h1>{{ visit.title }}</h1>
-  <p>
-    <strong>{{ visit.date | date:"EEEE d MMMM" }} – {{ visit.date | date:"shortTime"}}</strong> – {{ visit.place.name }}
-  </p>
+<div id="visit">
+  <app-register-form [visible]="registerFormActive" (closed)="registerFormActive = false" [userId]="userId" [visit]="visit" (participate)="onParticipate($event)"></app-register-form>
 
-  <div>
-    <img [src]="visit.image" [alt]="visit.title" class="drop-shadow-sm">
-  </div>
+  <app-leave-form [visible]="leaveFormActive" (closed)="leaveFormActive = false" [visit]="visit" [userId]="userId" (left)="participant = null"></app-leave-form>
 
-  <h2>Résumé</h2>
-  <p [innerHTML]="visit.summary | linebreaks"></p>
-
-  <span *ngIf="visit.registrationsOpen" class="badge badge-warning badge-lg"><i class="fa fa-clock-o"></i> Inscriptions avant le {{ visit.deadline | date:"dd/MM à HH:mm" }}</span>
-  <span *ngIf="!visit.registrationsOpen" class="badge badge-danger badge-lg"><i class="fa fa-times"></i> Inscriptions fermées</span>
-  <span *ngIf="numParticipants > 0" class="badge badge-info badge-lg"><i class="fa fa-user"></i> {{ numParticipants }} participants</span>
-
-  <!-- Show register button if user does not participate -->
-  <div *ngIf="visit.registrationsOpen && !userParticipates">
-    <button id="participate-btn" type="button" name="button" class="btn-success" (click)="formActive = true">Je m'inscris</button>
-  </div>
-
-  <!-- If user participates, show them relevant info -->
-  <div *ngIf="userParticipates">
-    <p class="alert alert-success"><i class="fa fa-ticket"></i> Tu participes à cette sortie.</p>
-    <p class="alert alert-default">
-      <i class="fa fa-file-text"></i> Les organisateurs ont rédigé une <a [href]="visit.factSheet">fiche sortie</a>. Consulte-la avant de te rendre à la sortie !
+  <div class="text-center">
+    <h1>{{ visit.title }}</h1>
+    <p>
+      <strong>{{ visit.date | date:"EEEE d MMMM" }} – {{ visit.startTime | date:"shortTime"}}</strong> – {{ visit.place.name }}
     </p>
-    <!-- And a shy-ish unregister link -->
-    <p class="text-muted">Tu as un empêchement et souhaites <span class="link-muted" (click)="leave()">te désinscrire ?</span></p>
+
+    <p *ngIf="visit.summary" class="text-muted">
+      {{ visit.summary }}
+    </p>
+
+    <!-- Metadata badges -->
+    <div>
+      <app-registration-badge
+        [title]="visit.title"
+        [open]="visit.registrationsOpen"
+        [passed]="visit.passed"
+        [deadline]="visit.deadline"></app-registration-badge>
+      <app-participant-number-badge
+        [number]="acceptedParticipants"></app-participant-number-badge>
+
+      <span *ngIf="participant">
+        <app-participation-badge
+          [accepted]="participant.accepted"
+          [passed]="visit.passed"></app-participation-badge>
+      </span>
+    </div>
+
+    <!-- Show register button if user does not participate -->
+    <div *ngIf="visit.registrationsOpen && !participant" class="text-center">
+      <button id="participate-btn" type="button" name="button" class="btn-success" (click)="registerFormActive = true">Je m'inscris</button>
+    </div>
+
+    <div *ngIf="participant && !visit.passed">
+
+      <!-- And a shy-ish unregister link -->
+      <p class="text-muted-sm">
+        Tu as un empêchement et souhaites
+        <span class="link-muted" (click)="leaveFormActive = true">
+          te désinscrire ?
+        </span>
+      </p>
+
+      <!-- Related documents -->
+      <p class="alert alert-info" *ngIf="visit.permissionSheet">
+        <i class="fa fa-exclamation-triangle"></i>Avant de te rendre à la sortie, télécharge <a [href]="visit.permissionSheet">l'autorisation de sortie</a>. Fais-la remplir par tes parents et remets-la aux tuteurs le jour de la sortie.
+      </p>
+      <p class="alert alert-default" *ngIf="visit.factSheet">
+        <i class="fa fa-file-text"></i> Les organisateurs ont rédigé une <a [href]="visit.factSheet">fiche sortie</a>. N'hésite pas à en prendre connaissance avant de te rendre à la sortie !
+      </p>
+    </div>
+
+    <img id="illustration" *ngIf="visit.image" [src]="visit.image" [alt]="visit.title" class="drop-shadow-sm">
   </div>
 
-  <!-- Modal register form -->
-  <div id="register-form" class="modal" [hidden]="!formActive" (click)="clickModal($event)">
-    <form name="form" class="modal-content" (ngSubmit)="participate()" novalidate>
-      <h2>S'inscrire à {{ visit.title }}</h2>
-      <div *ngIf="visit.attachedFiles  && visit.attachedFiles.length > 0; else noattachments">
-        <p>Pour t'inscrire à cette sortie, nous avons besoin des documents suivants.</p>
-        <ul>
-          <li *ngFor="let item of visit.attachedFiles">
-            {{ item.name }} <br />
-            <input type="file" [name]="item.id">
-          </li>
-        </ul>
-      </div>
-      <ng-template #noattachments>
-        <p>Aucune étape supplémentaire n'est requise pour t'inscrire à cette sortie.</p>
-      </ng-template>
-      <div class="text-center">
-        <button class="btn-success">Confirmer mon inscription</button>
-        <load-spinner *ngIf="formLoading"></load-spinner>
-      </div>
-    </form>
+  <div *ngIf="visit.description">
+    <h2>Détail des activités</h2>
+    <markdown [data]="visit.description"></markdown>
   </div>
 
-  <h2>Détail des activités</h2>
-  <p [innerHTML]="visit.description | linebreaks"></p>
-
-  <h2>Informations pratiques</h2>
-
-  <ul class="tips">
-    <li>
-      <strong>Adresse</strong> : <span [innerHTML]="visit.place.address | linebreaks:', '"></span>
-    </li>
-    <li>
-      <strong>Date</strong> : {{ visit.date | date:"fullDate" }}
-    </li>
-    <li>
-      <strong>Heure de rendez-vous</strong> : {{ visit.date | date:"shortTime"}}
-    </li>
-  </ul>
-
-  <h3>Contacts utiles</h3>
-  <ul>
-    <li *ngFor="let organizer of visit.organizers">
-      {{ organizer.first_name + ' ' + organizer.last_name }} : {{ organizer.gender === 'F' ? 'organisatrice' : 'organisateur'}} ({{ organizer.phone_number }})
-    </li>
-  </ul>
   <div *ngIf="visit.place.description">
-    <h3>À propos de {{ visit.place.name }}</h3>
+    <h2>À propos du lieu</h2>
     <markdown [data]="visit.place.description"></markdown>
   </div>
 
-  <h3>Se rendre à cette sortie</h3>
-  <agm-map [latitude]="lat" [longitude]="lng">
-    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-  </agm-map>
+  <h2>Informations pratiques</h2>
+  <app-useful-information [visit]="visit"></app-useful-information>
+
+  <h2>Se rendre à cette sortie</h2>
+  <app-visit-location-map
+    [geocoder]="geocoder"
+    [address]="visit.address"></app-visit-location-map>
+
+  <div *ngIf="visit.organizers.length > 0">
+    <h2>Tuteurs organisateurs</h2>
+
+    <div class="organizers">
+      <app-organizer-card *ngFor="let organizer of visit.organizers" [organizer]="organizer.user"></app-organizer-card>
+    </div>
+  </div>
+
 </div>

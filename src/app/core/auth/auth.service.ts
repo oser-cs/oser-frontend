@@ -1,67 +1,70 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import { environment } from '@environments/environment';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { tap, map } from 'rxjs/operators';
+import { environment } from 'environments/environment';
+import { User } from './models';
+import { ObjectStoredItem, SimpleStoredItem } from '../storage';
+import { UserAdapter } from './adapters';
 
-@Injectable()
+
+class StoredUser extends ObjectStoredItem<User> { key = 'oser-cs-user-info'; }
+class StoredToken extends SimpleStoredItem { key = 'oser-cs-user-token'; }
+
+
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthService {
 
   private loginUrl = environment.apiUrl + 'auth/get-token/';
-  private storageKey: string = 'currentUser';
 
   fromGuard: boolean;
   redirectUrl: string;
+  fromUnauthorized: boolean;
 
-  private _user: any;
+  private userAdapter = new UserAdapter();
+  private user = new StoredUser();
+  private token = new StoredToken();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(username: string, password: string) {
-    return this.http.post<any>(this.loginUrl, { username: username, password: password })
-      .map(user => {
-        // login successful if there's a token and a user in the response
-        if (user && user.token && user.user) {
-          this.user = user;
-          return true;
-        }
-        return false;
-      });
+    return this.http.post<any>(this.loginUrl, { username: username, password: password }).pipe(
+      tap(data => this.token.set(data.token)),
+      map(data => this.userAdapter.adapt(data.user)),
+      tap((user: User) => this.user.set(user)),
+      map(() => true),
+    );
   }
 
-  private set user(user: any) {
-    // store user details and token in local storage to keep user logged in between page refreshes
-    localStorage.setItem(this.storageKey, JSON.stringify(user));
+  redirectLogin() {
+    this.router.navigate(['/login']);
   }
 
-  private get user(): any {
-    return JSON.parse(localStorage.getItem(this.storageKey));
-  }
-
-  getUser(): any {
-    return this.user;
+  getUser(): User {
+    return this.user.get();
   }
 
   getToken(): string {
-    let user = this.user;
-    if (user) return user.token;
-    return null;
+    return this.token.get();
   }
 
-  getHeaders(): HttpHeaders {
-    let token = this.getToken();
-    return new HttpHeaders({
-      Authorization: 'Token ' + token,
-    });
+  // Headers for use in authenticated calls to the backend API.
+  getAuthorizationHeaders(): HttpHeaders {
+    return new HttpHeaders({ Authorization: 'Token ' + this.getToken() });
   }
 
   get isLoggedIn(): boolean {
-    if (localStorage.getItem(this.storageKey)) return true;
+    if (this.user.get()) {
+      return true;
+    }
     return false;
   }
 
   logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem(this.storageKey);
+    this.user.destroy();
+    this.token.destroy();
   }
 }

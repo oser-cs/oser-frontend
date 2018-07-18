@@ -22,10 +22,16 @@ oser-frontend $ npm install -g @angular/cli
 oser-frontend $ npm install
 ```
 
-- Lancez le serveur de développement.
+- Lancez le serveur de développement (`-o` ouvrira l'application à la fin du build).
 
 ```
-oser-app $ ng serve -o
+oser-frontend $ ng serve -o
+```
+
+La commande ci-dessous liera le front à l'API de développement (déployée sur https://oser-backend-dev.herokuapp.com). Pour utiliser un backend local (qui tourne sur votre machine), spécifiez la configuration avec `-c local`:
+
+```
+oser-frontend $ ng serve -o -c local
 ```
 
 ## En cas d'erreur…
@@ -48,4 +54,4 @@ Ainsi, un push sur la branche `master` déclenche un déploiement de l'applicati
 
 Si une erreur survient lors du déploiement, la nouvelle version n'est pas mise en prod (ouf !) et un email est envoyé à l'adresse mail du secteur Geek.
 
-Les applications sont accessibles à leur adresse au format suivant : `www.<NOM_APP>.herokuapp.com`.
+Les applications sont accessibles à leur adresse au format suivant : `<NOM_APP>.herokuapp.com`.

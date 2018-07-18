@@ -1,37 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
 @import './variables';
 @import './mixins';
-
-// @import url('https://fonts.googleapis.com/css?family=Nunito:400,700,900');
+@import './material';
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700,900');
-
-@font-face {
-    font-family: 'Avenir';
-    src: url('../assets/fonts/avenir-lt-std/AvenirLTStd-Roman.otf');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Avenir';
-    src: url('../assets/fonts/avenir-lt-std/AvenirLTStd-Heavy.otf');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Avenir';
-    src: url('../assets/fonts/avenir-lt-std/AvenirLTStd-Oblique.otf');
-    font-weight: normal;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Avenir';
-    src: url('../assets/fonts/avenir-lt-std/AvenirLTStd-HeavyOblique.otf');
-    font-weight: bold;
-    font-style: italic;
-}
+@include mat-core();
+@include angular-material-theme($theme);
+@include angular-material-typography($typography);
 
 body {
   margin: 0;
@@ -39,10 +14,17 @@ body {
   color: $color-text;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: $font-title;
 }
-h1, h2 {
+
+h1,
+h2 {
   font-weight: 900;
 }
 
@@ -55,13 +37,16 @@ a {
   color: $color-accent;
   font-weight: bold;
 }
+
 a.no-style {
   color: inherit;
   font-weight: inherit;
 }
+
 a.no-color {
   color: inherit;
 }
+
 .link-muted {
   color: inherit;
   font-weight: bold;
@@ -75,39 +60,43 @@ hr {
   color: $color;
   background-color: $color;
 }
-
-input, button {
-  font-size: inherit;
-  font-family: inherit;
-}
-
-input:not([type="file"]) {
-  @include box-spacing;
-  border: 1px solid darken(lightgray, 10);
-  border-radius: 3px;
-}
-
-input.form-control {
-  margin: 0.5em 0;
-}
+// input {
+//   font-size: inherit;
+//   font-family: inherit;
+// }
+//
+// input:not([type="file"]) {
+//   @include box-spacing;
+//   border: 1px solid darken(lightgray, 10);
+//   border-radius: 3px;
+// }
+//
+// input.form-control {
+//   margin: 0.5em 0;
+// }
 
 button {
   cursor: pointer;
-}
-
-select {
-  font-family: inherit;
-  cursor: pointer;
   font-size: inherit;
-  @include box-spacing;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-image: none;
-  -webkit-appearance: none;
+  font-family: inherit;
+}
+// select {
+//   font-family: inherit;
+//   cursor: pointer;
+//   font-size: inherit;
+//   @include box-spacing;
+//   border: 1px solid #ccc;
+//   border-radius: 4px;
+//   background-image: none;
+//   -webkit-appearance: none;
+// }
+
+.text-muted-sm {
+  font-size: smaller;
+  color: gray;
 }
 
 .text-muted {
-  font-size: smaller;
   color: gray;
 }
 
@@ -122,12 +111,10 @@ select {
   align-items: center;
   justify-content: center;
 }
-
 // Required for emoji support
 .emoji {
-    display: inline-block;
+  display: inline-block;
 }
-
 // Styling of Markdown contents
 .md-content {
   img {
@@ -137,7 +124,42 @@ select {
     height: auto;
     @include drop-shadow($shadow-sm);
   }
+
   p {
     text-align: justify;
   }
+}
+// textarea {
+//   font-size: inherit;
+//   font-family: inherit;
+//   @include box-spacing(.5);
+//   border: 1px solid darken(lightgray, 10);
+//   border-radius: 3px;
+// }
+// Modals
+.modal {
+  position: fixed;
+  z-index: 5;
+  // stay on top
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 3em 1em;
+  box-sizing: border-box;
+  background-color: transparentize(black, .4);
+}
+
+.modal-content {
+  // enable scroll if needed
+  overflow: auto;
+  background: white;
+  margin: auto;
+  max-width: 30em;
+  max-height: 80vh;
+  padding: 3em;
+}
+
+.full-width {
+  width: 100%;
 }

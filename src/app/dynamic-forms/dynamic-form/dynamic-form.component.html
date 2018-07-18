@@ -1,0 +1,10 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <h1>{{ form.title }}</h1>
+
+  <div *ngFor="let section of form.sections">
+    <h2>{{ section.title }}</h2>
+    <app-question *ngFor="let question of section.questions" [question]="question" [formGroup]="formGroup"></app-question>
+  </div>
+
+  <button mat-raised-button color="primary" style="margin-top: 1em;" [disabled]="!formGroup.valid" type="submit">Envoyer</button>
+</form>

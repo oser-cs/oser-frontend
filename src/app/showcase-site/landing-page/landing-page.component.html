@@ -30,12 +30,15 @@
 
 <div id="actions" class="drop-shadow-md">
   <h2>Nous agissons pour plus d'égalité des chances</h2>
-  <ul class="action-bubbles">
+  <ul class="action-bubbles" *ngIf="actions; else loading">
     <div class="action-bubble" *ngFor="let action of actions">
       <img [src]="action.thumbnail" [alt]="action.title">
       <div class="label">{{ action.title | uppercase }}</div>
     </div>
   </ul>
+  <ng-template #loading>
+    <load-spinner></load-spinner>
+  </ng-template>
   <p>De la seconde à la Terminale, nous sommes présents sur tous les fronts pour accompagner le développement de nos lycéens.</p>
   <a type="button" routerLink="actions">En savoir plus</a>
 </div>
@@ -47,11 +50,16 @@
       <a routerLink="actualites" type="button">Tous les articles</a>
     </div>
   </div>
-  <ul *ngIf="articles && articles.length > 0; else empty" class="article-cards">
-    <app-article-card *ngFor="let article of articles" [article]="article"></app-article-card>
-  </ul>
-  <ng-template #empty>
-    <p class="text-center">Pas d'articles pour le moment.</p>
+  <div *ngIf="articles; else loading">
+    <ul *ngIf="articles.length > 0; else empty" class="article-cards">
+      <app-article-card *ngFor="let article of articles" [article]="article"></app-article-card>
+    </ul>
+    <ng-template #empty>
+      <p class="text-center">Pas d'articles pour le moment.</p>
+    </ng-template>
+  </div>
+  <ng-template #loading>
+    <load-spinner></load-spinner>
   </ng-template>
 </div>
 
@@ -71,11 +79,14 @@
         <a routerLink="contact">Devenir partenaire</a>
       </div>
     </div>
-    <div class="cta-well white">
+    <div class="cta-well white" *ngIf="partners; else loading">
       <div *ngFor="let partner of premiumPartners">
-        <app-partner [partner]="partner"></app-partner>
+        <app-partner-logo [partner]="partner"></app-partner-logo>
       </div>
     </div>
+    <ng-template #loading>
+      <load-spinner></load-spinner>
+    </ng-template>
   </div>
   <div class="cta" [ngClass]="{'has-items': otherPartners.length > 0}">
     <div class="cta-text">
@@ -89,10 +100,13 @@
         <a routerLink="nous-soutenir">Faire un don</a>
       </div>
     </div>
-    <div class="cta-well">
+    <div class="cta-well" *ngIf="partners; else loading">
       <div *ngFor="let partner of otherPartners">
-        <app-partner [partner]="partner"></app-partner>
+        <app-partner-logo [partner]="partner"></app-partner-logo>
       </div>
     </div>
+    <ng-template #loading>
+      <load-spinner></load-spinner>
+    </ng-template>
   </div>
 </div>

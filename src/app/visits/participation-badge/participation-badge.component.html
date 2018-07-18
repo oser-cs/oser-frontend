@@ -1,0 +1,14 @@
+<span [ngSwitch]="accepted">
+  <span *ngSwitchCase="true" class="badge badge-success badge-lg">
+    <i class="fa fa-ticket"></i> Tu <span [ngSwitch]="passed">
+      <span *ngSwitchCase="true">as participé</span>
+      <span *ngSwitchDefault>participes</span>
+    </span> à cette sortie.
+  </span>
+  <span *ngSwitchCase="false" class="badge badge-danger badge-lg">
+    <i class="fa fa-times"></i> Ton inscription a été rejetée.
+  </span>
+  <span *ngSwitchDefault class="badge badge-info badge-lg">
+    <i class="fa fa-info"></i> Ton inscription est en attente de validation par les organisateurs.
+  </span>
+</span>

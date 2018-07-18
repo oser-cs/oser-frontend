@@ -1,3 +1,6 @@
 <div class="page">
-  <app-document [slug]="'mentions-legales'"></app-document>
+  <markdown *ngIf="document; else loading" [data]="document"></markdown>
+  <ng-template #loading>
+    <load-spinner></load-spinner>
+  </ng-template>
 </div>

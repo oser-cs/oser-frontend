@@ -1,9 +1,9 @@
-// The file contents for the current environment will overwrite these during build.
-// The build system defaults to the dev environment which uses `environment.ts`, but if you do
-// `ng build --env=prod` then `environment.prod.ts` will be used instead.
-// The list of which env maps to which file can be found in `.angular-cli.json`.
-
+// Development environment (the default)
 export const environment = {
   production: false,
-  apiUrl: 'https://oser-backend-staging.herokuapp.com/api/',
+  showcaseApiUrl: 'https://oser-site-vitrine.herokuapp.com/api/',
+  apiUrl: 'https://oser-backend-dev.herokuapp.com/api/',
+  numArticles: 3,
+  donateUrl: "https://www.donnerenligne.fr/ouverture-sociale-pour-l-egalite-et-la-reussite/faire-un-don",
+  currentCampaignUrl: "https://www.helloasso.com/associations/ouverture-sociale-pour-l-egalite-et-la-reussite/collectes/good-morning-london-2018/widget-vignette",
 };

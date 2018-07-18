@@ -140,6 +140,7 @@
   .link-all {
     text-align: center;
     margin: 0;
+    margin-bottom: 1em;
 
     a {
       @include btn($color-dark-blue);

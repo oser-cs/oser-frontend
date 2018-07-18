@@ -1,7 +1,10 @@
 <div id="content">
   <div id="description">
     <div>
-      <app-document [slug]="'pourquoi-nous-soutenir'"></app-document>
+      <markdown *ngIf="document; else loading" [data]="document"></markdown>
+      <ng-template #loading>
+        <load-spinner></load-spinner>
+      </ng-template>
       <div id="cta" class="text-center">
         <i class="fa fa-angle-down fa-3x" (click)="goTo()" style="color: gray; cursor:pointer;"></i>
       </div>

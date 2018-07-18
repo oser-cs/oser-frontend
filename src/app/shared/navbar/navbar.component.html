@@ -1,0 +1,14 @@
+<div class="navbar drop-shadow-md">
+  <div class="top">
+    <a routerLink="/" class='logo-container'>
+      <img src='assets/img/oser-logo.png' alt='Logo' class='logo'>
+    </a>
+    <div class="nav-wide">
+      <app-nav-group [links]="links"></app-nav-group>
+    </div>
+    <i (click)="toggle()" class="hamburger fa fa-bars fa-2x"></i>
+  </div>
+  <div class="nav-narrow">
+    <app-nav-group-vertical *ngIf="visible" [links]="links"(click)="toggle()"></app-nav-group-vertical>
+  </div>
+</div>

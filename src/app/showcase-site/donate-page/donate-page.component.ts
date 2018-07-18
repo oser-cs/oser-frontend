@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import jump from 'jump.js';
-import * as config from './config.json';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-donate',
@@ -10,17 +11,24 @@ import * as config from './config.json';
 })
 export class DonatePageComponent implements OnInit {
 
-  config = <any>config;
   currentCampaignUrl: SafeUrl;
   donateUrl: SafeUrl;
+  document: string;
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(
+    private route: ActivatedRoute,
+    private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    this.donateUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.config.donateUrl);
-    if (this.config.currentCampaignUrl) {
-      this.currentCampaignUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.config.currentCampaignUrl);
+    this.document = this.route.snapshot.data['document'];
+    this.donateUrl = this.getSafe(environment.donateUrl);
+    if (environment.currentCampaignUrl) {
+      this.currentCampaignUrl = this.getSafe(environment.currentCampaignUrl);
     }
+  }
+
+  getSafe(url: string): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
   goTo() {
