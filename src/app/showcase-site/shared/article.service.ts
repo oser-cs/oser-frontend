@@ -35,7 +35,6 @@ export class ArticleService {
   list(): Observable<Article[]> {
     return this.http.get<Article>(this.baseUrl).pipe(
       map((articles: any) => articles.map(this.adapt)),
-      tap(resp => console.log('fetched articles'))
     );
   }
 
@@ -49,7 +48,6 @@ export class ArticleService {
     let url = this.baseUrl + `${slug}/`;
     return this.http.get<Article>(url).pipe(
       map((article: any) => this.adapt(article)),
-      tap(resp => console.log('fetched article'))
     );
   }
 }

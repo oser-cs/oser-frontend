@@ -32,7 +32,6 @@ export class ActionService {
   list(): Observable<Action[]> {
     return this.http.get<Action>(this.baseUrl).pipe(
       map((data: any) => data.map(this.adapt)),
-      tap(resp => console.log('fetched actions'))
     );
   }
 

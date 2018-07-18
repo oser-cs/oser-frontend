@@ -12,3 +12,4 @@ export * from './error.service';
 export * from './interfaces';
 export * from './api';
 export * from './address.model';
+export * from './loader.service';

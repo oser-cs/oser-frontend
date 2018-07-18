@@ -1,17 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Form, Question } from './form.model';
-
-
-interface AnswerPayload {
-  question: number;
-  answer: string;
-}
-
-export interface FormEntryPayload {
-  form: number;
-  answers: AnswerPayload[];
-}
+import { Form, Question, FormEntryPayload } from './form.model';
 
 
 @Injectable({
@@ -37,23 +26,15 @@ export class FormService {
       Object.assign(group, this.toRawFormGroup(section.questions));
     });
     const formGroup = new FormGroup(group);
-    console.log(formGroup);
     return formGroup;
   }
 
-  toAnswersPayload(form: Form, formGroup: FormGroup): FormEntryPayload {
+  setAnswers(form: Form, formGroup: FormGroup) {
     const value: any = formGroup.value;
-    const payload: FormEntryPayload = {
-      form: form.id,
-      answers: [],
-    };
-    // Add an answer for each question in the form group
-    Object.keys(value).forEach(questionId => {
-      payload.answers.push({
-        question: +questionId,
-        answer: String(value[questionId]),
+    form.sections.forEach(section => {
+      section.questions.forEach(question => {
+        question.answer = value[question.id];
       });
     });
-    return payload;
   }
 }
