@@ -4,6 +4,7 @@ import { AuthGuard, MapsAPIResolver } from 'app/core';
 
 import { MembersComponent } from './members.component';
 import { SessionsPageComponent } from './sessions-page';
+import { StudentHomeComponent } from './student-home/student-home.component';
 
 
 const routes: Routes = [
@@ -13,9 +14,9 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'accueil',
+        path: '',
         data: { title: 'Accueil' },
-        loadChildren: './students-home-page/students-home-page.module#StudentsHomePageModule',
+        component: StudentHomeComponent,
       },
       {
         path: 'seances',

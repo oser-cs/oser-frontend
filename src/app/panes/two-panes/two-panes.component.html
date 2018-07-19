@@ -1,15 +1,12 @@
-<h1 class="text-center">Mon espace membre</h1>
-
 <div class="panes">
   <div class="pane-left">
     <div class="pane-content">
-      <visits-overview></visits-overview>
+      <ng-content select="[pane=left]"></ng-content>
     </div>
   </div>
   <div class="pane-right">
     <div class="pane-content">
-      <projects-overview></projects-overview>
+      <ng-content select="[pane=right]"></ng-content>
     </div>
   </div>
 </div>
-<router-outlet></router-outlet>

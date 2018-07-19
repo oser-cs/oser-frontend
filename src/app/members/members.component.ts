@@ -19,7 +19,7 @@ export class MembersComponent implements OnInit {
   ngOnInit() { }
 
   navLinks: Link[] = [
-    { href: '/membres/accueil', text: 'Mon espace membre' },
+    { href: '/membres', text: 'Mon espace membre' },
     { href: '/membres/projets', text: 'Nos projets' },
     { href: '/membres/sorties', text: 'Nos sorties' },
     { href: '/', text: "Retourner à l'accueil" },
