@@ -17,4 +17,14 @@
     color: $color-dark-blue;
     border-color: $color-dark-blue;
   }
+
+  &.blue {
+    color: $color-purple-light;
+    &:hover {
+      &:hover {
+        color: $color-light-gray;
+        border-color: $color-light-gray;
+      }
+    }
+  }
 }

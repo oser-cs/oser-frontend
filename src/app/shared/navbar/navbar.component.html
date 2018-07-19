@@ -1,14 +1,17 @@
-<div class="navbar drop-shadow-md">
+<div class="navbar drop-shadow-md" [ngClass]="{'blue': theme === 'blue'}">
   <div class="top">
     <a routerLink="/" class='logo-container'>
-      <img src='assets/img/oser-logo.png' alt='Logo' class='logo'>
+      <span [ngSwitch]="theme">
+        <img *ngSwitchCase="'blue'" src='assets/img/oser-logo-white.png' alt='Logo' class='logo'>
+        <img *ngSwitchDefault src='assets/img/oser-logo.png' alt='Logo' class='logo'>
+      </span>
     </a>
     <div class="nav-wide">
-      <app-nav-group [links]="links"></app-nav-group>
+      <app-nav-group [theme]="theme" [links]="links"></app-nav-group>
     </div>
     <i (click)="toggle()" class="hamburger fa fa-bars fa-2x"></i>
   </div>
   <div class="nav-narrow">
-    <app-nav-group-vertical *ngIf="visible" [links]="links"(click)="toggle()"></app-nav-group-vertical>
+    <app-nav-group *ngIf="visible" [vertical]="true" [theme]="theme" [links]="links" (click)="toggle()"></app-nav-group>
   </div>
 </div>

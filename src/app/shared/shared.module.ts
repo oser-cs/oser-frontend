@@ -12,12 +12,8 @@ import { RevealComponent } from './reveal/reveal.component';
 import { FilterComponent } from './filter/filter.component';
 import { NavItemComponent } from './nav-item/nav-item.component';
 import { NavGroupComponent } from './nav-group/nav-group.component';
-import { NavGroupVerticalComponent } from './nav-group-vertical/nav-group-vertical.component';
-import { BlueNavbarComponent } from './blue-navbar/blue-navbar.component';
-import { BlueNavItemComponent} from './blue-nav-item/blue-nav-item.component';
-import { BlueNavGroupComponent} from './blue-nav-group/blue-nav-group.component';
-import { BlueNavGroupVerticalComponent } from './blue-nav-group-vertical/blue-nav-group-vertical.component';
 import { MailtoComponent } from './mailto/mailto.component';
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   imports: [
@@ -36,12 +32,8 @@ import { MailtoComponent } from './mailto/mailto.component';
     FilterComponent,
     NavItemComponent,
     NavGroupComponent,
-    NavGroupVerticalComponent,
-    BlueNavbarComponent,
-    BlueNavItemComponent,
-    BlueNavGroupComponent,
-    BlueNavGroupVerticalComponent,
     MailtoComponent,
+    LayoutComponent,
   ],
   exports: [
     NavbarComponent,
@@ -51,12 +43,8 @@ import { MailtoComponent } from './mailto/mailto.component';
     RevealComponent,
     FilterComponent,
     NavGroupComponent,
-    NavGroupVerticalComponent,
-    BlueNavbarComponent,
-    BlueNavItemComponent,
-    BlueNavGroupComponent,
-    BlueNavGroupVerticalComponent,
     MailtoComponent,
+    LayoutComponent,
   ]
 })
 export class SharedModule { }
