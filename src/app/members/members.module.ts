@@ -6,10 +6,10 @@ import { RouterModule } from '@angular/router';
 import { CoreModule } from 'app/core';
 import { SharedModule } from 'app/shared';
 import { Ng2EmojiModule } from 'ng2-emoji';
-import { ShowcaseMemberRoutingModule } from './showcase-member-routing.module';
+import { MembersRoutingModule } from './members-routing.module';
 
 // Components
-import { ShowcaseMemberComponent } from './showcase-member.component';
+import { MembersComponent } from './members.component';
 import { SessionsPageComponent } from './sessions-page';
 
 @NgModule({
@@ -19,14 +19,11 @@ import { SessionsPageComponent } from './sessions-page';
     CoreModule,
     SharedModule,
     Ng2EmojiModule.forRoot(),
-    ShowcaseMemberRoutingModule,
+    MembersRoutingModule,
   ],
   declarations: [
-    ShowcaseMemberComponent,
+    MembersComponent,
     SessionsPageComponent,
-  ],
-  exports: [
-    ShowcaseMemberComponent
   ]
 })
-export class ShowcaseMemberModule { }
+export class MembersModule { }

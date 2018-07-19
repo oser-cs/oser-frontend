@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard, MapsAPIResolver } from 'app/core';
 
-import { ShowcaseMemberComponent } from './showcase-member.component';
+import { MembersComponent } from './members.component';
 import { SessionsPageComponent } from './sessions-page';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: ShowcaseMemberComponent,
+    component: MembersComponent,
     canActivate: [AuthGuard],
     children: [
       {
@@ -21,9 +21,6 @@ const routes: Routes = [
         path: 'seances',
         data: { title: 'Séances' },
         component: SessionsPageComponent,
-        resolve: {
-        
-        },
       },
       {
         path: 'sorties',
@@ -41,4 +38,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ShowcaseMemberRoutingModule { }
+export class MembersRoutingModule { }

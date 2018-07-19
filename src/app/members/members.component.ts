@@ -4,11 +4,11 @@ import { AuthService } from 'app/core';
 import { Link } from 'app/shared';
 
 @Component({
-  selector: 'app-showcase-member',
-  templateUrl: './showcase-member.component.html',
-  styleUrls: ['./showcase-member.component.scss']
+  selector: 'app-members',
+  templateUrl: './members.component.html',
+  styleUrls: ['./members.component.scss']
 })
-export class ShowcaseMemberComponent implements OnInit {
+export class MembersComponent implements OnInit {
 
   constructor(
     private renderer: Renderer,
