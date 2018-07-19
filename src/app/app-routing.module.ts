@@ -10,13 +10,11 @@ const routes: Routes = [
     path: '',
     loadChildren: './showcase-site/showcase-site.module#ShowcaseSiteModule',
   },
-
   {
     path: 'membres',
     canActivate: [AuthGuard],
     loadChildren: './members/members.module#MembersModule',
   },
-
   {
     path: 'login',
     component: LoginComponent
