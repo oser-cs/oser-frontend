@@ -10,19 +10,17 @@ const routes: Routes = [
     path: '',
     loadChildren: './showcase-site/showcase-site.module#ShowcaseSiteModule',
   },
-  
   {
     path: 'membres',
     canActivate: [AuthGuard],
-    loadChildren: './showcase-member/showcase-member.module#ShowcaseMemberModule',
+    loadChildren: './members/members.module#MembersModule',
   },
-
   {
-    path: 'login', 
+    path: 'login',
     component: LoginComponent
   },
   {
-    path: 'signup', 
+    path: 'signup',
     component: SignupPageComponent
   },
   {

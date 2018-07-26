@@ -1,0 +1,42 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard, MapsAPIResolver } from 'app/core';
+
+import { MembersComponent } from './members.component';
+import { SessionsPageComponent } from './sessions-page';
+import { StudentHomeComponent } from './student-home/student-home.component';
+
+
+const routes: Routes = [
+  {
+    path: '',
+    component: MembersComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        data: { title: 'Accueil' },
+        component: StudentHomeComponent,
+      },
+      {
+        path: 'seances',
+        data: { title: 'Séances' },
+        component: SessionsPageComponent,
+      },
+      {
+        path: 'sorties',
+        loadChildren: './visits/visits.module#VisitsModule',
+      },
+      {
+        path: 'projets',
+        loadChildren: './projects/projects.module#ProjectsModule',
+      },
+    ]
+  },
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class MembersRoutingModule { }

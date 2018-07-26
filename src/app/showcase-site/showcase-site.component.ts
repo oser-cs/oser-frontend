@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer } from '@angular/core';
+import { Component } from '@angular/core';
 import { Link } from 'app/shared';
 
 @Component({
@@ -6,9 +6,7 @@ import { Link } from 'app/shared';
   templateUrl: './showcase-site.component.html',
   styleUrls: ['./showcase-site.component.scss']
 })
-export class ShowcaseSiteComponent implements OnInit {
-
-  constructor(private renderer: Renderer) { }
+export class ShowcaseSiteComponent {
 
   navLinks: Link[] = [
     { href: '/qui-sommes-nous', text: 'Qui sommes-nous ?' },
@@ -17,12 +15,5 @@ export class ShowcaseSiteComponent implements OnInit {
     { href: '/actualites', text: 'Actualités' },
     { href: '/contact', text: 'Contact' }
   ];
-
-  ngOnInit() { }
-
-  onDeactivate() {
-    // on page reload, scroll to top of window
-    this.renderer.setElementProperty(document.body, "scrollTop", 0);
-  }
 
 }

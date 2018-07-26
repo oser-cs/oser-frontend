@@ -11,6 +11,7 @@ export class NavbarComponent {
 
   visible = false;
   @Input() links: Link[] = [];
+  @Input() theme: string;
 
   constructor() { }
 

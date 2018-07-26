@@ -1,0 +1,7 @@
+<div id="layout">
+  <app-navbar [links]="links" [theme]="theme"></app-navbar>
+  <main class="content">
+    <router-outlet (deactivate)="onDeactivate()"></router-outlet>
+  </main>
+  <app-footer></app-footer>
+</div>
