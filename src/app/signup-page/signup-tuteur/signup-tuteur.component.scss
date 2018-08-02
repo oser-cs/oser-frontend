@@ -60,16 +60,15 @@
   width: 100%;
 }
 
-.btn {
-  margin-left: 37%;
-}
-
 .background {
   background-color: rgb(3, 180, 180);
 }
 
-.margin{
-  margin-top: 40px;
+.centerButton{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 .labelPersonalQuestions{

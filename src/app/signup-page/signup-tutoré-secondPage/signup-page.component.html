@@ -1,59 +1,7 @@
 <div class="content background">
   <form ngNoForm class="form-signin">
     <img class="logo" src="assets/img/oser-logo.png" alt=""/>
-    <h1 class="form-signin-heading">Inscription</h1>
-
-    <h3 for="email">Identifiants de connexion</h3>
-    <mat-form-field class="block">
-        <input matInput  name="email" placeholder="Adresse mail" required [(ngModel)]="student.email">
-    </mat-form-field>
-    <mat-form-field class="block">
-        <input matInput placeholder="Mot de passe" [type]="hide ? 'password' : 'text'" required [(ngModel)]="student.password">
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-    </mat-form-field>
-    <mat-form-field class="block">
-            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required #name="ngModel" [(ngModel)]="confirm">
-            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-    </mat-form-field>
-    <div *ngIf="(name.dirty || name.touched)">
-        <div *ngIf="!(student.password == confirm)"
-              class="alert alert-danger">Les mots de passe doivent être identiques</div>
-        <div *ngIf="(student.password == confirm)"
-              class="alert alert-valid">Les mots de passe sont identiques</div>
-    </div>
-
-    <h3 for="name">Informations Personnelles</h3>
-    <mat-form-field class="block">
-        <mat-select placeholder="Tu es..." required>
-            <mat-option value="option">un garçon</mat-option>
-            <mat-option value="option">une fille</mat-option>
-        </mat-select>
-    </mat-form-field>
-    <mat-form-field class="block">
-        <input matInput name="surname" placeholder="Nom" required [(ngModel)]="student.last_name">
-    </mat-form-field>
-    <mat-form-field class="block">
-        <input matInput name="name" placeholder="Prénom" required [(ngModel)]="student.first_name">
-    </mat-form-field>
-    <mat-form-field class="block">
-        <input matInput [matDatepicker]="picker" name="birth" placeholder="Date d'anniversaire" disable required [(ngModel)]="student.birth">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-    <mat-form-field class="block">
-        <input matInput name="telephone" placeholder="Telephone" required [(ngModel)]="student.phone">
-    </mat-form-field>
-
-    <h3 for="adress">Adresse</h3>
-    <mat-form-field class="block">
-        <input matInput name="street" placeholder="Adresse" required [(ngModel)]="student.adress.street">
-    </mat-form-field>
-    <mat-form-field class="block">
-        <input matInput name="town" placeholder="Ville" required [(ngModel)]="student.adress.town">
-    </mat-form-field>
-    <mat-form-field class="block">
-        <input matInput name="code" placeholder="Code Postal" required [(ngModel)]="student.adress.code">
-    </mat-form-field>
+    <h1 class="form-signin-heading">Inscription Partie 2/2</h1>
 
     <h3 for="school">Ecole</h3>
     <mat-form-field class="block">
@@ -84,23 +32,6 @@
             <mat-option value="option">Terminale L</mat-option>
             <mat-option value="option">Terminale S</mat-option>
         </mat-select>
-    </mat-form-field>
-
-    <h3 for="family">Personne à contacter en cas d'urgence</h3>
-    <mat-form-field class="block">
-        <input matInput name="nameparent" placeholder="Prénom" required [(ngModel)]="student.emergency_contact.nameparent">
-    </mat-form-field>
-    <mat-form-field class="block">
-        <input matInput name="surnameparent" placeholder="Nom" required [(ngModel)]="student.emergency_contact.surnameparent">
-    </mat-form-field>
-    <mat-form-field class="block">
-        <input matInput name="email_parent" placeholder="Email contact" required [(ngModel)]="student.emergency_contact.email_parent">
-    </mat-form-field>
-    <mat-form-field class="block">
-        <input matInput name="home_phone" placeholder="Téléphone fixe" required [(ngModel)]="student.emergency_contact.home_phone">
-    </mat-form-field>
-    <mat-form-field class="block">
-        <input matInput name="mobile_phone" placeholder="Téléphone mobile" required [(ngModel)]="student.emergency_contact.mobile_phone">
     </mat-form-field>
 
     <h3 for="information">Informations</h3>
@@ -371,6 +302,8 @@
         <textarea matInput></textarea>
     </mat-form-field>
     
-    <input class="btn btn-primary margin" type="button" value="S'inscrire" (click)="addStudent()"/>
+    <div class="centerButton">
+        <input class="btn btn-primary" type="button" value="S'inscrire" (click)="addStudent()"/>
+    </div>
   </form>
 </div>

@@ -29,10 +29,12 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Components
 import { AppComponent } from './app.component';
-import { SignupPageComponent } from './signup-page/signup-page.component';
+import { SignupTutoreOneComponent } from './signup-page/signup-tutoré-firstPage/signup-page.component';
+import { SignupTutoreTwoComponent } from './signup-page/signup-tutoré-secondPage/signup-page.component';
+import { SignupTuteurComponent } from './signup-page/signup-tuteur/signup-tuteur.component';
 
 // Services
-import { StudentService } from './signup-page/student.service';
+import { StudentService } from './signup-page/signup-tutoré-firstPage/student.service';
 import { MessageService } from './core';
 import { SplashComponent } from './splash/splash.component';
 
@@ -41,7 +43,9 @@ registerLocaleData(localeFR);
 @NgModule({
   declarations: [
     AppComponent,
-    SignupPageComponent,
+    SignupTutoreOneComponent,
+    SignupTutoreTwoComponent,
+    SignupTuteurComponent,
     SplashComponent,
   ],
   imports: [

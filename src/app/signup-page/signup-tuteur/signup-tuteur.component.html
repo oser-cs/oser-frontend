@@ -1,0 +1,44 @@
+<div class="content background">
+    <form ngNoForm class="form-signin">
+      <img class="logo" src="assets/img/oser-logo.png" alt=""/>
+      <h1 class="form-signin-heading">Inscription Tuteur</h1>
+  
+      <h3 for="email">Identifiants de connexion</h3>
+      <mat-form-field class="block">
+          <input matInput  name="emailTuteur" placeholder="Adresse mail" required>
+      </mat-form-field>
+      <mat-form-field class="block">
+          <input matInput placeholder="Mot de passe" [type]="hide ? 'password' : 'text'" required>
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </mat-form-field>
+      <mat-form-field class="block">
+          <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required #name="ngModel" [(ngModel)]="confirm">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </mat-form-field>
+      <div *ngIf="(name.dirty || name.touched)">
+          <div *ngIf="!(student.password == confirm)"
+                class="alert alert-danger">Les mots de passe doivent être identiques</div>
+          <div *ngIf="(student.password == confirm)"
+                class="alert alert-valid">Les mots de passe sont identiques</div>
+      </div>
+  
+      <h3 for="name">Informations Personnelles</h3>
+      <mat-form-field class="block">
+          <input matInput name="surnameTuteur" placeholder="Nom" required>
+      </mat-form-field>
+      <mat-form-field class="block">
+          <input matInput name="nameTuteur" placeholder="Prénom" required>
+      </mat-form-field>
+      <mat-form-field class="block">
+        <input matInput name="yearTuteur" placeholder="Année" required>
+      </mat-form-field>
+      <mat-form-field class="block">
+          <input matInput name="telephoneTuteur" placeholder="Telephone" required>
+      </mat-form-field>
+      
+      <div class="centerButton">
+          <input class="btn btn-primary" type="button" value="S'inscrire" (click)="addStudent()"/>
+      </div>
+    </form>
+  </div>
+  

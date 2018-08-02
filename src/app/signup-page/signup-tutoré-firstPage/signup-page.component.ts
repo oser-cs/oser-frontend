@@ -7,7 +7,7 @@ import { StudentService } from './student.service';
   templateUrl: './signup-page.component.html',
   styleUrls: ['./signup-page.component.scss']
 })
-export class SignupPageComponent implements OnInit {
+export class SignupTutoreOneComponent implements OnInit {
 
   hide = true;
 
