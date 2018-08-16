@@ -29,13 +29,9 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Components
 import { AppComponent } from './app.component';
-import { SignupTutoreOneComponent } from './signup-page/signup-tutoré-firstPage/signup-page.component';
-import { SignupTutoreTwoComponent } from './signup-page/signup-tutoré-secondPage/signup-page.component';
-import { SignupTuteurComponent } from './signup-page/signup-tuteur/signup-tuteur.component';
 import { LoginComponent } from './login/login.component';
 
 // Services
-import { StudentService } from './signup-page/signup-tutoré-firstPage/student.service';
 import { MessageService } from './core';
 import { SplashComponent } from './splash/splash.component';
 
@@ -44,9 +40,6 @@ registerLocaleData(localeFR);
 @NgModule({
   declarations: [
     AppComponent,
-    SignupTutoreOneComponent,
-    SignupTutoreTwoComponent,
-    SignupTuteurComponent,
     SplashComponent,
     LoginComponent,
   ],
@@ -71,7 +64,6 @@ registerLocaleData(localeFR);
     MatIconModule,
   ],
   providers: [
-    StudentService,
     MessageService,
     { provide: LOCALE_ID, useValue: 'fr' },
   ],
