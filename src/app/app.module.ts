@@ -32,6 +32,7 @@ import { AppComponent } from './app.component';
 import { SignupTutoreOneComponent } from './signup-page/signup-tutoré-firstPage/signup-page.component';
 import { SignupTutoreTwoComponent } from './signup-page/signup-tutoré-secondPage/signup-page.component';
 import { SignupTuteurComponent } from './signup-page/signup-tuteur/signup-tuteur.component';
+import { LoginComponent } from './login/login.component';
 
 // Services
 import { StudentService } from './signup-page/signup-tutoré-firstPage/student.service';
@@ -47,6 +48,7 @@ registerLocaleData(localeFR);
     SignupTutoreTwoComponent,
     SignupTuteurComponent,
     SplashComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
