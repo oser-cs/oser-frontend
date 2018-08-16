@@ -28,7 +28,6 @@ export class VisitDetailComponent implements OnInit {
   ngOnInit() {
     this.visit = this.route.snapshot.data['visit'];
     this.geocoder = this.route.snapshot.data['geocoder'];
-    console.log(this.geocoder);
     this.userId = this.auth.getUser().id;
     this.getParticipant();
     this.getAcceptedParticipants();

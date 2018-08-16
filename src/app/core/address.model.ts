@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { IAdapter } from './interfaces';
 
 export interface Country {
@@ -29,7 +30,9 @@ export class Address extends AddressSchema {
   }
 }
 
-
+@Injectable({
+  providedIn: 'root'
+})
 export class AddressAdapter implements IAdapter<Address> {
   adapt(data: any): Address {
     return new Address({
@@ -42,5 +45,15 @@ export class AddressAdapter implements IAdapter<Address> {
         code: data.country.code,
       },
     });
+  }
+
+  encode(obj: Address): any {
+    return {
+      line1: obj.line1,
+      line2: obj.line2,
+      post_code: obj.postCode,
+      city: obj.city,
+      country: obj.country,
+    }
   }
 }

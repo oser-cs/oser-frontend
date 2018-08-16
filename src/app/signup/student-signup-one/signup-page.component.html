@@ -1,79 +1,122 @@
-<div class="content background">
-  <form ngNoForm class="form-signin">
-    <img class="logo" src="assets/img/oser-logo.png" alt=""/>
-    <h1 class="form-signin-heading">Inscription</h1>
+<form [formGroup]="formGroup" (ngSubmit)="submit()" class="form-signin">
 
-    <h3 for="email">Identifiants de connexion</h3>
-    <mat-form-field class="block">
-        <input matInput  name="email" placeholder="Adresse mail" required [(ngModel)]="student.email">
-    </mat-form-field>
-    <mat-form-field class="block">
-        <input matInput placeholder="Mot de passe" [type]="hide ? 'password' : 'text'" required [(ngModel)]="student.password">
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-    </mat-form-field>
-    <mat-form-field class="block">
-        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required #name="ngModel" [(ngModel)]="confirm">
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-    </mat-form-field>
-    <div *ngIf="(name.dirty || name.touched)">
-        <div *ngIf="!(student.password == confirm)"
-              class="alert alert-danger">Les mots de passe doivent être identiques</div>
-        <div *ngIf="(student.password == confirm)"
-              class="alert alert-valid">Les mots de passe sont identiques</div>
-    </div>
+  <img class="logo" src="assets/img/oser-logo.png"/>
 
-    <h3 for="name">Informations Personnelles</h3>
-    <mat-form-field class="block">
-        <mat-select placeholder="Tu es..." required>
-            <mat-option value="option">un garçon</mat-option>
-            <mat-option value="option">une fille</mat-option>
-        </mat-select>
-    </mat-form-field>
-    <mat-form-field class="block">
-        <input matInput name="surname" placeholder="Nom" required [(ngModel)]="student.last_name">
-    </mat-form-field>
-    <mat-form-field class="block">
-        <input matInput name="name" placeholder="Prénom" required [(ngModel)]="student.first_name">
-    </mat-form-field>
-    <mat-form-field class="block">
-        <input matInput [matDatepicker]="picker" name="birth" placeholder="Date d'anniversaire" disable required [(ngModel)]="student.birth">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-    <mat-form-field class="block">
-        <input matInput name="telephone" placeholder="Telephone" required [(ngModel)]="student.phone">
+  <h1 class="form-signin-heading">Inscription</h1>
+
+  <h3>Identifiants de connexion</h3>
+
+  <!-- Email -->
+  <mat-form-field class="full-width">
+      <input matInput type="email" formControlName="email" placeholder="Adresse email" required>
+  </mat-form-field>
+
+  <!-- Password -->
+  <mat-form-field class="full-width">
+    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" placeholder="Mot de passe" required>
+    <button mat-icon-button matSuffix (click)="hide = !hide">
+      <mat-icon>
+        {{ hide ? 'visibility' : 'visibility_off' }}
+      </mat-icon>
+    </button>
+  </mat-form-field>
+
+  <!-- Confirm password -->
+  <mat-form-field class="full-width">
+    <input matInput [type]="hide ? 'password' : 'text'" formControlName="passwordConfirm" placeholder="Mot de passe (à nouveau)" required>
+    <button mat-icon-button matSuffix (click)="hide = !hide">
+      <mat-icon>
+        {{ hide ? 'visibility' : 'visibility_off' }}
+      </mat-icon>
+    </button>
+  </mat-form-field>
+
+  <h3>Informations personnelles</h3>
+
+  <!-- Gender -->
+  <mat-form-field class="full-width">
+    <mat-select formControlName="gender" placeholder="Tu es…" required>
+      <mat-option value="M">Un garçon</mat-option>
+      <mat-option value="F">Une fille</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- First name -->
+  <mat-form-field class="full-width">
+    <input matInput type="text" formControlName="firstName" placeholder="Prénom" required>
+  </mat-form-field>
+
+  <!-- Last name -->
+  <mat-form-field class="full-width">
+    <input matInput type="text" formControlName="lastName" placeholder="Nom" required>
+  </mat-form-field>
+
+  <!-- Date of birth -->
+  <mat-form-field class="full-width">
+      <input matInput type="date" [matDatepicker]="picker" formControlName="dateOfBirth" placeholder="Date de naissance" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <!-- Phone -->
+  <mat-form-field class="full-width">
+    <input matInput type="tel" formControlName="phone" placeholder="Numéro de téléphone" required>
+  </mat-form-field>
+
+  <h3>Adresse postale</h3>
+
+  <div formGroupName="address">
+    <!-- Line 1 -->
+    <mat-form-field class="full-width">
+      <input matInput type="text" formControlName="line1" placeholder="Rue, numéro, voie" required>
     </mat-form-field>
 
-    <h3 for="adress">Adresse</h3>
-    <mat-form-field class="block">
-        <input matInput name="street" placeholder="Adresse" required [(ngModel)]="student.adress.street">
-    </mat-form-field>
-    <mat-form-field class="block">
-        <input matInput name="town" placeholder="Ville" required [(ngModel)]="student.adress.town">
-    </mat-form-field>
-    <mat-form-field class="block">
-        <input matInput name="code" placeholder="Code Postal" required [(ngModel)]="student.adress.code">
+    <!-- Line 2 -->
+    <mat-form-field class="full-width">
+      <input matInput type="text" formControlName="line2" placeholder="Bâtiment, boite postale, lieu-dit">
     </mat-form-field>
 
-    <h3 for="family">Personne à contacter en cas d'urgence</h3>
-    <mat-form-field class="block">
-        <input matInput name="nameparent" placeholder="Prénom" required [(ngModel)]="student.emergency_contact.nameparent">
+    <!-- Post code -->
+    <mat-form-field class="full-width">
+      <input matInput type="text" formControlName="postCode" placeholder="Code postal" required>
     </mat-form-field>
-    <mat-form-field class="block">
-        <input matInput name="surnameparent" placeholder="Nom" required [(ngModel)]="student.emergency_contact.surnameparent">
+
+    <!-- City -->
+    <mat-form-field class="full-width">
+      <input matInput type="text" formControlName="city" placeholder="Ville" required>
     </mat-form-field>
-    <mat-form-field class="block">
-        <input matInput name="email_parent" placeholder="Email contact" required [(ngModel)]="student.emergency_contact.email_parent">
+  </div>
+
+  <h3>Personne à contacter en cas d'urgence</h3>
+
+  <div formGroupName="emergencyContact">
+    <!-- First name -->
+    <mat-form-field class="full-width">
+      <input matInput type="text" formControlName="firstName" placeholder="Prénom" required>
     </mat-form-field>
-    <mat-form-field class="block">
-        <input matInput name="home_phone" placeholder="Téléphone fixe" required [(ngModel)]="student.emergency_contact.home_phone">
+
+    <!-- Last name -->
+    <mat-form-field class="full-width">
+      <input matInput type="text" formControlName="lastName" placeholder="Nom" required>
     </mat-form-field>
-    <mat-form-field class="block">
-        <input matInput name="mobile_phone" placeholder="Téléphone mobile" required [(ngModel)]="student.emergency_contact.mobile_phone">
+
+    <!-- Email address -->
+    <mat-form-field class="full-width">
+        <input matInput type="email" formControlName="email" placeholder="Adresse email" required>
     </mat-form-field>
-    
-    <div class="centerButton">
-        <input class="btn btn-primary" type="button" value="S'inscrire" routerLink="/signupTutoréTwo"/>
-    </div>
-  </form>
-</div>
+
+    <!-- Mobile phone -->
+    <mat-form-field class="full-width">
+      <input matInput type="tel" formControlName="mobilePhone" placeholder="Téléphone portable">
+    </mat-form-field>
+
+    <!-- Home phone -->
+    <mat-form-field class="full-width">
+      <input matInput type="tel" formControlName="homePhone" placeholder="Téléphone fixe">
+    </mat-form-field>
+  </div>
+
+  <div class="text-center">
+    <button mat-raised-button color="primary" [disabled]="!formGroup.valid">Suivant</button>
+  </div>
+</form>
