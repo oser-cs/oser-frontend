@@ -8,13 +8,10 @@ import { SharedModule } from 'app/shared';
 import { PanesModule } from 'app/panes';
 import { Ng2EmojiModule } from 'ng2-emoji';
 import { MembersRoutingModule } from './members-routing.module';
-
+import { StudentHomeModule } from './student-home/student-home.module';
 // Components
 import { MembersComponent } from './members.component';
 import { SessionsPageComponent } from './sessions-page';
-import { StudentHomeComponent } from './student-home/student-home.component';
-import { ProjectsOverviewComponent } from './projects-overview/projects-overview.component';
-import { VisitsOverviewComponent } from './visits-overview/visits-overview.component';
 
 
 @NgModule({
@@ -26,13 +23,11 @@ import { VisitsOverviewComponent } from './visits-overview/visits-overview.compo
     SharedModule,
     Ng2EmojiModule.forRoot(),
     MembersRoutingModule,
+    StudentHomeModule,
   ],
   declarations: [
     MembersComponent,
     SessionsPageComponent,
-    StudentHomeComponent,
-    ProjectsOverviewComponent,
-    VisitsOverviewComponent,
   ]
 })
 export class MembersModule { }
