@@ -29,3 +29,8 @@
   background: lighten($color-purple-light, 15);
   @include drop-shadow($shadow-sm, $inset: true);
 }
+
+
+.container {
+  @include margin-page;
+}
