@@ -1,6 +1,6 @@
 # oser-frontend
 
-Frontend du site d'Ouverture Sociale pour l'Egalité et la Réussite, développé avec Angular 4.
+Frontend du site d'Ouverture Sociale pour l'Egalité et la Réussite, développé avec Angular 6.
 
 ## Installation
 
@@ -25,14 +25,12 @@ oser-frontend $ npm install
 - Lancez le serveur de développement (`-o` ouvrira l'application à la fin du build).
 
 ```
-oser-frontend $ ng serve -o
+oser-frontend $ ng serve -c local
 ```
 
-La commande ci-dessous liera le front à l'API de développement (déployée sur https://oser-backend-dev.herokuapp.com). Pour utiliser un backend local (qui tourne sur votre machine), spécifiez la configuration avec `-c local`:
+> Le flag `-c` correspond à la configuration utilisée. La valeur `local` signifie que l'environnement "local" sera utilisé, comme défini dans le fichier `environments/environment.local.ts`.
 
-```
-oser-frontend $ ng serve -o -c local
-```
+Le site sera alors disponible à l'adresse http://localhost:4200.
 
 ## En cas d'erreur…
 
@@ -43,7 +41,13 @@ npm WARN: No repository field...
 
 Si vous obtenez ce message après l'étape 2, il est probable que vous ne soyez pas dans le bon dossier. Assurez-vous d'être dans le dossier du projet (`oser-frontend`), là où se situe un fichier `package.json` (que npm utilise pour lire et installer les dépendances).
 
-## Déploiment
+## CI/CD
+
+Une pipeline CI/CD (Continuous Integration/Continuous Delivery) existe pour assurer le test et le déploiement automatique lors d'un `git push`. Celle-ci est réalisée avec TravisCI.
+
+Pour plus d'information,s consulter le `.travis.yml` et la [documentation TravisCI](https://docs.travis-ci.com).
+
+## Déploiement
 
 Actuellement, le frontend est déployé sur Heroku. Il y a 2 applications, chacune reliée à une branche de ce repo :
 

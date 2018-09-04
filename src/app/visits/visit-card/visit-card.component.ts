@@ -26,7 +26,6 @@ export class VisitCardComponent implements OnInit {
     this.participant$.subscribe(
       (participant: Participant) => {
         this.participant = participant;
-        console.log(participant);
       }
     );
   }

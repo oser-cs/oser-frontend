@@ -28,7 +28,6 @@ export class AppComponent implements OnInit, OnDestroy {
     );
     this.sub.add(
       this.loaderService.loading().subscribe(loading => {
-        console.log(loading);
         this.active = !loading;
       })
     );

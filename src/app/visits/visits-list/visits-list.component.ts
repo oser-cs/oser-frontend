@@ -61,7 +61,6 @@ export class VisitsListComponent implements OnInit {
       map(ps => ps.filter(p => p.visitId === visit.id)),
       map(ps => ps.filter(p => p.user.id === this.userId)),
       map(ps => ps[0]),
-      tap(console.log),
     );
   }
 
