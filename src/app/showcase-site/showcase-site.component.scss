@@ -12,3 +12,9 @@ https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/
 .content {
   flex: 1;
 }
+
+.login-link {
+  display: block;
+  margin: auto 0;
+  padding: 1em 0;
+}
