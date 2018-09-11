@@ -8,6 +8,7 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatButtonModule,
+  MatSnackBarModule,
 } from '@angular/material';
 
 import { SignupRoutingModule } from './signup-routing.module';
@@ -27,6 +28,7 @@ import { StudentSignupComponent } from './student-signup/student-signup.componen
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatSnackBarModule,
   ],
 })
 export class SignupModule { }

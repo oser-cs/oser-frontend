@@ -7,23 +7,21 @@
 
     <messages></messages>
 
-    <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+    <form [formGroup]="formGroup" (ngSubmit)="login()">
 
       <!-- Email field -->
-      <div class="form-group" [ngClass]="{'has-error': f.submitted && !email.valid}">
-        <input type="email" class="form-control block" name="email" [(ngModel)]="model.email" #email="ngModel" required placeholder="Adresse email">
-        <p *ngIf="f.submitted && !email.valid" class="alert alert-danger">Ce champ est obligatoire</p>
-      </div>
+      <mat-form-field class="block">
+        <input matInput type="email" formControlName="email" required placeholder="Adresse email" autofocus>
+      </mat-form-field>
 
       <!-- Password field -->
-      <div class="form-group" [ngClass]="{'has-error': f.submitted && !password.valid}">
-        <input type="password" class="form-control block" name="password" [(ngModel)]="model.password" #password="ngModel" required placeholder="Mot de passe">
-        <div *ngIf="f.submitted && !password.valid" class="alert alert-danger">Ce champ est obligatoire</div>
-      </div>
+      <mat-form-field class="block">
+        <input matInput type="password" formControlName="password" required placeholder="Mot de passe">
+      </mat-form-field>
 
       <!-- Submit -->
       <div class="text-center">
-        <button [disabled]="loading" id="login-btn" class="btn-primary">Se connecter</button>
+        <button mat-raised-button color="primary" [disabled]="!formGroup.valid || loading" id="login-btn">Se connecter</button>
         <p *ngIf="loading"><i class="fa fa-spinner fa-pulse"></i></p>
       </div>
     </form>

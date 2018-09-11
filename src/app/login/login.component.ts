@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 import { AuthService, MessageService } from 'app/core';
+import { of } from 'rxjs';
+import { filter, map, tap, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -9,15 +13,16 @@ import { AuthService, MessageService } from 'app/core';
 })
 export class LoginComponent implements OnInit {
 
-  model: any = {};
   loading: boolean = false;
   defaultRedirectUrl: string = '/';
+  formGroup: FormGroup;
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private auth: AuthService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit() {
@@ -27,25 +32,33 @@ export class LoginComponent implements OnInit {
     if (this.auth.fromUnauthorized) {
       this.messageService.error("Oops ! Vous n'avez pas les permissions requises pour accéder à cette page.");
     }
+    this.createForm();
+  }
+
+  private createForm() {
+    this.formGroup = this.fb.group({
+      email: '',
+      password: '',
+    });
   }
 
   login() {
     this.loading = true;
+    const { email, password } = this.formGroup.value;
     this.messageService.clear();
-    this.auth.login(this.model.email, this.model.password).subscribe(
-      () => {
-        this.loading = false;
-        if (this.auth.isLoggedIn) {
-          // Get redirect URL from the auth service, provided by the auth guard.
-          let redirect = this.auth.redirectUrl ? this.auth.redirectUrl : this.defaultRedirectUrl;
-          this.router.navigate([redirect]);
-        }
-      },
-      error => {
-        this.loading = false;
+    this.auth.login(email, password).pipe(
+      catchError(() => {
         this.messageService.error("L'identifiant ou le mot de passe est incorrect.");
-      }
-    );
+        return of(false);
+      }),
+      tap(() => this.loading = false),
+      // Only continue if no error
+      filter(Boolean),
+      // Get redirect URL from the auth service, provided by the auth guard.
+      map(() =>this.auth.redirectUrl ? this.auth.redirectUrl : this.defaultRedirectUrl),
+      tap(() => this.snackBar.open('Connexion réussie !', 'OK', { duration: 2000 })),
+      tap((redirectUrl: string) => this.router.navigate([redirectUrl])),
+    ).subscribe();
   }
 
 }
