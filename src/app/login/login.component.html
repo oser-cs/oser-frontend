@@ -1,4 +1,4 @@
-<div class="content background">
+<div class="content">
   <div class="login-form">
 
     <img class="logo" src="assets/img/oser-logo.png" alt="">
@@ -11,7 +11,7 @@
 
       <!-- Email field -->
       <div class="form-group" [ngClass]="{'has-error': f.submitted && !email.valid}">
-        <input type="email" class="form-control block" name="email" [(ngModel)]="model.email" #email="ngModel" required placeholder="Adresse électronique">
+        <input type="email" class="form-control block" name="email" [(ngModel)]="model.email" #email="ngModel" required placeholder="Adresse email">
         <p *ngIf="f.submitted && !email.valid" class="alert alert-danger">Ce champ est obligatoire</p>
       </div>
 
@@ -28,9 +28,9 @@
       </div>
     </form>
 
-    <p class=" text-center text-muted">
+    <p class="text-center">
       Ou crée ton
-      <a routerLink="/inscription/tutore">compte tutoré</a>
+      <a routerLink="/inscription">compte tutoré</a>
     </p>
   </div>
 </div>

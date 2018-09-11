@@ -4,14 +4,14 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  background-color: $color-light-blue;
+  background-color: $color-light-gray;
 }
 
 form {
   width: 100%;
   max-width: 40em;
   background: white;
-  border: 1px solid $color-light-gray;
+  border: 1px solid lightgray;
   border-radius: 4px;
   padding: 3em;
   margin: 3em;

@@ -7,20 +7,15 @@ import { RouterModule } from '@angular/router';
 import {
   MatFormFieldModule,
   MatInputModule,
-  MatSelectModule,
   MatButtonModule,
-  MatRadioModule,
-  MatDatepickerModule,
-  MatNativeDateModule,
-  MatIconModule,
 } from '@angular/material';
 
-import { SignupTutoreOneComponent } from './student-signup-one/signup-page.component';
 import { SignupRoutingModule } from './signup-routing.module';
+import { StudentSignupComponent } from './student-signup/student-signup.component';
 
 @NgModule({
   declarations: [
-    SignupTutoreOneComponent,
+    StudentSignupComponent,
   ],
   imports: [
     CommonModule,
@@ -31,12 +26,7 @@ import { SignupRoutingModule } from './signup-routing.module';
     // Material
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule,
     MatButtonModule,
-    MatRadioModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatIconModule,
   ],
 })
 export class SignupModule { }
