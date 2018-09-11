@@ -8,6 +8,7 @@ export class UserAdapter {
       firstName: item.first_name,
       lastName: item.last_name,
       email: item.email,
+      phone: item.phone_number,
     })
   }
 }
