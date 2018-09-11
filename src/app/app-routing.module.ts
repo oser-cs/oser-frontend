@@ -26,7 +26,7 @@ const routes: Routes = [
     loadChildren: './projects/projects.module#ProjectsModule',
   },
   {
-    path: 'login',
+    path: 'connexion',
     component: LoginComponent,
   },
   {

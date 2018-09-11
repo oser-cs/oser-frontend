@@ -16,15 +16,11 @@ import {
 } from '@angular/material';
 
 import { SignupTutoreOneComponent } from './student-signup-one/signup-page.component';
-import { SignupTutoreTwoComponent } from './student-signup-two/signup-page.component';
-import { SignupTuteurComponent } from './tutor-signup/signup-tuteur.component';
 import { SignupRoutingModule } from './signup-routing.module';
 
 @NgModule({
   declarations: [
     SignupTutoreOneComponent,
-    SignupTutoreTwoComponent,
-    SignupTuteurComponent,
   ],
   imports: [
     CommonModule,

@@ -1,24 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Address, AddressAdapter } from 'app/core';
 
-interface EmergencyContact {
-  firstName: string;
-  lastName: string;
-  email: string;
-  homePhone: string;
-  mobilePhone: string;
-}
-
 class RegistrationSchema {
   email: string;
   firstName: string;
   lastName: string;
-  dateOfBirth: Date;
-  phone?: string;
-  school: string;
-  grade: string;
-  address: Address;
-  emergencyContact: EmergencyContact;
 }
 
 export class Registration extends RegistrationSchema {
@@ -41,11 +27,6 @@ export class RegistrationAdapter {
       email: obj.email,
       first_name: obj.firstName,
       last_name: obj.lastName,
-      date_of_birth: obj.dateOfBirth.toISOString(),
-      phone: obj.phone,
-      school: obj.school,
-      grade: obj.grade,
-      address: this.addressAdapter.encode(obj.address),
     }
   }
 }
