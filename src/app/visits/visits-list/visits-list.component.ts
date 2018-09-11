@@ -26,7 +26,7 @@ export class VisitsListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userId = this.auth.getUser().id;
+    this.userId = this.auth.getUserSnapshot().id;
     this.visits = this.route.snapshot.data['visits'];
     const participations = [].concat(...this.visits.map(v => v.participants));
     this.participations$.next(participations);
@@ -61,7 +61,6 @@ export class VisitsListComponent implements OnInit {
       map(ps => ps.filter(p => p.visitId === visit.id)),
       map(ps => ps.filter(p => p.user.id === this.userId)),
       map(ps => ps[0]),
-      tap(console.log),
     );
   }
 

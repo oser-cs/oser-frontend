@@ -1,0 +1,5 @@
+<a *ngIf="!user" routerLink="/connexion">Connexion</a>
+<!-- TODO: redirect to member site -->
+<a *ngIf="user" routerLink="/">
+  <mat-icon inline="true">person</mat-icon> {{ user.fullName }}
+</a>

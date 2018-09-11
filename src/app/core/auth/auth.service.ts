@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import { environment } from 'environments/environment';
 import { User } from './models';
@@ -27,14 +27,20 @@ export class AuthService {
   private userAdapter = new UserAdapter();
   private user = new StoredUser();
   private token = new StoredToken();
+  private user$: BehaviorSubject<User>;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {
+    const userData = this.getUserSnapshot();
+    const initialUser = userData ? new User(userData) : null;
+    this.user$ = new BehaviorSubject(initialUser);
+  }
 
   login(username: string, password: string) {
     return this.http.post<any>(this.loginUrl, { username: username, password: password }).pipe(
       tap(data => this.token.set(data.token)),
       map(data => this.userAdapter.adapt(data.user)),
       tap((user: User) => this.user.set(user)),
+      tap((user: User) => this.user$.next(user)),
       map(() => true),
     );
   }
@@ -43,8 +49,12 @@ export class AuthService {
     this.router.navigate(['/connexion']);
   }
 
-  getUser(): User {
+  getUserSnapshot(): User {
     return this.user.get();
+  }
+
+  getUser(): Observable<User> {
+    return this.user$.asObservable();
   }
 
   getToken(): string {
@@ -66,5 +76,6 @@ export class AuthService {
   logout() {
     this.user.destroy();
     this.token.destroy();
+    this.user$.next(null);
   }
 }
