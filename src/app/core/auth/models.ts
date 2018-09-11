@@ -3,7 +3,7 @@ export interface UserInfo {
   email?: string;
   firstName?: string;
   lastName?: string;
-  phone?: string;
+  phoneNumber?: string;
 }
 
 export class User {
@@ -11,14 +11,14 @@ export class User {
   email: string;
   firstName: string;
   lastName: string;
-  phone: string;
+  phoneNumber: string;
 
   constructor(opts: UserInfo) {
     this.id = opts.id;
     this.email = opts.email;
     this.firstName = opts.firstName;
     this.lastName = opts.lastName;
-    this.phone = opts.phone;
+    this.phoneNumber = opts.phoneNumber;
   }
 
   get fullName(): string {
