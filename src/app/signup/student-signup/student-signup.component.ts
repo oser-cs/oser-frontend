@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Registration, RegistrationService, PasswordErrorStateMatcher } from '../core';
+import { AuthService } from 'app/core';
 
 
 @Component({
@@ -22,6 +24,8 @@ export class StudentSignupComponent implements OnInit {
     private registrationService: RegistrationService,
     private formBuilder: FormBuilder,
     private router: Router,
+    private auth: AuthService,
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit() {
@@ -48,6 +52,12 @@ export class StudentSignupComponent implements OnInit {
     const registration: Registration = this.formGroup.value;
     const password: string = this.formGroup.controls.password.value;
     this.registrationService.create(registration, password).pipe(
+      tap(() => this.auth.login(registration.email, password)),
+      tap(() => this.snackBar.open(
+        `Ton compte a été créé ! Tu es maintenant connecté.`,
+        'OK',
+        { duration: 3000 },
+      )),
       tap(() => this.router.navigate(['/'])),
     ).subscribe();
   }

@@ -53,8 +53,10 @@ i.hamburger {
   flex: 1;
   @include media-md {
     display: flex;
+    justify-content: space-between;
   }
 }
+
 .nav-narrow {
   display: block;
   @include media-md() {
