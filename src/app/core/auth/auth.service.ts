@@ -40,7 +40,7 @@ export class AuthService {
   }
 
   redirectLogin() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/connexion']);
   }
 
   getUser(): User {

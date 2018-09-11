@@ -16,8 +16,7 @@ export class RegistrationService {
   create(registration: Registration, password: string): Observable<any> {
     const body: any = this.adapter.encode(registration);
     body.password = password;
-    return of(body);
-    // return this.http.post(this.baseUrl, body);
+    return this.http.post(this.baseUrl, body);
   }
 
 }

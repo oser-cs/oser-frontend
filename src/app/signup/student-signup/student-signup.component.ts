@@ -46,10 +46,9 @@ export class StudentSignupComponent implements OnInit {
 
   submit() {
     const registration: Registration = this.formGroup.value;
-    console.log(registration);
     const password: string = this.formGroup.controls.password.value;
     this.registrationService.create(registration, password).pipe(
-      tap(() => this.router.navigate('/')),
+      tap(() => this.router.navigate(['/'])),
     ).subscribe();
   }
 }
