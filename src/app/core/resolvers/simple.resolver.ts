@@ -3,8 +3,6 @@ import { Observable, of } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Resolve } from '@angular/router';
-import { environment } from 'environments/environment';
-
 
 @Injectable()
 export abstract class SimpleListResolver<T> implements Resolve<T[]> {

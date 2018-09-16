@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Article } from './article.model';
 import { environment } from 'environments/environment';
 import { ObjectListResolver, ObjectResolver } from 'app/core';

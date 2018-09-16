@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
 import { Resolve } from '@angular/router';
-import { Observable, BehaviorSubject, from } from 'rxjs';
-import { filter, map, mergeMap } from 'rxjs/operators';
+import { Observable, from } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 declare const google: any;
 
