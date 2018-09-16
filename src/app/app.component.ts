@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Router, 
-  Event as RouterEvent, 
+import { Router,
+  Event as RouterEvent,
   NavigationStart,
   NavigationEnd,
   NavigationCancel,
-  NavigationError , 
+  NavigationError ,
   ActivatedRoute,  } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { filter, map, mergeMap } from 'rxjs/operators';
@@ -17,9 +17,8 @@ import { LoaderService } from './core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  
-  loading = true;
-  active = false;
+
+  loading = false;
   sub = new Subscription();
 
   constructor(
@@ -29,39 +28,14 @@ export class AppComponent implements OnInit, OnDestroy {
     private loaderService: LoaderService,
   ) { }
 
-  // Shows and hides the loading spinner during RouterEvent changes
-  navigationInterceptor(event: RouterEvent): void {
-    if (event instanceof NavigationStart) {
-      this.loading = true
-    }
-    if (event instanceof NavigationEnd) {
-      this.loading = false
-    }
-
-    // Set loading state to false in both of the below events to hide the spinner in case a request fails
-    if (event instanceof NavigationCancel) {
-      this.loading = false
-    }
-    if (event instanceof NavigationError) {
-      this.loading = false
-    }
-  }
-
   ngOnInit() {
     this.sub.add(
       this.title$().subscribe(title => this.titleService.setTitle(title))
     );
     this.sub.add(
       this.loaderService.loading().subscribe(loading => {
-        this.active = !loading;
+        this.loading = loading;
       })
-    );
-  }
-
-  private active$(): Observable<boolean> {
-    return this.router.events.pipe(
-      filter(event => event instanceof NavigationStart || event instanceof NavigationEnd),
-      map(event => event instanceof NavigationEnd),
     );
   }
 

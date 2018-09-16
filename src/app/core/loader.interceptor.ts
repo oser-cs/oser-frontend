@@ -11,9 +11,9 @@ export class LoaderInterceptor implements HttpInterceptor {
   constructor(private loaderService: LoaderService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this.loaderService.loading$.next(true);
+    // this.loaderService.loading$.next(true);
     return next.handle(request).pipe(
-      tap(() => this.loaderService.loading$.next(false)),
+      // tap(() => this.loaderService.loading$.next(false)),
     );
   }
 

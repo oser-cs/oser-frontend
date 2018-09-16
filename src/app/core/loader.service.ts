@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
+import { Router, NavigationStart, NavigationEnd, NavigationCancel } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { distinctUntilChanged } from 'rxjs/operators';
+import { map, debounceTime, tap, filter } from 'rxjs/operators';
 
 
 @Injectable()
 export class LoaderService {
 
-  public loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  constructor(private router: Router) {}
 
   public loading(): Observable<boolean> {
-    return this.loading$.asObservable().pipe(
-      // Prevent having multiple false's or multiple true's
-      distinctUntilChanged(),
+    return this.router.events.pipe(
+      filter(e => e instanceof NavigationStart || e instanceof NavigationEnd || e instanceof NavigationCancel),
+      debounceTime(100),  // don't mark fast navigation changes as navigating
+      map((e) => e instanceof NavigationStart),
     );
   }
 
