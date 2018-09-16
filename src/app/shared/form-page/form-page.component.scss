@@ -17,7 +17,10 @@
   background: white;
   border: 1px solid lightgray;
   border-radius: 8px;
-  padding: 2em 3em;
+  padding: 1em;
+  @include media-xs {
+    padding: 2em 3em;
+  }
   box-sizing: border-box;
 }
 
