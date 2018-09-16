@@ -1,25 +1,6 @@
 @import '~sass/variables';
 @import '~sass/mixins';
 
-.content {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  height: stretch;
-  background: $color-light-gray;
-}
-
-.login-form {
-  width: 100%;
-  max-width: 30em;
-  background: white;
-  border: 1px solid lightgray;
-  border-radius: 8px;
-  padding: 3em;
-  margin: 3em;
-  box-sizing: border-box;
-}
-
 .logo {
   width: 100%;
   max-width: 20em;

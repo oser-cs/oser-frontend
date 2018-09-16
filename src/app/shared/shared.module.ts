@@ -18,6 +18,7 @@ import { NavGroupVerticalComponent } from './nav-group-vertical/nav-group-vertic
 import { BlueNavbarComponent } from './blue_navbar/blue_navbar.component';
 import { MailtoComponent } from './mailto/mailto.component';
 import { LoginButtonComponent } from './login-button/login-button.component';
+import { FormPageComponent } from './form-page/form-page.component';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { LoginButtonComponent } from './login-button/login-button.component';
     BlueNavbarComponent,
     MailtoComponent,
     LoginButtonComponent,
+    FormPageComponent,
   ],
   exports: [
     NavbarComponent,
@@ -52,6 +54,7 @@ import { LoginButtonComponent } from './login-button/login-button.component';
     BlueNavbarComponent,
     MailtoComponent,
     LoginButtonComponent,
+    FormPageComponent,
   ]
 })
 export class SharedModule { }

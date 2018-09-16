@@ -11,6 +11,7 @@ import {
   MatSnackBarModule,
 } from '@angular/material';
 
+import { SharedModule } from 'app/shared';
 import { SignupRoutingModule } from './signup-routing.module';
 import { StudentSignupComponent } from './student-signup/student-signup.component';
 
@@ -24,6 +25,7 @@ import { StudentSignupComponent } from './student-signup/student-signup.componen
     ReactiveFormsModule,
     RouterModule,
     SignupRoutingModule,
+    SharedModule,
     // Material
     MatFormFieldModule,
     MatInputModule,
