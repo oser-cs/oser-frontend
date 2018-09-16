@@ -1,0 +1,43 @@
+<app-form-page>
+  <form [formGroup]="formGroup" (ngSubmit)="submit()">
+
+    <h1>Inscription</h1>
+
+    <!-- First name -->
+    <mat-form-field class="full-width">
+      <input matInput type="text" formControlName="firstName" placeholder="Prénom" required>
+    </mat-form-field>
+
+    <!-- Last name -->
+    <mat-form-field class="full-width">
+      <input matInput type="text" formControlName="lastName" placeholder="Nom" required>
+    </mat-form-field>
+
+    <!-- Email -->
+    <mat-form-field class="full-width">
+      <input matInput type="email" formControlName="email" placeholder="Adresse email" required>
+      <mat-hint>Elle te servira d'identifiant de connexion.</mat-hint>
+    </mat-form-field>
+
+    <!-- Password -->
+    <mat-form-field class="full-width">
+      <input matInput type="password" formControlName="password" placeholder="Mot de passe" required>
+    </mat-form-field>
+
+    <!-- Confirm password -->
+    <mat-form-field class="full-width">
+      <input matInput type="password" formControlName="passwordConfirm" placeholder="Confirmer le mot de passe" [errorStateMatcher]="matcher">
+      <mat-error *ngIf="formGroup.hasError('passwordsDifferent')">
+        Les mots de passe doivent être identiques.
+      </mat-error>
+    </mat-form-field>
+
+    <div class="text-center">
+      <button mat-raised-button color="primary" [disabled]="!formGroup.valid">M'inscrire</button>
+    </div>
+
+    <p class="text-center">
+      J'ai déjà un compte ! <a routerLink="/connexion">Me connecter</a>
+    </p>
+  </form>
+</app-form-page>

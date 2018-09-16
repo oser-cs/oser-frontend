@@ -25,9 +25,6 @@ export class ParticipantService {
     const body = { user: userId, visit: visitId };
     return this.http.post(this.apiUrl, body).pipe(
       map((data: any) => this.adapter.adapt(data)),
-      tap((p: Participant) => {
-        console.log(`user ${p.user.id} now participates to visit ${p.visitId}`);
-      }),
     );
   }
 
@@ -35,12 +32,9 @@ export class ParticipantService {
     let url = this.apiUrl + `${participant.id}/notify_cancelled/`;
     const body = { user: userId, visit: visit.id, reason: reason };
     return this.http.post(url, body).pipe(
-      tap(() => console.log('email sent to visits team')),
       mergeMap(() => {
         url = this.apiUrl + `${participant.id}/`;
-        return this.http.delete(url).pipe(
-          tap(_ => console.log(`user ${participant.user.id} removed from visit ${participant.visitId}`))
-        );
+        return this.http.delete(url);
       })
     );
   }

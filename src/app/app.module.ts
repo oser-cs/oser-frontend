@@ -6,11 +6,22 @@ import { registerLocaleData } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressBarModule } from '@angular/material';
 import { MomentModule } from 'ngx-moment';
+import {
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule,
+  MatButtonModule,
+  MatRadioModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatIconModule,
+  MatSnackBarModule,
+} from '@angular/material';
 
 // App modules
 import { CoreModule } from './core';
@@ -19,10 +30,9 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Components
 import { AppComponent } from './app.component';
-import { SignupPageComponent } from './signup-page/signup-page.component';
+import { LoginComponent } from './login/login.component';
 
 // Services
-import { StudentService } from './signup-page/student.service';
 import { MessageService } from './core';
 
 registerLocaleData(localeFR);
@@ -30,12 +40,13 @@ registerLocaleData(localeFR);
 @NgModule({
   declarations: [
     AppComponent,
-    SignupPageComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     MomentModule,
     MatProgressBarModule,
@@ -43,9 +54,17 @@ registerLocaleData(localeFR);
     SharedModule,
     HttpClientModule,
     AppRoutingModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatButtonModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MatSnackBarModule,
   ],
   providers: [
-    StudentService,
     MessageService,
     { provide: LOCALE_ID, useValue: 'fr' },
   ],

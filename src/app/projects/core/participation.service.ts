@@ -111,7 +111,7 @@ export class UserPendingParticipationListResolver implements Resolve<Participati
   constructor(private service: ParticipationService, private auth: AuthService) { }
 
   resolve() {
-    const user = this.auth.getUser();
+    const user = this.auth.getUserSnapshot();
     return this.service.pendingForUser(user.id);
   }
 }
@@ -125,7 +125,7 @@ export class UserParticipationListResolver implements Resolve<Participation[]> {
   constructor(private service: ParticipationService, private auth: AuthService) { }
 
   resolve() {
-    const user = this.auth.getUser();
+    const user = this.auth.getUserSnapshot();
     return this.service.forUser(user.id);
   }
 }

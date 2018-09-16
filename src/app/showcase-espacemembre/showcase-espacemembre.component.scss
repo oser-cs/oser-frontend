@@ -2,7 +2,7 @@
 Sticky footer solution from
 https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/
 */
-#showcase-site {
+#showcase-espacemembre {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -11,10 +11,4 @@ https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/
 /* Make main content expand to pull footer to the bottom */
 .content {
   flex: 1;
-}
-
-.login-link {
-  display: block;
-  margin: auto 0;
-  padding: 1em 0;
 }
