@@ -34,14 +34,12 @@ import { LoginComponent } from './login/login.component';
 
 // Services
 import { MessageService } from './core';
-import { SplashComponent } from './splash/splash.component';
 
 registerLocaleData(localeFR);
 
 @NgModule({
   declarations: [
     AppComponent,
-    SplashComponent,
     LoginComponent,
   ],
   imports: [
