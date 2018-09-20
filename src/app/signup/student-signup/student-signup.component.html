@@ -3,6 +3,10 @@
 
     <h1>Inscription</h1>
 
+    <p>
+      Bienvenue ! Procédons à ton inscription sur l'espace lycéens.
+    </p>
+
     <!-- First name -->
     <mat-form-field class="full-width">
       <input matInput type="text" formControlName="firstName" placeholder="Prénom" required>
@@ -27,6 +31,38 @@
         Il nous permettra de te contacter en cas de nécessité.
       </mat-hint>
     </mat-form-field>
+
+    <!-- TODO: add link to Google Form -->
+    <p>
+      Pour assurer ton inscription au tutorat, il est
+      <strong>obligatoire</strong>
+      de remplir le
+      <a href="" rel="noreferrer" target="_blank">
+        formulaire d'inscription administrative
+      </a>
+      (Google Form).
+    </p>
+
+    <mat-checkbox class="checkbox-field" formControlName="filledForm" required>
+      J'ai rempli le formulaire
+    </mat-checkbox>
+
+    <p>
+      <small>
+        Données personnelles : nous utiliserons les données fournies pour assurer le contact avec toi et ta famille, équilibrer les participations aux activités organisées ainsi qu'à des fins d'aggrégation anonymisée (statistiques, demandes de subvention). Plus d'informations dans nos <a routerLink="/mention-legales">mentions légales</a>.
+      </small>
+    </p>
+
+    <p>
+      J'accepte qu'OSER utilise mes données personnelles fournies ci-dessus ou dans le formulaire d'inscription adminsitrative, dans le strict respect du cadre spécifié ci-dessus :
+    </p>
+    <mat-checkbox class="checkbox-field" formControlName="acceptedConditions" required>
+      J'accepte cette utilisation
+    </mat-checkbox>
+
+    <p>
+      Il ne te reste plus qu'à choisir un mot de passe. :-)
+    </p>
 
     <!-- Password -->
     <mat-form-field class="full-width">
