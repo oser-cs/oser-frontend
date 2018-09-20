@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard, MapsAPIResolver } from 'app/core';
 
 import { MembersComponent } from './members.component';
-import { SessionsPageComponent } from './sessions-page';
 
 const routes: Routes = [
   {
@@ -15,11 +14,6 @@ const routes: Routes = [
         path: '',
         data: { title: 'Accueil' },
         loadChildren: './student-home/student-home.module#StudentHomeModule',
-      },
-      {
-        path: 'seances',
-        data: { title: 'Séances' },
-        component: SessionsPageComponent,
       },
       {
         path: 'sorties',

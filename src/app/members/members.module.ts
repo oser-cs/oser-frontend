@@ -11,7 +11,6 @@ import { MembersRoutingModule } from './members-routing.module';
 import { StudentHomeModule } from './student-home/student-home.module';
 // Components
 import { MembersComponent } from './members.component';
-import { SessionsPageComponent } from './sessions-page';
 
 
 @NgModule({
@@ -27,7 +26,6 @@ import { SessionsPageComponent } from './sessions-page';
   ],
   declarations: [
     MembersComponent,
-    SessionsPageComponent,
   ]
 })
 export class MembersModule { }

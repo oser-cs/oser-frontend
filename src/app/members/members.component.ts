@@ -19,12 +19,10 @@ export class MembersComponent {
     { href: '/membres', text: 'Mon espace membre' },
     { href: '/membres/projets', text: 'Nos projets' },
     { href: '/membres/sorties', text: 'Nos sorties' },
-    { href: '/', text: "Retourner à l'accueil" },
-    //  { href: '/seances', text: 'Mes séances' },
-    { action: () => this.logout(), text: 'Déconnexion' },
+    { text: 'Déconnexion', action: () => this.logout() },
   ];
 
-  logout() {
+  private logout() {
     this.auth.logout();
     this.router.navigate(['/']);
   }
