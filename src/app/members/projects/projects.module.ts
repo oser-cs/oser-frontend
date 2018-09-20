@@ -25,6 +25,7 @@ import { MomentModule } from 'ngx-moment';
 
 import { SharedModule } from 'app/shared';
 import { DynamicFormsModule } from 'app/dynamic-forms';
+import { PanesModule } from 'app/panes';
 
 import { ProjectsRoutingModule } from './projects-routing.module';
 import { ProjectsComponent } from './projects.component';
@@ -70,6 +71,7 @@ import { ActivateDialogComponent } from './activate-dialog/activate-dialog.compo
     // App modules
     SharedModule,
     ProjectsRoutingModule,
+    PanesModule,
     DynamicFormsModule,
   ],
   declarations: [

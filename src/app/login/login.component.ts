@@ -14,7 +14,7 @@ import { filter, map, tap, catchError } from 'rxjs/operators';
 export class LoginComponent implements OnInit {
 
   loading: boolean = false;
-  defaultRedirectUrl: string = '/';
+  defaultRedirectUrl: string = '/membres';
   formGroup: FormGroup;
 
   constructor(

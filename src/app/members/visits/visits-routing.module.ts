@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard, MapsAPIResolver } from 'app/core';
+import { MapsAPIResolver } from 'app/core';
 
 import { VisitsComponent } from './visits.component';
 import { VisitsListComponent } from './visits-list';
@@ -12,7 +12,6 @@ const routes: Routes = [
     path: '',
     data: { title: 'Sorties' },
     component: VisitsComponent,
-    canActivate: [AuthGuard],
     children: [
       {
         path: '', component: VisitsListComponent,

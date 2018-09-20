@@ -1,0 +1,16 @@
+@import '~sass/mixins';
+@import '~sass/variables';
+
+.container {
+  @include margin-page;
+}
+
+#visits {
+  // TODO use a background image
+  background: $color-light-blue;
+}
+
+#projects {
+  // TODO use a background image
+  background: $color-purple-light;
+}

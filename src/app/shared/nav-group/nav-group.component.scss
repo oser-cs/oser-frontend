@@ -3,6 +3,9 @@ ul {
   margin: 0;
   padding: 0;
   display: flex;
+  &.vertical {
+    flex-direction: column;
+  }
 
   &.vertical {
     flex-direction: column;
