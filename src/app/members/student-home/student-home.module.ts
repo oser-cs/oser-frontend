@@ -4,7 +4,9 @@ import { RouterModule } from '@angular/router';
 import { CoreModule } from 'app/core';
 import { SharedModule } from 'app/shared';
 import { PanesModule } from 'app/panes';
-import { StudentHomeRoutingModule } from './student-home-routing.module';
+import {
+  MatButtonModule,
+} from '@angular/material';
 
 // Components
 import { StudentHomeComponent } from './student-home.component';
@@ -18,7 +20,7 @@ import { VisitsOverviewComponent } from './visits-overview/visits-overview.compo
     CoreModule,
     PanesModule,
     SharedModule,
-    StudentHomeRoutingModule,
+    MatButtonModule,
   ],
   declarations: [
     StudentHomeComponent,

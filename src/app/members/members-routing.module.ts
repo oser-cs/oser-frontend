@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard, MapsAPIResolver } from 'app/core';
 
 import { MembersComponent } from './members.component';
+import { StudentHomeComponent } from './student-home/student-home.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,7 @@ const routes: Routes = [
       {
         path: '',
         data: { title: 'Accueil' },
-        loadChildren: './student-home/student-home.module#StudentHomeModule',
+        component: StudentHomeComponent,
       },
       {
         path: 'sorties',

@@ -16,9 +16,9 @@ export class MembersComponent {
   ) { }
 
   navLinks: Link[] = [
-    { href: '/membres', text: 'Mon espace membre' },
-    { href: '/membres/projets', text: 'Nos projets' },
-    { href: '/membres/sorties', text: 'Nos sorties' },
+    { href: './', text: 'Mon espace' },
+    { href: './projets', text: 'Nos projets' },
+    { href: './sorties', text: 'Nos sorties' },
     { text: 'Déconnexion', action: () => this.logout() },
   ];
 

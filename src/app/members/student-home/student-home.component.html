@@ -1,11 +1,16 @@
-<h1 class="text-center">Mon espace membre</h1>
+<h1 class="text-center">Mon espace</h1>
 
 <app-two-panes>
   <visits-overview pane="left"></visits-overview>
   <projects-overview pane="right"></projects-overview>
 </app-two-panes>
+
 <div class="container">
-  <h2>Notifications par mail</h2>
-  <p>Pour toute nouvelle information importante concernant ton inscription aux sorties et projets, l'état d'avancement du dossier etc., un mail automatique te sera envoyé à l'adresse que tu nous as fournie !</p>
+  <h2>
+    Notifications
+  </h2>
+  <p>
+    Les informations importantes concernant ton  <strong>inscription aux sorties et projets</strong> te seront envoyées par email à l'adresse que tu nous as fournie
+    ({{ userEmail }}).
+  </p>
 </div>
-<router-outlet></router-outlet>
