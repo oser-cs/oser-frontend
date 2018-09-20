@@ -1,8 +1,14 @@
-<h1 class="text-center">Mon espace</h1>
+<h1 class="text-center">
+  Mon espace
+</h1>
 
 <app-two-panes>
-  <visits-overview pane="left"></visits-overview>
-  <projects-overview pane="right"></projects-overview>
+  <app-pane id="visits">
+    <visits-overview class="pane-content"></visits-overview>
+  </app-pane>
+  <app-pane id="projects">
+    <projects-overview class="pane-content"></projects-overview>
+  </app-pane>
 </app-two-panes>
 
 <div class="container">

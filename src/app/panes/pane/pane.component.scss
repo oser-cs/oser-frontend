@@ -1,0 +1,12 @@
+@import '~sass/mixins';
+@import '~sass/variables';
+
+.pane {
+  height: 100%;
+  @include drop-shadow($shadow-sm, $inset: true);
+}
+
+.pane-content {
+  padding: 3em;
+  width: fit-content;
+}
