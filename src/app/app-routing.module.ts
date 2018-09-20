@@ -16,16 +16,6 @@ const routes: Routes = [
     loadChildren: './members/members.module#MembersModule',
   },
   {
-    path: 'sorties',
-    canActivate: [AuthGuard],
-    loadChildren: './visits/visits.module#VisitsModule',
-  },
-  {
-    path: 'projets',
-    canActivate: [AuthGuard],
-    loadChildren: './projects/projects.module#ProjectsModule',
-  },
-  {
     path: 'connexion',
     component: LoginComponent,
   },

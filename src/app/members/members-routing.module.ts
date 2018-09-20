@@ -23,10 +23,12 @@ const routes: Routes = [
       },
       {
         path: 'sorties',
+        canActivate: [AuthGuard],
         loadChildren: './visits/visits.module#VisitsModule',
       },
       {
         path: 'projets',
+        canActivate: [AuthGuard],
         loadChildren: './projects/projects.module#ProjectsModule',
       },
     ]
