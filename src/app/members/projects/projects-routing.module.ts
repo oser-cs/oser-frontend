@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProjectsComponent } from './projects.component';
-import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { RegisterWizardComponent } from './register-wizard/register-wizard.component';
 import { OverviewComponent } from './overview/overview.component';
 import { MyParticipationsComponent } from './my-participations/my-participations.component';
 import {
   ProjectResolver, ProjectListResolver,
-  EditionResolver, EditionOpenRegistrationListResolver,
+  EditionOpenRegistrationListResolver,
   UserPendingParticipationListResolver,
   UserParticipationListResolver,
 } from './core';

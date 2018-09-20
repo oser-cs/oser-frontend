@@ -1,4 +1,5 @@
 @import '~sass/variables';
+@import '~app/showcase-site/sass/mixins';
 
 #open-registrations {
   background: $color-light-blue;
@@ -6,4 +7,8 @@
 
 #my-participations {
   background: lighten($color-purple-light, 15);
+}
+
+#page {
+  @include margin-page;
 }
