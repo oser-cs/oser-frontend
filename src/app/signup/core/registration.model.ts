@@ -5,6 +5,7 @@ class RegistrationSchema {
   email: string;
   firstName: string;
   lastName: string;
+  phoneNumber: string;
 }
 
 export class Registration extends RegistrationSchema {
@@ -27,6 +28,7 @@ export class RegistrationAdapter {
       email: obj.email,
       first_name: obj.firstName,
       last_name: obj.lastName,
+      phone_number: obj.phoneNumber,
     }
   }
 }

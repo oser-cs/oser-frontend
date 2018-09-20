@@ -37,6 +37,7 @@ export class StudentSignupComponent implements OnInit {
       firstName: '',
       lastName: '',
       email: ['', Validators.email],
+      phoneNumber: '',
       password: '',
       passwordConfirm: '',
     }, { validator: (group) => this.checkPasswords(group)})
