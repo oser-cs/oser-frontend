@@ -25,7 +25,7 @@ const routes: Routes = [
           editions: EditionOpenRegistrationListResolver,
           participations: UserPendingParticipationListResolver,
         },
-      },
+      },/*
       {
         path: 'inscription',
         component: RegisterWizardComponent,
@@ -40,7 +40,7 @@ const routes: Routes = [
         path: ':projectId',
         component: ProjectDetailComponent,
         resolve: { project: ProjectResolver },
-      },
+      },*/
     ]
   },
 ];
