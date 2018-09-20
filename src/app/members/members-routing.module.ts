@@ -18,12 +18,12 @@ const routes: Routes = [
       },
       {
         path: 'sorties',
-        canActivate: [AuthGuard],
+        data: { title: 'Sorties' },
         loadChildren: './visits/visits.module#VisitsModule',
       },
       {
         path: 'projets',
-        canActivate: [AuthGuard],
+        data: { title: 'Projets' },
         loadChildren: './projects/projects.module#ProjectsModule',
       },
     ]
