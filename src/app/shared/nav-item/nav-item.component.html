@@ -3,6 +3,6 @@
     {{ link.text }}
   </a>
   <ng-template #action>
-    <div (click)="link.action()">{{ link.text }}</div>
+    <div class="clickable" (click)="link.action()">{{ link.text }}</div>
   </ng-template>
 </div>
