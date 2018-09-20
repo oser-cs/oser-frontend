@@ -10,6 +10,7 @@ import {
   MatButtonModule,
   MatSnackBarModule,
   MatCheckboxModule,
+  MatIconModule,
 } from '@angular/material';
 
 import { SharedModule } from 'app/shared';
@@ -33,6 +34,7 @@ import { StudentSignupComponent } from './student-signup/student-signup.componen
     MatButtonModule,
     MatSnackBarModule,
     MatCheckboxModule,
+    MatIconModule,
   ],
 })
 export class SignupModule { }
