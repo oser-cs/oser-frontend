@@ -1,0 +1,90 @@
+<app-form-page>
+  <form [formGroup]="formGroup" (ngSubmit)="submit()">
+
+    <h1>Inscription</h1>
+
+    <p>
+      Bienvenue ! Procédons à ton inscription sur l'espace lycéens.
+    </p>
+
+    <!-- First name -->
+    <mat-form-field class="full-width">
+      <input matInput type="text" formControlName="firstName" placeholder="Prénom" required>
+    </mat-form-field>
+
+    <!-- Last name -->
+    <mat-form-field class="full-width">
+      <input matInput type="text" formControlName="lastName" placeholder="Nom" required>
+    </mat-form-field>
+
+    <!-- Email -->
+    <mat-form-field class="full-width">
+      <input matInput type="email" formControlName="email" placeholder="Adresse email" required>
+      <mat-hint>
+        Elle te servira d'identifiant de connexion.
+      </mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input matInput type="tel" formControlName="phoneNumber" placeholder="Numéro de téléphone" required>
+      <mat-hint>
+        Il nous permettra de te contacter en cas de nécessité.
+      </mat-hint>
+    </mat-form-field>
+
+    <p>
+      Pour assurer ton inscription au tutorat, il est
+      <strong>obligatoire</strong>
+      de remplir le formulaire d'inscription administrative (Google Form).
+    </p>
+
+    <p class="text-center">
+      <a mat-raised-button color="accent" href="https://docs.google.com/forms/d/e/1FAIpQLScJnkGaDdXWL-sPyHuq58gJivr5xkZ_M5AASRCBHx4a9wR4-Q/viewform?usp=sf_link" rel="noreferrer" target="_blank">
+        <mat-icon>launch</mat-icon>
+        Remplir le formulaire
+      </a>
+    </p>
+
+    <mat-checkbox class="checkbox-field" formControlName="filledForm" required>
+      J'ai rempli le formulaire
+    </mat-checkbox>
+
+    <p>
+      <small>
+        Données personnelles : nous utiliserons les données fournies pour assurer le contact avec toi et ta famille, équilibrer les participations aux activités organisées ainsi qu'à des fins d'aggrégation anonymisée (statistiques, demandes de subvention). Plus d'informations dans nos <a routerLink="/mentions-legales" target="_blank">mentions légales</a>.
+      </small>
+    </p>
+
+    <p>
+      J'accepte qu'OSER utilise mes données personnelles fournies ci-dessus ou dans le formulaire d'inscription adminsitrative, dans le strict respect du cadre spécifié ci-dessus :
+    </p>
+    <mat-checkbox class="checkbox-field" formControlName="acceptedConditions" required>
+      J'accepte cette utilisation
+    </mat-checkbox>
+
+    <p>
+      Il ne te reste plus qu'à choisir un mot de passe. :-)
+    </p>
+
+    <!-- Password -->
+    <mat-form-field class="full-width">
+      <input matInput type="password" formControlName="password" placeholder="Mot de passe" required>
+    </mat-form-field>
+
+    <!-- Confirm password -->
+    <mat-form-field class="full-width">
+      <input matInput type="password" formControlName="passwordConfirm" placeholder="Confirmer le mot de passe" [errorStateMatcher]="matcher">
+      <mat-error *ngIf="formGroup.hasError('passwordsDifferent')">
+        Les mots de passe doivent être identiques.
+      </mat-error>
+    </mat-form-field>
+
+    <div class="text-center">
+      <button mat-raised-button color="primary" [disabled]="!formGroup.valid">M'inscrire</button>
+    </div>
+
+    <p class="text-center">
+      J'ai déjà un compte ! <a routerLink="/connexion">Me connecter</a>
+    </p>
+  </form>
+</app-form-page>

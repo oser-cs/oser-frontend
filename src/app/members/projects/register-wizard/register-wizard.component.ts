@@ -66,7 +66,7 @@ export class RegisterWizardComponent implements OnInit {
 
   register() {
     if (!this.formSent) {
-      const userId = this.auth.getUser().id;
+      const userId = this.auth.getUserSnapshot().id;
       this.loading = true;
       this.participationService.create(userId, this.edition.id, this.form).subscribe(
         (participation) => {

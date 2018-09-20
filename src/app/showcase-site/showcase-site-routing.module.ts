@@ -32,7 +32,7 @@ const routes: Routes = [
         resolve: {
           'actions': ActionsResolver,
           'partners': PartnersResolver,
-        },
+        }, 
         data: { title: 'Accueil' },
       },
       {

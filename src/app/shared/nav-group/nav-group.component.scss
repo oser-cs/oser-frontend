@@ -7,6 +7,10 @@ ul {
     flex-direction: column;
   }
 
+  &.vertical {
+    flex-direction: column;
+  }
+
   li {
     text-align: center;
   }

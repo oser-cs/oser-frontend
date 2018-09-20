@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SignupPageComponent } from './signup-page/signup-page.component';
-import { LoginComponent, UiGalleryComponent } from './shared';
+import { LoginComponent } from './login/login.component';
+import { UiGalleryComponent } from './shared';
 import { InternalErrorComponent, NotFoundComponent, AuthGuard, MapsAPIResolver } from './core';
 
 
@@ -16,12 +16,22 @@ const routes: Routes = [
     loadChildren: './members/members.module#MembersModule',
   },
   {
-    path: 'login',
-    component: LoginComponent
+    path: 'sorties',
+    canActivate: [AuthGuard],
+    loadChildren: './visits/visits.module#VisitsModule',
   },
   {
-    path: 'signup',
-    component: SignupPageComponent
+    path: 'projets',
+    canActivate: [AuthGuard],
+    loadChildren: './projects/projects.module#ProjectsModule',
+  },
+  {
+    path: 'connexion',
+    component: LoginComponent,
+  },
+  {
+    path: 'inscription',
+    loadChildren: './signup/signup.module#SignupModule',
   },
   {
     path: '500',

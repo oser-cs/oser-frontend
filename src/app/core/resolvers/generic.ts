@@ -11,7 +11,6 @@ interface Retrievable<T> {
   retrieve: (id: any) => Observable<T>;
 }
 
-
 export abstract class ObjectListResolver<T> implements Resolve<T[]> {
 
   public service: Listable<T>;
@@ -22,7 +21,6 @@ export abstract class ObjectListResolver<T> implements Resolve<T[]> {
     );
   }
 }
-
 
 export abstract class ObjectResolver<T> implements Resolve<T> {
 

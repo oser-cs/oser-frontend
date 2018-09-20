@@ -8,10 +8,12 @@
     </a>
     <div class="nav-wide">
       <app-nav-group [theme]="theme" [links]="links"></app-nav-group>
+      <ng-content select="[app-navbar-extra]"></ng-content>
     </div>
     <i (click)="toggle()" class="hamburger fa fa-bars fa-2x"></i>
   </div>
-  <div class="nav-narrow">
-    <app-nav-group *ngIf="visible" [vertical]="true" [theme]="theme" [links]="links" (click)="toggle()"></app-nav-group>
+  <div class="nav-narrow" *ngIf="visible">
+    <app-nav-group [links]="links" [vertical]="true" [theme]="theme" (click)="toggle()"></app-nav-group>
+    <ng-content select="[app-navbar-extra-narrow]"></ng-content>
   </div>
 </div>

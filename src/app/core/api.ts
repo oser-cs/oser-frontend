@@ -4,16 +4,13 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'environments/environment';
 
-
 export class ShowcaseApiService {
   apiUrl = environment.showcaseApiUrl;
 }
 
-
 export class ApiService {
   apiUrl = environment.apiUrl;
 }
-
 
 export abstract class ModelApiService<T> extends ApiService {
 
