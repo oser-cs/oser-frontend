@@ -11,11 +11,6 @@ const routes: Routes = [
     loadChildren: './showcase-site/showcase-site.module#ShowcaseSiteModule',
   },
   {
-    path: 'membres',
-    canActivate: [AuthGuard],
-    loadChildren: './showcase-espacemembre/showcase-espacemembre.module#ShowcaseEspacemembreModule',
-  },
-  {
     path: 'sorties',
     canActivate: [AuthGuard],
     loadChildren: './visits/visits.module#VisitsModule',
