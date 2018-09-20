@@ -1,11 +1,1 @@
-<span id="top"></span>
-<div id="showcase-site">
-  <app-navbar [links]="navLinks">
-    <app-login-button app-navbar-extra class="login-link"></app-login-button>
-    <app-login-button app-navbar-extra-narrow class="text-center login-link"></app-login-button>
-  </app-navbar>
-  <main class="content">
-    <router-outlet (deactivate)="onDeactivate()"></router-outlet>
-  </main>
-  <app-footer></app-footer>
-</div>
+<app-layout [links]="navLinks"></app-layout>

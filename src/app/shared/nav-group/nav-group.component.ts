@@ -9,5 +9,7 @@ import { Link } from '../nav.model';
 export class NavGroupComponent {
 
   @Input() links: Link[];
+  @Input() theme: string;
+  @Input() vertical = false;
 
 }

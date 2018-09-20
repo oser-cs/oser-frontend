@@ -1,4 +1,4 @@
-<div class="nav-link">
+<div class="nav-link" [ngClass]="{'blue': theme === 'blue'}">
   <a *ngIf="link.href; else action" class="no-style" [routerLink]="link.href">
     {{ link.text }}
   </a>

@@ -4,6 +4,10 @@ ul {
   padding: 0;
   display: flex;
 
+  &.vertical {
+    flex-direction: column;
+  }
+
   li {
     text-align: center;
   }

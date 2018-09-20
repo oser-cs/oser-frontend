@@ -14,11 +14,10 @@ import { RevealComponent } from './reveal/reveal.component';
 import { FilterComponent } from './filter/filter.component';
 import { NavItemComponent } from './nav-item/nav-item.component';
 import { NavGroupComponent } from './nav-group/nav-group.component';
-import { NavGroupVerticalComponent } from './nav-group-vertical/nav-group-vertical.component';
-import { BlueNavbarComponent } from './blue_navbar/blue_navbar.component';
 import { MailtoComponent } from './mailto/mailto.component';
 import { LoginButtonComponent } from './login-button/login-button.component';
 import { FormPageComponent } from './form-page/form-page.component';
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   imports: [
@@ -37,11 +36,10 @@ import { FormPageComponent } from './form-page/form-page.component';
     FilterComponent,
     NavItemComponent,
     NavGroupComponent,
-    NavGroupVerticalComponent,
-    BlueNavbarComponent,
     MailtoComponent,
     LoginButtonComponent,
     FormPageComponent,
+    LayoutComponent,
   ],
   exports: [
     NavbarComponent,
@@ -50,11 +48,10 @@ import { FormPageComponent } from './form-page/form-page.component';
     RevealComponent,
     FilterComponent,
     NavGroupComponent,
-    NavGroupVerticalComponent,
-    BlueNavbarComponent,
     MailtoComponent,
     LoginButtonComponent,
     FormPageComponent,
+    LayoutComponent,
   ]
 })
 export class SharedModule { }
