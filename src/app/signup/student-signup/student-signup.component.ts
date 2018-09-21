@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, mergeMap } from 'rxjs/operators';
 import { Registration, RegistrationService, PasswordErrorStateMatcher } from '../core';
 import { AuthService } from 'app/core';
 
@@ -17,6 +17,7 @@ export class StudentSignupComponent implements OnInit {
 
   registration: Registration;
   formGroup: FormGroup;
+  loading = false;
 
   matcher = new PasswordErrorStateMatcher();
 
@@ -52,16 +53,21 @@ export class StudentSignupComponent implements OnInit {
   }
 
   submit() {
+    this.loading = true;
     const registration: Registration = this.formGroup.value;
     const password: string = this.formGroup.controls.password.value;
     this.registrationService.create(registration, password).pipe(
-      tap(() => this.auth.login(registration.email, password)),
+      mergeMap(() => this.auth.login(registration.email, password)),
       tap(() => this.snackBar.open(
         `Ton compte a été créé ! Tu es maintenant connecté.`,
         'OK',
         { duration: 3000 },
       )),
+      tap(() => this.loading = false),
       tap(() => this.router.navigate(['/'])),
-    ).subscribe();
+    ).subscribe(
+      () => {},
+      (error) => this.loading = false,
+    );
   }
 }
