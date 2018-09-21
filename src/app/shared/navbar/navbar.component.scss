@@ -9,6 +9,12 @@ $col-padding: 10px;
   padding: 0 $margin-page;
   margin: 0;
   background: white;
+  &.blue {
+    background: $color-dark-blue;
+    i.hamburger {
+      color: white !important;
+    }
+  }
   z-index: 10;
   display: flex;
   flex-flow: column nowrap;
@@ -53,8 +59,10 @@ i.hamburger {
   flex: 1;
   @include media-md {
     display: flex;
+    justify-content: space-between;
   }
 }
+
 .nav-narrow {
   display: block;
   @include media-md() {

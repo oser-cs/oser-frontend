@@ -9,5 +9,6 @@ import { Link } from '../nav.model';
 export class NavItemComponent {
 
   @Input() link: Link;
+  @Input() theme: string;
 
 }

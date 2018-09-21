@@ -1,0 +1,31 @@
+<app-form-page>
+  <h1>Connexion</h1>
+
+  <form [formGroup]="formGroup" (ngSubmit)="login()">
+
+    <!-- Email field -->
+    <mat-form-field class="block">
+      <input matInput type="email" formControlName="email" required placeholder="Adresse email" autofocus>
+    </mat-form-field>
+
+    <!-- Password field -->
+    <mat-form-field class="block">
+      <input matInput type="password" formControlName="password" required placeholder="Mot de passe">
+    </mat-form-field>
+
+    <!-- Submit -->
+    <div class="text-center">
+      <button mat-raised-button color="primary" [disabled]="!formGroup.valid || loading" id="login-btn">
+        Se connecter <i *ngIf="loading" class="fa fa-spinner fa-pulse"></i>
+      </button>
+    </div>
+
+  </form>
+
+  <messages></messages>
+
+  <p class="text-center">
+    Ou crée ton
+    <a routerLink="/inscription">compte tutoré</a>
+  </p>
+</app-form-page>

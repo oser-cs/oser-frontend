@@ -1,0 +1,23 @@
+@import '~sass/variables';
+
+.container {
+  .text-muted {
+    color: $color-purple-light;
+  }
+}
+
+#title {
+  margin: 0;
+  padding: 0;
+}
+
+#editions {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1em;
+  p {
+    margin: 0;
+    padding: 0;
+
+  }
+}
