@@ -35,7 +35,7 @@ export class AuthService {
     this.user$ = new BehaviorSubject(initialUser);
   }
 
-  login(username: string, password: string) {
+  login(username: string, password: string): Observable<boolean> {
     return this.http.post<any>(this.loginUrl, { username: username, password: password }).pipe(
       tap(data => this.token.set(data.token)),
       map(data => this.userAdapter.adapt(data.user)),
