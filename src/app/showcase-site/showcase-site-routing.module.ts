@@ -10,6 +10,8 @@ import { NewsPageComponent } from './news-page';
 import { NewsDetailPageComponent } from './news-detail-page';
 import { ActionsPageComponent } from './actions-page';
 import { MentionsComponent } from './mentions';
+import { ProjectsPageComponent } from './project-page/project-page.component';
+
 
 import {
   ActionsResolver,
@@ -40,6 +42,11 @@ const routes: Routes = [
         component: AboutPageComponent,
         resolve: { 'keyFigures': KeyFiguresResolver },
         data: { title: 'Qui sommes-nous ?' },
+      },
+      {
+        path: 'nos-projets',
+        component: ProjectsPageComponent,
+        data: { title: 'Nos projets' },
       },
       {
         path: 'actions',
