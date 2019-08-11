@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { ResetComponent } from './reset/reset.component';
 import { UiGalleryComponent } from './shared';
 import { InternalErrorComponent, NotFoundComponent, AuthGuard, MapsAPIResolver } from './core';
 
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'inscription',
     loadChildren: './signup/signup.module#SignupModule',
+  },
+  {
+    path: 'reinitialiser_mdp',
+    component: ResetComponent,
   },
   {
     path: '500',

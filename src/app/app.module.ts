@@ -34,6 +34,7 @@ import { LoginComponent } from './login/login.component';
 
 // Services
 import { MessageService } from './core';
+import { ResetComponent } from './reset/reset.component';
 
 registerLocaleData(localeFR);
 
@@ -41,6 +42,7 @@ registerLocaleData(localeFR);
   declarations: [
     AppComponent,
     LoginComponent,
+    ResetComponent,
   ],
   imports: [
     BrowserModule,

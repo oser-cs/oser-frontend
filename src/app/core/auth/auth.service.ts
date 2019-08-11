@@ -19,6 +19,7 @@ class StoredToken extends SimpleStoredItem { key = 'oser-cs-user-token'; }
 export class AuthService {
 
   private loginUrl = environment.apiUrl + 'auth/get-token/';
+  private resetUrl = environment.apiUrl + 'rest-auth/password/reset/';
 
   fromGuard: boolean;
   redirectUrl: string;
@@ -41,6 +42,13 @@ export class AuthService {
       map(data => this.userAdapter.adapt(data.user)),
       tap((user: User) => this.user.set(user)),
       tap((user: User) => this.user$.next(user)),
+      map(() => true),
+    );
+  }
+
+  reset(email: string): Observable<boolean> {
+    console.log("reset function of auth service");
+    return this.http.post<any>(this.resetUrl, { email }).pipe(
       map(() => true),
     );
   }
