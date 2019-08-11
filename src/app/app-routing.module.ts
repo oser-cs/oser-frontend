@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { ResetComponent } from './reset/reset.component';
+import { ResetConfirmComponent} from './reset-confirm/reset-confirm.component';
 import { UiGalleryComponent } from './shared';
 import { InternalErrorComponent, NotFoundComponent, AuthGuard, MapsAPIResolver } from './core';
 
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'reinitialiser_mdp',
     component: ResetComponent,
+  },
+  {
+    path: 'rest-auth/password/reset/confirm/:uid/:token',
+    component: ResetConfirmComponent;
   },
   {
     path: '500',

@@ -1,0 +1,24 @@
+<app-form-page>
+  <h1>Réinitialiser le mot de passe</h1>
+  <form [formGroup]="formGroup" (ngSubmit)="resetConfirm()">
+
+    <!-- Password field -->
+    <mat-form-field class="block">
+      <input matInput type="password" formControlName="new_password1" placeholder="Mot de passe" required autofocus />
+    </mat-form-field>
+
+    <!-- Confirm password -->
+    <mat-form-field class="block">
+      <input matInput type="password" formControlName="new_password2" placeholder="Confirmer le mot de passe" required
+        autofocus />
+    </mat-form-field>
+
+    <!-- Submit-->
+    <div class="text-center">
+      <button mat-raised-button color="primary" [disabled]="!formGroup.valid || loading" id="login-btn">
+        Confirmer<i *ngIf="loading" class="fa fa-spinner fa-pulse"></i>
+      </button>
+    </div>
+  </form>
+
+</app-form-page>
