@@ -14,7 +14,7 @@ import { filter, map, tap, catchError } from 'rxjs/operators';
 export class ResetComponent implements OnInit {
 
   loading: boolean = false;
-  defaultRedirectUrl: string = '/membres';
+  defaultRedirectUrl: string = '/';
   formGroup: FormGroup;
 
   constructor(
@@ -42,19 +42,18 @@ export class ResetComponent implements OnInit {
   }
 
   reset() {
-    console.log("reset component function")
     this.loading = true;
     const { email } = this.formGroup.value;
-    console.log("le mail");
-    console.log(email);
     this.messageService.clear();
     this.auth.reset(email).pipe(
       catchError(() => {
-        this.messageService.error("Email existe pas");
+        this.snackBar.open('Adresse incorrecte', 'OK', { duration: 5000 });
         return of(false);
       }),
       tap(() => this.loading = false),
       filter(Boolean),
+      map(() =>this.auth.redirectUrl ? this.auth.redirectUrl : this.defaultRedirectUrl),
       tap(() => this.snackBar.open('Mail de réinitialisation envoyé !', 'OK', { duration: 2000 })),
+      tap((redirectUrl: string) => this.router.navigate([redirectUrl])),    
     ).subscribe()}
 }

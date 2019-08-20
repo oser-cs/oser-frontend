@@ -31,7 +31,7 @@ const routes: Routes = [
   },
   {
     path: 'rest-auth/password/reset/confirm/:uid/:token',
-    component: ResetConfirmComponent;
+    component: ResetConfirmComponent,
   },
   {
     path: '500',

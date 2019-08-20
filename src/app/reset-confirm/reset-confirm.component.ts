@@ -14,7 +14,7 @@ import { filter, map, tap, catchError } from 'rxjs/operators';
 export class ResetConfirmComponent implements OnInit {
 
   loading: boolean = false;
-  defaultRedirectUrl: string = '/membres';
+  defaultRedirectUrl: string = '/connexion';
   formGroup: FormGroup;
   public uid: string;
   public token: string;
@@ -35,6 +35,7 @@ export class ResetConfirmComponent implements OnInit {
     if (this.auth.fromUnauthorized) {
       this.messageService.error("Oops ! Vous n'avez pas les permissions requises pour accéder à cette page.");
     }
+  
     this.createForm();
     this.uid = this.route.snapshot.paramMap.get('uid');
     this.token = this.route.snapshot.paramMap.get('token');
@@ -54,14 +55,14 @@ export class ResetConfirmComponent implements OnInit {
     this.messageService.clear();
     this.auth.resetConfirm(this.uid, this.token, new_password1, new_password2).pipe(
       catchError(() => {
-        this.messageService.error("Erreur dans le formulaire, veuillez vérifiez les informatiosn entrées.");
+        this.snackBar.open('Erreur lors de la réinitialisation du mot de passe : vérifiez que les mots de passes sont identiques et assez forts (8 caractères). Evitez également les mots de passes courants', 'OK', { duration: 5000 });
         return of(false);
-      }
-    ),
+      }),
       tap(() => this.loading = false),
       filter(Boolean),
+      map(() =>this.auth.redirectUrl ? this.auth.redirectUrl : this.defaultRedirectUrl),
       tap(() => this.snackBar.open('Mot de passe réinitialisé', 'OK', { duration: 2000 })),
-    
+      tap((redirectUrl: string) => this.router.navigate([redirectUrl])),    
     ).subscribe()}
 
 }
