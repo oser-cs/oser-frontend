@@ -1,11 +1,10 @@
 language: node_js
 
-node_js:
-  - "node"
+node_js: "10"
 
 cache:
   directories:
-  - $HOME/.npm  # npm cache
+    - $HOME/.npm # npm cache
 
 install:
   - npm install
