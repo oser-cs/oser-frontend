@@ -1,4 +1,5 @@
 <app-form-page>
+
   <form [formGroup]="formGroup" (ngSubmit)="submit()">
 
     <h1>Inscription</h1>
@@ -46,39 +47,31 @@
           target="_blank">mentions légales</a>.
       </small>
     </p>
-
     <p>
       J'accepte qu'OSER utilise mes données personnelles fournies ci-dessus ou dans le formulaire d'inscription
       adminsitrative, dans le strict respect du cadre spécifié ci-dessus :
     </p>
 
-    <mat-checkbox id="checkboxUtilisation" class="checkbox-field" formControlName="acceptedConditions" required onclick='if (document.getElementById("checkboxUtilisation").classList.contains("mat-checkbox-checked")) {
-        document.getElementById("boutonChiant").setAttribute("disabled", "true");
-      }
-      else {
-        document.getElementById("boutonChiant").removeAttribute("disabled");
-      }'>
-      J'accepte cette utilisation
-    </mat-checkbox>
+  </form>
 
-    <p class="text-center">
-      <a mat-raised-button color="accent" disabled id="boutonChiant"
-        href="https://docs.google.com/forms/d/e/1FAIpQLScJnkGaDdXWL-sPyHuq58gJivr5xkZ_M5AASRCBHx4a9wR4-Q/viewform?usp=sf_link"
-        rel="noreferrer" target="_blank">
-        <mat-icon>launch</mat-icon>
-        Remplir le formulaire
-      </a>
-    </p>
+
+  <mat-checkbox id="checkboxUtilisation" class="checkbox-field" [(ngModel)]="agreee" required>
+    J'accepte cette utilisation
+  </mat-checkbox>
+  <p class="text-center">
+    <a mat-raised-button color="accent" [disabled]="!agreee"
+      href="https://docs.google.com/forms/u/1/d/1mIEy-FVgYvrL0Ntl8YpLKVn0DqpjSl9S_ekjqYo53rI/viewform" target="_blank">
+      <mat-icon>launch</mat-icon>
+      Remplir le formulaire
+    </a>
+  </p>
+  <form [formGroup]="formGroup" (ngSubmit)="submit()">
 
 
 
     <mat-checkbox class="checkbox-field" formControlName="filledForm" required>
       J'ai rempli le formulaire
     </mat-checkbox>
-    <!-- ici  -->
-
-
-    <!-- ici  -->
 
     <p>
       Il ne te reste plus qu'à choisir un mot de passe. :-)
