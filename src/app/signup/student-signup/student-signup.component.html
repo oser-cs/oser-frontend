@@ -47,7 +47,6 @@
           target="_blank">mentions légales</a>.
       </small>
     </p>
-
     <p>
       J'accepte qu'OSER utilise mes données personnelles fournies ci-dessus ou dans le formulaire d'inscription
       adminsitrative, dans le strict respect du cadre spécifié ci-dessus :
@@ -60,6 +59,7 @@
   </mat-checkbox>
   <p class="text-center">
     <a mat-raised-button color="accent" [disabled]="!agree"
+
       href="https://docs.google.com/forms/u/1/d/1mIEy-FVgYvrL0Ntl8YpLKVn0DqpjSl9S_ekjqYo53rI/viewform" target="_blank">
       <mat-icon>launch</mat-icon>
       Remplir le formulaire
@@ -67,16 +67,10 @@
   </p>
   <form [formGroup]="formGroup" (ngSubmit)="submit()">
 
-
-
-
     <mat-checkbox class="checkbox-field" formControlName="filledForm" required>
       J'ai rempli le formulaire
     </mat-checkbox>
-    <!-- ici  -->
 
-
-    <!-- ici  -->
 
     <p>
       Il ne te reste plus qu'à choisir un mot de passe. :-)
