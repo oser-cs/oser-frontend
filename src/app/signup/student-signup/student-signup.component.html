@@ -1,4 +1,5 @@
 <app-form-page>
+
   <form [formGroup]="formGroup" (ngSubmit)="submit()">
 
     <h1>Inscription</h1>
@@ -38,8 +39,27 @@
       de remplir le formulaire d'inscription administrative (Google Form).
     </p>
 
+    <p>
+      <small>
+        Données personnelles : nous utiliserons les données fournies pour assurer le contact avec toi et ta famille,
+        équilibrer les participations aux activités organisées ainsi qu'à des fins d'aggrégation anonymisée
+        (statistiques, demandes de subvention). Plus d'informations dans nos <a routerLink="/mentions-legales"
+          target="_blank">mentions légales</a>.
+      </small>
+    </p>
+    <p>
+      J'accepte qu'OSER utilise mes données personnelles fournies ci-dessus ou dans le formulaire d'inscription
+      adminsitrative, dans le strict respect du cadre spécifié ci-dessus :
+    </p>
+
+    <mat-checkbox id="checkboxUtilisation" class="checkbox-field" formControlName="agree" required>
+      J'accepte cette utilisation
+
+    </mat-checkbox>
     <p class="text-center">
-      <a mat-raised-button color="accent" href="https://docs.google.com/forms/d/e/1FAIpQLScJnkGaDdXWL-sPyHuq58gJivr5xkZ_M5AASRCBHx4a9wR4-Q/viewform?usp=sf_link" rel="noreferrer" target="_blank">
+      <a mat-raised-button color="accent" [disabled]="formGroup.value.agree == false"
+        href="https://docs.google.com/forms/u/1/d/1mIEy-FVgYvrL0Ntl8YpLKVn0DqpjSl9S_ekjqYo53rI/viewform"
+        target="_blank">
         <mat-icon>launch</mat-icon>
         Remplir le formulaire
       </a>
@@ -47,19 +67,6 @@
 
     <mat-checkbox class="checkbox-field" formControlName="filledForm" required>
       J'ai rempli le formulaire
-    </mat-checkbox>
-
-    <p>
-      <small>
-        Données personnelles : nous utiliserons les données fournies pour assurer le contact avec toi et ta famille, équilibrer les participations aux activités organisées ainsi qu'à des fins d'aggrégation anonymisée (statistiques, demandes de subvention). Plus d'informations dans nos <a routerLink="/mentions-legales" target="_blank">mentions légales</a>.
-      </small>
-    </p>
-
-    <p>
-      J'accepte qu'OSER utilise mes données personnelles fournies ci-dessus ou dans le formulaire d'inscription adminsitrative, dans le strict respect du cadre spécifié ci-dessus :
-    </p>
-    <mat-checkbox class="checkbox-field" formControlName="acceptedConditions" required>
-      J'accepte cette utilisation
     </mat-checkbox>
 
     <p>
@@ -73,7 +80,8 @@
 
     <!-- Confirm password -->
     <mat-form-field class="full-width">
-      <input matInput type="password" formControlName="passwordConfirm" placeholder="Confirmer le mot de passe" [errorStateMatcher]="matcher">
+      <input matInput type="password" formControlName="passwordConfirm" placeholder="Confirmer le mot de passe"
+        [errorStateMatcher]="matcher">
       <mat-error *ngIf="formGroup.hasError('passwordsDifferent')">
         Les mots de passe doivent être identiques.
       </mat-error>
