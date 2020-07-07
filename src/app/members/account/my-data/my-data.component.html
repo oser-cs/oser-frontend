@@ -1,0 +1,27 @@
+<app-form-page>
+    <h1>Mes données</h1>
+    <p><span class='label'>Prénom : </span>{{personnalData.firstName}} </p> 
+    <p><span class='label'>Nom : </span>{{personnalData.lastName}}</p>
+    <p><span class='label'>Sexe : </span>{{gender[personnalData.gender]}}</p>
+    <mat-divider></mat-divider>
+    <p> <span class='label'>Adresse : </span>{{personnalData.adressNumber}} {{personnalData.street}} {{personnalData.zipCode}}, {{personnalData.city}}</p>
+    <mat-divider></mat-divider>
+    <p><span class='label'>Numéro de téléphone personnel : </span>{{personnalData.personnalPhone}}</p>
+    <p><span class='label'>Numéro de téléphone des parents : </span>{{personnalData.parentsPhone}}</p>
+    <p><span class='label'>Email des parents  : </span>{{personnalData.parentsEmail}}</p>
+    <mat-divider></mat-divider>
+    <p><span class='label'>Lycée : </span>{{personnalData.school}}</p>
+    <p><span class='label'>Classe : </span>{{grade[personnalData.grade]}}</p>
+    <p><span class='label'>Section : </span>{{personnalData.section.toUpperCase()}}</p>
+    <p><span class='label'>Enseignement de spécialité : </span>{{personnalData.specialTeaching}}</p>
+    <p><span class='label'>Boursier : </span>{{scholarship[personnalData.scholarship]}}</p>
+    <mat-divider></mat-divider>
+    <p><span class='label'>Activité du père : </span>{{activity[personnalData.fatherActivity]}}</p>
+    <p><span class='label'>Activité de la mère : </span>{{activity[personnalData.motherActivity]}}</p>
+    <p><span class='label'>Statut des parents : </span>{{status[personnalData.parentsStatus]}}</p>
+    <p><span class='label'>Nombre de personnes à charge : </span>{{personnalData.dependantsNumber}}</p>
+</app-form-page>
+<messages></messages>
+<router-outlet></router-outlet>
+
+  

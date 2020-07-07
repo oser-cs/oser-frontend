@@ -1,0 +1,135 @@
+<app-form-page>
+    <form [formGroup]="formGroup" (ngSubmit)="submit()">
+        <h1>Modifier mes données personelles</h1>
+        <p class="text-center">Informations personnelles</p>
+        <mat-form-field class="full-width" >
+            <input matInput   type="text" formControlName="firstName" placeholder="Prénom" required>
+        </mat-form-field>
+        <mat-form-field class="full-width" >
+            <input matInput   type="text" formControlName="lastName" placeholder="Nom" required>
+          </mat-form-field>
+        <mat-form-field>
+            <mat-label>Sexe</mat-label>
+            <mat-select  formControlName="gender">
+              <mat-option value="man">Homme</mat-option>
+              <mat-option value="woman" >Femme</mat-option>
+              <mat-option value="other">Autre</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <p class="text-center">Adresse</p>
+          <div class="form-group">
+            <mat-form-field class="full-width adress-input quarter-display">
+              <input matInput type="text"  formControlName="adressNumber" placeholder="Numéro de rue" required>
+            </mat-form-field>
+            <mat-form-field class="full-width adress-input">
+              <input  matInput  type="text" formControlName="street" placeholder="Rue" required>
+            </mat-form-field>
+          </div>
+          
+          <div class="form-group">
+            <mat-form-field class="full-width adress-input quarter-display">
+              <input matInput type="text" minlength="5" maxlength="5" formControlName="zipCode" placeholder="Code postal" required>
+              <mat-error *ngIf="formGroup.controls['city'].hasError('pattern')">
+                Vous devez rentrer un code postal correct
+              </mat-error>
+            </mat-form-field>
+        
+            <mat-form-field class="full-width adress-input" >
+              <input matInput   type="text" formControlName="city" placeholder="Ville" required>
+            </mat-form-field>
+          </div>
+          <p class="text-center">Informations de contact</p>
+          <mat-form-field class="full-width" >
+            <input matInput   type="text" formControlName="personnalPhone" placeholder="Numéro de téléphone personnel" required>
+          </mat-form-field>
+          <mat-form-field class="full-width" >
+            <input matInput   type="text" formControlName="parentsPhone" placeholder="Numéro de téléphone des parents" required>
+          </mat-form-field>
+    
+          <mat-form-field class="full-width" >
+            <input matInput   type="text" formControlName="parentsEmail" placeholder="Email des parents" required>
+          </mat-form-field>
+    
+          <p class="text-center">Informations scolaires</p>
+    
+          <mat-form-field class="full-width" >
+            <input matInput   type="text" formControlName="school" placeholder="Lycée" required>
+          </mat-form-field>
+          <div class="form-group">
+            <mat-form-field class="horizontal-display">
+              <mat-label>Classe</mat-label>
+              <mat-select  formControlName="grade">
+                <mat-option value="troisieme">Troisième</mat-option>
+                <mat-option value="seconde">Seconde</mat-option>
+                <mat-option value="premiere" >Première</mat-option>
+                <mat-option value="terminale">Terminale</mat-option>
+              </mat-select>
+            </mat-form-field>
+      
+            <mat-form-field class="horizontal-display">
+              <mat-label>Section</mat-label>
+              <mat-select  formControlName="section">
+                <mat-option value="none">Aucune</mat-option>
+                <mat-option value="s">S</mat-option>
+                <mat-option value="es" >ES</mat-option>
+                <mat-option value="l">L</mat-option>
+                <mat-option value="sti2d">STI2D</mat-option>
+                <mat-option value="sti2a">STI2A</mat-option>
+                <mat-option value="stmg">STMG</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          
+    
+          <mat-form-field class="full-width" >
+            <input matInput   type="text" formControlName="specialTeaching" placeholder="Enseignement de spécialité" required>
+          </mat-form-field>
+           
+          <mat-form-field>
+            <mat-label>Boursier </mat-label>
+            <mat-select  formControlName="scholarship">
+              <mat-option *ngFor="let scholarship of possibleScholarships" [value]="scholarship.id">{{ scholarship.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+         
+          <p class="text-center">Informations parentales</p>  
+          <div class="form-group">
+            <mat-form-field class="horizontal-display">
+              <mat-label>Activité de la mère </mat-label>
+              <mat-select  formControlName="motherActivity">
+                <mat-option *ngFor="let activity of possibleParentsActivities" [value]="activity.id">{{ activity.name }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+      
+            <mat-form-field class="horizontal-display">
+              <mat-label>Activité du père </mat-label>
+              <mat-select  formControlName="fatherActivity">
+                <mat-option *ngFor="let activity of possibleParentsActivities" [value]="activity.id">{{ activity.name }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          
+          <div class="form-group">
+            <mat-form-field class="horizontal-display">
+              <mat-label>Statut des parents </mat-label>
+              <mat-select formControlName="parentsStatus" >
+                <mat-option *ngFor="let status of possibleParentsStatus" [value]="status.id">{{ status.name }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+      
+            <mat-form-field class="horizontal-display" >
+              <input matInput   type="number" formControlName="dependantsNumber" placeholder="Nombre de personnes à charge" required>
+            </mat-form-field>
+          </div>
+          
+        
+        <div class="text-center">
+            <button mat-raised-button color="primary" [disabled]="!formGroup.valid || loading">
+              Modifier
+              <app-load-spinner *ngIf="loading" [block]="false"></app-load-spinner>
+            </button>
+          </div>
+    </form>
+</app-form-page>
+<messages></messages>
+<router-outlet></router-outlet>

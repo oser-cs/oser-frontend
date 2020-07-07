@@ -26,6 +26,11 @@ const routes: Routes = [
         data: { title: 'Projets' },
         loadChildren: './projects/projects.module#ProjectsModule',
       },
+      {
+        path: 'compte',
+        data: { title: 'Mon Compte' },
+        loadChildren : './account/account.module#AccountModule', 
+      }
     ]
   },
 ];
