@@ -1,0 +1,19 @@
+<app-form-page>
+  <h1>Réinitialisation du mot de passe</h1>
+
+  <form [formGroup]="formGroup" (ngSubmit)="reset()">
+
+    <!-- Email field -->
+    <mat-form-field class="block">
+      <input matInput type="email" formControlName="email" required placeholder="Adresse email" autofocus>
+    </mat-form-field>
+
+    <!-- Submit -->
+    <div class="text-center">
+      <button mat-raised-button color="primary" [disabled]="!formGroup.valid || loading" id="login-btn">
+        Recevoir un mail<i *ngIf="loading" class="fa fa-spinner fa-pulse"></i>
+      </button>
+    </div>
+  </form>
+
+</app-form-page>
