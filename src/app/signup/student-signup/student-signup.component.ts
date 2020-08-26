@@ -41,9 +41,11 @@ export class StudentSignupComponent implements OnInit {
       phoneNumber: '',
       password: '',
       passwordConfirm: '',
+      agree: [false, Validators.required],
       filledForm: false,
       acceptedConditions: false,
-    }, { validator: (group) => this.checkPasswords(group)})
+    }, { validator: (group) => this.checkPasswords(group)},)
+    console.log(this.formGroup.value.agree)
   }
 
   private checkPasswords(group: FormGroup): null | any {
