@@ -22,13 +22,19 @@ import {
   MatSlideToggleModule,
   MatTableModule,
   MatDividerModule,
+  MatProgressBarModule,
+  MatDialogModule,
+  MatListModule,
+  
 } from '@angular/material';
 
 // Components
 import {AccountComponent} from './account.component'
 import {MyDataComponent} from './my-data/my-data.component'
 import {EditDataComponent} from './edit-data/edit-data.component'
-
+import {MyFileComponent} from './my-file/my-file.component'
+import {UploadComponent} from './upload/upload.component'
+import { DialogComponent } from './upload/dialog/dialog.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -51,11 +57,20 @@ import {EditDataComponent} from './edit-data/edit-data.component'
     MatSlideToggleModule,
     MatTableModule,
     MatDividerModule,
+    MatProgressBarModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatListModule,
+    
   ],
   declarations: [
     AccountComponent,
     MyDataComponent,
-    EditDataComponent
+    EditDataComponent,
+    MyFileComponent,
+    UploadComponent,
+    DialogComponent
   ],
+  entryComponents:[DialogComponent]
 })
 export class AccountModule { }

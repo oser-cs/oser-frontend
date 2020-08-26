@@ -111,10 +111,10 @@ export class StudentSignupComponent implements OnInit {
   submit() {
     this.loading = true;
     const {email,firstName,lastName,phoneNumber} = this.formGroup.value
-    const {gender,adressNumber,street,zipCode,city,personnalPhone,parentsPhone,parentsEmail,school,grade,section,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber} = this.formGroup.value;
+    //const {gender,adressNumber,street,zipCode,city,personnalPhone,parentsPhone,parentsEmail,school,grade,section,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber} = this.formGroup.value;
     const registration: Registration = {email,firstName,lastName,phoneNumber};
-    const personnalData: PersonnalData = {gender,adressNumber,street,zipCode,city,personnalPhone,parentsPhone,parentsEmail,school,grade,section,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber};
-    console.log(registration)
+   // const personnalData: PersonnalData = {gender,adressNumber,street,zipCode,city,personnalPhone,parentsPhone,parentsEmail,school,grade,section,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber};
+   
     const password: string = this.formGroup.controls.password.value;
     this.registrationService.create(registration, password).pipe(
       mergeMap(() => this.auth.login(registration.email, password)),
@@ -128,12 +128,12 @@ export class StudentSignupComponent implements OnInit {
       () => {},
       (error) => this.loading = false,
     );
-    this.personnalDataService.create(personnalData).pipe(
-      tap(() => this.loading = false),
-      tap(() => this.router.navigate(['/'])),
-    ).subscribe(
-      () => {},
-      (error) => this.loading = false,
-    );
+    // this.personnalDataService.create(personnalData).pipe(
+    //   tap(() => this.loading = false),
+    //   tap(() => this.router.navigate(['/'])),
+    // ).subscribe(
+    //   () => {},
+    //   (error) => this.loading = false,
+    // );
   }
 }

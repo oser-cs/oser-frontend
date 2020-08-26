@@ -62,6 +62,7 @@ export class MyDataComponent implements OnInit {
       firstName:"Exemple",
       lastName:"Exemple",
       gender: "man",
+      nationality:"Française",
       adressNumber:"25",
       street:"avenue exemple",
       zipCode:"99 999",

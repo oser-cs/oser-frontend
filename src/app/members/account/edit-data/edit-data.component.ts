@@ -70,6 +70,7 @@ export class EditDataComponent implements OnInit {
       firstName:"Exemple",
       lastName: "Exemple",
       gender: "man",
+      nationality: "Française",
       adressNumber:"25",
       street:"avenue exemple",
       zipCode:"99 999",
@@ -97,6 +98,7 @@ export class EditDataComponent implements OnInit {
       firstName:this.personnalData.firstName,
       lastName:this.personnalData.lastName,
       gender:this.personnalData.gender,
+      nationality : this.personnalData.nationality,
       adressNumber:this.personnalData.adressNumber,
       street:this.personnalData.street,
       zipCode:this.personnalData.zipCode,
@@ -119,8 +121,8 @@ export class EditDataComponent implements OnInit {
 
   submit(){
     //this.loading = true;
-    const {firstName,lastName,gender,adressNumber,street,zipCode,city,personnalPhone,parentsPhone,parentsEmail,school,grade,section,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber} = this.formGroup.value;
-    const personnalData: PersonnalData = {user:this.personnalData.user,firstName,lastName,gender,adressNumber,street,zipCode,city,personnalPhone,parentsPhone,parentsEmail,school,grade,section,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber};
+    const {firstName,lastName,gender,nationality,adressNumber,street,zipCode,city,personnalPhone,parentsPhone,parentsEmail,school,grade,section,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber} = this.formGroup.value;
+    const personnalData: PersonnalData = {user:this.personnalData.user,firstName,lastName,gender,nationality,adressNumber,street,zipCode,city,personnalPhone,parentsPhone,parentsEmail,school,grade,section,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber};
     console.log("data",personnalData)
 
     //La partie commentée sera à rajouter lors de la connexion au back

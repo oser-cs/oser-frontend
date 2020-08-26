@@ -9,6 +9,7 @@ export class PersonnalDataSchema {
     firstName:string;
     lastName: string;
     gender: string;
+    nationality: string;
     adressNumber:string;
     street:string;
     zipCode:string;
@@ -46,6 +47,7 @@ export class PersonnalDataAdapter implements IAdapter<PersonnalData> {
         firstName: data.firstName,
         lastName: data.lastName,
         gender: data.gender,
+        nationality : data.nationality,
         adressNumber: data.adressNumber,
         street:data.street,
         zipCode:data.zipCode,
@@ -68,6 +70,7 @@ export class PersonnalDataAdapter implements IAdapter<PersonnalData> {
   encode(obj: PersonnalData): any {
     return {
         gender: obj.gender,
+        nationality: obj.nationality,
         adressNumber: obj.adressNumber,
         street:obj.street,
         zipCode:obj.zipCode,
