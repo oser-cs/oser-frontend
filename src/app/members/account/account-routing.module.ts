@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+//Components
 import { AccountComponent } from './account.component';
 import {MyDataComponent} from './my-data/my-data.component'
 import {EditDataComponent} from './edit-data/edit-data.component'

@@ -18,7 +18,7 @@ export class AccountComponent implements OnInit {
     
   ];
   ngOnInit() {
-    this.router.navigate(['./membres/compte/donnees'])
+    this.router.navigate(['./membres/compte/modifier_donnees'])
   }
 
 }

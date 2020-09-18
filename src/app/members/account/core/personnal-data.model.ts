@@ -1,9 +1,5 @@
 import { User, UserAdapter, IAdapter } from 'app/core';
 
-
-
-
-
 export class PersonnalDataSchema {
     user : User;
     firstName:string;
@@ -19,7 +15,6 @@ export class PersonnalDataSchema {
     parentsEmail:string;
     school:string;
     grade:string;
-    section:string;
     specialTeaching:string;
     scholarship:string;
     fatherActivity:string;
@@ -57,7 +52,6 @@ export class PersonnalDataAdapter implements IAdapter<PersonnalData> {
         parentsEmail:data.parentsEmail,
         school:data.school,
         grade:data.grade,
-        section:data.section,
         specialTeaching:data.specialTeaching,
         scholarship:data.scholarship,
         fatherActivity:data.fatherActivity,
@@ -80,7 +74,6 @@ export class PersonnalDataAdapter implements IAdapter<PersonnalData> {
         parentsEmail:obj.parentsEmail,
         school:obj.school,
         grade:obj.grade,
-        section:obj.section,
         specialTeaching:obj.specialTeaching,
         scholarship:obj.scholarship,
         fatherActivity:obj.fatherActivity,

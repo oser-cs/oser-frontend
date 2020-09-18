@@ -13,8 +13,5 @@ export class MyFileComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) { }
 
-  ngOnInit() {
-    
-
-}
+  ngOnInit() {}
 }

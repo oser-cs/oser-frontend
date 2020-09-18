@@ -34,7 +34,9 @@ import {MyDataComponent} from './my-data/my-data.component'
 import {EditDataComponent} from './edit-data/edit-data.component'
 import {MyFileComponent} from './my-file/my-file.component'
 import {UploadComponent} from './upload/upload.component'
-import { DialogComponent } from './upload/dialog/dialog.component';
+import {  StudentChartDialogComponent } from './upload/dialog/studentChartDialog.component'
+import {ImageRightsDialogComponent} from './upload/dialog/imageRightsDialog.component'
+import {ParentalAuthDialogComponent} from './upload/dialog/parentalAuthDialog.component'
 @NgModule({
   imports: [
     CommonModule,
@@ -69,8 +71,10 @@ import { DialogComponent } from './upload/dialog/dialog.component';
     EditDataComponent,
     MyFileComponent,
     UploadComponent,
-    DialogComponent
+    ParentalAuthDialogComponent,
+    ImageRightsDialogComponent,
+    StudentChartDialogComponent
   ],
-  entryComponents:[DialogComponent]
+  entryComponents:[ParentalAuthDialogComponent,ImageRightsDialogComponent,StudentChartDialogComponent]
 })
 export class AccountModule { }

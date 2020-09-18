@@ -39,6 +39,18 @@ export class EditDataComponent implements OnInit {
     {id:"other",name:"Autre"} 
   ]
 
+  public possibleSchools = [
+    {id:"Jean Perrin (Longjumeau)", name:"Jean Perrin (Longjumeau)"},
+    {id:"Robert Doisneau (Corbeil-Essonnes)",name:"Robert Doisneau (Corbeil-Essonnes)"},
+    {id:"Henri Matisse (Montreuil)",name:"Henri Matisse (Montreuil)"},
+    {id:"Jean Jaurès (Montreuil)",name:"Jean Jaurès (Montreuil)"},
+    {id:"Charles Péguy (Bobigny)",name:"Charles Péguy (Bobigny)"},
+    {id:"Jean Jaurès (Chatenay-Malabry)",name:"Jean Jaurès (Chatenay-Malabry)"},
+    {id:"Parc des Loges (Evry)",name:"Parc des Loges (Evry)"},
+    {id:"Jean-Baptiste Corot (Savigny-sur-Orge)",name:"Jean-Baptiste Corot (Savigny-sur-Orge)"},
+    {id:"Gaspard Monge (Savigny-sur-Orge)",name:"Gaspard Monge (Savigny-sur-Orge)"},
+  ]
+
   public possibleScholarships = [
     {id:"echelon1",name:"Oui, échelon 1"},
     {id:"echelon2",name:"Oui, échelon 2"},
@@ -63,7 +75,7 @@ export class EditDataComponent implements OnInit {
 
 
   ngOnInit() {
-    //this.personnalData = this.route.snapshot.data['personnalData'];
+    // this.personnalData = this.route.snapshot.data['personnalData'];
     //On enlevera l'exemple quand on se connectera au back
     this.personnalData = {
       user: new User({id:0}),
@@ -80,7 +92,6 @@ export class EditDataComponent implements OnInit {
       parentsEmail:"email@email.com",
       school:"ecole",
       grade:"troisieme",
-      section:"es",
       specialTeaching:"specialite",
       scholarship:"echelon2",
       fatherActivity:"farmer",
@@ -108,7 +119,6 @@ export class EditDataComponent implements OnInit {
       parentsEmail:[this.personnalData.parentsEmail,Validators.email],
       school:this.personnalData.school,
       grade:this.personnalData.grade,
-      section:this.personnalData.section,
       specialTeaching:this.personnalData.specialTeaching,
       scholarship:this.personnalData.scholarship,
       fatherActivity:this.personnalData.fatherActivity,
@@ -121,18 +131,18 @@ export class EditDataComponent implements OnInit {
 
   submit(){
     //this.loading = true;
-    const {firstName,lastName,gender,nationality,adressNumber,street,zipCode,city,personnalPhone,parentsPhone,parentsEmail,school,grade,section,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber} = this.formGroup.value;
-    const personnalData: PersonnalData = {user:this.personnalData.user,firstName,lastName,gender,nationality,adressNumber,street,zipCode,city,personnalPhone,parentsPhone,parentsEmail,school,grade,section,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber};
+    const {firstName,lastName,gender,nationality,adressNumber,street,zipCode,city,personnalPhone,parentsPhone,parentsEmail,school,grade,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber} = this.formGroup.value;
+    const personnalData: PersonnalData = {user:this.personnalData.user,firstName,lastName,gender,nationality,adressNumber,street,zipCode,city,personnalPhone,parentsPhone,parentsEmail,school,grade,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber};
     console.log("data",personnalData)
 
     //La partie commentée sera à rajouter lors de la connexion au back
-    // this.personnalDataService.edit(personnalData).pipe(
-    //   tap(() => this.loading = false),
-    //   tap(() => this.router.navigate(['./membres/compte/donnees'])),
-    // ).subscribe(
-    //   () => {},
-    //   (error) => this.loading = false,
-    // );
+    this.personnalDataService.edit(personnalData).pipe(
+      tap(() => this.loading = false),
+      tap(() => this.router.navigate(['./membres/compte/donnees'])),
+    ).subscribe(
+      () => {},
+      (error) => this.loading = false,
+    );
   
   }
   

@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
+//Components
 import { UploadComponent } from './upload.component'
-import { DialogComponent } from './dialog/dialog.component'
+import {StudentChartDialogComponent} from './dialog/studentChartDialog.component'
+import {ImageRightsDialogComponent} from './dialog/imageRightsDialog.component'
+import {ParentalAuthDialogComponent} from './dialog/parentalAuthDialog.component'
 import {
   MatButtonModule,
   MatDialogModule,
@@ -25,9 +28,9 @@ import { HttpClientModule } from '@angular/common/http'
     BrowserAnimationsModule,
     MatProgressBarModule,
   ],
-  declarations: [UploadComponent, DialogComponent],
+  declarations: [UploadComponent, ParentalAuthDialogComponent,ImageRightsDialogComponent,StudentChartDialogComponent],
   exports: [UploadComponent], 
   providers: [UploadService],
-  entryComponents : [DialogComponent]
+  entryComponents : [ParentalAuthDialogComponent,ImageRightsDialogComponent,StudentChartDialogComponent]
 })
 export class UploadModule {}

@@ -11,7 +11,7 @@
     <p><span class='label'>Numéro de téléphone des parents : </span>{{personnalData.parentsPhone}}</p>
     <p><span class='label'>Email des parents  : </span>{{personnalData.parentsEmail}}</p>
     <mat-divider></mat-divider>
-    <p><span class='label'>Lycée : </span>{{personnalData.school}}</p>
+    <p><span class='label'>Etablissement : </span>{{personnalData.school}}</p>
     <p><span class='label'>Classe : </span>{{grade[personnalData.grade]}}</p>
     <p><span class='label'>Section : </span>{{personnalData.section.toUpperCase()}}</p>
     <p><span class='label'>Enseignement de spécialité : </span>{{personnalData.specialTeaching}}</p>
@@ -21,6 +21,10 @@
     <p><span class='label'>Activité de la mère : </span>{{activity[personnalData.motherActivity]}}</p>
     <p><span class='label'>Statut des parents : </span>{{status[personnalData.parentsStatus]}}</p>
     <p><span class='label'>Nombre de personnes à charge : </span>{{personnalData.dependantsNumber}}</p>
+    <div class="text-center">
+        <button mat-raised-button color="primary" (click)="editData()" [disabled]="loading"><mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>Modifier mes données</button>
+    </div>
+    
 </app-form-page>
 <messages></messages>
 <router-outlet></router-outlet>

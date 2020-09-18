@@ -12,27 +12,31 @@ import {PersonnalDataAdapter,PersonnalData} from './personnal-data.model'
 })
 export class PersonnalDataService extends ApiService {
 
-  private baseUrl = this.apiUrl + 'personnalData/';
+  //api url
+  private baseUrl = this.apiUrl + 'students';
   private adapter = new PersonnalDataAdapter();
 
   constructor(
     private http: HttpClient,
-  ) { super(); }
+  ) { super(); console.log(this.baseUrl) }
 
-  
+  //get personnalData by user
    get(filters: any): Observable<PersonnalData> {
     const url = this.baseUrl;
     return this.http.get(url, { params: filters }).pipe(
-      map((data: any) => data.map(item => this.adapter.adapt(item))),
+      map((data: any) => {
+        console.log()
+        return data.map(item => this.adapter.adapt(item))}),
     );
   }
-  forUser(userId: number): Observable<PersonnalData> {
-    return this.get({ user: String(userId) });
-  }
 
+  forUser(userId: number): Observable<PersonnalData> {
+    return this.get({ user: String(userId)});
+  }
+  //edit personnalData for a user
   edit(personnalData: PersonnalData): Observable<any> {
     const body: any = this.adapter.encode(personnalData);
-    return this.http.patch(this.baseUrl, body);
+    return this.http.post(this.baseUrl, body);
   }  
 }
 
@@ -42,7 +46,7 @@ export class PersonnalDataService extends ApiService {
 export class PersonnalDataResolver implements Resolve<PersonnalData>{
     
     constructor(private service: PersonnalDataService, private auth: AuthService) { }
-
+  //fetch user
   resolve() {
     const user = this.auth.getUserSnapshot();
     return this.service.forUser(user.id);

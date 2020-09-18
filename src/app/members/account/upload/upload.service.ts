@@ -6,17 +6,19 @@ import {
   HttpResponse,
 } from '@angular/common/http'
 import { Observable,Subject } from 'rxjs'
+import { ApiService } from 'app/core';
 
-const url = 'http://localhost:8000/upload' //to change
+ 
 
 @Injectable({
   providedIn: 'root'
 })
-export class UploadService {
-  constructor(private http: HttpClient) {}
-
+export class UploadService extends ApiService {
+  constructor(private http: HttpClient) {super();}
+  private url = this.apiUrl + 'upload/' 
   public upload(
-    files: Set<File>
+    files: Set<File>,
+    uploadedFileType : String
   ): { [key: string]: { progress: Observable<number> } } {
     // this will be the our resulting map
     const status: { [key: string]: { progress: Observable<number> } } = {};
@@ -24,11 +26,12 @@ export class UploadService {
     files.forEach(file => {
       // create a new multipart-form for every file
       const formData: FormData = new FormData();
-      formData.append('file', file, file.name);
+      formData.append('fichier', file, file.name);
 
       // create a http-post request and pass the form
       // tell it to report the upload progress
-      const req = new HttpRequest('POST', url, formData, {
+      console.log('url',this.url+uploadedFileType)
+      const req = new HttpRequest('POST', this.url+uploadedFileType, formData, {
         reportProgress: true
       });
 

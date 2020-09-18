@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router'
+import {ActivatedRoute,Router} from '@angular/router'
 import {PersonnalData} from '../core'
 import {User} from 'app/core'
+
 @Component({
   selector: 'app-my-data',
   templateUrl: './my-data.component.html',
   styleUrls: ['./my-data.component.scss']
 })
 export class MyDataComponent implements OnInit {
-    
+  
   personnalData: PersonnalData;
+  
   public gender= {
     "man":"Homme",
     "woman":"Femme",
@@ -51,11 +53,16 @@ export class MyDataComponent implements OnInit {
     "cohabitation":"En concubinage",
     "monoparental":"Famille monoparentale"
   }
+  
+  public editData = (e)=> {
+    this.router.navigate(['./membres/compte/modifier_donnees'])
+  }
 
-  constructor(private route: ActivatedRoute) { }
-
+  constructor(private route: ActivatedRoute, private router:Router) { }
+  
   ngOnInit() {
-    //this.personnalData = this.route.snapshot.data['personnalData'];
+    
+    // this.personnalData = this.route.snapshot.data['personnalData'];
     //On enlevera l'exemple quand on se connectera au back
     this.personnalData = {
       user: new User({id:0}),
@@ -72,7 +79,6 @@ export class MyDataComponent implements OnInit {
       parentsEmail:"email@email.com",
       school:"ecole",
       grade:"troisieme",
-      section:"es",
       specialTeaching:"specialite",
       scholarship:"echelon2",
       fatherActivity:"farmer",
@@ -80,6 +86,6 @@ export class MyDataComponent implements OnInit {
       parentsStatus:"divorced",
       dependantsNumber:3,
     }
-  }
+   }
 
 }

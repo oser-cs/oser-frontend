@@ -56,7 +56,13 @@
           <p class="text-center">Informations scolaires</p>
     
           <mat-form-field class="full-width" >
-            <input matInput   type="text" formControlName="school" placeholder="Lycée" required>
+            <mat-label>Etablissement </mat-label>
+            <mat-select  formControlName="school">
+              <mat-option *ngFor="let school of possibleSchools" [value]="school.id">{{ school.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="full-width" >
+            <input matInput   type="text" formControlName="specialTeaching" placeholder="Enseignements de spécialité (entrer 'aucun' si jamais vous n'etes pas concerné)" >
           </mat-form-field>
           <div class="form-group">
             <mat-form-field class="horizontal-display">
@@ -68,32 +74,17 @@
                 <mat-option value="terminale">Terminale</mat-option>
               </mat-select>
             </mat-form-field>
-      
-            <mat-form-field class="horizontal-display">
-              <mat-label>Section</mat-label>
-              <mat-select  formControlName="section">
-                <mat-option value="none">Aucune</mat-option>
-                <mat-option value="s">S</mat-option>
-                <mat-option value="es" >ES</mat-option>
-                <mat-option value="l">L</mat-option>
-                <mat-option value="sti2d">STI2D</mat-option>
-                <mat-option value="sti2a">STI2A</mat-option>
-                <mat-option value="stmg">STMG</mat-option>
+            
+            <mat-form-field>
+              <mat-label>Boursier </mat-label>
+              <mat-select  formControlName="scholarship">
+                <mat-option *ngFor="let scholarship of possibleScholarships" [value]="scholarship.id">{{ scholarship.name }}</mat-option>
               </mat-select>
             </mat-form-field>
+            
           </div>
-          
-    
-          <mat-form-field class="full-width" >
-            <input matInput   type="text" formControlName="specialTeaching" placeholder="Enseignement de spécialité" required>
-          </mat-form-field>
            
-          <mat-form-field>
-            <mat-label>Boursier </mat-label>
-            <mat-select  formControlName="scholarship">
-              <mat-option *ngFor="let scholarship of possibleScholarships" [value]="scholarship.id">{{ scholarship.name }}</mat-option>
-            </mat-select>
-          </mat-form-field>
+          
          
           <p class="text-center">Informations parentales</p>  
           <div class="form-group">
@@ -126,8 +117,8 @@
           </div>
           
         
-        <div class="text-center">
-            <button mat-raised-button color="primary" [disabled]="!formGroup.valid || loading">
+          <div class="text-center">
+            <button mat-raised-button color="primary" [disabled]="loading">
               Modifier
               <app-load-spinner *ngIf="loading" [block]="false"></app-load-spinner>
             </button>

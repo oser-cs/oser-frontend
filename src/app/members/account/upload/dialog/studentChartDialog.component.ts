@@ -11,7 +11,10 @@ import { forkJoin } from 'rxjs'
 
 
 
-export class DialogComponent {
+
+
+export class StudentChartDialogComponent {
+  constructor(public dialogRef : MatDialogRef<StudentChartDialogComponent>, public uploadService : UploadService) { }
   @ViewChild('file') file
   public files: Set<File> = new Set()
   progress
@@ -36,6 +39,7 @@ export class DialogComponent {
     }
   }
 
+
   closeDialog() {
     // if everything was uploaded already, just close the dialog
     if (this.uploadSuccessful) {
@@ -46,7 +50,7 @@ export class DialogComponent {
     this.uploading = true;
   
     // start the upload and save the progress map
-    this.progress = this.uploadService.upload(this.files);
+    this.progress = this.uploadService.upload(this.files,"chart");
   
     // convert the progress map into an array
     let allProgressObservables = [];
@@ -79,6 +83,5 @@ export class DialogComponent {
       this.uploading = false;
     });
   }
-
-  constructor(public dialogRef: MatDialogRef<DialogComponent>, public uploadService: UploadService) {}
 }
+
