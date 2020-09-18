@@ -18,16 +18,16 @@ const routes: Routes = [
       {
         path: 'donnees', 
         component: MyDataComponent,
-        // resolve : {
-        //   personnalData : PersonnalDataResolver
-        // },
+        resolve : {
+          personnalData : PersonnalDataResolver
+        },
         
       },
       {
         path: 'modifier_donnees', component: EditDataComponent,
-        // resolve : {
-        //   personnalData : PersonnalDataResolver
-        // },
+        resolve : {
+          personnalData : PersonnalDataResolver
+        },
         
       },
       {

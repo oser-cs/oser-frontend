@@ -38,9 +38,9 @@ export class PersonnalDataAdapter implements IAdapter<PersonnalData> {
   adapt(data: any): PersonnalData {
     
     return new PersonnalData({
-        user : this.userAdapter.adapt(data.user),
-        firstName: data.firstName,
-        lastName: data.lastName,
+        user: data.user,
+        firstName: data.user.first_name,
+        lastName: data.user.last_name,
         gender: data.gender,
         nationality : data.nationality,
         adressNumber: data.adressNumber,

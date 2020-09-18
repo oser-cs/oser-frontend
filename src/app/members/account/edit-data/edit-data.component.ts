@@ -75,30 +75,30 @@ export class EditDataComponent implements OnInit {
 
 
   ngOnInit() {
-    // this.personnalData = this.route.snapshot.data['personnalData'];
+    this.personnalData = this.route.snapshot.data['personnalData'];
     //On enlevera l'exemple quand on se connectera au back
-    this.personnalData = {
-      user: new User({id:0}),
-      firstName:"Exemple",
-      lastName: "Exemple",
-      gender: "man",
-      nationality: "Française",
-      adressNumber:"25",
-      street:"avenue exemple",
-      zipCode:"99 999",
-      city:"Gif sur Yvette",
-      personnalPhone:"06 99 99 99 99",
-      parentsPhone:"06 99 99 99 99",
-      parentsEmail:"email@email.com",
-      school:"ecole",
-      grade:"troisieme",
-      specialTeaching:"specialite",
-      scholarship:"echelon2",
-      fatherActivity:"farmer",
-      motherActivity:"teacher",
-      parentsStatus:"divorced",
-      dependantsNumber:3,
-    }
+    // this.personnalData = {
+    //   user: new User({id:0}),
+    //   firstName:"Exemple",
+    //   lastName: "Exemple",
+    //   gender: "man",
+    //   nationality: "Française",
+    //   adressNumber:"25",
+    //   street:"avenue exemple",
+    //   zipCode:"99 999",
+    //   city:"Gif sur Yvette",
+    //   personnalPhone:"06 99 99 99 99",
+    //   parentsPhone:"06 99 99 99 99",
+    //   parentsEmail:"email@email.com",
+    //   school:"ecole",
+    //   grade:"troisieme",
+    //   specialTeaching:"specialite",
+    //   scholarship:"echelon2",
+    //   fatherActivity:"farmer",
+    //   motherActivity:"teacher",
+    //   parentsStatus:"divorced",
+    //   dependantsNumber:3,
+    // }
     this.createForm()
   }
 

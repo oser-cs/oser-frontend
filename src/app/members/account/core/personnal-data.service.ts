@@ -31,7 +31,7 @@ export class PersonnalDataService extends ApiService {
   }
 
   forUser(userId: number): Observable<PersonnalData> {
-    return this.get({ user: String(userId)});
+    return this.get({ user_id: String(userId)});
   }
   //edit personnalData for a user
   edit(personnalData: PersonnalData): Observable<any> {
