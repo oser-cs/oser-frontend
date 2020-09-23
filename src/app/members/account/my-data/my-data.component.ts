@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute,Router} from '@angular/router'
-import {PersonnalData} from '../core'
+import {PersonalData} from '../core'
 import {User} from 'app/core'
 
 @Component({
@@ -10,7 +10,7 @@ import {User} from 'app/core'
 })
 export class MyDataComponent implements OnInit {
   
-  personnalData: PersonnalData;
+  personalData: PersonalData;
   
   public gender= {
     "man":"Homme",
@@ -57,35 +57,15 @@ export class MyDataComponent implements OnInit {
   public editData = (e)=> {
     this.router.navigate(['./membres/compte/modifier_donnees'])
   }
+  
+ 
 
   constructor(private route: ActivatedRoute, private router:Router) { }
   
   ngOnInit() {
     
-    this.personnalData = this.route.snapshot.data['personnalData'];
-    //On enlevera l'exemple quand on se connectera au back
-  //   this.personnalData = {
-  //     user: new User({id:0}),
-  //     firstName:"Exemple",
-  //     lastName:"Exemple",
-  //     gender: "man",
-  //     nationality:"Française",
-  //     adressNumber:"25",
-  //     street:"avenue exemple",
-  //     zipCode:"99 999",
-  //     city:"Gif sur Yvette",
-  //     personnalPhone:"06 99 99 99 99",
-  //     parentsPhone:"06 99 99 99 99",
-  //     parentsEmail:"email@email.com",
-  //     school:"ecole",
-  //     grade:"troisieme",
-  //     specialTeaching:"specialite",
-  //     scholarship:"echelon2",
-  //     fatherActivity:"farmer",
-  //     motherActivity:"teacher",
-  //     parentsStatus:"divorced",
-  //     dependantsNumber:3,
-  //   }
+    this.personalData = this.route.snapshot.data['personalData'];
+    
   }
 
 }

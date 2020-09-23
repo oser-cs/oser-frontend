@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import {ActivatedRoute} from '@angular/router'
-import { PersonnalData,PersonnalDataService } from '../core';
+import { PersonalData,PersonalDataService } from '../core';
 import { tap, mergeMap } from 'rxjs/operators';
 import { AuthService } from 'app/core';
 import {User} from 'app/core'
@@ -16,9 +16,10 @@ import {User} from 'app/core'
   styleUrls: ['./edit-data.component.scss']
 })
 export class EditDataComponent implements OnInit {
-  personnalData: PersonnalData;
+  personalData: PersonalData;
   formGroup : FormGroup;
   loading = false;
+  public error : String = "";
   public possibleParentsStatus = [
     {id:"maried",name:"Mariés"},
     {id:"divorced",name:"Divorcés"},
@@ -65,7 +66,7 @@ export class EditDataComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private personnalDataService : PersonnalDataService,
+    private personalDataService : PersonalDataService,
     private formBuilder: FormBuilder,
     private router: Router,
     private auth: AuthService,
@@ -75,30 +76,7 @@ export class EditDataComponent implements OnInit {
 
 
   ngOnInit() {
-    this.personnalData = this.route.snapshot.data['personnalData'];
-    //On enlevera l'exemple quand on se connectera au back
-    // this.personnalData = {
-    //   user: new User({id:0}),
-    //   firstName:"Exemple",
-    //   lastName: "Exemple",
-    //   gender: "man",
-    //   nationality: "Française",
-    //   adressNumber:"25",
-    //   street:"avenue exemple",
-    //   zipCode:"99 999",
-    //   city:"Gif sur Yvette",
-    //   personnalPhone:"06 99 99 99 99",
-    //   parentsPhone:"06 99 99 99 99",
-    //   parentsEmail:"email@email.com",
-    //   school:"ecole",
-    //   grade:"troisieme",
-    //   specialTeaching:"specialite",
-    //   scholarship:"echelon2",
-    //   fatherActivity:"farmer",
-    //   motherActivity:"teacher",
-    //   parentsStatus:"divorced",
-    //   dependantsNumber:3,
-    // }
+    this.personalData = this.route.snapshot.data['personalData'];
     this.createForm()
   }
 
@@ -106,42 +84,44 @@ export class EditDataComponent implements OnInit {
   createForm() {
     
     this.formGroup = this.formBuilder.group({
-      firstName:this.personnalData.firstName,
-      lastName:this.personnalData.lastName,
-      gender:this.personnalData.gender,
-      nationality : this.personnalData.nationality,
-      adressNumber:this.personnalData.adressNumber,
-      street:this.personnalData.street,
-      zipCode:this.personnalData.zipCode,
-      city:this.personnalData.city,
-      personnalPhone:this.personnalData.personnalPhone,
-      parentsPhone:this.personnalData.parentsPhone,
-      parentsEmail:[this.personnalData.parentsEmail,Validators.email],
-      school:this.personnalData.school,
-      grade:this.personnalData.grade,
-      specialTeaching:this.personnalData.specialTeaching,
-      scholarship:this.personnalData.scholarship,
-      fatherActivity:this.personnalData.fatherActivity,
-      motherActivity:this.personnalData.motherActivity,
-      parentsStatus:this.personnalData.parentsStatus,
-      dependantsNumber:this.personnalData.dependantsNumber,
+      firstName:this.personalData.firstName,
+      lastName:this.personalData.lastName,
+      gender:this.personalData.gender,
+      nationality : this.personalData.nationality,
+      addressNumber:[this.personalData.addressNumber,Validators.pattern("^[0-9]*$")],
+      street:this.personalData.street,
+      zipCode:this.personalData.zipCode,
+      city:this.personalData.city,
+      personalPhone:[this.personalData.personalPhone,Validators.pattern("^[0-9, ]*[0-9, ]{10}$")],
+      parentsPhone:this.personalData.parentsPhone,
+      parentsEmail:[this.personalData.parentsEmail,Validators.email],
+      school:this.personalData.school,
+      grade:this.personalData.grade,
+      specialTeaching:this.personalData.specialTeaching,
+      scholarship:this.personalData.scholarship,
+      fatherActivity:this.personalData.fatherActivity,
+      motherActivity:this.personalData.motherActivity,
+      parentsStatus:this.personalData.parentsStatus,
+      dependantsNumber:this.personalData.dependantsNumber,
     })
  
   }
 
   submit(){
-    //this.loading = true;
-    const {firstName,lastName,gender,nationality,adressNumber,street,zipCode,city,personnalPhone,parentsPhone,parentsEmail,school,grade,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber} = this.formGroup.value;
-    const personnalData: PersonnalData = {user:this.personnalData.user,firstName,lastName,gender,nationality,adressNumber,street,zipCode,city,personnalPhone,parentsPhone,parentsEmail,school,grade,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber};
-    console.log("data",personnalData)
-
-    //La partie commentée sera à rajouter lors de la connexion au back
-    this.personnalDataService.edit(personnalData).pipe(
+    this.loading = true;
+    const {firstName,lastName,gender,nationality,addressNumber,street,zipCode,city,personalPhone,parentsPhone,parentsEmail,school,grade,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber} = this.formGroup.value;
+    const personalData: PersonalData = {...this.personalData,firstName,lastName,gender,nationality,addressNumber,street,zipCode,city,personalPhone,parentsPhone,parentsEmail,school,grade,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber};
+    
+    this.personalDataService.edit(personalData).pipe(
       tap(() => this.loading = false),
+      tap(()=> this.error = ""),
       tap(() => this.router.navigate(['./membres/compte/donnees'])),
     ).subscribe(
       () => {},
-      (error) => this.loading = false,
+      (error) => {
+        this.error = "Erreur lors de la modification des données"
+        this.loading = false
+      },
     );
   
   }

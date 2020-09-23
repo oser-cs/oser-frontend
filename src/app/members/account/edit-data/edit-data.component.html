@@ -21,29 +21,29 @@
           </mat-form-field>
           <p class="text-center">Adresse</p>
           <div class="form-group">
-            <mat-form-field class="full-width adress-input quarter-display">
-              <input matInput type="text"  formControlName="adressNumber" placeholder="Numéro de rue" required>
+            <mat-form-field class="full-width address-input quarter-display">
+              <input matInput type="text"  formControlName="addressNumber" placeholder="Numéro de rue" required>
             </mat-form-field>
-            <mat-form-field class="full-width adress-input">
+            <mat-form-field class="full-width address-input">
               <input  matInput  type="text" formControlName="street" placeholder="Rue" required>
             </mat-form-field>
           </div>
           
           <div class="form-group">
-            <mat-form-field class="full-width adress-input quarter-display">
+            <mat-form-field class="full-width address-input quarter-display">
               <input matInput type="text" minlength="5" maxlength="5" formControlName="zipCode" placeholder="Code postal" required>
               <mat-error *ngIf="formGroup.controls['city'].hasError('pattern')">
                 Vous devez rentrer un code postal correct
               </mat-error>
             </mat-form-field>
         
-            <mat-form-field class="full-width adress-input" >
+            <mat-form-field class="full-width address-input" >
               <input matInput   type="text" formControlName="city" placeholder="Ville" required>
             </mat-form-field>
           </div>
           <p class="text-center">Informations de contact</p>
           <mat-form-field class="full-width" >
-            <input matInput   type="text" formControlName="personnalPhone" placeholder="Numéro de téléphone personnel" required>
+            <input matInput   type="text" formControlName="personalPhone" placeholder="Numéro de téléphone personnel" required>
           </mat-form-field>
           <mat-form-field class="full-width" >
             <input matInput   type="text" formControlName="parentsPhone" placeholder="Numéro de téléphone des parents" required>
@@ -118,11 +118,12 @@
           
         
           <div class="text-center">
-            <button mat-raised-button color="primary" [disabled]="loading">
+            <button mat-raised-button color="primary" [disabled]="!formGroup.valid || loading">
               Modifier
               <app-load-spinner *ngIf="loading" [block]="false"></app-load-spinner>
             </button>
           </div>
+          <p class="text-center">{{error}}</p>
     </form>
 </app-form-page>
 <messages></messages>

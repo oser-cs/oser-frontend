@@ -1,2 +1,2 @@
-export * from './personnal-data.model';
-export * from './personnal-data.service';
+export * from './personal-data.model';
+export * from './personal-data.service';

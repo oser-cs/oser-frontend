@@ -6,7 +6,7 @@ import { AccountComponent } from './account.component';
 import {MyDataComponent} from './my-data/my-data.component'
 import {EditDataComponent} from './edit-data/edit-data.component'
 import {MyFileComponent} from './my-file/my-file.component'
-import { PersonnalDataResolver } from './core'
+import { PersonalDataResolver } from './core'
 
 
 const routes: Routes = [
@@ -19,14 +19,14 @@ const routes: Routes = [
         path: 'donnees', 
         component: MyDataComponent,
         resolve : {
-          personnalData : PersonnalDataResolver
+          'personalData' : PersonalDataResolver
         },
         
       },
       {
         path: 'modifier_donnees', component: EditDataComponent,
         resolve : {
-          personnalData : PersonnalDataResolver
+          'personalData' : PersonalDataResolver
         },
         
       },

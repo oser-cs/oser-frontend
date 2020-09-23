@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router'
 import {UploadComponent} from '../upload/upload.component'
-import {PersonnalData} from '../core'
+import {PersonalData} from '../core'
 @Component({
   selector: 'app-my-file',
   templateUrl: './my-file.component.html',
