@@ -2,7 +2,7 @@
     <h1>Mes données</h1>
     <p><span class='label'>Prénom : </span>{{personalData.firstName}} </p> 
     <p><span class='label'>Nom : </span>{{personalData.lastName}}</p>
-    <p><span class='label'>Sexe : </span>{{gender[personalData.gender]}}</p>
+    <p><span class='label'>Sexe : </span>{{personalData.gender}}</p>
     <p><span class='label'>Nationalité : </span>{{personalData.nationality}}</p>
     <mat-divider></mat-divider>
     <p> <span class='label'>Adresse : </span>{{personalData.addressNumber}} {{personalData.street}} {{personalData.zipCode}}, {{personalData.city}}</p>
@@ -13,13 +13,14 @@
     <mat-divider></mat-divider>
     <p><span class='label'>Etablissement : </span>{{personalData.school}}</p> 
     <p><span class='label'>Classe : </span>{{grade[personalData.grade]}}</p>
+    <p><span class='label'>Voie : </span>{{[personalData.classType]}}</p>
     <p><span class='label'>Enseignement de spécialité : </span>{{personalData.specialTeaching}}</p>
     <p><span class='label'>Boursier : </span>{{scholarship[personalData.scholarship]}}</p>
     <mat-divider></mat-divider>
-    <p><span class='label'>Activité du père : </span>{{activity[personalData.fatherActivity]}}</p>
+    <p><span class='label'>Activité du père : </span>{{personalData.fatherActivity}}</p>
     
-    <p><span class='label'>Activité de la mère : </span>{{activity[personalData.motherActivity]}}</p>
-    <p><span class='label'>Statut des parents : </span>{{status[personalData.parentsStatus]}}</p>
+    <p><span class='label'>Activité de la mère : </span>{{personalData.motherActivity}}</p>
+    <p><span class='label'>Statut des parents : </span>{{personalData.parentsStatus}}</p>
     <p><span class='label'>Nombre de personnes à charge : </span>{{personalData.dependantsNumber}}</p>
     <div class="text-center">
         <button mat-raised-button color="primary" (click)="editData()" [disabled]="loading"><mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>Modifier mes données</button>

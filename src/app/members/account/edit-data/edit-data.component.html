@@ -8,17 +8,21 @@
         <mat-form-field class="full-width" >
             <input matInput   type="text" formControlName="lastName" placeholder="Nom" required>
           </mat-form-field>
-        <mat-form-field>
-            <mat-label>Sexe</mat-label>
-            <mat-select  formControlName="gender">
-              <mat-option value="man">Homme</mat-option>
-              <mat-option value="woman" >Femme</mat-option>
-              <mat-option value="other">Autre</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field class="full-width" >
-            <input matInput   type="text" formControlName="nationality" placeholder="Nationalité" required>
-          </mat-form-field>
+        
+          <div class="form-group">
+            <mat-form-field class="horizontal-display">
+              <mat-label>Sexe</mat-label>
+              <mat-select  formControlName="gender" required>
+                <mat-option value="Homme">Homme</mat-option>
+                <mat-option value="Femme" >Femme</mat-option>
+                <mat-option value="Autre">Autre</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="horizontal-display" >
+              <input matInput   type="text" formControlName="nationality" placeholder="Nationalité" required>
+            </mat-form-field>
+          </div>
+          
           <p class="text-center">Adresse</p>
           <div class="form-group">
             <mat-form-field class="full-width address-input quarter-display">
@@ -57,27 +61,35 @@
     
           <mat-form-field class="full-width" >
             <mat-label>Etablissement </mat-label>
-            <mat-select  formControlName="school">
+            <mat-select  formControlName="school" required>
               <mat-option *ngFor="let school of possibleSchools" [value]="school.id">{{ school.name }}</mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field class="full-width" >
-            <input matInput   type="text" formControlName="specialTeaching" placeholder="Enseignements de spécialité (entrer 'aucun' si jamais vous n'etes pas concerné)" >
+            <input matInput required   type="text" formControlName="specialTeaching" placeholder="Enseignements de spécialité (entrer 'aucun' si jamais vous n'etes pas concerné)" >
           </mat-form-field>
           <div class="form-group">
             <mat-form-field class="horizontal-display">
               <mat-label>Classe</mat-label>
-              <mat-select  formControlName="grade">
+              <mat-select  formControlName="grade" required>
                 <mat-option value="troisieme">Troisième</mat-option>
                 <mat-option value="seconde">Seconde</mat-option>
                 <mat-option value="premiere" >Première</mat-option>
                 <mat-option value="terminale">Terminale</mat-option>
               </mat-select>
             </mat-form-field>
+
+            <mat-form-field class="horizontal-display horizontal-center">
+              <mat-label>Voie</mat-label>
+              <mat-select  formControlName="classType" required>
+                <mat-option value="General">General</mat-option>
+                <mat-option value="Technologique">Technologique</mat-option>
+              </mat-select>
+            </mat-form-field>
             
-            <mat-form-field>
+            <mat-form-field class="horizontal-display"> 
               <mat-label>Boursier </mat-label>
-              <mat-select  formControlName="scholarship">
+              <mat-select  formControlName="scholarship" required>
                 <mat-option *ngFor="let scholarship of possibleScholarships" [value]="scholarship.id">{{ scholarship.name }}</mat-option>
               </mat-select>
             </mat-form-field>
@@ -90,14 +102,14 @@
           <div class="form-group">
             <mat-form-field class="horizontal-display">
               <mat-label>Activité de la mère </mat-label>
-              <mat-select  formControlName="motherActivity">
+              <mat-select  formControlName="motherActivity" required>
                 <mat-option *ngFor="let activity of possibleParentsActivities" [value]="activity.id">{{ activity.name }}</mat-option>
               </mat-select>
             </mat-form-field>
       
             <mat-form-field class="horizontal-display">
               <mat-label>Activité du père </mat-label>
-              <mat-select  formControlName="fatherActivity">
+              <mat-select  formControlName="fatherActivity" required>
                 <mat-option *ngFor="let activity of possibleParentsActivities" [value]="activity.id">{{ activity.name }}</mat-option>
               </mat-select>
             </mat-form-field>
@@ -106,7 +118,7 @@
           <div class="form-group">
             <mat-form-field class="horizontal-display">
               <mat-label>Statut des parents </mat-label>
-              <mat-select formControlName="parentsStatus" >
+              <mat-select formControlName="parentsStatus" required >
                 <mat-option *ngFor="let status of possibleParentsStatus" [value]="status.id">{{ status.name }}</mat-option>
               </mat-select>
             </mat-form-field>
@@ -115,7 +127,23 @@
               <input matInput   type="number" formControlName="dependantsNumber" placeholder="Nombre de personnes à charge" required>
             </mat-form-field>
           </div>
-          
+          <p>
+            <small>
+              Données personnelles : nous utiliserons les données fournies pour assurer le contact avec toi et ta famille,
+              équilibrer les participations aux activités organisées ainsi qu'à des fins d'aggrégation anonymisée
+              (statistiques, demandes de subvention). Plus d'informations dans nos <a routerLink="/mentions-legales"
+                target="_blank">mentions légales</a>.
+            </small>
+          </p>
+      
+          <p>
+            J'accepte qu'OSER utilise mes données personnelles fournies ci-dessus ou dans le formulaire d'inscription
+            adminsitrative, dans le strict respect du cadre spécifié ci-dessus :
+          </p>
+      
+          <mat-checkbox class="checkbox-field" formControlName="acceptedConditions" required >
+            J'accepte cette utilisation
+          </mat-checkbox>
         
           <div class="text-center">
             <button mat-raised-button color="primary" [disabled]="!formGroup.valid || loading">

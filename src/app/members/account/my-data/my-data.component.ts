@@ -12,11 +12,7 @@ export class MyDataComponent implements OnInit {
   
   personalData: PersonalData;
   
-  public gender= {
-    "man":"Homme",
-    "woman":"Femme",
-    "other":"Autre"
-  }
+  
   public grade = {
     "troisieme": "Troisième",
     "seconde":"Seconde",
@@ -25,34 +21,19 @@ export class MyDataComponent implements OnInit {
 
   }
   public scholarship = {
+    "echelon0": "Oui, échelon 0",
     "echelon1": "Oui, échelon 1",
     "echelon2": "Oui, échelon 2",
     "echelon3": "Oui, échelon 3",
     "echelon4": "Oui, échelon 4",
     "echelon5": "Oui, échelon 5",
     "echelon6": "Oui, échelon 6",
+    "echelon7": "Oui, échelon 7",
     "no" : "Non"
 
   }
 
-  public activity = {
-    "farmer":"Agriculteur",
-    "artisan":"Artisan, commerçant, chef d'entreprise",
-    "executive":"Cadre, profession intellectuelle supérieure",
-    "teacher":"Enseignant et assimilé",
-    "intermediate":"Profession intermédiaire",
-    "employee":"Employé",
-    "worker":"Ouvrier",
-    "retreated":"Retraité",
-    "inactive":"Inactif",
-    "other":"Autre" 
-  }
-  public status = {
-    "maried":"Mariés",
-    "divorced":"Divorcés",
-    "cohabitation":"En concubinage",
-    "monoparental":"Famille monoparentale"
-  }
+  
   
   public editData = (e)=> {
     this.router.navigate(['./membres/compte/modifier_donnees'])

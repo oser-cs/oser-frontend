@@ -18,6 +18,7 @@ export class PersonalDataSchema {
     parentsEmail:string;
     school:string;
     grade:string;
+    classType:string;
     specialTeaching:string;
     scholarship:string;
     fatherActivity:string;
@@ -56,6 +57,7 @@ export class PersonalDataAdapter implements IAdapter<PersonalData> {
         parentsEmail:data.parentsEmail?data.parentsEmail:'',
         school:data.school?data.school:'',
         grade:data.grade?data.grade:'',
+        classType : data.classType?data.classType:'',
         specialTeaching:data.specialTeaching?data.specialTeaching:'',
         scholarship:data.scholarship?data.scholarship:'',
         fatherActivity:data.fatherActivity?data.fatherActivity:'',
@@ -80,6 +82,7 @@ export class PersonalDataAdapter implements IAdapter<PersonalData> {
         parentsEmail:obj.parentsEmail,
         school:obj.school,
         grade:obj.grade,
+        classType:obj.classType,
         specialTeaching:obj.specialTeaching,
         scholarship:obj.scholarship,
         fatherActivity:obj.fatherActivity,

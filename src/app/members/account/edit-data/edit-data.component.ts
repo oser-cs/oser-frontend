@@ -21,23 +21,23 @@ export class EditDataComponent implements OnInit {
   loading = false;
   public error : String = "";
   public possibleParentsStatus = [
-    {id:"maried",name:"Mariés"},
-    {id:"divorced",name:"Divorcés"},
-    {id:"cohabitation",name:"En concubinage"},
-    {id:"monoparental",name:"Famille monoparentale"}
+    {id:"Mariés",name:"Mariés"},
+    {id:"Divorcés",name:"Divorcés"},
+    {id:"En concubinage",name:"En concubinage"},
+    {id:"Famille Monoparentale",name:"Famille monoparentale"}
   ]
 
   public possibleParentsActivities = [
-    {id:"farmer",name:"Agriculteur"},
-    {id:"artisan",name:"Artisan, commerçant, chef d'entreprise"},
-    {id:"executive",name:"Cadre, profession intellectuelle supérieure"},
-    {id:"teacher",name:"Enseignant et assimilé"},
-    {id:"intermediate",name:"Profession intermédiaire"},
-    {id:"employee",name:"Employé"},
-    {id:"worker",name:"Ouvrier"},
-    {id:"retreated",name:"Retraité"},
-    {id:"inactive",name:"Inactif"},
-    {id:"other",name:"Autre"} 
+    {id:"Agriculteur",name:"Agriculteur"},
+    {id:"Artisan, commerçant, chef d'entreprise",name:"Artisan, commerçant, chef d'entreprise"},
+    {id:"Cadre, profession intellectuelle supérieure",name:"Cadre, profession intellectuelle supérieure"},
+    {id:"Enseignant et assimilé",name:"Enseignant et assimilé"},
+    {id:"Profession intermédiaire",name:"Profession intermédiaire"},
+    {id:"Employé",name:"Employé"},
+    {id:"Ouvrier",name:"Ouvrier"},
+    {id:"Retraité",name:"Retraité"},
+    {id:"Inactif",name:"Inactif"},
+    {id:"Autre",name:"Autre"} 
   ]
 
   public possibleSchools = [
@@ -53,13 +53,15 @@ export class EditDataComponent implements OnInit {
   ]
 
   public possibleScholarships = [
+    {id:"echelon0",name:"Oui, échelon 0"},
     {id:"echelon1",name:"Oui, échelon 1"},
     {id:"echelon2",name:"Oui, échelon 2"},
     {id:"echelon3",name:"Oui, échelon 3"},
     {id:"echelon4",name:"Oui, échelon 4"},
     {id:"echelon5",name:"Oui, échelon 5"},
     {id:"echelon6",name:"Oui, échelon 6"},
-    {id:"no",name:"Non"},
+    {id:"echelon7",name:"Oui, échelon 7"},
+    {id:"non",name:"Non"},
   ]
 
 
@@ -97,20 +99,22 @@ export class EditDataComponent implements OnInit {
       parentsEmail:[this.personalData.parentsEmail,Validators.email],
       school:this.personalData.school,
       grade:this.personalData.grade,
+      classType : this.personalData.classType,
       specialTeaching:this.personalData.specialTeaching,
       scholarship:this.personalData.scholarship,
       fatherActivity:this.personalData.fatherActivity,
       motherActivity:this.personalData.motherActivity,
       parentsStatus:this.personalData.parentsStatus,
       dependantsNumber:this.personalData.dependantsNumber,
+      acceptedConditions: false
     })
  
   }
 
   submit(){
     this.loading = true;
-    const {firstName,lastName,gender,nationality,addressNumber,street,zipCode,city,personalPhone,parentsPhone,parentsEmail,school,grade,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber} = this.formGroup.value;
-    const personalData: PersonalData = {...this.personalData,firstName,lastName,gender,nationality,addressNumber,street,zipCode,city,personalPhone,parentsPhone,parentsEmail,school,grade,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber};
+    const {firstName,lastName,gender,nationality,classType,addressNumber,street,zipCode,city,personalPhone,parentsPhone,parentsEmail,school,grade,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber} = this.formGroup.value;
+    const personalData: PersonalData = {...this.personalData,classType,firstName,lastName,gender,nationality,addressNumber,street,zipCode,city,personalPhone,parentsPhone,parentsEmail,school,grade,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber};
     
     this.personalDataService.edit(personalData).pipe(
       tap(() => this.loading = false),
