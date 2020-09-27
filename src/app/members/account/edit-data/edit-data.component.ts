@@ -53,7 +53,6 @@ export class EditDataComponent implements OnInit {
   ]
 
   public possibleScholarships = [
-    {id:"echelon0",name:"Oui, échelon 0"},
     {id:"echelon1",name:"Oui, échelon 1"},
     {id:"echelon2",name:"Oui, échelon 2"},
     {id:"echelon3",name:"Oui, échelon 3"},
@@ -61,7 +60,7 @@ export class EditDataComponent implements OnInit {
     {id:"echelon5",name:"Oui, échelon 5"},
     {id:"echelon6",name:"Oui, échelon 6"},
     {id:"echelon7",name:"Oui, échelon 7"},
-    {id:"non",name:"Non"},
+    {id:"no",name:"Non"},
   ]
 
 
