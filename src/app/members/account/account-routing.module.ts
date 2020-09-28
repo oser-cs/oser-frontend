@@ -30,10 +30,10 @@ const routes: Routes = [
         },
         
       },
-      {
-        path: 'mon_dossier', component: MyFileComponent,
+      // {
+      //   path: 'mon_dossier', component: MyFileComponent,
 
-      }
+      // }
     ],
   },
 ];

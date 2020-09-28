@@ -14,7 +14,7 @@ export class AccountComponent implements OnInit {
   navLinks: Link[] = [
     { href: './donnees', text: 'Mes données' },
     { href: './modifier_donnees', text: 'Modifier mes données' },
-    { href: './mon_dossier', text: 'Mon dossier' },
+    //{ href: './mon_dossier', text: 'Mon dossier' },
     
   ];
   ngOnInit() {
