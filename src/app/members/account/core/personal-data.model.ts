@@ -40,7 +40,6 @@ export class PersonalDataAdapter implements IAdapter<PersonalData> {
     private userAdapter = new UserAdapter();
 
   adapt(data: any): PersonalData {
-    console.log('adapting',data)
     return new PersonalData({
         url : data.url,
         user_id: data.user_id,
