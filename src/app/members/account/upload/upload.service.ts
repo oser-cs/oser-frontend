@@ -30,7 +30,6 @@ export class UploadService extends ApiService {
 
       // create a http-post request and pass the form
       // tell it to report the upload progress
-      console.log('url',this.url+uploadedFileType)
       const req = new HttpRequest('POST', this.url+uploadedFileType, formData, {
         reportProgress: true
       });
