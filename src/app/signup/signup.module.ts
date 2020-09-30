@@ -7,10 +7,12 @@ import { RouterModule } from '@angular/router';
 import {
   MatFormFieldModule,
   MatInputModule,
+  MatSelectModule,
   MatButtonModule,
   MatSnackBarModule,
   MatCheckboxModule,
   MatIconModule,
+  MatSlideToggleModule,
 } from '@angular/material';
 
 import { SharedModule } from 'app/shared';
@@ -30,11 +32,13 @@ import { StudentSignupComponent } from './student-signup/student-signup.componen
     SharedModule,
     // Material
     MatFormFieldModule,
+    MatSelectModule,
     MatInputModule,
     MatButtonModule,
     MatSnackBarModule,
     MatCheckboxModule,
     MatIconModule,
+    MatSlideToggleModule,
   ],
 })
 export class SignupModule { }
