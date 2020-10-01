@@ -13,6 +13,7 @@ import {
 } from '@angular/material'
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+
 import { UploadService } from './upload.service'
 import { HttpClientModule } from '@angular/common/http'
 
