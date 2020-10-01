@@ -13,7 +13,7 @@ import {
 } from '@angular/material'
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { FlexLayoutModule } from '@angular/flex-layout'
+
 import { UploadService } from './upload.service'
 import { HttpClientModule } from '@angular/common/http'
 
@@ -23,7 +23,6 @@ import { HttpClientModule } from '@angular/common/http'
     MatButtonModule,
     MatDialogModule,
     MatListModule,
-    FlexLayoutModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatProgressBarModule,
