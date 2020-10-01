@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Link } from 'app/shared';
 
@@ -8,7 +8,7 @@ import { Link } from 'app/shared';
   styleUrls: ['./account.component.scss']
 })
 export class AccountComponent implements OnInit {
-
+  @Input() theme: string;
   constructor( private router: Router ) { }
   
   navLinks: Link[] = [
