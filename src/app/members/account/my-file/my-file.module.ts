@@ -6,7 +6,7 @@ import {MyFileComponent} from './my-file.component'
 
 @NgModule({
     imports : [UploadModule],
-    declarations: [],
+    declarations: [UploadModule],
     entryComponents:[UploadComponent]
   
 })
