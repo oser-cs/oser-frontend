@@ -28,7 +28,7 @@ import { HttpClientModule } from '@angular/common/http'
     BrowserAnimationsModule,
     MatProgressBarModule,
   ],
-  declarations: [UploadComponent, ParentalAuthDialogComponent,ImageRightsDialogComponent,StudentChartDialogComponent],
+  declarations: [ ParentalAuthDialogComponent,ImageRightsDialogComponent,StudentChartDialogComponent],
   exports: [UploadComponent], 
   providers: [UploadService],
   entryComponents : [ParentalAuthDialogComponent,ImageRightsDialogComponent,StudentChartDialogComponent]
