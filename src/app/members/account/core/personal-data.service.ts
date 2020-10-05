@@ -31,10 +31,18 @@ export class PersonalDataService extends ApiService {
     );
   }
   retrieve(id: number | string): Observable<PersonalData> {
-    let url = this.baseUrl ;
+    let url = this.baseUrl;
     return this.http.get<PersonalData>(url).pipe(
       map(v =>{
-        return  this.adapter.adapt(v[0])}),
+        console.log('get',v)
+        if(v instanceof Array){
+          if (v.length>1){
+            return this.adapter.adapt(v.find((user)=>user.user_id===id))
+          }
+          return  this.adapter.adapt(v[0])
+        }
+        
+        }),
     );
   }
 
