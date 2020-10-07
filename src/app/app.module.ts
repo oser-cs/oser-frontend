@@ -14,6 +14,7 @@ import { MomentModule } from 'ngx-moment';
 import {
   MatFormFieldModule,
   MatInputModule,
+  MatOptionModule,
   MatSelectModule,
   MatButtonModule,
   MatRadioModule,
@@ -60,6 +61,7 @@ registerLocaleData(localeFR);
     AppRoutingModule,
     MatFormFieldModule,
     MatInputModule,
+    MatOptionModule,
     MatSelectModule,
     MatRadioModule,
     MatButtonModule,

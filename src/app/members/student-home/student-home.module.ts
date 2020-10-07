@@ -12,6 +12,7 @@ import {
 import { StudentHomeComponent } from './student-home.component';
 import { ProjectsOverviewComponent } from './projects-overview/projects-overview.component';
 import { VisitsOverviewComponent } from './visits-overview/visits-overview.component';
+import {AccountOverviewComponent} from './account-overview/account-overview.component';
 
 @NgModule({
   imports:[
@@ -26,6 +27,7 @@ import { VisitsOverviewComponent } from './visits-overview/visits-overview.compo
     StudentHomeComponent,
     ProjectsOverviewComponent,
     VisitsOverviewComponent,
+    AccountOverviewComponent,
   ]
 })
 
