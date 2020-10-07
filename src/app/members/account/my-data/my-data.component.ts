@@ -11,7 +11,7 @@ import {User} from 'app/core'
 export class MyDataComponent implements OnInit {
   
   personalData: PersonalData;
-  
+  validatedAccount : String;
   
   public grade = {
     "troisieme": "Troisième",
@@ -19,6 +19,17 @@ export class MyDataComponent implements OnInit {
     "premiere":"Première",
     "terminale":"Terminale"
 
+  }
+  
+  //Styles validated account label depending on the status of the account
+  public styleValidatedAccount = ()=> {
+    if(this.validatedAccount==="Données personnelles non remplies"){
+      return 'not-sent-label'
+    }else if (this.validatedAccount==="En cours de validation"){
+      return 'in-progress-label'
+    }else if (this.validatedAccount==="Validé"){
+      return 'validated-label'
+    }
   }
   public scholarship = {
     "echelon0": "Oui, échelon 0",
@@ -46,7 +57,7 @@ export class MyDataComponent implements OnInit {
   ngOnInit() {
     
     this.personalData = this.route.snapshot.data['personalData'];
-    
+    this.validatedAccount = this.route.snapshot.data['validatedAccount'];
   }
 
 }

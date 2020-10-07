@@ -4,17 +4,15 @@ import { Resolve,ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of, forkJoin } from 'rxjs';
 import { tap, map, filter,catchError } from 'rxjs/operators';
 import { ApiService, AuthService,} from 'app/core';
-import {PersonalDataAdapter,PersonalData} from './personal-data.model'
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class PersonalDataService extends ApiService {
+export class AccountValidationService extends ApiService {
 
   //api url
-  private baseUrl = this.apiUrl + 'students';
-  private adapter = new PersonalDataAdapter();
+  private baseUrl = this.apiUrl + 'validation';
 
   constructor(
     private http: HttpClient,
@@ -22,49 +20,43 @@ export class PersonalDataService extends ApiService {
   ) { super();  }
 
   //get personalData by user
-   get(filters: any): Observable<PersonalData> {
+   get(filters: any): Observable<String> {
     const url = this.baseUrl;
     return this.http.get(url, { params: filters }).pipe(
       map((data: any) => {
         
-        return data.map(item => this.adapter.adapt(item))}),
+        return data}),
     );
   }
-  retrieve(id: number | string): Observable<PersonalData> {
+  retrieve(id: number | string): Observable<String> {
     let url = this.baseUrl;
-    return this.http.get<PersonalData>(url).pipe(
+    return this.http.get<String>(url).pipe(
       map(v =>{
         if(v instanceof Array){
           if (v.length>1){
-            return this.adapter.adapt(v.find((user)=>user.user_id===id))
+            return v.find((user)=>user.user_id===id)
           }
-          return  this.adapter.adapt(v[0])
+          return  v[0]
         }
         
         }),
     );
   }
 
-  forUser(userId: number): Observable<PersonalData> {
+  forUser(userId: number): Observable<String> {
     return this.get({ user_id: String(userId)});
-  }
-  //edit personalData for a user
-  edit(personalData: PersonalData): Observable<any> {
-    
-    const body: any = this.adapter.encode(personalData);
-    return this.http.put(personalData.url, body);
   }  
 }
 
 @Injectable({
     providedIn: 'root'
   })
-export class PersonalDataResolver implements Resolve<PersonalData>{
+export class AccountValidationResolver implements Resolve<String>{
     
-    constructor(private service: PersonalDataService, private auth: AuthService) { }
+    constructor(private service: AccountValidationService, private auth: AuthService) { }
   //fetch user
   
-    resolve(route: ActivatedRouteSnapshot): Observable<PersonalData> {
+    resolve(route: ActivatedRouteSnapshot): Observable<String> {
       const user = this.auth.getUserSnapshot();
       return this.service.retrieve(user.id).pipe(
         catchError(e => of(null))
