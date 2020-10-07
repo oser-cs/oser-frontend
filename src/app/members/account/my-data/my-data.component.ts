@@ -33,10 +33,9 @@ export class MyDataComponent implements OnInit {
 
   }
 
-
+  
   
   public editData = ()=> {
-
     this.router.navigate(['./membres/compte/modifier_donnees'])
   }
   

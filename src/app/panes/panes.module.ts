@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TwoPanesComponent } from './two-panes/two-panes.component';
+import { ThreePanesComponent } from './three-panes/three-panes.component';
 import { PaneComponent } from './pane/pane.component';
 
 @NgModule({
@@ -9,11 +9,11 @@ import { PaneComponent } from './pane/pane.component';
     CommonModule
   ],
   declarations: [
-    TwoPanesComponent,
+    ThreePanesComponent,
     PaneComponent,
   ],
   exports: [
-    TwoPanesComponent,
+    ThreePanesComponent,
     PaneComponent,
   ]
 })

@@ -11,7 +11,6 @@ import { Link } from 'app/shared';
 })
 export class AccountComponent implements OnInit {
   @Input() theme: string;
-
   constructor( private router: Router ) { }
   
   navLinks: Link[] = [

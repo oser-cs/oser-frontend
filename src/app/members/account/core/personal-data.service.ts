@@ -31,7 +31,6 @@ export class PersonalDataService extends ApiService {
     );
   }
   retrieve(id: number | string): Observable<PersonalData> {
-
     let url = this.baseUrl;
     return this.http.get<PersonalData>(url).pipe(
       map(v =>{
@@ -44,7 +43,6 @@ export class PersonalDataService extends ApiService {
         }
         
         }),
-
     );
   }
 
