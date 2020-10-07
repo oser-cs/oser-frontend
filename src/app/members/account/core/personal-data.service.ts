@@ -31,11 +31,9 @@ export class PersonalDataService extends ApiService {
     );
   }
   retrieve(id: number | string): Observable<PersonalData> {
-
     let url = this.baseUrl;
     return this.http.get<PersonalData>(url).pipe(
       map(v =>{
-        console.log('get',v)
         if(v instanceof Array){
           if (v.length>1){
             return this.adapter.adapt(v.find((user)=>user.user_id===id))
@@ -44,7 +42,6 @@ export class PersonalDataService extends ApiService {
         }
         
         }),
-
     );
   }
 
