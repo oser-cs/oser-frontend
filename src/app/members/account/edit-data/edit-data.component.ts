@@ -20,6 +20,7 @@ export class EditDataComponent implements OnInit {
   formGroup : FormGroup;
   loading = false;
   public error : String = "";
+  public postEditMessage : String = "" ;
   public possibleParentsStatus = [
     {id:"Mariés",name:"Mariés"},
     {id:"Divorcés",name:"Divorcés"},
@@ -118,7 +119,14 @@ export class EditDataComponent implements OnInit {
     this.personalDataService.edit(personalData).pipe(
       tap(() => this.loading = false),
       tap(()=> this.error = ""),
-      tap(() => this.router.navigate(['./membres/compte/donnees'])),
+      tap(() => {
+        this.postEditMessage = "Merci d'avoir completé tes données personnelles ! Nous allons t'envoyer un email contenant le lien vers le dossier d'inscription, si tu ne le reçois pas, pense à vérifier tes spams."
+        setTimeout(()=>{
+          this.router.navigate(['./membres/compte/donnees'])
+          this.postEditMessage = ""
+        },7000)
+        
+      }),
     ).subscribe(
       () => {},
       (error) => {
