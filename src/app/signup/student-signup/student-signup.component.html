@@ -1,4 +1,5 @@
 <app-form-page>
+
   <form [formGroup]="formGroup" (ngSubmit)="submit()">
 
     <h1>Inscription</h1>
@@ -33,57 +34,9 @@
     </mat-form-field>
 
     <p>
-      Pour assurer ton inscription au tutorat, il est
-      <strong>obligatoire</strong>
-      de remplir le formulaire d'inscription administrative (Google Form).
-    </p>
-
-    <p>
-      <small>
-        Données personnelles : nous utiliserons les données fournies pour assurer le contact avec toi et ta famille,
-        équilibrer les participations aux activités organisées ainsi qu'à des fins d'aggrégation anonymisée
-        (statistiques, demandes de subvention). Plus d'informations dans nos <a routerLink="/mentions-legales"
-          target="_blank">mentions légales</a>.
-      </small>
-    </p>
-
-    <p>
-      J'accepte qu'OSER utilise mes données personnelles fournies ci-dessus ou dans le formulaire d'inscription
-      adminsitrative, dans le strict respect du cadre spécifié ci-dessus :
-    </p>
-
-    <mat-checkbox id="checkboxUtilisation" class="checkbox-field" formControlName="acceptedConditions" required onclick='if (document.getElementById("checkboxUtilisation").classList.contains("mat-checkbox-checked")) {
-        document.getElementById("boutonChiant").setAttribute("disabled", "true");
-      }
-      else {
-        document.getElementById("boutonChiant").removeAttribute("disabled");
-      }'>
-      J'accepte cette utilisation
-    </mat-checkbox>
-
-    <p class="text-center">
-      <a mat-raised-button color="accent" disabled id="boutonChiant"
-        href="https://docs.google.com/forms/d/e/1FAIpQLScJnkGaDdXWL-sPyHuq58gJivr5xkZ_M5AASRCBHx4a9wR4-Q/viewform?usp=sf_link"
-        rel="noreferrer" target="_blank">
-        <mat-icon>launch</mat-icon>
-        Remplir le formulaire
-      </a>
-    </p>
-
-
-
-    <mat-checkbox class="checkbox-field" formControlName="filledForm" required>
-      J'ai rempli le formulaire
-    </mat-checkbox>
-    <!-- ici  -->
-
-
-    <!-- ici  -->
-
-    <p>
       Il ne te reste plus qu'à choisir un mot de passe. :-)
     </p>
-
+    
     <!-- Password -->
     <mat-form-field class="full-width">
       <input matInput type="password" formControlName="password" placeholder="Mot de passe" required>

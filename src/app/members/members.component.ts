@@ -19,6 +19,7 @@ export class MembersComponent {
     { href: './', text: 'Mon espace' },
     { href: './projets', text: 'Nos projets' },
     { href: './sorties', text: 'Nos sorties' },
+    { href: './compte', text: 'Mon compte' },
     { text: 'Déconnexion', action: () => this.logout() },
   ];
 
