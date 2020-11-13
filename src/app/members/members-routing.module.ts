@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard, MapsAPIResolver } from 'app/core';
+import { EditDataComponent } from './account/edit-data/edit-data.component';
 
 import { MembersComponent } from './members.component';
 import { StudentHomeComponent } from './student-home/student-home.component';

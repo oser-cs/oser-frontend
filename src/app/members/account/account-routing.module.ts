@@ -15,6 +15,7 @@ const routes: Routes = [
     data: { title: 'Mon Compte' },
     component: AccountComponent,
     children: [
+      
       {
         path: 'donnees', 
         component: MyDataComponent,
@@ -22,12 +23,12 @@ const routes: Routes = [
           'personalData' : PersonalDataResolver
         },
         
-      },
-      {
+      },{
         path: 'modifier_donnees', component: EditDataComponent,
         resolve : {
           'personalData' : PersonalDataResolver
         },
+        
         
       },
       // {
