@@ -12,7 +12,7 @@ import { ApiService, AuthService,} from 'app/core';
 export class AccountValidationService extends ApiService {
 
   //api url
-  private baseUrl = this.apiUrl + 'validation';
+  private baseUrl = this.apiUrl + 'registrations';
 
   constructor(
     private http: HttpClient,
@@ -32,11 +32,12 @@ export class AccountValidationService extends ApiService {
     let url = this.baseUrl;
     return this.http.get<String>(url).pipe(
       map(v =>{
+        console.log('validation',v)
         if(v instanceof Array){
           if (v.length>1){
-            return v.find((user)=>user.user_id===id)
+            return v.find((user)=>user.user_id===id).validated
           }
-          return  v[0]
+          return  v[0].validated
         }
         
         }),
@@ -54,7 +55,7 @@ export class AccountValidationService extends ApiService {
 export class AccountValidationResolver implements Resolve<String>{
     
     constructor(private service: AccountValidationService, private auth: AuthService) { }
-  //fetch user
+  //fetch registration status
   
     resolve(route: ActivatedRouteSnapshot): Observable<String> {
       const user = this.auth.getUserSnapshot();

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute,Router} from '@angular/router'
 import {PersonalData} from '../core'
+import * as moment from 'moment'
 import {User} from 'app/core'
 
 @Component({
@@ -12,6 +13,8 @@ export class MyDataComponent implements OnInit {
   
   personalData: PersonalData;
   validatedAccount : String;
+  dateNow: Date;
+  currentYear: String;
   
   public grade = {
     "troisieme": "Troisième",
@@ -56,8 +59,22 @@ export class MyDataComponent implements OnInit {
   
   ngOnInit() {
     
-    this.personalData = this.route.snapshot.data['personalData'];
-    this.validatedAccount = this.route.snapshot.data['validatedAccount'];
+    this.personalData = this.route.snapshot.data['personalData']
+    this.dateNow = new Date()
+    if(moment(this.dateNow).month()>=9){
+      this.currentYear = moment(this.dateNow).year() + "/"+ String(moment(this.dateNow).year()+1)
+    }else{
+      this.currentYear = String(moment(this.dateNow).year() -1) + "/"+moment(this.dateNow).year()
+    }
+    
+    if(this.personalData.registration.validated){
+      this.validatedAccount= "Validé"
+    }else if(this.personalData.year===this.currentYear){
+      this.validatedAccount="En cours de validation"
+    }else{
+      this.validatedAccount="Données personnelles non remplies"
+    }
+    
   }
 
 }

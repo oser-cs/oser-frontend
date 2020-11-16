@@ -1,10 +1,13 @@
 import { User, UserAdapter, IAdapter } from 'app/core';
 
+
 export class PersonalDataSchema {
     
     
     user_id: string;
     url : string;
+    year: string;
+    registration: Registration;
     firstName:string;
     lastName: string;
     gender: string;
@@ -27,6 +30,21 @@ export class PersonalDataSchema {
     dependantsNumber:number;
 }
 
+class RegistrationSchema {
+    id: Number;
+    submitted: string;
+    validated: boolean;
+}
+
+
+export class Registration extends RegistrationSchema {
+
+  constructor(args: RegistrationSchema) {
+    super();
+    Object.assign(this, args);
+  }
+}
+
 export class PersonalData extends PersonalDataSchema {
 
   constructor(args: PersonalDataSchema) {
@@ -41,10 +59,12 @@ export class PersonalDataAdapter implements IAdapter<PersonalData> {
 
   adapt(data: any): PersonalData {
     return new PersonalData({
-        url : data.url,
-        user_id: data.user_id,
-        firstName: data.user.first_name,
-        lastName: data.user.last_name,
+        url : data.url?data.url:'',
+        user_id: data.user_id?data.user_id:'',
+        registration:data.registration?data.registration:{id: 0,submitted: '',validated: false},
+        year:data.year?data.year:'',
+        firstName: data.user.first_name?data.user.first_name:'',
+        lastName: data.user.last_name?data.user.last_name:'',
         gender: data.gender?data.gender:'',
         nationality : data.nationality?data.nationality:'',
         addressNumber: data.addressNumber?data.addressNumber:'',

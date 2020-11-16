@@ -21,7 +21,7 @@ const routes: Routes = [
         component: MyDataComponent,
         resolve : {
           'personalData' : PersonalDataResolver,
-          'validatedAccount' : AccountValidationResolver
+          //'validatedAccount' : AccountValidationResolver
         },
       },
       {
