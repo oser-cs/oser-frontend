@@ -34,7 +34,7 @@ export class PersonalDataService extends ApiService {
     let url = this.baseUrl;
     return this.http.get<PersonalData>(url).pipe(
       map(v =>{
-        
+
         if(v instanceof Array){
           if (v.length>1){
             return this.adapter.adapt(v.find((user)=>user.user_id===id))
