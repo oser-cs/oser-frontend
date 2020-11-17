@@ -1,6 +1,4 @@
-
 import { Component, OnInit,Input } from '@angular/core';
-
 import { Router } from '@angular/router';
 import { Link } from 'app/shared';
 
