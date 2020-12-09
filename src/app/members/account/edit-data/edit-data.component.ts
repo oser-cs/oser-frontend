@@ -24,8 +24,10 @@ export class EditDataComponent implements OnInit {
   public possibleParentsStatus = [
     {id:"Mariés",name:"Mariés"},
     {id:"Divorcés",name:"Divorcés"},
+    {id:"Pacsés",name:"Pacsés"},
     {id:"En concubinage",name:"En concubinage"},
-    {id:"Famille Monoparentale",name:"Famille monoparentale"}
+    {id:"Famille Monoparentale",name:"Famille monoparentale"},
+    {id:"Autre",name:"Autre"}
   ]
 
   public possibleParentsActivities = [
@@ -60,7 +62,6 @@ export class EditDataComponent implements OnInit {
     {id:"echelon4",name:"Oui, échelon 4"},
     {id:"echelon5",name:"Oui, échelon 5"},
     {id:"echelon6",name:"Oui, échelon 6"},
-    {id:"echelon7",name:"Oui, échelon 7"},
     {id:"no",name:"Non"},
   ]
 

@@ -20,7 +20,8 @@ export class MyDataComponent implements OnInit {
     "troisieme": "Troisième",
     "seconde":"Seconde",
     "premiere":"Première",
-    "terminale":"Terminale"
+    "terminale":"Terminale",
+    "classe passerelle":"Classe Passerelle"
 
   }
   
@@ -42,7 +43,6 @@ export class MyDataComponent implements OnInit {
     "echelon4": "Oui, échelon 4",
     "echelon5": "Oui, échelon 5",
     "echelon6": "Oui, échelon 6",
-    "echelon7": "Oui, échelon 7",
     "no" : "Non"
 
   }

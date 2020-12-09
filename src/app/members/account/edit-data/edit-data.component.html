@@ -47,10 +47,10 @@
           </div>
           <p class="text-center">Informations de contact</p>
           <mat-form-field class="full-width" >
-            <input matInput   type="text" formControlName="personalPhone" placeholder="Numéro de téléphone personnel" required>
+            <input matInput   type="text" formControlName="personalPhone" placeholder="Téléphone personnel sous la forme '0623456789' (sans espaces ni tirets)" required>
           </mat-form-field>
           <mat-form-field class="full-width" >
-            <input matInput   type="text" formControlName="parentsPhone" placeholder="Numéro de téléphone des parents" required>
+            <input matInput   type="text" formControlName="parentsPhone" placeholder="Téléphone des parents  sous la forme '0623456789' (sans espaces ni tirets)" required>
           </mat-form-field>
     
           <mat-form-field class="full-width" >
@@ -76,6 +76,7 @@
                 <mat-option value="seconde">Seconde</mat-option>
                 <mat-option value="premiere" >Première</mat-option>
                 <mat-option value="terminale">Terminale</mat-option>
+                <mat-option value="classe passerelle">Classe Passerelle</mat-option>
               </mat-select>
             </mat-form-field>
 
@@ -84,6 +85,7 @@
               <mat-select  formControlName="classType" required>
                 <mat-option value="General">General</mat-option>
                 <mat-option value="Technologique">Technologique</mat-option>
+                <mat-option value="Professionnelle">Professionnelle</mat-option>
               </mat-select>
             </mat-form-field>
             
