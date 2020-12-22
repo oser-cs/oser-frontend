@@ -95,7 +95,6 @@ export class EditDataComponent implements OnInit {
       street:this.personalData.street,
       zipCode:this.personalData.zipCode,
       city:this.personalData.city,
-
       personalPhone:[this.personalData.personalPhone,Validators.pattern("^([0-9]{2}[]?){5}$")],
       parentsPhone:[this.personalData.parentsPhone,Validators.pattern("^([0-9]{2}[]?){5}$")],
 
