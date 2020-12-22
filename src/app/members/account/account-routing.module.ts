@@ -7,6 +7,7 @@ import {MyDataComponent} from './my-data/my-data.component'
 import {EditDataComponent} from './edit-data/edit-data.component'
 import {MyFileComponent} from './my-file/my-file.component'
 import { PersonalDataResolver } from './core'
+import {AccountValidationResolver} from './core'
 
 
 const routes: Routes = [
@@ -19,9 +20,9 @@ const routes: Routes = [
         path: 'donnees', 
         component: MyDataComponent,
         resolve : {
-          'personalData' : PersonalDataResolver
+          'personalData' : PersonalDataResolver,
+          //'validatedAccount' : AccountValidationResolver
         },
-        
       },
       {
         path: 'modifier_donnees', component: EditDataComponent,
