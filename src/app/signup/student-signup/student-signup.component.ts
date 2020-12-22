@@ -18,6 +18,7 @@ export class StudentSignupComponent implements OnInit {
   registration: Registration;
   personnalData: PersonnalData
   formGroup: FormGroup;
+  error: String;
   loading = false;
   public showPersonnalDataForm = false;
   public zipPattern = new RegExp(/^\d{5}(?:\d{2})?$/)
@@ -123,10 +124,25 @@ export class StudentSignupComponent implements OnInit {
         'OK',
         { duration: 3000 },
       )),
+      tap(()=> this.error = ""),
       tap(() => this.loading = false),
+      tap(() => {
+       setTimeout(()=>{
+          this.router.navigate(['./membres'])
+          
+        },3000)})
+      
     ).subscribe(
       () => {},
-      (error) => this.loading = false,
+      (error) => { 
+        
+
+        this.loading=false
+        
+        if(error.error.email){
+          this.error = "Erreur, cet email est déjà utilisé !"
+        }
+      } 
     );
     // this.personnalDataService.create(personnalData).pipe(
     //   tap(() => this.loading = false),
