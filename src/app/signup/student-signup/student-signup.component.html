@@ -33,6 +33,7 @@
       </mat-hint>
     </mat-form-field>
 
+
     <p>
       Il ne te reste plus qu'à choisir un mot de passe. :-)
     </p>
@@ -57,6 +58,7 @@
         <app-load-spinner *ngIf="loading" [block]="false"></app-load-spinner>
       </button>
     </div>
+    <p class="text-center">{{error}}</p>
 
 
     <p class="text-center">
