@@ -99,7 +99,7 @@ export class StudentSignupComponent implements OnInit {
       agree: [false, Validators.required],
       filledForm: false,
       acceptedConditions: false,
-    }, { validator: (group) => this.checkPasswords(group) && this.checkEmails(group) })
+    }, { validator:[(group) => this.checkPasswords(group), (group)=>this.checkEmails(group)] })
     console.log(this.formGroup.value.agree)
   }
 
@@ -114,16 +114,12 @@ export class StudentSignupComponent implements OnInit {
     return email === emailConfirm ? null : { emailsDifferent: true };
   }
 
-  toggleShowPersonnalDataForm() {
-    this.showPersonnalDataForm = !this.showPersonnalDataForm;
-  }
+  
   submit() {
     this.loading = true;
     const { email, firstName, lastName, phoneNumber } = this.formGroup.value
-    //const {gender,adressNumber,street,zipCode,city,personnalPhone,parentsPhone,parentsEmail,school,grade,section,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber} = this.formGroup.value;
     const registration: Registration = { email, firstName, lastName, phoneNumber };
-    // const personnalData: PersonnalData = {gender,adressNumber,street,zipCode,city,personnalPhone,parentsPhone,parentsEmail,school,grade,section,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber};
-
+  
     const password: string = this.formGroup.controls.password.value;
     this.registrationService.create(registration, password).pipe(
       mergeMap(() => this.auth.login(registration.email, password)),
