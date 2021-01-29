@@ -26,15 +26,6 @@
       </mat-hint>
     </mat-form-field>
 
-    <!-- Confirm Email -->
-    <mat-form-field class="full-width">
-      <input matInput type="email" formControlName="emailConfirm" placeholder="Confirmer l'adresse email"
-        [errorStateMatcher]="emailMatcher">
-      <mat-error *ngIf="formGroup.hasError('emailsDifferent')">
-        Les adresses emails doivent être identiques.
-      </mat-error>
-    </mat-form-field>
-
     <mat-form-field class="full-width">
       <input matInput type="tel" formControlName="phoneNumber" placeholder="Numéro de téléphone" required>
       <mat-hint>
@@ -46,7 +37,7 @@
     <p>
       Il ne te reste plus qu'à choisir un mot de passe. :-)
     </p>
-
+    
     <!-- Password -->
     <mat-form-field class="full-width">
       <input matInput type="password" formControlName="password" placeholder="Mot de passe" required>
@@ -55,7 +46,7 @@
     <!-- Confirm password -->
     <mat-form-field class="full-width">
       <input matInput type="password" formControlName="passwordConfirm" placeholder="Confirmer le mot de passe"
-        [errorStateMatcher]="passwordMatcher">
+        [errorStateMatcher]="matcher">
       <mat-error *ngIf="formGroup.hasError('passwordsDifferent')">
         Les mots de passe doivent être identiques.
       </mat-error>
