@@ -303,13 +303,13 @@ export class StudentSignupComponent implements OnInit {
         }
       }
     );
-    this.personnalDataService.create(personnalData).pipe(
-      tap(() => this.loading = false),
-      tap(() => this.router.navigate(['/'])),
-    ).subscribe(
-      () => { },
-      (error) => this.loading = false,
-    );
+    // this.personnalDataService.create(personnalData).pipe(
+    //   tap(() => this.loading = false),
+    //   tap(() => this.router.navigate(['/'])),
+    // ).subscribe(
+    //   () => { },
+    //   (error) => this.loading = false,
+    // );
   }
 
   register(): void {
