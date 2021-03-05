@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material';
 // import { Observable } from 'rxjs';
 import { tap, mergeMap } from 'rxjs/operators';
 import { Registration, RegistrationService, PersonnalData, PersonnalDataService } from '../core';
-import { CustomValidators, ConfirmValidParentMatcher, regExps, errorMessages } from '../core/customValidationModule';
+import { CustomValidators, ConfirmValidParentMatcher, errorMessages } from '../core/customValidationModule';
 import { AuthService } from 'app/core';
 
 
@@ -253,7 +253,7 @@ export class StudentSignupComponent implements OnInit {
       passwordGroup: this.formBuilder.group({
         password: ['', [
           Validators.required,
-          Validators.pattern(regExps.password)
+          // Validators.pattern(regExps.password) /si l'on veut ajouter une condition au mdp (en définissant regExps dans ../core/customValidationModule.ts)
         ]],
         confirmPassword: ['', Validators.required]
       }, { validator: CustomValidators.childrenEqual }),

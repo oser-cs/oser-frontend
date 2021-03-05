@@ -29,9 +29,9 @@ export class ConfirmValidParentMatcher implements ErrorStateMatcher {
 /**
 * Collection of reusable RegExps
 */
-export const regExps: { [key: string]: RegExp } = {
-    password: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/
-};
+// export const regExps: { [key: string]: RegExp } = {
+//     password: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/
+// };
 
 /**
  * Collection of reusable error messages
@@ -40,6 +40,6 @@ export const errorMessages: { [key: string]: string } = {
     fullName: 'Full name must be between 1 and 128 characters',
     email: 'La forme de l\'adresse email doit être valide (username@domain)',
     confirmEmail: 'Les adresses email doivent être identiques',
-    password: 'Password must be between 7 and 15 characters, and contain at least one number and special character',
+    // password: 'Password must be between 7 and 15 characters, and contain at least one number and special character',
     confirmPassword: 'Les mots de passe doivent être identiques'
 };
