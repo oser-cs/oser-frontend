@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { Observable } from 'rxjs';
+// import { Observable } from 'rxjs';
 import { tap, mergeMap } from 'rxjs/operators';
 import { Registration, RegistrationService, PersonnalData, PersonnalDataService } from '../core';
 import { CustomValidators, ConfirmValidParentMatcher, regExps, errorMessages } from '../core/customValidationModule';

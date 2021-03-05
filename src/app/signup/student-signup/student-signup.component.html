@@ -95,8 +95,11 @@
 
     <!-- Email -->
     <div formGroupName="emailGroup">
-      <mat-form-field>
-        <input matInput placeholder="Email address" type="email" formControlName="email">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Adresse email*" type="email" formControlName="email">
+        <mat-hint>
+          Elle te servira d'identifiant de connexion.
+        </mat-hint>
         <mat-error>
           {{errors.email}}
         </mat-error>
@@ -104,8 +107,8 @@
 
       <br />
 
-      <mat-form-field>
-        <input matInput placeholder="Confirm email address" type="email" formControlName="confirmEmail"
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Confirmer l'adresse email" type="email" formControlName="confirmEmail"
           [errorStateMatcher]="confirmValidParentMatcher">
         <mat-error>
           {{errors.confirmEmail}}
@@ -113,14 +116,21 @@
       </mat-form-field>
     </div>
 
+    <mat-form-field class="full-width">
+      <input matInput type="tel" formControlName="phoneNumber" placeholder="Numéro de téléphone" required>
+      <mat-hint>
+        Il nous permettra de te contacter en cas de nécessité.
+      </mat-hint>
+    </mat-form-field>
+
     <p>
       Il ne te reste plus qu'à choisir un mot de passe. :-)
     </p>
 
     <!-- Password -->
     <div formGroupName="passwordGroup">
-      <mat-form-field>
-        <input matInput placeholder="Password" type="password" formControlName="password">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Mot de passe*" type="password" formControlName="password">
         <mat-error>
           {{errors.password}}
         </mat-error>
@@ -128,8 +138,8 @@
 
       <br />
 
-      <mat-form-field>
-        <input matInput placeholder="Confirm password" type="password" formControlName="confirmPassword"
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Confirmer le mot de passe" type="password" formControlName="confirmPassword"
           [errorStateMatcher]="confirmValidParentMatcher">
         <mat-error>
           {{errors.confirmPassword}}
