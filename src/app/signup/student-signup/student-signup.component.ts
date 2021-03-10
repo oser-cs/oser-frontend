@@ -208,7 +208,7 @@ export class StudentSignupComponent implements OnInit {
 
   constructor(
     private registrationService: RegistrationService,
-    private personnalDataService: PersonnalDataService,
+    // private personnalDataService: PersonnalDataService,
     private formBuilder: FormBuilder,
     private router: Router,
     private auth: AuthService,
