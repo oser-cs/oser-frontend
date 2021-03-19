@@ -282,6 +282,7 @@ export class StudentSignupComponent implements OnInit {
         'OK',
         { duration: 3000 },
       )),
+
       tap(() => this.error = ""),
       tap(() => this.loading = false),
       tap(() => {
@@ -302,6 +303,7 @@ export class StudentSignupComponent implements OnInit {
           this.error = "Erreur, cet email est déjà utilisé !"
         }
       }
+
     );
     // this.personnalDataService.create(personnalData).pipe(
     //   tap(() => this.loading = false),
