@@ -111,6 +111,7 @@ export class VisitAdapter implements IAdapter<Visit> {
       registrationsOpen: data.registrations_open,
       image: data.image,
       factSheet: data.fact_sheet,
+      contextSheet: data.context_sheet,
       permissionSheet: data.permission,
       participants: participants,
       organizers: organizers,
