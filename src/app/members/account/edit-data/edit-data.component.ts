@@ -22,12 +22,9 @@ export class EditDataComponent implements OnInit {
   public error : String = "";
   public postEditMessage : String = "" ;
   public possibleParentsStatus = [
-    {id:"Mariés",name:"Mariés"},
-    {id:"Divorcés",name:"Divorcés"},
-    {id:"Pacsés",name:"Pacsés"},
-    {id:"En concubinage",name:"En concubinage"},
-    {id:"Famille Monoparentale",name:"Famille monoparentale"},
-    {id:"Autre",name:"Autre"}
+    {id:"maried",name:"Famille biparentale (vos parents vivent ensemble)"},
+    {id:"cohabitation",name:"Famille recomposée (vos parents vivent séparement)"},
+    {id:"monoparental",name:"Famille monoparentale (vous n'avez qu'un parent)"}
   ]
 
   public possibleParentsActivities = [
