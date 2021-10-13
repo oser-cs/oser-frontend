@@ -23,9 +23,9 @@ export class StudentSignupComponent implements OnInit {
   public showPersonnalDataForm = false;
   public zipPattern = new RegExp(/^\d{5}(?:\d{2})?$/)
   public possibleParentsStatus = [
-    {id:"maried",name:"Famille biparentale (vos parents vivent ensemble)"},
-    {id:"cohabitation",name:"Famille recomposée (vos parents vivent séparement)"},
-    {id:"monoparental",name:"Famille monoparentale (vous n'avez qu'un parent)"}
+    {id:"maried",name:"Vos parents vivent ensemble"},
+    {id:"cohabitation",name:"Vos parents vivent séparément"},
+    {id:"monoparental",name:"Vous avez un seul parent"}
   ]
 
   public possibleParentsActivities = [
