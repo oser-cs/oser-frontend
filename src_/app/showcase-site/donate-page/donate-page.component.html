@@ -1,0 +1,19 @@
+<div id="content">
+  <div id="description">
+    <div>
+      <markdown *ngIf="document; else loading" [data]="document"></markdown>
+      <ng-template #loading>
+        <app-load-spinner></app-load-spinner>
+      </ng-template>
+      <div id="cta" class="text-center">
+        <i class="fa fa-angle-down fa-3x" (click)="goTo()" style="color: gray; cursor:pointer;"></i>
+      </div>
+    </div>
+    <div id="current-campaign" class="text-center" *ngIf="currentCampaignUrl">
+      <h3>Ce projet a besoin de votre soutien.</h3>
+      <iframe id="current-campaign-ha-widget" [src]="currentCampaignUrl"></iframe>
+    </div>
+  </div>
+
+  <iframe id="donate-ha-widget" [src]="donateUrl" frameborder="0"></iframe>
+</div>

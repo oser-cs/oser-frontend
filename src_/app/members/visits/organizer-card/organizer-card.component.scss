@@ -1,0 +1,12 @@
+@import '~sass/variables';
+
+.container {
+  text-align: center;
+  padding: 1em;
+  background: white;
+  width: 8em;
+  label {
+    display: block;
+    margin: .5em 0;
+  }
+}

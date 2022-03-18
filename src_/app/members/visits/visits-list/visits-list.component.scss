@@ -1,0 +1,48 @@
+@import '~app/showcase-site/sass/mixins';
+
+#page {
+  @include margin-page;
+}
+
+$grid-gap: 1em;
+#visits {
+  list-style-type: none;
+  margin: 0 auto;
+  width: fit-content;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  @include media-xs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include media-md {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  grid-auto-flow: dense;
+  grid-column-gap: $grid-gap;
+  grid-row-gap: $grid-gap;
+}
+
+ul.tabs {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 2em;
+  li {
+    padding: 1em;
+    cursor: pointer;
+    color: $color-muted;
+    font-weight: bold;
+    &:hover {
+      color: $color-text;
+    }
+    &.active {
+      color: $color-dark-blue;
+    }
+  }
+  border-bottom: 1px solid $color-light-gray;
+}

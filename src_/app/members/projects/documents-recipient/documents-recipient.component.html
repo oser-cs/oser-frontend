@@ -1,0 +1,12 @@
+<p>
+  Ces documents sont à imprimer et à renvoyer
+  <strong>
+    impérativement avant le
+    {{ deadline | amLocale: 'fr' | amDateFormat: 'LL' }}
+  </strong>
+  par voie postale à l'adresse suivante :
+</p>
+<p>
+  {{ recipient.user.fullName }} <br />
+  {{ recipient.address.toString() }}
+</p>

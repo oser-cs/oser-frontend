@@ -1,0 +1,84 @@
+@import './variables';
+@import '~sass/mixins';
+@import '~sass/media-queries';
+
+@mixin link-underline($height: 0.1em, $color: $color-dark-blue) {
+  // animated underline effect on nav links
+  &::after {
+    content: '';
+    display: block;
+    height: $height;
+    margin-top: $header-margin-bottom - $height;
+    background: transparent;
+    transition: background 0.3s;
+  }
+
+  &:hover::after {
+    background: $color;
+  }
+}
+
+/* Navigation */
+@mixin nav-link($underline: false) {
+  text-decoration: none;
+  color: $color-purple;
+  font-weight: bold;
+  cursor: pointer;
+  // change color on hover
+  &:hover {
+    color: $color-dark-blue;
+  }
+  @if $underline {
+    @include link-underline($height: 0.1em, $color: $color-dark-blue);
+  }
+}
+
+/* Page sections */
+
+@mixin margin-page() {
+  /* Use for consistent responsive page margins */
+  padding: $margin-page;
+  @content;
+  @include media-xs {
+    $m: 3 * $margin-page;
+    padding-left: $m;
+    padding-right: $m;
+  }
+}
+
+@mixin page-section($index, $color: inherit) {
+  @include margin-page;
+  position: relative;
+  z-index: 9 - $index;
+  margin: 0;
+  color: $color;
+
+  h2 {
+    font-size: 28px;
+  }
+
+}
+
+@function transp($color, $amount: 0.4) {
+  @return transparentize($color, $amount);
+}
+
+@mixin color-bg($color) {
+  /*
+  Must be used with a >0 z-index, eg:
+  z-index: 1;
+  Otherwise the color overlay won't work
+  */
+  position: relative;
+  &::before {
+    /* Colorize the background with a color overlay */
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-color: transp($color);
+  }
+}

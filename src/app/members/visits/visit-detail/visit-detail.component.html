@@ -32,11 +32,15 @@
 
     <!-- Show register button if user does not participate -->
     <div *ngIf="visit.registrationsOpen && !participant" class="text-center">
-      <button id="participate-btn" type="button" name="button" class="btn-success" (click)="registerFormActive = true">Je m'inscris</button>
+      <button id="participate-btn" type="button" name="button" class="btn-primary" [disabled]="!isValid" (click)="registerFormActive = true">
+      Je m'inscris</button>
+      
     </div>
 
-    <div *ngIf="participant && !visit.passed">
+    <div class="text-muted-sm">{{errorMessageRegistration}}</div>
 
+
+    <div *ngIf="participant && !visit.passed">
       <!-- And a shy-ish unregister link -->
       <p class="text-muted-sm">
         Tu as un empêchement et souhaites

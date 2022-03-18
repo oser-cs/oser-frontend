@@ -1,0 +1,60 @@
+<div class="page-content">
+  <span class="page-background"></span>
+  <section id="header" class="drop-shadow-md">
+    <h1>Une action complète, épanouissante et structurante.</h1>
+  </section>
+
+  <!-- Actions -->
+  <div class="actions">
+    <div *ngIf="actions; else loadingActions">
+      <ul *ngIf="actions.length > 0">
+        <span class="sideline"></span>
+        <li *ngFor="let action of actions" class="action">
+          <span class="dot drop-shadow-sm"></span>
+          <h2>{{ action.title }}</h2>
+          <markdown [data]="action.description"></markdown>
+          <p class="fact">{{ action.keyFigure }}</p>
+        </li>
+      </ul>
+    </div>
+    <ng-template #loadingActions>
+      <app-load-spinner></app-load-spinner>
+    </ng-template>
+  </div>
+
+  <!-- Animated slideshow -->
+  <div class="slideshow drop-shadow-sm">
+    <!-- itemWidth must be the length of images in the slideshow -->
+    <carousel #carousel [itemWidth]="600" [interval]="4500">
+      <div *ngFor="let item of slideItems" class="slideshow-list">
+        <div *carouselItem class="slideshow-item">
+          <img [src]="item.image" [alt]="item.title">
+          <div class="legend">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.shortDescription }}</p>
+          </div>
+        </div>
+      </div>
+    </carousel>
+  </div>
+
+  <!-- Testimonies from students or other association relatives -->
+  <div class="testimonies">
+    <h2>Ils témoignent de leur expérience</h2>
+    <div *ngIf="testimonies; else loading">
+      <ul class="testimony-list" *ngIf="testimonies.length > 0; else empty">
+        <li *ngFor="let t of testimonies" class="testimony-item">
+          <p>{{ t.content }}</p>
+          <cite>{{ t.source }}</cite>
+        </li>
+      </ul>
+      <ng-template #empty>
+        <p>Pas de témoignages pour le moment.</p>
+      </ng-template>
+    </div>
+    <ng-template #loading>
+      <app-load-spinner></app-load-spinner>
+    </ng-template>
+  </div>
+
+</div>

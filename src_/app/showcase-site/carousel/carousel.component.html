@@ -1,0 +1,15 @@
+<div class="carousel-wrapper" [ngStyle]="carouselWrapperStyle">
+  <ul class="carousel" #carousel>
+    <li *ngFor="let item of items" class="carousel-item">
+      <ng-template [ngTemplateOutlet]="item.tpl"></ng-template>
+    </li>
+  </ul>
+  <ul class="controls">
+    <li *ngFor="let item of items; let i = index" (click)="goToForce(i)">
+      <i *ngIf="i == currentSlide; else notCurrent" class="fa fa-circle"></i>
+      <ng-template #notCurrent>
+        <i class="fa fa-circle-thin"></i>
+      </ng-template>
+    </li>
+  </ul>
+</div>

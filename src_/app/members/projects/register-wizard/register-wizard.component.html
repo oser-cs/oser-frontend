@@ -1,0 +1,166 @@
+<!-- Step-by-step wizard provided by Angular Material -->
+<mat-horizontal-stepper linear="true" #stepper id="stepper" (selectionChange)="onChangeStep($event)">
+
+  <!-- Select project -->
+  <mat-step [stepControl]="formGroup.controls.project" label="Sélection du projet">
+    <h3>À quel projet souhaites-tu t'inscrire ?</h3>
+    <form [formGroup]="formGroup.controls.project">
+      <mat-form-field>
+        <mat-select placeholder="Projet" formControlName="editionId" required>
+          <mat-option *ngFor="let edition of editions" [value]="edition.id">
+            {{ edition.project }} {{ edition.year }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <section>
+        <button mat-button color="primary" [disabled]="!formGroup.controls.project.valid" matStepperNext>Suivant</button>
+      </section>
+    </form>
+  </mat-step>
+
+  <!-- Fill in the project's form -->
+  <mat-step [stepControl]="editionForm.formGroup" label="Remplissage du formulaire">
+    <dynamic-form #editionForm (submitted)="onEditionFormSubmitted()" [submitButton]="false"></dynamic-form>
+    <section class="nav-buttons" *ngIf="editionForm.formGroup">
+      <button mat-button matStepperPrevious>Précédent</button>
+      <button mat-button color="primary" [disabled]="!editionForm.formGroup.valid" matStepperNext>Suivant</button>
+    </section>
+  </mat-step>
+
+  <!--
+    Allow to download edition-specific attachments
+    that student needs to send back via post
+  -->
+  <mat-step label="Documents">
+    <h3>Documents</h3>
+
+    <form *ngIf="edition && edition.editionForm.form.files.length > 0; else noFiles">
+      <p>Tu peux maintenant télécharger les documents papiers.</p>
+
+      <!-- Deadline and address where documents need to be sent -->
+      <app-documents-recipient [deadline]="edition.editionForm.deadline" [recipient]="edition.editionForm.recipient"></app-documents-recipient>
+
+      <!-- List of downloable files -->
+      <mat-nav-list>
+        <mat-list-item *ngFor="let document of edition.editionForm.form.files">
+          <mat-icon matListIcon>get_app</mat-icon>
+          <a [href]="document.url" download target="_blank" matLine>
+            {{ document.name }}
+          </a>
+        </mat-list-item>
+      </mat-nav-list>
+      <p>
+        <a mat-raised-button [href]="downloadUrl">
+          <mat-icon>archive</mat-icon>
+          Télécharger au format ZIP
+        </a>
+      </p>
+      <p class="text-muted">
+        Tu pourras retrouver ces documents plus tard dans la section "Mes inscriptions".
+      </p>
+    </form>
+
+    <ng-template #noFiles>
+      <p>Il n'y a pas de documents supplémentaires à remplir pour ce projet.</p>
+      <p>Tu peux passer à l'étape suivante.</p>
+    </ng-template>
+
+    <section class="nav-buttons">
+      <button mat-button matStepperPrevious>Précédent</button>
+      <button mat-button matStepperNext color="primary">Suivant</button>
+    </section>
+  </mat-step>
+
+  <!-- Recap -->
+  <mat-step label="Récapitulatif">
+    <h3>Récapitulatif</h3>
+    <p>
+      Vérifie tes réponses ci-dessous.
+      Si tout est correct, clique sur "Confirmer mon inscription" pour envoyer
+      le formulaire.
+    </p>
+    <!-- Show a read-only version of the form -->
+    <mat-card id="form-entry">
+      <app-form-entry [form]="form"></app-form-entry>
+    </mat-card>
+    <section class="nav-buttons">
+      <button mat-button matStepperPrevious>Précédent</button>
+      <button mat-raised-button color="primary" (click)="register()" type="button">
+        Confirmer mon inscription
+        <app-load-spinner *ngIf="loading" [block]="false"></app-load-spinner>
+      </button>
+    </section>
+  </mat-step>
+
+  <!-- Done -->
+  <mat-step label="Terminé">
+    <div *ngIf="edition">
+      <h1>
+        Merci de t'être inscrit à {{ edition.project }} !
+      </h1>
+
+      <p>
+        Ta demande d'inscription pour l'édition {{ edition.year }} de <strong>{{ edition.project }}</strong> a bien été envoyée.
+      </p>
+
+      <p>
+        <a mat-raised-button routerLink="/projets">
+          Retour aux projets
+        </a>
+      </p>
+
+      <h2>Prochaines étapes</h2>
+
+      <mat-accordion>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              J'envoie mes documents justificatifs
+            </mat-panel-title>
+            <mat-panel-description>
+              Avant le {{ edition.deadline | amLocale: 'fr' | amDateFormat: 'LL' }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>
+            En cas de besoin, tu peux télécharger à nouveau ces documents dans la section <a routerLink="/projets/mes-inscriptions">Mes inscriptions</a>.
+          </p>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Les tuteurs valident mon dossier
+            </mat-panel-title>
+            <mat-panel-description>
+              Avant le {{ edition.deadline | amLocale: 'fr' | amDateFormat: 'LL' }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>
+            Une fois tous les documents justificatifs reçus, les tuteurs valideront ton dossier et tu recevras un email t'indiquant que celui-ci est complet.
+          </p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Les tuteurs confirment ma participation
+            </mat-panel-title>
+            <mat-panel-description>
+               À partir du {{ edition.deadline | amLocale: 'fr' | amDateFormat: 'LL' }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>
+            Les tuteurs étudieront chaque demande d'inscription et établiront la liste des inscrits. Tu recevras un email confirmant ta participation à {{ edition.project }}.
+          </p>
+          <p>
+            Si tu n'as pas été retenu pour participer à {{ edition.project }}, les tuteurs pourront te recontacter en cas de désistement.
+          </p>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <p>
+        <app-edition-contact [edition]="edition"></app-edition-contact>
+      </p>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
