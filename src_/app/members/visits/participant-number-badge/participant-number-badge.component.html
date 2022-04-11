@@ -1,7 +1,0 @@
-<span *ngIf="number > 0" class="badge badge-default badge-lg">
-  <i class="fa fa-user"></i> {{ number }}
-  <span [ngPlural]="number">
-    <ng-template ngPluralCase="=1">participant</ng-template>
-    <ng-template ngPluralCase="other">participants</ng-template>
-  </span>
-</span>

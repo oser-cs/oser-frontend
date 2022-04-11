@@ -1,9 +1,0 @@
-<div class="filter-group">
-  <strong>{{ title }}</strong>
-  <ul class="choices">
-    <li *ngFor="let value of values" (click)="select(value)" [ngClass]="{'selected': current === value}">
-      {{ value }}
-      <span class="badge badge-default" *ngIf="counted">{{ numberOf(value) }}</span>
-    </li>
-  </ul>
-</div>
