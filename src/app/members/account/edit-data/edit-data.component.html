@@ -65,7 +65,9 @@
               <mat-option *ngFor="let school of possibleSchools" [value]="school.id">{{ school.name }}</mat-option>
             </mat-select>
           </mat-form-field>
-          
+          <mat-form-field class="full-width" >
+            <input matInput required   type="text" formControlName="specialTeaching" placeholder="Enseignements de spécialité (entrer 'aucun' si jamais vous n'etes pas concerné)" >
+          </mat-form-field>
           <div class="form-group">
             <mat-form-field class="horizontal-display">
               <mat-label>Classe</mat-label>
@@ -95,16 +97,7 @@
             </mat-form-field>
             
           </div>
-
-
-          <mat-form-field class="full-width" >
-            <mat-label>Enseignements de spécialité (entrer 'aucun' si jamais vous n'etes pas concerné) </mat-label>
-            <mat-select  formControlName="specialTeaching" required >
-              <mat-option *ngFor="let specialTeaching of dataList" [value]="specialTeaching.id">{{ specialTeaching.name }}</mat-option>
-            </mat-select>
-          </mat-form-field>
            
-          <div> Ceci est un test : {{dataList}} </div>
           
          
           <p class="text-center">Informations parentales</p>  
