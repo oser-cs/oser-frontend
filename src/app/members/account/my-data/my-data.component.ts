@@ -18,7 +18,7 @@ import {User} from 'app/core'
 })
 export class MyDataComponent implements OnInit{
   
-  private personalData: PersonalData;
+  public personalData: PersonalData;
   public validatedAccount : String;
   public dateNow: Date;
   public currentYear: String;
