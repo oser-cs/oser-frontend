@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormControlName, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import {ActivatedRoute} from '@angular/router'
@@ -7,8 +7,15 @@ import { PersonalData,PersonalDataService } from '../core';
 import { tap, mergeMap } from 'rxjs/operators';
 import { AuthService } from 'app/core';
 import {User} from 'app/core';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 
+
+export interface Nationality {
+  id : string;
+  name: string;
+} 
 
 
 @Component({
@@ -16,18 +23,26 @@ import {User} from 'app/core';
   templateUrl: './edit-data.component.html',
   styleUrls: ['./edit-data.component.scss']
 })
+
+
+
 export class EditDataComponent implements OnInit {
   personalData: PersonalData;
   formGroup : FormGroup;
   loading = false;
   public error : String = "";
   public postEditMessage : String = "" ;
-  public dataList; 
+  classType="";
+  
+  myControl = new FormControl();
+
+ 
 
   public possibleParentsStatus = [
     {id:"maried",name:"Vos parents vivent ensemble"},
-    {id:"cohabitation",name:"Vos parents vivent séparément"},
-    {id:"monoparental",name:"Vous avez un seul parent"}
+    {id:"separated",name:"Vos parents vivent séparément"},
+    {id:"monoparental",name:"Vous avez un seul parent"},
+    {id:"noparents",name:"Vous ne dépendez pas de vos parents"},
   ]
 
   public possibleParentsActivities = [
@@ -42,6 +57,104 @@ export class EditDataComponent implements OnInit {
     {id:"Inactif",name:"Inactif"},
     {id:"Autre",name:"Autre"} 
   ]
+
+
+
+  public possibleNationalities: Nationality[] = [
+   {id:"AFG", name:"Afghane"},
+   {id:"ALB", name:"Albanaise"}, 
+   {id:"DZA", name:"Algérienne"}, 
+   {id:"DEU", name:"Allemande"}, 
+   {id:"USA", name:"Americaine"}, 
+   {id:"AND", name:"Andorrane"}, 
+   {id:"AGO", name:"Angolaise"}, 
+   {id:"ATG", name:"Antiguaise-et-Barbudienne"}, 
+   {id:"ARG", name:"Argentine"}, 
+   {id:"ARM", name:"Armenienne"}, 
+   {id:"AUS", name:"Australienne"}, 
+   {id:"AUT", name:"Autrichienne"}, 
+   {id:"AZE", name:"Azerbaïdjanaise"}, 
+   {id:"BHS", name:"Bahamienne"}, 
+   {id:"BHR", name:"Bahreinienne"}, 
+   {id:"BGD", name:"Bangladaise"}, 
+   {id:"BRB", name:"Barbadienne"}, 
+   {id:"BEL", name:"Belge"}, 
+  {id:"BLZ", name:"Belizienne"}, 
+  {id:"BEN", name:"Béninoise"}, 
+  {id:"BTN", name:"Bhoutanaise"}, 
+  {id:"BLR", name:"Biélorusse"}, 
+  {id:"MMR", name:"Birmane"}, 
+  {id:"GNB", name:"Bissau-Guinéenne"}, 
+  {id:"BOL", name:"Bolivienne"}, 
+  {id:"BIH", name:"Bosnienne"}, 
+  {id:"BWA", name:"Botswanaise"}, 
+  {id:"BRA", name:"Brésilienne"}, 
+  {id:"GBR", name:"Britannique"}, 
+  {id:"BRN", name:"Brunéienne"}, 
+  {id:"BGR", name:"Bulgare"}, 
+  {id:"BFA", name:"Burkinabée"}, 
+  {id:"BDI", name:"Burundaise"}, 
+  {id:"KHM", name:"Cambodgienne"}, 
+  {id:"CMR", name:"Camerounaise"}, 
+  {id:"CAN", name:"Canadienne"}, 
+  {id:"CPV", name:"Cap-verdienne"}, 
+  {id:"CAF", name:"Centrafricaine"}, 
+  {id:"CHL", name:"Chilienne"}, 
+  {id:"CHN", name:"Chinoise"}, 
+  {id:"CYP", name:"Chypriote"}, 
+  {id:"COL", name:"Colombienne"},
+  {id:"COM", name:"Comorienne"},
+  {id:"COG", name:"Congolaise"},
+  {id:"COD", name:"Congolaise"},
+  {id:"COK", name:"Cookienne"},
+  {id:"CRI", name:"Costaricaine"},
+  {id:"HRV", name:"Croate"},
+  {id:"CUB", name:"Cubaine"},
+  {id:"DNK", name:"Danoise"},
+  {id:"DJI", name:"Djiboutienne"},
+  {id:"DOM", name:"Dominicaine"},
+  {id:"DMA", name:"Dominiquaise"},
+  {id:"EGY", name:"Égyptienne"},
+  {id:"ARE", name:"Émirienne"},
+  {id:"GNQ", name:"Équato-guineenne"},
+  {id:"ECU", name:"Équatorienne"},
+  {id:"ERI", name:"Érythréenne"},
+  {id:"ESP", name:"Espagnole"},
+  {id:"TLS", name:"Est-timoraise"},
+  {id:"EST", name:"Estonienne"},
+  {id:"ETH", name:"Éthiopienne"},
+  {id:"FJI", name:"Fidjienne"},
+  {id:"FIN", name:"Finlandaise"},
+  {id:"FRA", name:"Française"},
+  {id:"GAB", name:"Gabonaise"},
+  {id:"GMB", name:"Gambienne"},
+  {id:"GEO", name:"Georgienne"},
+  {id:"GHA", name:"Ghanéenne"},
+  {id:"GRD", name:"Grenadienne"},
+  {id:"GTM", name:"Guatémaltèque"},
+  {id:"GIN", name:"Guinéenne"},
+  {id:"GUY", name:"Guyanienne"},
+  {id:"HTI", name:"Haïtienne"},
+  {id:"GRC", name:"Hellénique"},
+  {id:"HND", name:"Hondurienne"},
+  {id:"HUN", name:"Hongroise"},
+  {id:"IND", name:"Indienne"},
+  {id:"IDN", name:"Indonésienne"},
+  {id:"IRQ", name:"Irakienne"},
+  {id:"IRN", name:"Iranienne"},{id:"IRL", name:"Irlandaise"},
+  {id:"ISL", name:"Islandaise"},
+  {id:"ISR", name:"Israélienne"},
+  {id:"ITA", name:"Italienne"},
+  {id:"CIV", name:"Ivoirienne"},
+  {id:"JAM", name:"Jamaïcaine"},
+  {id:"JPN", name:"Japonaise"},
+  {id:"JOR", name:"Jordanienne"},
+  {id:"KAZ", name:"Kazakhstanaise"},
+  {id:"KEN", name:"Kenyane"},
+  {id:"KGZ", name:"Kirghize"},
+  {id:"KIR", name:"Kiribatienne"},{id:"KNA", name:"Kittitienne"},{id:"KWT", name:"Koweïtienne"},{id:"LAO", name:"Laotienne"},{id:"LSO", name:"Lesothane"},{id:"LVA", name:"Lettone"},{id:"LBN", name:"Libanaise"},{id:"LBR", name:"Libérienne"},{id:"LBY", name:"Libyenne"},{id:"LIE", name:"Liechtensteinoise"},{id:"LTU", name:"Lituanienne"},{id:"LUX", name:"Luxembourgeoise"},{id:"MKD", name:"Macédonienne"},{id:"MYS", name:"Malaisienne"},{id:"MWI", name:"Malawienne"},{id:"MDV", name:"Maldivienne"},{id:"MDG", name:"Malgache"},{id:"MLI", name:"Maliennes"},{id:"MLT", name:"Maltaise"},{id:"MAR", name:"Marocaine"},{id:"MHL", name:"Marshallaise"},{id:"MUS", name:"Mauricienne"},{id:"MRT", name:"Mauritanienne"},{id:"MEX", name:"Mexicaine"},{id:"FSM", name:"Micronésienne"},{id:"MDA", name:"Moldave"},{id:"MCO", name:"Monegasque"},{id:"MNG", name:"Mongole"},{id:"MNE", name:"Monténégrine"},{id:"MOZ", name:"Mozambicaine"},{id:"NAM", name:"Namibienne"},{id:"NRU", name:"Nauruane"},{id:"NLD", name:"Néerlandaise"},{id:"NZL", name:"Néo-Zélandaise"},
+  {id:"NPL", name:"Népalaise"},{id:"NIC", name:"Nicaraguayenne"},{id:"NGA", name:"Nigériane"},{id:"NER", name:"Nigérienne"},{id:"NIU", name:"Niuéenne"},{id:"PRK", name:"Nord-coréenne"},{id:"NOR", name:"Norvégienne"},{id:"OMN", name:"Omanaise"},{id:"UGA", name:"Ougandaise"},{id:"UZB", name:"Ouzbéke"},{id:"PAK", name:"Pakistanaise"},{id:"PLW", name:"Palaosienne"},{id:"PSE", name:"Palestinienne"},{id:"PAN", name:"Panaméenne"},{id:"PNG", name:"Papouane-Néo-Guinéenne"},{id:"PRY", name:"Paraguayenne"},{id:"PER", name:"Péruvienne"},{id:"PHL", name:"Philippine"},{id:"POL", name:"Polonaise"},{id:"PRT", name:"Portugaise"},{id:"QAT", name:"Qatarienne"},{id:"ROU", name:"Roumaine"},{id:"RUS", name:"Russe"},{id:"RWA", name:"Rwandaise"},{id:"LCA", name:"Saint-Lucienne"},{id:"SMR", name:"Saint-Marinaise"},{id:"VCT", name:"Saint-Vincentaise"},{id:"SLB", name:"Salomonaise"},{id:"SLV", name:"Salvadorienne"},{id:"WSM", name:"Samoane"},{id:"STP", name:"Santoméenne"},{id:"SAU", name:"Saoudienne"},{id:"SEN", name:"Sénégalaise"},{id:"SRB", name:"Serbe"},{id:"SYC", name:"Seychelloise"},{id:"SLE", name:"Sierra-Léonaise"},{id:"SGP", name:"Singapourienne"},{id:"SVK", name:"Slovaque"},{id:"SVN", name:"Slovène"},{id:"SOM", name:"Somalienne"},{id:"SDN", name:"Soudanaise"},{id:"LKA", name:"Sri-Lankaise"},{id:"ZAF", name:"Sud-Africaine"},{id:"KOR", name:"Sud-Coréenne"},{id:"SSD", name:"Sud-Soudanaise"},{id:"SWE", name:"Suédoise"},{id:"CHE", name:"Suisse"},{id:"SUR", name:"Surinamaise"},{id:"SWZ", name:"Swazie"},{id:"SYR", name:"Syrienne"},{id:"TJK", name:"Tadjike"},{id:"TZA", name:"Tanzanienne"},{id:"TCD", name:"Tchadienne"},{id:"CZE", name:"Tchèque"},{id:"THA", name:"Thaïlandaise"},{id:"TGO", name:"Togolaise"},{id:"TON", name:"Tonguienne"},{id:"TTO", name:"Trinidadienne"},{id:"TUN", name:"Tunisienne"},{id:"TKM", name:"Turkmène"},{id:"TUR", name:"Turque"},{id:"TUV", name:"Tuvaluane"},{id:"UKR", name:"Ukrainienne"},{id:"URY", name:"Uruguayenne"},{id:"VUT", name:"Vanuatuane"},{id:"VAT", name:"Vaticane"},{id:"VEN", name:"Vénézuélienne"},{id:"VNM", name:"Vietnamienne"},{id:"YEM", name:"Yéménite"},{id:"ZMB", name:"Zambienne"},{id:"ZWE", name:"Zimbabwéenne"}
+]
 
   public possibleSchools = [
     {id:"Jean Perrin (Longjumeau)", name:"Jean Perrin (Longjumeau)"},
@@ -76,6 +189,12 @@ export class EditDataComponent implements OnInit {
     {id:"S2TMD",name:"Sciences et techniques du théâtre, de la musique et de la danse"},
     {id:"STHR",name:"Sciences et technologies de l'hôtellerie et de la restauration"},
     {id:"STAV",name:"Sciences et technologies de l'agronomie et du vivant"},
+
+  ]
+
+
+  public possibleSpecialitiesGeneral = [
+    {id:"Aucun",name:"Aucun"},
 
   ]
 
@@ -178,12 +297,23 @@ export class EditDataComponent implements OnInit {
     private snackBar: MatSnackBar,
     
   ) {  }
-
+  filteredOptions: Observable<Nationality[]>;
 
   ngOnInit() {
     this.personalData = this.route.snapshot.data['personalData'];
     this.createForm();
+    this.classType=this.personalData.classType;
     
+  }
+
+  public _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    let entryNatList : Array<string>;
+    for (let nationality of this.possibleNationalities)
+    {
+      entryNatList.push(nationality.name);
+    }
+ return entryNatList.filter(option => option.toLowerCase().includes(filterValue));
   }
 
   
@@ -217,12 +347,19 @@ export class EditDataComponent implements OnInit {
  
   }
 
-  attributeSpeciality(){
-
-        this.dataList=this.possibleSpecialitiesTechno;
-    // else (id=="Professionnelle") 
-    // this.dataList=this.possibleSpecialitiesPro;
-      
+  setSpeciality(){
+  if (this.classType=="Technologique")
+        {
+         return this.possibleSpecialitiesTechno;
+        }
+  else if (this.classType=="Professionnelle") 
+      {
+     return this.possibleSpecialitiesPro;
+       }
+  else (this.classType=="General") 
+      {
+         return this.possibleSpecialitiesGeneral;
+       }
   }
 
   submit(){

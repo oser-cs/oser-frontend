@@ -18,8 +18,12 @@
                 <mat-option value="Autre">Autre</mat-option>
               </mat-select>
             </mat-form-field>
+
             <mat-form-field class="horizontal-display" >
-              <input matInput   type="text" formControlName="nationality" placeholder="Nationalité" required>
+              <mat-label>Nationalité</mat-label>
+              <mat-select  formControlName="nationality" required>
+                    <mat-option *ngFor="let nationality of possibleNationalities" [value]="nationality.name"> {{ nationality.name }}</mat-option>
+                  </mat-select>
             </mat-form-field>
           </div>
           
@@ -80,7 +84,7 @@
 
             <mat-form-field class="horizontal-display horizontal-center">
               <mat-label>Voie</mat-label>
-              <mat-select  formControlName="classType" required>
+              <mat-select  formControlName="classType" [(value)]="classType" required>
                 <mat-option value="General">General</mat-option>
                 <mat-option value="Technologique">Technologique</mat-option>
                 <mat-option value="Professionnelle">Professionnelle</mat-option>
@@ -100,17 +104,16 @@
           <mat-form-field class="full-width" >
             <mat-label>Enseignements de spécialité (entrer 'aucun' si jamais vous n'etes pas concerné) </mat-label>
             <mat-select  formControlName="specialTeaching" required >
-              <mat-option *ngFor="let specialTeaching of dataList" [value]="specialTeaching.id">{{ specialTeaching.name }}</mat-option>
+              <mat-option *ngFor="let specialTeaching of setSpeciality()" [value]="specialTeaching.id">{{ specialTeaching.name }}</mat-option>
             </mat-select>
           </mat-form-field>
            
-          <div> Ceci est un test : {{dataList}} </div>
           
          
           <p class="text-center">Informations parentales</p>  
           <div class="form-group">
             <mat-form-field class="horizontal-display">
-              <mat-label>Activité de la mère </mat-label>
+              <mat-label>Activité de la mère </mat-label> 
               <mat-select  formControlName="motherActivity" required>
                 <mat-option *ngFor="let activity of possibleParentsActivities" [value]="activity.id">{{ activity.name }}</mat-option>
               </mat-select>
@@ -120,7 +123,7 @@
               <mat-label>Activité du père </mat-label>
               <mat-select  formControlName="fatherActivity" required>
                 <mat-option *ngFor="let activity of possibleParentsActivities" [value]="activity.id">{{ activity.name }}</mat-option>
-              </mat-select>
+              </mat-select> 
             </mat-form-field>
           </div>
           
