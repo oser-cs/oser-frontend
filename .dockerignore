@@ -1,0 +1,6 @@
+Dockerfile
+node_modules
+.gitignore
+README.md
+.env.template
+
