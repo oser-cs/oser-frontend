@@ -127,7 +127,7 @@ export class StudentSignupComponent implements OnInit {
       tap(() => this.loading = false),
       tap(() => {
        setTimeout(()=>{
-          this.router.navigate(['./membres'])
+          this.router.navigate(['./membres/compte/donnees'])
           
         },3000)})
       
