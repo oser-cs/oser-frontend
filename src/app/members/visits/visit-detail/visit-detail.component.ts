@@ -3,6 +3,11 @@ import { Observable, Subject } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService, Geocoder } from 'app/core';
 import { Visit, Participant } from '../shared';
+import {MyDataComponent} from 'app/members/account/my-data/my-data.component';
+
+
+
+
 
 @Component({
   selector: 'app-visit-detail',
@@ -19,18 +24,27 @@ export class VisitDetailComponent implements OnInit {
   formLoading: boolean = false;
   leaveFormActive = false;
   geocoder: Geocoder;
+  errorMessageRegistration= "";
+  isValid : boolean; 
 
   constructor(
     private route: ActivatedRoute,
     private auth: AuthService,
-  ) { }
+    private dataC: MyDataComponent,
+    
+  ) {this.isValid=dataC.getValidState()}
 
   ngOnInit() {
+    
     this.visit = this.route.snapshot.data['visit'];
     this.geocoder = this.route.snapshot.data['geocoder'];
     this.userId = this.auth.getUserSnapshot().id;
     this.getParticipant();
     this.getAcceptedParticipants();
+    if (!this.isValid)
+    {
+      this.errorMessageRegistration="Tu dois valider ton compte pour pouvoir t'inscrire aux sorties."
+    }
   }
 
   getParticipant() {
@@ -52,3 +66,4 @@ export class VisitDetailComponent implements OnInit {
   }
 
 }
+

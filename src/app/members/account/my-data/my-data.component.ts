@@ -1,20 +1,30 @@
+import { Injectable } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute,Router} from '@angular/router'
 import {PersonalData} from '../core'
 import * as moment from 'moment'
 import {User} from 'app/core'
 
+
+@Injectable({
+  providedIn: 'root',
+}) 
+
+
 @Component({
   selector: 'app-my-data',
   templateUrl: './my-data.component.html',
   styleUrls: ['./my-data.component.scss']
 })
-export class MyDataComponent implements OnInit {
+export class MyDataComponent implements OnInit{
   
-  personalData: PersonalData;
-  validatedAccount : String;
-  dateNow: Date;
-  currentYear: String;
+  private personalData: PersonalData;
+  public validatedAccount : String;
+  public dateNow: Date;
+  public currentYear: String;
+
+
+  public validState: boolean;
   
   public grade = {
     "troisieme": "Troisième",
@@ -24,6 +34,16 @@ export class MyDataComponent implements OnInit {
     "classe passerelle":"Classe Passerelle"
 
   }
+
+  public getValidState() : boolean  {
+    if (this.validatedAccount=="Validé"){
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
   
   //Styles validated account label depending on the status of the account
   public styleValidatedAccount = ()=> {
@@ -52,8 +72,8 @@ export class MyDataComponent implements OnInit {
   public editData = ()=> {
     this.router.navigate(['./membres/compte/modifier_donnees'])
   }
+
   
- 
 
   constructor(private route: ActivatedRoute, private router:Router) { }
   
@@ -68,13 +88,16 @@ export class MyDataComponent implements OnInit {
     }
     
     if(this.personalData.registration.validated){
-      this.validatedAccount= "Validé"
+      this.validatedAccount= "Validé";
     }else if(this.personalData.year===this.currentYear){
-      this.validatedAccount="En cours de validation"
+      this.validatedAccount="En cours de validation";
     }else{
-      this.validatedAccount="Données personnelles non remplies"
+      this.validatedAccount="Données personnelles non remplies";
     }
     
   }
 
+  
+
 }
+
