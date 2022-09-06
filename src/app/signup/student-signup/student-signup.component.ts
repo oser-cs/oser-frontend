@@ -73,6 +73,7 @@ export class StudentSignupComponent implements OnInit {
       firstName: '',
       lastName: '',
       email: ['', Validators.email],
+      dateOfBirth:'',
       phoneNumber: '',
       gender:'',
       adressNumber:'',
@@ -108,32 +109,60 @@ export class StudentSignupComponent implements OnInit {
   toggleShowPersonnalDataForm(){
     this.showPersonnalDataForm = !this.showPersonnalDataForm;
   }
+
   submit() {
     this.loading = true;
-    const {email,firstName,lastName,phoneNumber} = this.formGroup.value
+    const {email,firstName,lastName,phoneNumber,dateOfBirth} = this.formGroup.value
     //const {gender,adressNumber,street,zipCode,city,personnalPhone,parentsPhone,parentsEmail,school,grade,section,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber} = this.formGroup.value;
-    const registration: Registration = {email,firstName,lastName,phoneNumber};
+    const registration: Registration = {email,firstName,lastName,phoneNumber,dateOfBirth};
    // const personnalData: PersonnalData = {gender,adressNumber,street,zipCode,city,personnalPhone,parentsPhone,parentsEmail,school,grade,section,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber};
    
     const password: string = this.formGroup.controls.password.value;
-    this.registrationService.create(registration, password).pipe(
-      mergeMap(() => this.auth.login(registration.email, password)),
-      tap(() => this.snackBar.open(
-        `Ton compte a été créé ! Tu es maintenant connecté.`,
-        'OK',
-        { duration: 3000 },
+    
+    // this.registrationService.create(registration, password).pipe(
+    //   mergeMap(() => this.auth.login(registration.email, password)),
+    //   tap(() => this.snackBar.open(
+    //     `Ton compte a été créé ! Tu es maintenant connecté.`,
+    //     'OK',
+    //     { duration: 3000 },
+    //   )),
+    //   tap(()=> this.error = ""),
+    //   tap(() => this.loading = false),
+    //   tap(() => {
+    //    setTimeout(()=>{
+    //       this.router.navigate(['inscription/waiting'])
+          
+    //     },3000)})
+      
+    // ).subscribe(
+    //   () => {},
+    //   (error) => { 
+        
+
+    //     this.loading=false
+        
+    //     if(error.error.email){
+    //       this.error = "Erreur, cet email est déjà utilisé !"
+    //     }
+    //   } 
+    // );
+
+
+      this.registrationService.create(registration, password).pipe(tap(() => this.snackBar.open(
+        `Les informations sont valides ! Nous allons t'envoyer un mail d'activation.`,'OK',
+        { duration: 2000 },
       )),
       tap(()=> this.error = ""),
       tap(() => this.loading = false),
       tap(() => {
-       setTimeout(()=>{
-          this.router.navigate(['./membres/compte/donnees'])
+      setTimeout(()=>{
+          this.router.navigate(['inscription/waiting'])
           
-        },3000)})
-      
-    ).subscribe(
-      () => {},
-      (error) => { 
+        },2000)})
+
+      ).subscribe(
+        () => {},
+        (error) => { 
         
 
         this.loading=false
@@ -151,4 +180,5 @@ export class StudentSignupComponent implements OnInit {
     //   (error) => this.loading = false,
     // );
   }
+
 }

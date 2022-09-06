@@ -18,6 +18,11 @@
       <input matInput type="text" formControlName="lastName" placeholder="Nom" required>
     </mat-form-field>
 
+      <!--Date of birth-->
+      <mat-form-field class="full-width">
+        <input matInput type="date" formControlName="dateOfBirth" placeholder="Date de naissance" required>
+      </mat-form-field>
+
     <!-- Email -->
     <mat-form-field class="full-width">
       <input matInput type="email" formControlName="email" placeholder="Adresse email" required>
@@ -25,6 +30,8 @@
         Elle te servira d'identifiant de connexion.
       </mat-hint>
     </mat-form-field>
+
+
 
     <mat-form-field class="full-width">
       <input matInput type="tel" formControlName="phoneNumber" placeholder="Numéro de téléphone" required>
@@ -54,7 +61,7 @@
 
     <div class="text-center">
       <button mat-raised-button color="primary" [disabled]="!formGroup.valid || loading">
-        M'inscrire
+        Suivant
         <app-load-spinner *ngIf="loading" [block]="false"></app-load-spinner>
       </button>
     </div>
