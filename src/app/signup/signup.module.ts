@@ -18,10 +18,18 @@ import {
 import { SharedModule } from 'app/shared';
 import { SignupRoutingModule } from './signup-routing.module';
 import { StudentSignupComponent } from './student-signup/student-signup.component';
+import { WaitingEmailVerificationComponent } from './waiting-email-verification/waiting-email-verification.component';
+import { ValidEmailComponent } from './valid-email/valid-email.component';
+import { StudentCharterComponent } from './student-charter/student-charter.component';
+import { ParentsCharterComponent } from './parents-charter/parents-charter.component';
 
 @NgModule({
   declarations: [
     StudentSignupComponent,
+    WaitingEmailVerificationComponent,
+    ValidEmailComponent,
+    StudentCharterComponent,
+    ParentsCharterComponent,
   ],
   imports: [
     CommonModule,
