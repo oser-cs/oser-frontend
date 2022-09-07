@@ -1,0 +1,61 @@
+<app-form-page>
+  <h1>
+    Signature de l'accord des parents
+  </h1>
+  <a>
+    Cette partie de l'inscription est à destination de tes parents.
+  </a>
+  <h2>
+    Qu'est-ce que OSER ?
+  </h2>
+  <p>
+    OSER c'est [...]
+  </p>
+  
+  <a>
+    <mat-checkbox class="text-center" [checked]="$state_general" (click)="toggleGeneral()">J'autorise mon enfant à participer à OSER.</mat-checkbox>
+  </a>
+  <p>
+    <mat-hint>
+      Cette signature est obligatoire.
+    </mat-hint>
+  </p>
+  <h2>
+    Quelles sont les données récupérées par OSER ?
+  </h2>
+  <p>
+    OSER récupère les données XX pendant XX temps
+  </p>
+
+  <a>
+    <mat-checkbox class="text-center" [checked]="$state_data" (click)="toggleData()">J'autorise OSER à récupérer les données de mon enfant.</mat-checkbox>
+  </a>
+  <p>
+    <mat-hint>
+      Cette signature est obligatoire.
+    </mat-hint>
+  </p>
+
+  <h2>
+    Autorisation de droit à l'image
+  </h2>
+  <p>
+    Nous prenons des photos lors des projets sorties [...]
+  </p>
+
+  
+  <mat-checkbox class="text-center" [checked]="$state_image" (click)="toggleImage()">J'autorise OSER à prendre en photo/vidéo mon enfant.</mat-checkbox>
+  <p>
+      <mat-hint>
+        Cette signature n'est pas obligatoire.
+      </mat-hint>
+  </p>
+
+  <div class="text-center">
+    <button mat-raised-button color="primary"  [disabled]="!toggleSuivant()" routerLink='/membres/compte/modifier_donnees'>
+      Terminer l'inscription
+  </button>
+  </div>
+
+
+</app-form-page>
