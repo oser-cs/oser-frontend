@@ -34,7 +34,7 @@
 
 
     <mat-form-field class="full-width">
-      <input matInput type="tel" formControlName="phoneNumber" placeholder="Numéro de téléphone" required>
+      <input matInput type="tel" minlength="10" maxlength="10" formControlName="phoneNumber" placeholder="Numéro de téléphone" required>
       <mat-hint>
         Il nous permettra de te contacter en cas de nécessité.
       </mat-hint>
