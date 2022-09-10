@@ -2,7 +2,7 @@
 
 Frontend du site d'Ouverture Sociale pour l'Egalité et la Réussite, développé avec Angular 6.
 
-## Installation
+## Installation sans docker
 
 Après avoir cloné le repo :
 
@@ -31,6 +31,19 @@ oser-frontend $ ng serve -c local
 > Le flag `-c` correspond à la configuration utilisée. La valeur `local` signifie que l'environnement "local" sera utilisé, comme défini dans le fichier `environments/environment.local.ts`.
 
 Le site sera alors disponible à l'adresse http://localhost:4200.
+
+## Installation avec docker
+
+Docker est une plateforme permettant de lancer certaines applications dans des conteneurs logiciels.
+L'avantage est que l'installation est plus rapide.
+
+Etapes :
+
+1. Intaller docker sur votre pc
+2. Se placer dans le repertoire oser-frontend : cd oser-frontend/
+3. Lancer la commande : $ docker build -t oser-frontend .
+4. Lancer la commande : $ docker run -p 4200:4200 oser-frontend .
+5. Lancer votre navigateur préféré et taper 127.0.0.1:4200 dans la barre de recherche
 
 ## En cas d'erreur…
 
