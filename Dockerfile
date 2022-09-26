@@ -5,6 +5,6 @@ COPY package-lock.json .
 RUN npm install
 COPY . .
 EXPOSE 4200
-CMD  npm run build
+RUN npm run build
 ENTRYPOINT ["npm", "run", "start"]
 
