@@ -36,6 +36,7 @@ export class Visit {
   registrationsOpen: boolean;
   image: string;
   factSheet: string;
+  contextSheet: string;
   permissionSheet: string;
   participants: Participant[];
   organizers: Organizer[];
@@ -55,6 +56,7 @@ export class Visit {
     registrationsOpen: boolean,
     image: string;
     factSheet?: string;
+    contextSheet?: string;
     permissionSheet?: string;
     participants?: Participant[];
     organizers?: Organizer[],
@@ -73,6 +75,7 @@ export class Visit {
     this.registrationsOpen = opts.registrationsOpen;
     this.image = opts.image;
     this.factSheet = opts.factSheet;
+    this.contextSheet = opts.contextSheet;
     this.permissionSheet = opts.permissionSheet;
     this.participants = opts.participants || [];
     this.organizers = opts.organizers || [];
