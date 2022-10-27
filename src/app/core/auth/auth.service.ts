@@ -18,9 +18,10 @@ class StoredToken extends SimpleStoredItem { key = 'oser-cs-user-token'; }
 })
 export class AuthService {
 
-  private loginUrl = environment.apiUrl + 'auth/get-token/';
+  private loginUrl = environment. + 'auth/get-token/';
   private resetUrl = environment.apiUrl + 'rest-auth/password/reset/';
   private resetConfirmUrl = environment.apiUrl + 'rest-auth/password/reset/confirm/';
+  private mandatorySignatureUrl = environment.apiUrl + ''; 
 
   fromGuard: boolean;
   redirectUrl: string;
@@ -80,6 +81,12 @@ export class AuthService {
   // Headers for use in authenticated calls to the backend API.
   getAuthorizationHeaders(): HttpHeaders {
     return new HttpHeaders({ Authorization: 'Token ' + this.getToken() });
+  }
+
+  checkSignatureCharter(email: string) : Observable<boolean> {
+    return this.http.post<any>(this.mandatorySignatureUrl, {email : email}).pipe(
+      map(() => true),
+    );
   }
 
   get isLoggedIn(): boolean {
