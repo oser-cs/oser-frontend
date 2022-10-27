@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
 
   loading: boolean = false;
   defaultRedirectUrl: string = '/membres';
+  charterUrl : string = 'inscription/student-charter';
   formGroup: FormGroup;
 
   constructor(
@@ -54,11 +55,17 @@ export class LoginComponent implements OnInit {
       tap(() => this.loading = false),
       // Only continue if no error
       filter(Boolean),
-      // Get redirect URL from the auth service, provided by the auth guard.
-      map(() =>this.auth.redirectUrl ? this.auth.redirectUrl : this.defaultRedirectUrl),
+      // Get redirect URL from the auth service, provided by the auth guard. 
+      map(() => {
+        if (this.auth.checkSignatureCharter) {
+          this.auth.redirectUrl ? this.auth.redirectUrl : this.defaultRedirectUrl
+        }
+        else {
+          this.auth.redirectUrl ? this.auth.redirectUrl : this.charterUrl
+        }
+      }),
       tap(() => this.snackBar.open('Connexion réussie !', 'OK', { duration: 2000 })),
-      tap((redirectUrl: string) => this.router.navigate([redirectUrl])),
     ).subscribe();
-  }
+    }
 
 }
