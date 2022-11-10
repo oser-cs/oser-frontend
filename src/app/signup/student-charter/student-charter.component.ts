@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { StaticInjector } from '@angular/core/src/di/injector';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-student-charter',
@@ -10,7 +13,7 @@ export class StudentCharterComponent implements OnInit {
   
 
   state:boolean;
-  private studentCharterUrl = environment.apiUrl + ''; 
+  // private studentCharterUrl = environment.apiUrl + ''; 
 
 
   constructor() { }
@@ -23,10 +26,10 @@ export class StudentCharterComponent implements OnInit {
     this.state=!this.state;
   }
 
-  sendStudentSignatureCharter(email: string, state:boolean) : Observable<boolean> {
-    return this.http.post<any>(this.studentCharterUrl, { params: email, state }).pipe(
-      map(() => true
-    ));
-  }
+  // sendStudentSignatureCharter(email: string, state:boolean) : Observable<boolean> {
+  //   return this.http.post<any>(this.studentCharterUrl, { params: email, state }).pipe(
+  //     map(() => true
+  //   ));
+  // }
 
 }

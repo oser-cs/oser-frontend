@@ -84,15 +84,14 @@ export class AuthService {
   getAuthorizationHeaders(): HttpHeaders {
     return new HttpHeaders({ Authorization: 'Token ' + this.getToken() });
   }
-
-  checkSignatureCharter(email: string) : Observable<boolean> {
-    return this.http.get<any>(this.mandatorySignatureUrl,, { params: email }).pipe(
+  
+  checkSignatureCharter(email: any) : Observable<Boolean> {
+    return this.http.get<any>( this.mandatorySignatureUrl, { params: email }).pipe(
       map((data: any) => {
         return data}),
       
     );
   }
-
   get isLoggedIn(): boolean {
     if (this.user.get()) {
       return true;
