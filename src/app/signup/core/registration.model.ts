@@ -30,7 +30,7 @@ export class RegistrationAdapter {
       first_name: obj.firstName,
       last_name: obj.lastName,
       dateOfBirth : obj.dateOfBirth,
-      phoneNumber : obj.phoneNumber,
+      phone_number : obj.phoneNumber,
     }
   }
 }
