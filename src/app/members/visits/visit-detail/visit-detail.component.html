@@ -1,12 +1,15 @@
 <div id="visit">
-  <app-register-form [visible]="registerFormActive" (closed)="registerFormActive = false" [userId]="userId" [visit]="visit" (participate)="onParticipate($event)"></app-register-form>
+  <app-register-form [visible]="registerFormActive" (closed)="registerFormActive = false" [userId]="userId"
+    [visit]="visit" (participate)="onParticipate($event)"></app-register-form>
 
-  <app-leave-form [visible]="leaveFormActive" (closed)="leaveFormActive = false" [visit]="visit" [userId]="userId" (left)="participant = null"></app-leave-form>
+  <app-leave-form [visible]="leaveFormActive" (closed)="leaveFormActive = false" [visit]="visit" [userId]="userId"
+    (left)="participant = null"></app-leave-form>
 
   <div class="text-center">
     <h1>{{ visit.title }}</h1>
     <p>
-      <strong>{{ visit.date | date:"EEEE d MMMM" }} – {{ visit.startTime | date:"shortTime"}}</strong> – {{ visit.place.name }}
+      <strong>{{ visit.date | date:"EEEE d MMMM" }} – {{ visit.startTime | date:"shortTime"}}</strong> – {{
+      visit.place.name }}
     </p>
 
     <p *ngIf="visit.summary" class="text-muted">
@@ -15,18 +18,12 @@
 
     <!-- Metadata badges -->
     <div>
-      <app-registration-badge
-        [title]="visit.title"
-        [open]="visit.registrationsOpen"
-        [passed]="visit.passed"
+      <app-registration-badge [title]="visit.title" [open]="visit.registrationsOpen" [passed]="visit.passed"
         [deadline]="visit.deadline"></app-registration-badge>
-      <app-participant-number-badge
-        [number]="acceptedParticipants"></app-participant-number-badge>
+      <app-participant-number-badge [number]="acceptedParticipants"></app-participant-number-badge>
 
       <span *ngIf="participant">
-        <app-participation-badge
-          [accepted]="participant.accepted"
-          [passed]="visit.passed"></app-participation-badge>
+        <app-participation-badge [accepted]="participant.accepted" [passed]="visit.passed"></app-participation-badge>
       </span>
     </div>
 
@@ -34,7 +31,7 @@
     <div *ngIf="visit.registrationsOpen && !participant" class="text-center">
       <button id="participate-btn" type="button" name="button" class="btn-primary" [disabled]="!isValid" (click)="registerFormActive = true">
       Je m'inscris</button>
-      
+
     </div>
 
     <div class="text-muted-sm">{{errorMessageRegistration}}</div>
@@ -51,10 +48,17 @@
 
       <!-- Related documents -->
       <p class="alert alert-info" *ngIf="visit.permissionSheet">
-        <i class="fa fa-exclamation-triangle"></i>Avant de te rendre à la sortie, télécharge <a [href]="visit.permissionSheet">l'autorisation de sortie</a>. Fais-la remplir par tes parents et remets-la aux tuteurs le jour de la sortie.
+        <i class="fa fa-exclamation-triangle"></i>Avant de te rendre à la sortie, télécharge <a
+          [href]="visit.permissionSheet">l'autorisation de sortie</a>. Fais-la remplir par tes parents et remets-la aux
+        tuteurs le jour de la sortie.
       </p>
       <p class="alert alert-default" *ngIf="visit.factSheet">
-        <i class="fa fa-file-text"></i> Les organisateurs ont rédigé une <a [href]="visit.factSheet">fiche sortie</a>. N'hésite pas à en prendre connaissance avant de te rendre à la sortie !
+        <i class="fa fa-file-text"></i> Les organisateurs ont rédigé une <a [href]="visit.factSheet">fiche sortie</a>.
+        N'hésite pas à en prendre connaissance avant de te rendre à la sortie !
+      </p>
+      <p class="alert alert-default" *ngIf="visit.contextSheet">
+        <i class="fa fa-file-text"></i> Les organisateurs ont rédigé une <a [href]="visit.contextSheet">fiche de
+          contexte</a> sur la sortie. N'hésite pas à en prendre connaissance avant de te rendre à la sortie !
       </p>
     </div>
 
@@ -75,9 +79,7 @@
   <app-useful-information [visit]="visit"></app-useful-information>
 
   <h2>Se rendre à cette sortie</h2>
-  <app-visit-location-map
-    [geocoder]="geocoder"
-    [address]="visit.address"></app-visit-location-map>
+  <app-visit-location-map [geocoder]="geocoder" [address]="visit.address"></app-visit-location-map>
 
   <div *ngIf="visit.organizers.length > 0">
     <h2>Tuteurs organisateurs</h2>

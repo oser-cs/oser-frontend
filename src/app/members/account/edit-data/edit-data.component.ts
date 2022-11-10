@@ -285,8 +285,6 @@ export class EditDataComponent implements OnInit {
     {id:"Vente",name:"Vente"},
 
 
-  ]
-
   constructor(
     private route: ActivatedRoute,
     private personalDataService : PersonalDataService,
