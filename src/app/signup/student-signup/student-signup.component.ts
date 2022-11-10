@@ -112,9 +112,9 @@ export class StudentSignupComponent implements OnInit {
 
   submit() {
     this.loading = true;
-    const {email,firstName,lastName,phoneNumber,dateOfBirth} = this.formGroup.value
+    const {email,firstName,lastName,dateOfBirth} = this.formGroup.value
     //const {gender,adressNumber,street,zipCode,city,personnalPhone,parentsPhone,parentsEmail,school,grade,section,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber} = this.formGroup.value;
-    const registration: Registration = {email,firstName,lastName,phoneNumber,dateOfBirth};
+    const registration: Registration = {email,firstName,lastName,dateOfBirth};
    // const personnalData: PersonnalData = {gender,adressNumber,street,zipCode,city,personnalPhone,parentsPhone,parentsEmail,school,grade,section,specialTeaching,scholarship,fatherActivity,motherActivity,parentsStatus,dependantsNumber};
    
     const password: string = this.formGroup.controls.password.value;
