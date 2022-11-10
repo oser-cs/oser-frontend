@@ -18,10 +18,12 @@ class StoredToken extends SimpleStoredItem { key = 'oser-cs-user-token'; }
 })
 export class AuthService {
 
-  private loginUrl = environment. + 'auth/get-token/';
+  private loginUrl = environment.apiUrl  + 'auth/get-token/';
   private resetUrl = environment.apiUrl + 'rest-auth/password/reset/';
   private resetConfirmUrl = environment.apiUrl + 'rest-auth/password/reset/confirm/';
   private mandatorySignatureUrl = environment.apiUrl + ''; 
+  //add the corresponding path in backend interface 
+
 
   fromGuard: boolean;
   redirectUrl: string;
@@ -84,8 +86,10 @@ export class AuthService {
   }
 
   checkSignatureCharter(email: string) : Observable<boolean> {
-    return this.http.post<any>(this.mandatorySignatureUrl, {email : email}).pipe(
-      map(() => true),
+    return this.http.get<any>(this.mandatorySignatureUrl,, { params: email }).pipe(
+      map((data: any) => {
+        return data}),
+      
     );
   }
 

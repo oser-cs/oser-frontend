@@ -164,8 +164,7 @@ export class EditDataComponent implements OnInit {
     {id:"Charles Péguy (Bobigny)",name:"Charles Péguy (Bobigny)"},
     {id:"Jean Jaurès (Chatenay-Malabry)",name:"Jean Jaurès (Chatenay-Malabry)"},
     {id:"Parc des Loges (Evry)",name:"Parc des Loges (Evry)"},
-    {id:"Jean-Baptiste Corot (Savigny-sur-Orge)",name:"Jean-Baptiste Corot (Savigny-sur-Orge)"},
-    {id:"Gaspard Monge (Savigny-sur-Orge)",name:"Gaspard Monge (Savigny-sur-Orge)"},
+    {id:"Jean Jaurès (Argenteuil)",name:"Jean Jaurès (Argenteuil)"},
   ]
 
   public possibleScholarships = [
@@ -194,7 +193,7 @@ export class EditDataComponent implements OnInit {
 
 
   public possibleSpecialitiesGeneral = [
-    {id:"Aucun",name:"Aucun"},
+    {id:"Aucun",name:"Tu es dans une filière générale, tu n'as pas besoin de remplir cette case."},
 
   ]
 

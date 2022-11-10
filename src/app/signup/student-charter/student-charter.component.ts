@@ -8,7 +8,10 @@ import { StaticInjector } from '@angular/core/src/di/injector';
 })
 export class StudentCharterComponent implements OnInit {
   
+
   state:boolean;
+  private studentCharterUrl = environment.apiUrl + ''; 
+
 
   constructor() { }
 
@@ -18,6 +21,12 @@ export class StudentCharterComponent implements OnInit {
 
   toggle(){
     this.state=!this.state;
+  }
+
+  sendStudentSignatureCharter(email: string, state:boolean) : Observable<boolean> {
+    return this.http.post<any>(this.studentCharterUrl, { params: email, state }).pipe(
+      map(() => true
+    ));
   }
 
 }

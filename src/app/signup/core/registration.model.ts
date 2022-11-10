@@ -5,7 +5,6 @@ class RegistrationSchema {
   email: string;
   firstName: string;
   lastName: string;
-  phoneNumber: string;
   dateOfBirth : Date;
 }
 
@@ -29,7 +28,6 @@ export class RegistrationAdapter {
       email: obj.email,
       first_name: obj.firstName,
       last_name: obj.lastName,
-      phone_number: obj.phoneNumber,
       dateOfBirth : obj.dateOfBirth,
     }
   }
