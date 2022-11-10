@@ -6,6 +6,7 @@ class RegistrationSchema {
   firstName: string;
   lastName: string;
   dateOfBirth : Date;
+  phoneNumber : string;
 }
 
 export class Registration extends RegistrationSchema {
@@ -29,6 +30,7 @@ export class RegistrationAdapter {
       first_name: obj.firstName,
       last_name: obj.lastName,
       dateOfBirth : obj.dateOfBirth,
+      phoneNumber : obj.phoneNumber,
     }
   }
 }
