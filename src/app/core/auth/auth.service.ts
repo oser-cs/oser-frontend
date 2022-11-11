@@ -7,6 +7,7 @@ import { environment } from 'environments/environment';
 import { User } from './models';
 import { ObjectStoredItem, SimpleStoredItem } from '../storage';
 import { UserAdapter } from './adapters';
+import { HttpParams } from '@angular/common/http';
 
 
 class StoredUser extends ObjectStoredItem<User> { key = 'oser-cs-user-info'; }
@@ -21,7 +22,7 @@ export class AuthService {
   private loginUrl = environment.apiUrl  + 'auth/get-token/';
   private resetUrl = environment.apiUrl + 'rest-auth/password/reset/';
   private resetConfirmUrl = environment.apiUrl + 'rest-auth/password/reset/confirm/';
-  private mandatorySignatureUrl = environment.apiUrl + ''; 
+  private mandatorySignatureUrl = environment.apiUrl + 'charter'; 
   //add the corresponding path in backend interface 
 
 
@@ -86,10 +87,10 @@ export class AuthService {
   }
   
   checkSignatureCharter(email: any) : Observable<Boolean> {
-    return this.http.get<any>( this.mandatorySignatureUrl, { params: email }).pipe(
+    const parm = new HttpParams({fromString: 'email='+ email})
+    return this.http.get<Boolean>( this.mandatorySignatureUrl, { params:  parm}).pipe(
       map((data: any) => {
         return data}),
-      
     );
   }
   get isLoggedIn(): boolean {

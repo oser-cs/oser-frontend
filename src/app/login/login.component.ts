@@ -14,8 +14,9 @@ import { filter, map, tap, catchError } from 'rxjs/operators';
 export class LoginComponent implements OnInit {
 
   loading: boolean = false;
+  hassignedCharter = true;
   defaultRedirectUrl: string = '/membres';
-  charterUrl : string = 'inscription/student-charter';
+  charterUrl: string = 'inscription/student-charter';
   formGroup: FormGroup;
 
   constructor(
@@ -47,36 +48,40 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     const { email, password } = this.formGroup.value;
     this.messageService.clear();
-    console.log(this.auth.checkFakeSignatureCharter(email))
-    if (this.auth.checkSignatureCharter(email)){
-      this.auth.login(email, password).pipe(
-        catchError(() => {
-          this.messageService.error("L'identifiant ou le mot de passe est incorrect.");
-          return of(false);
-        }),
-        tap(() => this.loading = false),
-        // Only continue if no error
-        filter(Boolean),
-        // Get redirect URL from the auth service, provided by the auth guard.
-        map(() =>this.auth.redirectUrl ? this.auth.redirectUrl : this.defaultRedirectUrl),
-        tap(() => this.snackBar.open('Connexion réussie !', 'OK', { duration: 2000 })),
-        tap((redirectUrl: string) => this.router.navigate([redirectUrl])),
-      ).subscribe();
+    this.auth.login(email, password).pipe(
+      catchError(() => {
+        this.messageService.error("L'identifiant ou le mot de passe est incorrect.");
+        return of(false);
+      }),
+      tap(() => this.loading = false),
+      // Only continue if no error
+      filter(Boolean),
+      // Get redirect URL from the auth service, provided by the auth guard.
 
+    ).subscribe();
+
+    this.auth.checkSignatureCharter(email).pipe(
+      catchError(() => {
+        this.hassignedCharter = false;
+
+        this.messageService.error("Vous n'avez pas signé le(s) charte(s).");
+        map(() => this.auth.redirectUrl ? this.auth.redirectUrl : this.defaultRedirectUrl),
+          tap((redirectUrl: string) => this.router.navigate([redirectUrl]));
+        return of(false);
+      }),
+      map(() => this.auth.redirectUrl ? this.auth.redirectUrl : this.defaultRedirectUrl),
+      tap(() => this.snackBar.open('Connexion réussie !', 'OK', { duration: 2000 })),
+    ).subscribe().add(() =>   
+    { 
+    if(this.hassignedCharter == false)
+    {
+      this.router.navigate([this.charterUrl]);
     }
-    else {
-      this.auth.login(email, password).pipe(
-        catchError(() => {
-          this.messageService.error("L'identifiant ou le mot de passe est incorrect.");
-          return of(false);
-        }),
-        tap(() => this.loading = false),
-        // Only continue if no error
-        filter(Boolean),
-        // Get redirect URL from the auth service, provided by the auth guard.
-        map(() =>this.auth.redirectUrl ? this.auth.redirectUrl : this.charterUrl),
-        tap(() => this.snackBar.open('Connexion réussie ! Tu vas devoir signer des chartes', 'OK', { duration: 2000 })),
-        tap((redirectUrl: string) => this.router.navigate([redirectUrl])),
-      ).subscribe();
+    else
+    {
+      this.router.navigate([this.defaultRedirectUrl]);
     }
+    });
+    
+  }
 }
