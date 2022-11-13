@@ -22,7 +22,7 @@ export class AuthService {
   private loginUrl = environment.apiUrl  + 'auth/get-token/';
   private resetUrl = environment.apiUrl + 'rest-auth/password/reset/';
   private resetConfirmUrl = environment.apiUrl + 'rest-auth/password/reset/confirm/';
-  private mandatorySignatureUrl = environment.apiUrl + 'charter'; 
+  private mandatorySignatureUrl = environment.apiUrl + 'charter/'; 
   //add the corresponding path in backend interface 
 
 
@@ -100,6 +100,13 @@ export class AuthService {
     return false;
   }
 
+  sendSignatureCharter(email: any) : Observable<Boolean> {
+    return this.http.post<Boolean>( this.mandatorySignatureUrl+'?email=' +email,{}).pipe(
+      map((data: any) => {
+        return data}),
+    );
+  }
+  
   logout() {
     this.user.destroy();
     this.token.destroy();

@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { AuthService, MessageService } from 'app/core';
 import { of } from 'rxjs';
-import { filter, map, tap, catchError } from 'rxjs/operators';
+import { filter, map, tap, catchError, subscribeOn } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   defaultRedirectUrl: string = '/membres';
   charterUrl: string = 'inscription/student-charter';
   formGroup: FormGroup;
+  loginSuccess: boolean = false;
 
   constructor(
     private router: Router,
@@ -44,44 +45,58 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login() {
+  async login() {
+    var toto = false;
     this.loading = true;
     const { email, password } = this.formGroup.value;
     this.messageService.clear();
-    this.auth.login(email, password).pipe(
+    await this.auth.login(email, password).pipe(
+
+      map(() => this.loginSuccess = true),
       catchError(() => {
         this.messageService.error("L'identifiant ou le mot de passe est incorrect.");
+        this.loginSuccess = false;
         return of(false);
       }),
       tap(() => this.loading = false),
+
+   
       // Only continue if no error
       filter(Boolean),
       // Get redirect URL from the auth service, provided by the auth guard.
 
-    ).subscribe();
-
-    this.auth.checkSignatureCharter(email).pipe(
-      catchError(() => {
-        this.hassignedCharter = false;
-
-        this.messageService.error("Vous n'avez pas signé le(s) charte(s).");
-        map(() => this.auth.redirectUrl ? this.auth.redirectUrl : this.defaultRedirectUrl),
-          tap((redirectUrl: string) => this.router.navigate([redirectUrl]));
-        return of(false);
-      }),
-      map(() => this.auth.redirectUrl ? this.auth.redirectUrl : this.defaultRedirectUrl),
-      tap(() => this.snackBar.open('Connexion réussie !', 'OK', { duration: 2000 })),
-    ).subscribe().add(() =>   
-    { 
-    if(this.hassignedCharter == false)
-    {
-      this.router.navigate([this.charterUrl]);
-    }
-    else
-    {
-      this.router.navigate([this.defaultRedirectUrl]);
-    }
+    ).subscribe({
+      complete() {
+        console.log("login unsuccess");
+      },
     });
+
+
+      if(this.loginSuccess == true){
+       
+          this.auth.checkSignatureCharter(email).pipe(
+            catchError(() => {
+              this.hassignedCharter = false;
+
+              this.messageService.error("Vous n'avez pas signé le(s) charte(s).");
+              map(() => this.auth.redirectUrl ? this.auth.redirectUrl : this.defaultRedirectUrl),
+                tap((redirectUrl: string) => this.router.navigate([redirectUrl]));
+              return of(false);
+            }),
+            map(() => this.auth.redirectUrl ? this.auth.redirectUrl : this.defaultRedirectUrl),
+            tap(() => this.snackBar.open('Connexion réussie !', 'OK', { duration: 2000 })),
+          ).subscribe().add(() =>   
+          { 
+          if(this.hassignedCharter == false)
+          {
+            this.router.navigate([this.charterUrl]);
+          }
+          else
+          {
+            this.router.navigate([this.defaultRedirectUrl]);
+          }
+          });
+}
     
-  }
+}
 }

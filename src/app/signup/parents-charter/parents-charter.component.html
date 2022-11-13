@@ -85,7 +85,7 @@
   </p>
 
   <div class="text-center">
-    <button mat-raised-button color="primary"  [disabled]="!toggleSuivant()" routerLink='/membres/compte/modifier_donnees'>
+    <button mat-raised-button color="primary"  (click)="signChart()" [disabled]="!toggleSuivant()" routerLink='/membres/compte/modifier_donnees'>
       Terminer l'inscription
   </button>
   </div>

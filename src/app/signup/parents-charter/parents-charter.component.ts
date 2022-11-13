@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'app/core';
 
 import { Registration, RegistrationService, PasswordErrorStateMatcher,PersonnalData,PersonnalDataService } from '../core';
 import { StudentSignupComponent } from '../student-signup/student-signup.component';
@@ -16,7 +17,9 @@ export class ParentsCharterComponent implements OnInit {
   state_button:boolean;
   
 
-  constructor() { }
+  constructor(    
+    private auth: AuthService,
+    ) { }
 
   ngOnInit() {
    
@@ -42,5 +45,10 @@ export class ParentsCharterComponent implements OnInit {
     
 
   }
-
+  // send post to url
+  signChart()
+  {
+    console.log("signChart");
+    this.auth.sendSignatureCharter(this.auth.getUserSnapshot().email).subscribe();
+  }
 }
