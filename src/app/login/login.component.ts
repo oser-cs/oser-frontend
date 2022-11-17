@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   defaultRedirectUrl: string = '/membres';
   charterUrl: string = 'inscription/student-charter';
   formGroup: FormGroup;
-  loginSuccess: boolean = false;
+  loginSuccess: boolean = true;
 
   constructor(
     private router: Router,
@@ -50,53 +50,39 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     const { email, password } = this.formGroup.value;
     this.messageService.clear();
-    await this.auth.login(email, password).pipe(
-
-      map(() => this.loginSuccess = true),
+       
+    await this.auth.checkSignatureCharter(email).pipe(
       catchError(() => {
-        this.messageService.error("L'identifiant ou le mot de passe est incorrect.");
-        this.loginSuccess = false;
+        this.hassignedCharter = false;
         return of(false);
       }),
-      tap(() => this.loading = false),
+      map(() =>  this.loginSuccess = true),
 
-   
-      // Only continue if no error
-      filter(Boolean),
-      // Get redirect URL from the auth service, provided by the auth guard.
+    ).toPromise();
 
-    ).subscribe({
-      complete() {
-        console.log("login unsuccess");
-      },
-    });
+   await  this.auth.login(email, password).toPromise().catch(() => {
+    console.log("this.loginSuccess)");
 
+    this.messageService.error("L'identifiant ou le mot de passe est incorrect.");
+    tap(() => this.snackBar.open("L'identifiant ou le mot de passe est incorrect.", 'OK', { duration: 2000 })),
 
-      if(this.loginSuccess == true){
-       
-          this.auth.checkSignatureCharter(email).pipe(
-            catchError(() => {
-              this.hassignedCharter = false;
+    this.loginSuccess = false;
+    this.loading = false;
+    return of(false);
+  });
 
-              this.messageService.error("Vous n'avez pas signé le(s) charte(s).");
-              map(() => this.auth.redirectUrl ? this.auth.redirectUrl : this.defaultRedirectUrl),
-                tap((redirectUrl: string) => this.router.navigate([redirectUrl]));
-              return of(false);
-            }),
-            map(() => this.auth.redirectUrl ? this.auth.redirectUrl : this.defaultRedirectUrl),
-            tap(() => this.snackBar.open('Connexion réussie !', 'OK', { duration: 2000 })),
-          ).subscribe().add(() =>   
-          { 
-          if(this.hassignedCharter == false)
-          {
-            this.router.navigate([this.charterUrl]);
-          }
-          else
-          {
-            this.router.navigate([this.defaultRedirectUrl]);
-          }
-          });
-}
+  if (this.loginSuccess ) {
     
-}
-}
+      this.loading = false;
+      console.log(this.loginSuccess);
+      if(this.hassignedCharter == false)
+      {
+        this.router.navigate([this.charterUrl]);
+      }
+      else
+      {
+        this.router.navigate([this.defaultRedirectUrl]);
+      }
+    }
+            
+}}
