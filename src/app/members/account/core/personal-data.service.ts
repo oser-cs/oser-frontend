@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Resolve,ActivatedRouteSnapshot } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of, forkJoin } from 'rxjs';
-import { tap, map, filter,catchError } from 'rxjs/operators';
-import { ApiService, AuthService,} from 'app/core';
-import {PersonalDataAdapter,PersonalData} from './personal-data.model'
+import { tap, map, filter, catchError } from 'rxjs/operators';
+import { ApiService, AuthService, } from 'app/core';
+import { PersonalDataAdapter, PersonalData } from './personal-data.model'
 
 
 @Injectable({
@@ -19,64 +19,66 @@ export class PersonalDataService extends ApiService {
   constructor(
     private http: HttpClient,
     private auth: AuthService
-  ) { super();  }
+  ) { super(); }
 
   //get personalData by user
-   get(filters: any): Observable<PersonalData> {
+  get(filters: any): Observable<PersonalData> {
     const url = this.baseUrl;
     return this.http.get(url, { params: filters }).pipe(
       map((data: any) => {
-        
-        return data.map(item => this.adapter.adapt(item))}),
+
+        return data.map(item => this.adapter.adapt(item))
+      }),
     );
   }
   retrieve(id: number | string): Observable<PersonalData> {
     let url = this.baseUrl;
     return this.http.get<PersonalData>(url).pipe(
-      map(v =>{
+      map(v => {
 
-        if(v instanceof Array){
-          if (v.length>1){
-            return this.adapter.adapt(v.find((user)=>user.user_id===id))
+        if (v instanceof Array) {
+          if (v.length > 1) {
+            return this.adapter.adapt(v.find((user) => user.user_id === id))
           }
-          else if (v.length===1){
-            return  this.adapter.adapt(v[0])
-          }else{
-            
+          else if (v.length === 1) {
+            return this.adapter.adapt(v[0])
+          } else {
+
             return this.adapter.adapt({})
           }
-          
+
         }
-        
-        }),
+
+      }),
     );
   }
 
   forUser(userId: number): Observable<PersonalData> {
-    return this.get({ user_id: String(userId)});
+    return this.get({ user_id: String(userId) });
   }
   //edit personalData for a user
   edit(personalData: PersonalData): Observable<any> {
-    
+
     const body: any = this.adapter.encode(personalData);
-    return this.http.put(personalData.url, body);
-  }  
+
+    return this.http.put(this.baseUrl + '/' + personalData.user_id + "/", body);
+  }
 }
 
 @Injectable({
-    providedIn: 'root'
-  })
+  providedIn: 'root'
+})
 export class PersonalDataResolver implements Resolve<PersonalData>{
-    
-    constructor(private service: PersonalDataService, private auth: AuthService) { }
+
+  constructor(private service: PersonalDataService, private auth: AuthService) { }
   //fetch user
-  
-    resolve(route: ActivatedRouteSnapshot): Observable<PersonalData> {
-      const user = this.auth.getUserSnapshot();
-      return this.service.retrieve(user.id).pipe(
-        catchError(e => of(null))
-      );
-    
+
+  resolve(route: ActivatedRouteSnapshot): Observable<PersonalData> {
+    const user = this.auth.getUserSnapshot();
+    return this.service.retrieve(user.id).pipe(
+      catchError(e => of(null))
+    );
+
   }
 }
 
