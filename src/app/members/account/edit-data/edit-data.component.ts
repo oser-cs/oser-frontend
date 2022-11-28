@@ -365,6 +365,8 @@ export class EditDataComponent implements OnInit {
       tap(() => this.loading = false),
       tap(() => this.error = ""),
       tap(() => {
+        this.postEditMessage = "Merci d'avoir completé tes données personnelles ! "
+
         setTimeout(() => {
           this.router.navigate(['./membres/compte/donnees'])
           this.postEditMessage = ""
