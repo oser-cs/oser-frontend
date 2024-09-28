@@ -22,6 +22,7 @@ import { PartnerLogoComponent } from './partner-logo';
 import { NewsDetailPageComponent } from './news-detail-page';
 import { CarouselComponent, CarouselDirective, CarouselItemElement } from './carousel';
 import { MentionsComponent } from './mentions';
+import { ProjectsPageComponent } from './project-page';
 
 @NgModule({
   imports: [
@@ -48,6 +49,7 @@ import { MentionsComponent } from './mentions';
     CarouselDirective,
     CarouselItemElement,
     MentionsComponent,
+    ProjectsPageComponent
   ],
   exports: [
     ShowcaseSiteComponent
